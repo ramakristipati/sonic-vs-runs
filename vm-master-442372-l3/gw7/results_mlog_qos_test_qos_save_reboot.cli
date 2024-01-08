@@ -1,0 +1,139 @@
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-prolog-qos-test_qos_save_reboot.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-prolog-qos-test_qos_save_reboot.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-prolog-qos-test_qos_save_reboot.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-prolog-qos-test_qos_save_reboot.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,printf '{"WRED_PROFILE": {"WRED": {"ecn": "ecn_all", "red_max_threshold": "100000", "wred_green_enable": "true", "green_min_threshold": "100000", "red_min_threshold": "10000", "wred_yellow_enable": "true", "yellow_min_threshold": "30000", "wred_red_enable": "true", "yellow_max_threshold": "300000", "green_max_threshold": "900000", "green_drop_probability": "10", "yellow_drop_probability": "40", "red_drop_probability": "50"}}}\n' > /tmp/apply_json2.json\n
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s config load -y /tmp/apply_json2.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,printf '{"ACL_TABLE": {"acl_table_v4": {"type": "L3", "policy_desc": "INGRESS_drop", "ports": ["Ethernet0"], "stage": "INGRESS"}}}\n' > /tmp/apply_json2.json\n
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s config load -y /tmp/apply_json2.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,printf '{"ACL_RULE": {"acl_table_v4|RULE_4": {"PACKET_ACTION": "drop", "PRIORITY": "55", "SRC_IP": "192.168.11.1/32"}}}\n' > /tmp/apply_json2.json\n
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s config load -y /tmp/apply_json2.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,printf '{"ACL_TABLE": {"acl_table_v6": {"type": "L3V6", "policy_desc": "INGRESS_drop", "ports": ["Ethernet0"], "stage": "INGRESS"}}}\n' > /tmp/apply_json2.json\n
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s config load -y /tmp/apply_json2.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,printf '{"ACL_RULE": {"acl_table_v6|RULE_6": {"PACKET_ACTION": "drop", "PRIORITY": "55", "SRC_IPV6": "2001::10/128"}}}\n' > /tmp/apply_json2.json\n
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s config load -y /tmp/apply_json2.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,show acl table acl_table_v4
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,show acl rule acl_table_v4
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,show acl table acl_table_v6
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,show acl rule acl_table_v6
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s ls -lrt /tmp/tmp1l34n_1u
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s config load -y /tmp/tmp1l34n_1u
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-prolog,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s config save /tmp/config-db-V2-post-module-prolog-qos-test_qos_save_reboot.py.json -y
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-prolog-qos-test_qos_save_reboot.py.json
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-prolog-qos-test_qos_save_reboot.py.txt
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-prolog-qos-test_qos_save_reboot.py.txt
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo show interfaces status
+framework,qos/test_qos_save_reboot.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s config save -y
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo vtysh
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,configure terminal
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,vtysh-config,do copy running-config startup-config
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,vtysh-config,exit
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,vtysh-config,exit
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s reboot
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,login_prompt,admin
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,login_prompt,YourPaSsWoRd
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,export TMOUT=0;stty cols 5000;uptime
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,cat /proc/uptime
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,export TMOUT=0;stty cols 5000;uptime
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,cat /proc/uptime
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo vtysh -c 'show running-config | include hostname'
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,export TMOUT=0;stty cols 5000;uptime
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s date --set='Thu Dec 28 00:48:05 2023'
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,show acl table acl_table_v4
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,show acl rule acl_table_v4
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,show acl table acl_table_v6
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,show acl rule acl_table_v6
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s show runningconfiguration all > /tmp/running_config.json
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+function-or-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-epilog-qos-test_qos_save_reboot.py.json -y
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-epilog-qos-test_qos_save_reboot.py.json
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-epilog-qos-test_qos_save_reboot.py.txt
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-epilog-qos-test_qos_save_reboot.py.txt
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s config qos clear
+module-or-class-epilog,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo config acl remove table
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s config save /tmp/config-db-V2-post-module-epilog-qos-test_qos_save_reboot.py.json -y
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-epilog-qos-test_qos_save_reboot.py.json
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-epilog-qos-test_qos_save_reboot.py.txt
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-epilog-qos-test_qos_save_reboot.py.txt
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,qos/test_qos_save_reboot.py,test_ft_qos_config_mgmt_verifying_config_with_save_reboot,D1,normal-user,/sbin/ip route list dev eth0

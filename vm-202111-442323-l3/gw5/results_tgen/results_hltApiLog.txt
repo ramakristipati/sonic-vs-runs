@@ -1,0 +1,52 @@
+REQ: tg_connect(port_list=['1/5', '1/6', '1/7', '1/8'])
+RESP: tg_connect {"port_handle": {"1/5": "port-5", "1/6": "port-6", "1/7": "port-7", "1/8": "port-8"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle=['port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-5',mode='config',intf_ip_addr='10.10.10.2',gateway='10.10.10.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-5-0"}
+REQ: tg_interface_config(port_handle='port-6',mode='config',intf_ip_addr='20.20.20.2',gateway='20.20.20.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-6-0"}
+REQ: tg_emulation_bgp_config(handle='iface-5-0',mode='enable',active_connect_enable='1',local_as=200,remote_as=100,remote_ip_addr='10.10.10.1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-5-0"}
+REQ: tg_emulation_bgp_route_config(handle='iface-5-0',mode='add',num_routes=16000,prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-5-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-5-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-5-0-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-5-0-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_interface_config(port_handle='port-5',handle='iface-5-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_interface_config(port_handle='port-6',handle='iface-6-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_traffic_control(action='reset',port_handle=['port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-5',mode='config',ipv6_intf_addr='2001::100',ipv6_prefix_length='64',ipv6_gateway='2001::1',src_mac_addr='00:0a:01:01:23:01',arp_send_req='1',count=5)
+RESP: tg_interface_config {"status": "1", "handle": ["iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0"]}
+REQ: tg_interface_config(port_handle='port-6',mode='config',ipv6_intf_addr='3001::100',ipv6_prefix_length='64',ipv6_gateway='3001::1',src_mac_addr='00:0b:01:01:23:01',arp_send_req='1',vlan_id=64,vlan=1,count=5)
+RESP: tg_interface_config {"status": "1", "handle": ["iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0"]}
+REQ: tg_traffic_control(action='reset',port_handle=['port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-5',mode='config',intf_ip_addr='192.168.11.2',gateway='192.168.11.1',src_mac_addr='00:00:00:00:00:01',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-5-0"}
+REQ: tg_interface_config(port_handle='port-6',mode='config',intf_ip_addr='192.168.12.2',gateway='192.168.12.1',src_mac_addr='00:00:00:00:00:02',arp_send_req='1',vlan_id=64,vlan=1)
+RESP: tg_interface_config {"status": "1", "handle": "iface-6-0"}
+REQ: tg_interface_config(protocol_handle='iface-5-0',send_ping='1',ping_dst='192.168.11.1')
+RESP: tg_interface_config {"status": "1", "port-5": {"ping_details": "PING 192.168.11.1 (192.168.11.1) 56(84) bytes of data.\n64 bytes from 192.168.11.1: icmp_seq=1 ttl=64 time=1.13 ms\n\n--- 192.168.11.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 1.127/1.127/1.127/0.000 ms\n"}}
+REQ: tg_interface_config(protocol_handle='iface-6-0',send_ping='1',ping_dst='192.168.12.1')
+RESP: tg_interface_config {"status": "1", "port-6": {"ping_details": "PING 192.168.12.1 (192.168.12.1) 56(84) bytes of data.\n64 bytes from 192.168.12.1: icmp_seq=1 ttl=64 time=1.02 ms\n\n--- 192.168.12.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 1.020/1.020/1.020/0.000 ms\n"}}
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_config(port_handle='port-6',port_handle2='port-5',mode='create',rate_pps=10,mac_src='00:00:00:00:00:02',transmit_mode='continuous',mac_dst='52:54:00:12:34:56',l2_encap='ethernet_ii_vlan',l3_protocol='ipv4',ip_dst_addr='192.168.11.2',ip_src_addr='192.168.12.2',vlan_id=64,vlan='enable')
+RESP: tg_traffic_config {"stream_id": "stream-6-0"}
+REQ: tg_traffic_control(action='run',stream_handle='stream-6-0',get='vlan_id')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle='stream-6-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(mode='streams',port_handle='port-6')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-6": {"stream": {"stream-6-0": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 151, "pkt_byte_count": 9664, "total_pkts": 151, "name": "stream-6-0"}}}}, "port-5": {"name": "eth5", "stream": {"stream-6-0": {"rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 153, "pkt_byte_count": 5439, "total_pkts": 153, "oversize_count": 0, "name": "port-5"}}}}}
+REQ: tg_traffic_stats(port_handle='port-5',mode='flow')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "flow": {"1": {"rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 153, "pkt_byte_count": 5439, "total_pkts": 153, "oversize_count": 0, "name": "port-5"}, "pgid_value": "N/A", "tracking": {"count": "2", "1": {"tracking_name": "Traffic_Item", "tracking_value": "stream_id"}, "2": {"tracking_name": "vlanId", "tracking_value": "100"}}, "flow_name": "stream id", "tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}}, "2": {"rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 153, "pkt_byte_count": 5439, "total_pkts": 153, "oversize_count": 0, "name": "port-5"}, "pgid_value": "N/A", "tracking": {"count": "2", "1": {"tracking_name": "Traffic_Item", "tracking_value": "stream_id"}, "2": {"tracking_name": "vlanId", "tracking_value": "100"}}, "flow_name": "stream id", "tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}}}}
+REQ: tg_disconnect()
+RESP: tg_disconnect {"status": 1}

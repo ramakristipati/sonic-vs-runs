@@ -1,0 +1,375 @@
+
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/fh-3.2.4/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/fh-3.2.4/datatables.min.js"></script>
+  <style>
+    table.dataTable thead th {text-align:center; padding:0px 15px 0px 5px; font-weight:bold;}
+    table.dataTable tbody td {text-align:center; padding:0px 5px 0px 5px}
+    table.dataTable tfoot td {text-align:center; padding:0px 5px 0px 5px}
+    .dt-button-collection .dt-button.buttons-columnVisibility {
+        background: none !important; background-color: transparent !important;
+        box-shadow: none !important; border: none !important; padding: 0.25em 1em !important;
+        margin: 0 !important; text-align: left !important;
+    }
+    .dt-button-collection .buttons-columnVisibility:before,
+    .dt-button-collection .buttons-columnVisibility.active span:before {
+        display:block; position:absolute; top:1.2em; left:0;
+        width:12px; height:12px; box-sizing:border-box;
+    }
+    .dt-button-collection .buttons-columnVisibility:before {
+        content:' '; margin-top:-8px; margin-left:10px; border:1px solid black; border-radius:3px;
+    }
+    .dt-button-collection .buttons-columnVisibility.active span:before {
+        font-family: 'Arial' !important; content:'\\2714'; margin-top: -15px; margin-left: 12px;
+        text-align: center; text-shadow: 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    }
+    .dt-button-collection .buttons-columnVisibility span { margin-left:17px; }
+  </style>
+  <script>
+    $(function () {
+          var last = $('table tr:last').remove()
+            var thead = $("table").find('thead');
+            if (!thead.length) {
+                thead = $('<thead>').prependTo("table");
+                thead.prepend(last)
+            } else {
+                thead.prepend(last)
+                //TODO: see if we need to insert before last child
+            }
+      var url = new URL(window.location); var search_params = url.searchParams;
+      if (parseInt(search_params.get("nocache")|0, 0) != 0) {
+        search_params.set('timestamp', Date.now()/1000|0);
+        search_params.delete('nocache'); window.location = url.toString();
+      }
+      function selectedColumn(idx, data, node) {
+        oldSearchInput = $('table').parents('.dataTables_wrapper').find('select');
+        let columnIndex = columnScopeSelect.prop('selectedIndex');
+        return ((columnIndex <= 0) || (idx == columnIndex - 1));
+      }
+      function get_uniq(data, obj) {
+        return data.split('\\n').filter((item, i, allItems) => {return i === allItems.indexOf(item);}).join('\\n');
+      }
+      buttons = [{ extend: 'colvis', className: 'btn btn-primary', collectionLayout: 'two-column' },
+                 { extend: 'copy', className: 'btn btn-primary', title: '',
+                   text: 'Copy Column', header: false, customize: get_uniq,
+                   exportOptions: { columns: selectedColumn }
+                 }];
+      function parseTimeStamp(ts) {
+        var parts = ts.split(":"), total = 0, multiplier=1;
+        for(var i = parts.length; i>0; i--) {
+          total = total + parseInt(parts[i-1])*multiplier;
+          multiplier=multiplier*60;
+        }
+        return total;
+      }
+      jQuery.fn.dataTableExt.aTypes.unshift(function (sData) {
+        return /^(\d+):(\d+):(\d+)/i.test(sData) ? 'duration' : null
+      });
+      jQuery.fn.dataTableExt.oSort['duration-asc'] = function (a, b) {
+        var ordA = parseTimeStamp(a), ordB = parseTimeStamp(b);
+        return (ordA < ordB) ? -1 : ((ordA > ordB) ? 1 : 0);
+      };
+      jQuery.fn.dataTableExt.oSort['duration-desc'] = function (a, b) {
+        var ordA = parseTimeStamp(a), ordB = parseTimeStamp(b);
+        return (ordA < ordB) ? 1 : ((ordA > ordB) ? -1 : 0);
+      };
+      dataTable = $('table').DataTable({dom: 'Bfrtip', buttons: buttons,
+        stateSave: true, iDisplayLength: 100, paging: false, order: [],
+        fixedHeader: true, stateDuration: 60 * 60 * 24
+      });
+      col_css = [{'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'left'}, {'align': 'left'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'center'}, {'align': 'left'}, {'align': 'left'}]
+      $('table.dataTable tr').filter(function() {
+         return this.parentNode !== "thead";
+        }).each(function(tr_idx,tr) {
+        $(tr).children('td').each(function(td_idx, td) {
+          $(td).css("text-align", col_css[td_idx]["align"])
+        });
+      });
+      // support for search by
+      oldSearchInput = $('table').parents('.dataTables_wrapper').find('input[type=search]')
+      searchInput = $(document.createElement('input')).attr({type: 'search'});
+      columnScopeLabel = $(document.createElement('span')).text('Column Scope:').attr({style: "padding-right:5"})
+      searchLabel = $(document.createElement('span')).text('Search:').attr({style: "padding-left:5"})
+      negateLabel = $(document.createElement('span')).text('Negate Results:').attr({style: "padding-left:2"})
+      negateCheckbox = $(document.createElement('input')).attr({type: 'checkbox', style: "padding-left:0"})
+      mainLabel = $(document.createElement('label'))
+      columnScopeSelect = $(document.createElement('select'))
+      var select = '<option/>';
+      $("table thead tr:last-child th").each(function(){
+        select += '<option>' + this.innerHTML + '</option>';
+      })
+      columnScopeSelect.html(select);
+      mainLabel.append(columnScopeLabel)
+      mainLabel.append(columnScopeSelect)
+      mainLabel.append(searchLabel)
+      mainLabel.append(searchInput)
+      mainLabel.append(negateLabel)
+      mainLabel.append(negateCheckbox)
+      mainLabel.insertBefore(oldSearchInput.parent());
+      oldSearchInput.parent().css("display", "none")
+      let query = undefined;
+      function hanleInputEvent() {
+        query = searchInput.val().toLowerCase();
+        if (query === '') { query = undefined; }
+        dataTable.draw();
+      }
+      searchInput.on('keyup', hanleInputEvent)
+      searchInput.on('search', hanleInputEvent)
+      negateCheckbox.on('click', hanleInputEvent)
+      search_val = search_params.get("search")|0
+      if (search_val != 0) {
+        searchInput.val(search_val)
+        setTimeout(function(){searchInput.trigger('keyup')}, 1);
+      }
+      function matchit(value) {
+        if (query.trim() === "") {
+          found = (value === "");
+        } else if (typeof value === 'undefined') {
+          found = false;
+        } else {
+          found = (value.toLowerCase().indexOf(query) !== -1);
+        }
+        if (negateCheckbox.is(":checked")) {
+          return !found;
+        }
+        return found;
+      }
+      function filterDataTable(settings, data, dataIndex) {
+        if (query === undefined) { return true; }
+        let columnIndex = columnScopeSelect.prop('selectedIndex')
+        if (columnIndex > 0) {
+          return matchit(data[columnIndex-1])
+        }
+        for (var i = 0; i < data.length; i++) {
+          if (matchit(data[i])) {
+            return true;
+          }
+        }
+        return false
+      }
+      $.fn.dataTable.ext.search.push(filterDataTable);
+    });
+  </script>
+</head>
+<body>
+  <table border='1'>
+  <thead>
+    
+    <tr>
+      <th>#</th>
+      <th>Node</th>
+      <th>Type</th>
+      <th>Buckets</th>
+      <th>Node Testbed</th>
+      <th>Status</th>
+      <th>Devices</th>
+      <th>Comment</th>
+      <th>Parent Testbed</th>
+      <th>PID</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Duration</th>
+      <th>Executed</th>
+      <th>Running</th>
+      <th>Potential</th>
+      <th>NES</th>
+      <th>Topology</th>
+      <th>Previous Nodes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><a href='gw0'>gw0</a></td>
+      <td>Main</td>
+      <td>5-200</td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td><a href='gw0/results_logs.log'>Completed</a></td>
+      <td><a href='gw0/results_dlog-D1-V1.log'>V1</a> <a href='gw0/results_dlog-D2-V2.log'>V2</a> <a href='gw0/results_dlog-D3-V3.log'>V3</a> <a href='gw0/results_dlog-D4-V4.log'>V4</a></td>
+      <td></td>
+      <td>None</td>
+      <td>18598</td>
+      <td>2023-12-25 01:45:04</td>
+      <td>2023-12-25 01:45:09</td>
+      <td>0:00:05</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4 D1D2:6 D1D3:4 D1D4:4 D2T1:4 D2D3:4 D2D4:4 D3T1:4 D3D4:6 D4T1:4</td>
+      <td><a href=''></a> <a href=''></a> <a href=''></a> <a href=''></a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><a href='gw1'>gw1</a></td>
+      <td>Main</td>
+      <td>3-4</td>
+      <td><a href='testbed_1_4_1.yaml'>1_4_1</a></td>
+      <td><a href='gw1/results_logs.log'>Completed</a></td>
+      <td><a href='gw1/results_dlog-D1-V1.log'>V1</a> <a href='gw1/results_dlog-D2-V2.log'>V2</a> <a href='gw1/results_dlog-D3-V3.log'>V3</a> <a href='gw1/results_dlog-D4-V4.log'>V4</a></td>
+      <td></td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td>18636</td>
+      <td>2023-12-25 01:45:09</td>
+      <td>2023-12-25 01:45:09</td>
+      <td>0:00:01</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4 D1D2:6 D1D3:4 D1D4:4 D2T1:4 D2D3:4 D2D4:4 D3T1:4 D3D4:6 D4T1:4</td>
+      <td><a href='gw0'>gw0</a> <a href='gw0'>gw0</a> <a href='gw0'>gw0</a> <a href='gw0'>gw0</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><a href='gw2'>gw2</a></td>
+      <td>Main</td>
+      <td>2</td>
+      <td><a href='testbed_1_2_1.yaml'>1_2_1</a></td>
+      <td><a href='gw2/results_logs.log'>Dead</a></td>
+      <td><a href='gw2/results_dlog-D1-V1.log'>V1</a> <a href='gw2/results_dlog-D2-V2.log'>V2</a></td>
+      <td>Failed to connect (['V1', 'V2'])</td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td>18695</td>
+      <td>2023-12-25 01:45:09</td>
+      <td>2023-12-25 01:47:29</td>
+      <td>0:02:20</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4 D1D2:6 D2T1:4</td>
+      <td><a href='gw1'>gw1</a> <a href='gw1'>gw1</a></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><a href='gw3'>gw3</a></td>
+      <td>Main</td>
+      <td>2</td>
+      <td><a href='testbed_1_2_2.yaml'>1_2_2</a></td>
+      <td><a href='gw3/results_logs.log'>Dead</a></td>
+      <td><a href='gw3/results_dlog-D1-V3.log'>V3</a> <a href='gw3/results_dlog-D2-V4.log'>V4</a></td>
+      <td>Failed to connect (['V3', 'V4'])</td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td>18721</td>
+      <td>2023-12-25 01:45:09</td>
+      <td>2023-12-25 01:47:29</td>
+      <td>0:02:20</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4 D1D2:6 D2T1:4</td>
+      <td><a href='gw1'>gw1</a> <a href='gw1'>gw1</a></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><a href='gw4'>gw4</a></td>
+      <td>Main</td>
+      <td>1</td>
+      <td><a href='testbed_1_1_1.yaml'>1_1_1</a></td>
+      <td><a href='gw4/results_logs.log'>Dead</a></td>
+      <td><a href='gw4/results_dlog-D1-V3.log'>V3</a></td>
+      <td>Failed to connect (['V3'])</td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td>18725</td>
+      <td>2023-12-25 01:47:29</td>
+      <td>2023-12-25 01:49:46</td>
+      <td>0:02:18</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4</td>
+      <td><a href='gw3'>gw3</a></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><a href='gw5'>gw5</a></td>
+      <td>Main</td>
+      <td>1</td>
+      <td><a href='testbed_1_1_2.yaml'>1_1_2</a></td>
+      <td><a href='gw5/results_logs.log'>Dead</a></td>
+      <td><a href='gw5/results_dlog-D1-V1.log'>V1</a></td>
+      <td>Failed to connect (['V1'])</td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td>18729</td>
+      <td>2023-12-25 01:47:29</td>
+      <td>2023-12-25 01:49:46</td>
+      <td>0:02:18</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4</td>
+      <td><a href='gw2'>gw2</a></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><a href='gw6'>gw6</a></td>
+      <td>Main</td>
+      <td>1</td>
+      <td><a href='testbed_1_1_3.yaml'>1_1_3</a></td>
+      <td><a href='gw6/results_logs.log'>Dead</a></td>
+      <td><a href='gw6/results_dlog-D1-V2.log'>V2</a></td>
+      <td>Failed to connect (['V2'])</td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td>18733</td>
+      <td>2023-12-25 01:47:29</td>
+      <td>2023-12-25 01:49:45</td>
+      <td>0:02:17</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4</td>
+      <td><a href='gw2'>gw2</a></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><a href='gw7'>gw7</a></td>
+      <td>Main</td>
+      <td>1</td>
+      <td><a href='testbed_1_1_4.yaml'>1_1_4</a></td>
+      <td><a href='gw7/results_logs.log'>Dead</a></td>
+      <td><a href='gw7/results_dlog-D1-V4.log'>V4</a></td>
+      <td>Failed to connect (['V4'])</td>
+      <td><a href='testbed_1_5_0.yaml'>1_5_0</a></td>
+      <td>18737</td>
+      <td>2023-12-25 01:47:29</td>
+      <td>2023-12-25 01:49:46</td>
+      <td>0:02:18</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>D1T1:4</td>
+      <td><a href='gw3'>gw3</a></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Completed</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>2023-12-25 01:45:04</td>
+      <td>2023-12-25 01:49:46</td>
+      <td>0:04:42</td>
+      <td>0</td>
+      <td>0</td>
+      <td>66</td>
+      <td>0</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+  </table>
+</body>

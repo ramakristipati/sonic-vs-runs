@@ -1,0 +1,110 @@
+
+======================= STATS: routing/test_ndp.py::test_ft_ipv6_neighbor_entry ===========================
+RESULT = 
+DESCRIPTION = Module Configuration
+TOTAL Test Time = 0:01:39
+TOTAL Sleep Time = 0:00:00
+TOTAL TG Sleep = 0:00:00
+TOTAL CMD Time = 0:00:09.966
+TOTAL HELPER Time = 0:00:00.000
+TOTAL TG Time = 0:00:00.000
+TOTAL PROMPT NFOUND = 0
+TOTAL TECH SUPPORT = 0
+2024-01-02 00:28:52,567 T0016: CMD TIME: 1370 D1 = sudo show interfaces status Ethernet124
+2024-01-02 00:28:54,358 T0016: CMD TIME: 255 D1 = date -u +'%Y-%m-%d %H:%M:%S'
+2024-01-02 00:28:55,030 T0017: CMD TIME: 1378 D1 = sudo show interfaces status
+2024-01-02 00:28:56,903 T0000: CMD TIME: 1320 D1 = sudo -s config save /tmp/config-db-V3-pre-module-prolog-routing-test_ndp.py.json -y
+2024-01-02 00:28:58,673 T0000: CMD TIME: 260 D1 = sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-routing-test_ndp.py.json
+2024-01-02 00:29:00,210 T0000: CMD TIME: 260 D1 = sudo -s /sbin/ip link set dev eth0 up
+2024-01-02 00:29:00,911 T0000: CMD TIME: 262 D1 = /sbin/ip route list dev eth0
+2024-01-02 00:29:09,414 T0000: CMD TIME: 513 D1 = sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-test_ndp.py.txt
+2024-01-02 00:29:10,369 T0000: CMD TIME: 260 D1 = sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-test_ndp.py.txt
+2024-01-02 00:29:11,905 T0000: CMD TIME: 260 D1 = sudo -s /sbin/ip link set dev eth0 up
+2024-01-02 00:29:12,598 T0000: CMD TIME: 261 D1 = /sbin/ip route list dev eth0
+2024-01-02 00:29:21,226 T0000: CMD TIME: 915 D1 = sudo -s config interface ip add Ethernet0 2001::1/64
+2024-01-02 00:29:22,588 T0000: CMD TIME: 870 D1 = sudo -s config vlan add 64
+2024-01-02 00:29:23,904 T0000: CMD TIME: 867 D1 = sudo -s config vlan member add 64 Ethernet4
+2024-01-02 00:29:25,225 T0000: CMD TIME: 915 D1 = sudo -s config interface ip add Vlan64 3001::1/64
+=========================================================
+
+======================= STATS: routing/test_ndp.py::test_ft_ipv6_neighbor_entry ===========================
+RESULT = Pass
+DESCRIPTION = Test case passed
+TOTAL Test Time = 0:00:18
+TOTAL Sleep Time = 0:00:00
+TOTAL TG Sleep = 0:00:00
+TOTAL CMD Time = 0:00:09.382
+TOTAL HELPER Time = 0:00:00.000
+TOTAL TG Time = 0:00:00.000
+TOTAL PROMPT NFOUND = 0
+TOTAL TECH SUPPORT = 0
+2024-01-02 00:31:03,889 T0000: CMD TIME: 1232 D1 = show ndp
+2024-01-02 00:31:05,592 T0000: CMD TIME: 1219 D1 = show ndp | grep 'Total number of entries'
+2024-01-02 00:31:07,263 T0000: CMD TIME: 3821 D1 = sudo -s sonic-clear ndp
+2024-01-02 00:31:11,553 T0000: CMD TIME: 1219 D1 = show ndp | grep 'Total number of entries'
+2024-01-02 00:31:13,233 T0000: CMD TIME: 259 D1 = sudo -s ip -6 neighbor replace 2001::500 lladdr 00:0c:01:01:23:01 dev Ethernet0
+2024-01-02 00:31:13,933 T0000: CMD TIME: 1369 D1 = show ndp | grep 'Total number of entries'
+2024-01-02 00:31:15,752 T0000: CMD TIME: 263 D1 = sudo -s ip -6 neighbor del 2001::500 lladdr 00:0c:01:01:23:01 dev Ethernet0
+=========================================================
+
+======================= STATS: routing/test_arp.py::test_ft_arp_dynamic_renew_traffic_test ===========================
+RESULT = 
+DESCRIPTION = Module Configuration
+TOTAL Test Time = 0:03:08
+TOTAL Sleep Time = 0:00:10
+TOTAL TG Sleep = 0:00:00
+TOTAL CMD Time = 0:00:17.248
+TOTAL HELPER Time = 0:01:54.372
+TOTAL TG Time = 0:00:00.000
+TOTAL PROMPT NFOUND = 0
+TOTAL TECH SUPPORT = 0
+2024-01-02 00:33:49,270 T0056: CMD TIME: 408 D1 = sudo vtysh
+2024-01-02 00:33:49,687 T0056: CMD TIME: 255 D1 = configure terminal
+2024-01-02 00:33:50,356 T0056: CMD TIME: 255 D1 = no router bgp
+2024-01-02 00:33:51,027 T0056: CMD TIME: 255 D1 = exit
+2024-01-02 00:33:51,288 T0056: CMD TIME: 255 D1 = exit
+2024-01-02 00:33:51,956 T0056: CMD TIME: 861 D1 = sudo -s config feature state sflow enabled
+2024-01-02 00:33:53,228 T0056: CMD TIME: 860 D1 = sudo -s config feature state nat enabled
+2024-01-02 00:33:54,907 T0056: HELPER TIME: 114372 D1 = sudo python /etc/spytest/remote/spytest-helper.py --apply-base-config  --load-config-method reload --no-swss-copp-config  
+2024-01-02 00:35:50,525 T0056: CMD TIME: 255 D1 = sudo -s /sbin/ip link set dev eth0 up
+2024-01-02 00:35:51,192 T0056: CMD TIME: 255 D1 = /sbin/ip route list dev eth0
+2024-01-02 00:35:51,865 T0056: CMD TIME: 1367 D1 = sudo show interfaces status Ethernet124
+2024-01-02 00:35:53,650 T0056: CMD TIME: 255 D1 = date -u +'%Y-%m-%d %H:%M:%S'
+2024-01-02 00:35:54,321 T0057: CMD TIME: 1635 D1 = sudo show interfaces status
+2024-01-02 00:35:56,000 T0000: WAIT TIME: 5 = static delay
+2024-01-02 00:36:01,416 T0058: CMD TIME: 1637 D1 = sudo show interfaces status
+2024-01-02 00:36:03,096 T0000: WAIT TIME: 5 = static delay
+2024-01-02 00:36:08,512 T0059: CMD TIME: 1378 D1 = sudo show interfaces status
+2024-01-02 00:36:10,370 T0000: CMD TIME: 1368 D1 = sudo -s config save /tmp/config-db-V3-pre-module-prolog-routing-test_arp.py.json -y
+2024-01-02 00:36:12,181 T0000: CMD TIME: 260 D1 = sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-routing-test_arp.py.json
+2024-01-02 00:36:13,715 T0000: CMD TIME: 261 D1 = sudo -s /sbin/ip link set dev eth0 up
+2024-01-02 00:36:14,414 T0000: CMD TIME: 259 D1 = /sbin/ip route list dev eth0
+2024-01-02 00:36:22,969 T0000: CMD TIME: 513 D1 = sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-test_arp.py.txt
+2024-01-02 00:36:23,922 T0000: CMD TIME: 260 D1 = sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-test_arp.py.txt
+2024-01-02 00:36:25,462 T0000: CMD TIME: 260 D1 = sudo -s /sbin/ip link set dev eth0 up
+2024-01-02 00:36:26,162 T0000: CMD TIME: 261 D1 = /sbin/ip route list dev eth0
+2024-01-02 00:36:34,744 T0000: CMD TIME: 264 D1 = /sbin/ifconfig Ethernet0
+2024-01-02 00:36:35,473 T0000: CMD TIME: 913 D1 = sudo -s config interface ip add Ethernet0 192.168.11.1/24
+2024-01-02 00:36:36,833 T0000: CMD TIME: 913 D1 = sudo -s config vlan add 64
+2024-01-02 00:36:38,194 T0000: CMD TIME: 870 D1 = sudo -s config vlan member add 64 Ethernet4
+2024-01-02 00:36:39,525 T0000: CMD TIME: 915 D1 = sudo -s config interface ip add Vlan64 192.168.12.1/24
+=========================================================
+
+======================= STATS: routing/test_arp.py::test_ft_arp_dynamic_renew_traffic_test ===========================
+RESULT = Pass
+DESCRIPTION = Test case passed
+TOTAL Test Time = 0:01:00
+TOTAL Sleep Time = 0:00:15
+TOTAL TG Sleep = 0:00:10
+TOTAL CMD Time = 0:00:01.842
+TOTAL HELPER Time = 0:00:00.000
+TOTAL TG Time = 0:00:00.000
+TOTAL PROMPT NFOUND = 0
+TOTAL TECH SUPPORT = 0
+2024-01-02 00:37:29,409 T0000: CMD TIME: 265 D1 = sudo bash -c 'echo 75 >/proc/sys/net/ipv4/neigh/default/gc_stale_time'
+2024-01-02 00:37:38,261 T0000: CMD TIME: 1318 D1 = sudo -s sonic-clear counters
+2024-01-02 00:37:45,619 T0000: WAIT TIME: 10 = static delay
+2024-01-02 00:37:57,639 T0000: WAIT TIME: 5 = static delay
+2024-01-02 00:38:02,650 T0000: TGWAIT TIME: 10.0 = TG sleep
+2024-01-02 00:38:23,141 T0000: CMD TIME: 259 D1 = sudo bash -c 'echo 60 >/proc/sys/net/ipv4/neigh/default/gc_stale_time'
+=========================================================

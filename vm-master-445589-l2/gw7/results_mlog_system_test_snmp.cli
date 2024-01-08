@@ -1,0 +1,165 @@
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-prolog-system-test_snmp.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-prolog-system-test_snmp.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-prolog-system-test_snmp.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-prolog-system-test_snmp.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,system/test_snmp.py,,D1,normal-user,/sbin/ifconfig eth0
+module-prolog,system/test_snmp.py,,D1,normal-user,cat /etc/sonic/snmp.yml
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo sed -i '/^snmp_rocommunity:/ c snmp_rocommunity: test_123' /etc/sonic/snmp.yml
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo sed -i '/^snmp_location:/ c snmp_location: hyderabad' /etc/sonic/snmp.yml
+module-prolog,system/test_snmp.py,,D1,normal-user,cat /etc/sonic/snmp.yml
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo service snmp restart
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s config interface ip add Loopback0 67.66.66.66/32
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s config vlan add 297
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo ls -lrt /tmp/tmpz6bwhphn
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo mkdir -p /tmp && sudo cp -f /tmp/tmpz6bwhphn /tmp/swss_config.json
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s docker cp /tmp/swss_config.json swss:/swss_config.json
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s docker exec -it swss bash -c 'swssconfig /swss_config.json'
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s config vlan member add 297 Ethernet0 -u
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s config vlan member add 297 Ethernet4
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s sonic-clear counters
+module-prolog,system/test_snmp.py,,D1,normal-user,show mac
+module-prolog,system/test_snmp.py,,D1,normal-user,sudo -s config snmptrap modify 2 127.0.0.1 -p 162 -v None -c test_123
+framework,system/test_snmp.py,,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-prolog-system-test_snmp.py.json -y
+framework,system/test_snmp.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-prolog-system-test_snmp.py.json
+framework,system/test_snmp.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_snmp.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_snmp.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-prolog-system-test_snmp.py.txt
+framework,system/test_snmp.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-prolog-system-test_snmp.py.txt
+framework,system/test_snmp.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_snmp.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_sysName,D1,normal-user,hostname
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_test_syUpTime,D1,normal-user,show uptime
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_sysDescr,D1,normal-user,show version
+function-or-epilog,system/test_snmp.py,test_ft_snmp_sysDescr,D1,normal-user,show platform summary
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_ipAddressRowStatus_ipv6,D1,normal-user,sudo -s config interface ip add Loopback0 5551::1/128
+function-or-epilog,system/test_snmp.py,test_ft_snmp_ipAddressRowStatus_ipv6,D1,normal-user,show ipv6 interface
+function-or-epilog,system/test_snmp.py,test_ft_snmp_ipAddressRowStatus_ipv6,D1,normal-user,sudo -s config interface ip remove Loopback0 5551::1/128
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_ip_forward_table,D1,normal-user,sudo vtysh
+function-or-epilog,system/test_snmp.py,test_ft_snmp_ip_forward_table,D1,normal-user,configure terminal
+function-or-epilog,system/test_snmp.py,test_ft_snmp_ip_forward_table,D1,vtysh-config,agentx
+function-or-epilog,system/test_snmp.py,test_ft_snmp_ip_forward_table,D1,vtysh-config,no agentx
+framework,system/test_snmp.py,,D1,vtysh-config,exit
+framework,system/test_snmp.py,,D1,vtysh-config,exit
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_dot1q_tp_fdb_port,D1,normal-user,show mac
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_snmp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s systemctl restart snmp
+function-or-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s systemctl is-active snmp
+function-or-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,hostname
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-epilog-system-test_snmp.py.json -y
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-epilog-system-test_snmp.py.json
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-epilog-system-test_snmp.py.txt
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-epilog-system-test_snmp.py.txt
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,cat /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo sed -i '/^snmp_rocommunity:/ c snmp_rocommunity: NotConfigured' /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo sed -i '/^snmp_rocommunity6:/ c snmp_rocommunity6: NotConfigured' /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo sed -i '/^snmp_location:/ c snmp_location: NotConfigured' /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo sed -i '/^snmp_syscontact:/ c snmp_syscontact: NotConfigured' /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo sed -i '/^v1_trap_dest:/ c v1_trap_dest: NotConfigured' /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo sed -i '/^v2_trap_dest:/ c v2_trap_dest: NotConfigured' /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo sed -i '/^v3_trap_dest:/ c v3_trap_dest: NotConfigured' /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,cat /etc/sonic/snmp.yml
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo service snmp restart
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s sonic-clear fdb all
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s config vlan member del 297 Ethernet0
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s config vlan member del 297 Ethernet4
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,show vlan config
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s config vlan del 297
+module-or-class-epilog,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,show vlan config
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-epilog-system-test_snmp.py.json -y
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-epilog-system-test_snmp.py.json
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-epilog-system-test_snmp.py.txt
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-epilog-system-test_snmp.py.txt
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_snmp.py,test_ft_snmp_docker_restart,D1,normal-user,/sbin/ip route list dev eth0

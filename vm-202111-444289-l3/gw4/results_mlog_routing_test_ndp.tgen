@@ -1,0 +1,984 @@
+0:11:09,275 gw4 T0000: INFO  ################################################################################
+0:11:09,275 gw4 T0000: INFO  Python: 3.8.10
+0:11:09,275 gw4 T0000: INFO  ################################################################################
+0:11:09,275 gw4 T0000: INFO  ################################################################################
+0:11:09,275 gw4 T0000: INFO  Open file /data/work/scapy-tgen/logs/current/inst-2023_12_31_00_29_56_095300/gw4/results_mlog_routing_test_ndp.tgen
+0:11:09,275 gw4 T0000: INFO  ################################################################################
+0:11:09,275 gw4 T0000: INFO  ################################################################################
+0:11:09,275 gw4 T0000: INFO  gw4 gw4 init-log results_mlog_routing_test_ndp.tgen
+0:11:09,276 gw4 T0000: INFO  ################################################################################
+0:11:09,277 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:11:09,277 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:11:10,274 gw4 T0082: DEBUG readp:eth9 len:150 count:604
+0:11:10,856 gw4 T0082: DEBUG readp:eth9 len:150 count:605
+0:11:12,608 gw4 T0086: DEBUG readp:eth10 len:134 count:52
+0:11:12,968 gw4 T0086: DEBUG readp:eth10 len:134 count:53
+0:11:13,224 gw4 T0086: DEBUG readp:eth10 len:134 count:54
+0:11:13,788 gw4 T0086: DEBUG readp:eth10 len:154 count:55
+0:11:13,979 gw4 T0000: DEBUG gw4 ('gw4',) {'action': 'reset', 'port_handle': ['port-9', 'port-10']}
+0:11:13,979 gw4 T0000: DEBUG gw4 exposed_tg_traffic_control () {'action': 'reset', 'port_handle': ['port-9', 'port-10']}
+0:11:14,473 gw4 T0086: DEBUG readp:eth10 len:154 count:56
+0:11:17,984 gw4 T0000: DEBUG RESULT: true
+0:11:17,994 gw4 T0000: DEBUG gw4 ('gw4',) {'port_handle': 'port-9', 'mode': 'config', 'ipv6_intf_addr': '2001::100', 'ipv6_prefix_length': '64', 'ipv6_gateway': '2001::1', 'src_mac_addr': '00:0a:01:01:23:01', 'arp_send_req': '1', 'count': '5'}
+0:11:17,994 gw4 T0000: DEBUG gw4 exposed_tg_interface_config () {'port_handle': 'port-9', 'mode': 'config', 'ipv6_intf_addr': '2001::100', 'ipv6_prefix_length': '64', 'ipv6_gateway': '2001::1', 'src_mac_addr': '00:0a:01:01:23:01', 'arp_send_req': '1', 'count': '5'}
+0:11:17,995 gw4 T0000: DEBUG shexec:
+0:11:17,995 gw4 T0000: DEBUG ip netns del ns_9_0_0
+0:11:17,995 gw4 T0000: DEBUG ip link del veth_9_0_0
+0:11:17,995 gw4 T0000: DEBUG
+0:11:17,995 gw4 T0000: DEBUG ip netns add ns_9_0_0
+0:11:17,996 gw4 T0000: DEBUG ip netns list
+0:11:17,996 gw4 T0000: DEBUG ip link add veth_9_0_0 type veth peer name veth1
+0:11:17,996 gw4 T0000: DEBUG ip link set veth1 netns ns_9_0_0
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ip link set dev veth1 up
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ethtool --offload veth1 rx off tx off
+0:11:17,996 gw4 T0000: DEBUG ip link set dev veth_9_0_0 up
+0:11:17,996 gw4 T0000: DEBUG ip link add name eth9-br type bridge
+0:11:17,996 gw4 T0000: DEBUG ip link set dev veth_9_0_0 master eth9-br
+0:11:17,996 gw4 T0000: DEBUG
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ip link set veth1 address 00:0a:01:01:23:01
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ip -6 addr add 2001::100/64 dev veth1
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ip -6 route add default via 2001::1
+0:11:17,996 gw4 T0000: DEBUG
+0:11:17,996 gw4 T0000: DEBUG ip netns del ns_9_0_1
+0:11:17,996 gw4 T0000: DEBUG ip link del veth_9_0_1
+0:11:17,996 gw4 T0000: DEBUG
+0:11:17,996 gw4 T0000: DEBUG ip netns add ns_9_0_1
+0:11:17,996 gw4 T0000: DEBUG ip netns list
+0:11:17,996 gw4 T0000: DEBUG ip link add veth_9_0_1 type veth peer name veth1
+0:11:17,996 gw4 T0000: DEBUG ip link set veth1 netns ns_9_0_1
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ip link set dev veth1 up
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ethtool --offload veth1 rx off tx off
+0:11:17,996 gw4 T0000: DEBUG ip link set dev veth_9_0_1 up
+0:11:17,996 gw4 T0000: DEBUG ip link add name eth9-br type bridge
+0:11:17,996 gw4 T0000: DEBUG ip link set dev veth_9_0_1 master eth9-br
+0:11:17,996 gw4 T0000: DEBUG
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ip link set veth1 address 00:0A:01:01:23:02
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ip -6 addr add 2001::101/64 dev veth1
+0:11:17,996 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ip -6 route add default via 2001::1
+0:11:17,996 gw4 T0000: DEBUG
+0:11:17,997 gw4 T0000: DEBUG ip netns del ns_9_0_2
+0:11:17,997 gw4 T0000: DEBUG ip link del veth_9_0_2
+0:11:17,997 gw4 T0000: DEBUG
+0:11:17,997 gw4 T0000: DEBUG ip netns add ns_9_0_2
+0:11:17,997 gw4 T0000: DEBUG ip netns list
+0:11:17,997 gw4 T0000: DEBUG ip link add veth_9_0_2 type veth peer name veth1
+0:11:17,997 gw4 T0000: DEBUG ip link set veth1 netns ns_9_0_2
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ip link set dev veth1 up
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ethtool --offload veth1 rx off tx off
+0:11:17,997 gw4 T0000: DEBUG ip link set dev veth_9_0_2 up
+0:11:17,997 gw4 T0000: DEBUG ip link add name eth9-br type bridge
+0:11:17,997 gw4 T0000: DEBUG ip link set dev veth_9_0_2 master eth9-br
+0:11:17,997 gw4 T0000: DEBUG
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ip link set veth1 address 00:0A:01:01:23:03
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ip -6 addr add 2001::102/64 dev veth1
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ip -6 route add default via 2001::1
+0:11:17,997 gw4 T0000: DEBUG
+0:11:17,997 gw4 T0000: DEBUG ip netns del ns_9_0_3
+0:11:17,997 gw4 T0000: DEBUG ip link del veth_9_0_3
+0:11:17,997 gw4 T0000: DEBUG
+0:11:17,997 gw4 T0000: DEBUG ip netns add ns_9_0_3
+0:11:17,997 gw4 T0000: DEBUG ip netns list
+0:11:17,997 gw4 T0000: DEBUG ip link add veth_9_0_3 type veth peer name veth1
+0:11:17,997 gw4 T0000: DEBUG ip link set veth1 netns ns_9_0_3
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ip link set dev veth1 up
+0:11:17,997 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ethtool --offload veth1 rx off tx off
+0:11:17,997 gw4 T0000: DEBUG ip link set dev veth_9_0_3 up
+0:11:17,997 gw4 T0000: DEBUG ip link add name eth9-br type bridge
+0:11:17,997 gw4 T0000: DEBUG ip link set dev veth_9_0_3 master eth9-br
+0:11:17,997 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ip link set veth1 address 00:0A:01:01:23:04
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ip -6 addr add 2001::103/64 dev veth1
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ip -6 route add default via 2001::1
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns del ns_9_0_4
+0:11:17,998 gw4 T0000: DEBUG ip link del veth_9_0_4
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns add ns_9_0_4
+0:11:17,998 gw4 T0000: DEBUG ip netns list
+0:11:17,998 gw4 T0000: DEBUG ip link add veth_9_0_4 type veth peer name veth1
+0:11:17,998 gw4 T0000: DEBUG ip link set veth1 netns ns_9_0_4
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ip link set dev veth1 up
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ethtool --offload veth1 rx off tx off
+0:11:17,998 gw4 T0000: DEBUG ip link set dev veth_9_0_4 up
+0:11:17,998 gw4 T0000: DEBUG ip link add name eth9-br type bridge
+0:11:17,998 gw4 T0000: DEBUG ip link set dev veth_9_0_4 master eth9-br
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ip link set veth1 address 00:0A:01:01:23:05
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ip -6 addr add 2001::104/64 dev veth1
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ip -6 route add default via 2001::1
+0:11:17,998 gw4 T0000: DEBUG sleep 2
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ndisc6 -w 2000 2001::1 veth1
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ndisc6 -w 2000 -s 2001::100 2001::1 veth1
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ndisc6 -w 2000 2001::1 veth1
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ndisc6 -w 2000 -s 2001::101 2001::1 veth1
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,998 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ndisc6 -w 2000 2001::1 veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ndisc6 -w 2000 -s 2001::102 2001::1 veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ndisc6 -w 2000 2001::1 veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ndisc6 -w 2000 -s 2001::103 2001::1 veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ndisc6 -w 2000 2001::1 veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ndisc6 -w 2000 -s 2001::104 2001::1 veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ip -6 neigh show
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ifconfig veth1
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_0 ip addr ls veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ip -6 neigh show
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ifconfig veth1
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_1 ip addr ls veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ip -6 neigh show
+0:11:17,999 gw4 T0000: DEBUG
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ifconfig veth1
+0:11:17,999 gw4 T0000: DEBUG ip netns exec ns_9_0_2 ip addr ls veth1
+0:11:17,999 gw4 T0000: DEBUG
+0:11:18,000 gw4 T0000: DEBUG
+0:11:18,000 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ip -6 neigh show
+0:11:18,000 gw4 T0000: DEBUG
+0:11:18,000 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ifconfig veth1
+0:11:18,000 gw4 T0000: DEBUG ip netns exec ns_9_0_3 ip addr ls veth1
+0:11:18,000 gw4 T0000: DEBUG
+0:11:18,000 gw4 T0000: DEBUG
+0:11:18,000 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ip -6 neigh show
+0:11:18,000 gw4 T0000: DEBUG
+0:11:18,000 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ifconfig veth1
+0:11:18,000 gw4 T0000: DEBUG ip netns exec ns_9_0_4 ip addr ls veth1
+0:11:18,000 gw4 T0000: DEBUG
+0:11:21,050 gw4 T0082: DEBUG readp:eth9 len:86 count:606
+0:11:21,069 gw4 T0082: DEBUG readp:eth9 len:86 count:607
+0:11:21,090 gw4 T0082: DEBUG readp:eth9 len:86 count:608
+0:11:21,117 gw4 T0082: DEBUG readp:eth9 len:86 count:609
+0:11:21,145 gw4 T0082: DEBUG readp:eth9 len:86 count:610
+0:11:21,169 gw4 T0082: DEBUG readp:eth9 len:86 count:611
+0:11:21,192 gw4 T0082: DEBUG readp:eth9 len:86 count:612
+0:11:21,211 gw4 T0082: DEBUG readp:eth9 len:86 count:613
+0:11:21,234 gw4 T0082: DEBUG readp:eth9 len:86 count:614
+0:11:21,257 gw4 T0082: DEBUG readp:eth9 len:86 count:615
+0:11:21,589 gw4 T0000: DEBUG + ip netns del ns_9_0_0
+0:11:21,589 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_9_0_0": No such file or directory
+0:11:21,589 gw4 T0000: DEBUG + ip link del veth_9_0_0
+0:11:21,589 gw4 T0000: DEBUG Cannot find device "veth_9_0_0"
+0:11:21,590 gw4 T0000: DEBUG + ip netns add ns_9_0_0
+0:11:21,590 gw4 T0000: DEBUG + ip netns list
+0:11:21,590 gw4 T0000: DEBUG ns_9_0_0
+0:11:21,590 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:11:21,590 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:11:21,590 gw4 T0000: DEBUG scapy
+0:11:21,590 gw4 T0000: DEBUG + ip link add veth_9_0_0 type veth peer name veth1
+0:11:21,590 gw4 T0000: DEBUG + ip link set veth1 netns ns_9_0_0
+0:11:21,590 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ethtool --offload veth1 rx off tx off
+0:11:21,591 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ip link set dev veth1 up
+0:11:21,591 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ethtool --offload veth1 rx off tx off
+0:11:21,591 gw4 T0000: DEBUG + ip link set dev veth_9_0_0 up
+0:11:21,591 gw4 T0000: DEBUG + ip link add name eth9-br type bridge
+0:11:21,591 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:11:21,591 gw4 T0000: DEBUG + ip link set dev veth_9_0_0 master eth9-br
+0:11:21,591 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ip link set veth1 address 00:0a:01:01:23:01
+0:11:21,591 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ip -6 addr add 2001::100/64 dev veth1
+0:11:21,591 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ip -6 route add default via 2001::1
+0:11:21,591 gw4 T0000: DEBUG + ip netns del ns_9_0_1
+0:11:21,592 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_9_0_1": No such file or directory
+0:11:21,592 gw4 T0000: DEBUG + ip link del veth_9_0_1
+0:11:21,592 gw4 T0000: DEBUG Cannot find device "veth_9_0_1"
+0:11:21,592 gw4 T0000: DEBUG + ip netns add ns_9_0_1
+0:11:21,592 gw4 T0000: DEBUG + ip netns list
+0:11:21,592 gw4 T0000: DEBUG ns_9_0_1
+0:11:21,592 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:11:21,592 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:11:21,592 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:11:21,592 gw4 T0000: DEBUG scapy
+0:11:21,593 gw4 T0000: DEBUG + ip link add veth_9_0_1 type veth peer name veth1
+0:11:21,593 gw4 T0000: DEBUG + ip link set veth1 netns ns_9_0_1
+0:11:21,593 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ethtool --offload veth1 rx off tx off
+0:11:21,593 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ip link set dev veth1 up
+0:11:21,593 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ethtool --offload veth1 rx off tx off
+0:11:21,593 gw4 T0000: DEBUG + ip link set dev veth_9_0_1 up
+0:11:21,593 gw4 T0000: DEBUG + ip link add name eth9-br type bridge
+0:11:21,593 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:11:21,593 gw4 T0000: DEBUG + ip link set dev veth_9_0_1 master eth9-br
+0:11:21,594 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ip link set veth1 address 00:0A:01:01:23:02
+0:11:21,594 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ip -6 addr add 2001::101/64 dev veth1
+0:11:21,594 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ip -6 route add default via 2001::1
+0:11:21,594 gw4 T0000: DEBUG + ip netns del ns_9_0_2
+0:11:21,594 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_9_0_2": No such file or directory
+0:11:21,594 gw4 T0000: DEBUG + ip link del veth_9_0_2
+0:11:21,594 gw4 T0000: DEBUG Cannot find device "veth_9_0_2"
+0:11:21,594 gw4 T0000: DEBUG + ip netns add ns_9_0_2
+0:11:21,594 gw4 T0000: DEBUG + ip netns list
+0:11:21,595 gw4 T0000: DEBUG ns_9_0_2
+0:11:21,595 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:11:21,595 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:11:21,595 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:11:21,595 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:11:21,595 gw4 T0000: DEBUG scapy
+0:11:21,595 gw4 T0000: DEBUG + ip link add veth_9_0_2 type veth peer name veth1
+0:11:21,595 gw4 T0000: DEBUG + ip link set veth1 netns ns_9_0_2
+0:11:21,595 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ethtool --offload veth1 rx off tx off
+0:11:21,595 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ip link set dev veth1 up
+0:11:21,596 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ethtool --offload veth1 rx off tx off
+0:11:21,596 gw4 T0000: DEBUG + ip link set dev veth_9_0_2 up
+0:11:21,596 gw4 T0000: DEBUG + ip link add name eth9-br type bridge
+0:11:21,596 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:11:21,596 gw4 T0000: DEBUG + ip link set dev veth_9_0_2 master eth9-br
+0:11:21,596 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ip link set veth1 address 00:0A:01:01:23:03
+0:11:21,596 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ip -6 addr add 2001::102/64 dev veth1
+0:11:21,596 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ip -6 route add default via 2001::1
+0:11:21,596 gw4 T0000: DEBUG + ip netns del ns_9_0_3
+0:11:21,596 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_9_0_3": No such file or directory
+0:11:21,597 gw4 T0000: DEBUG + ip link del veth_9_0_3
+0:11:21,597 gw4 T0000: DEBUG Cannot find device "veth_9_0_3"
+0:11:21,597 gw4 T0000: DEBUG + ip netns add ns_9_0_3
+0:11:21,597 gw4 T0000: DEBUG + ip netns list
+0:11:21,597 gw4 T0000: DEBUG ns_9_0_3
+0:11:21,597 gw4 T0000: DEBUG ns_9_0_2 (id: 8)
+0:11:21,597 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:11:21,597 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:11:21,597 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:11:21,598 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:11:21,598 gw4 T0000: DEBUG scapy
+0:11:21,598 gw4 T0000: DEBUG + ip link add veth_9_0_3 type veth peer name veth1
+0:11:21,598 gw4 T0000: DEBUG + ip link set veth1 netns ns_9_0_3
+0:11:21,598 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ethtool --offload veth1 rx off tx off
+0:11:21,598 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ip link set dev veth1 up
+0:11:21,598 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ethtool --offload veth1 rx off tx off
+0:11:21,598 gw4 T0000: DEBUG + ip link set dev veth_9_0_3 up
+0:11:21,598 gw4 T0000: DEBUG + ip link add name eth9-br type bridge
+0:11:21,599 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:11:21,599 gw4 T0000: DEBUG + ip link set dev veth_9_0_3 master eth9-br
+0:11:21,599 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ip link set veth1 address 00:0A:01:01:23:04
+0:11:21,599 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ip -6 addr add 2001::103/64 dev veth1
+0:11:21,599 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ip -6 route add default via 2001::1
+0:11:21,599 gw4 T0000: DEBUG + ip netns del ns_9_0_4
+0:11:21,599 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_9_0_4": No such file or directory
+0:11:21,599 gw4 T0000: DEBUG + ip link del veth_9_0_4
+0:11:21,599 gw4 T0000: DEBUG Cannot find device "veth_9_0_4"
+0:11:21,599 gw4 T0000: DEBUG + ip netns add ns_9_0_4
+0:11:21,600 gw4 T0000: DEBUG + ip netns list
+0:11:21,600 gw4 T0000: DEBUG ns_9_0_4
+0:11:21,600 gw4 T0000: DEBUG ns_9_0_3 (id: 9)
+0:11:21,600 gw4 T0000: DEBUG ns_9_0_2 (id: 8)
+0:11:21,600 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:11:21,600 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:11:21,600 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:11:21,600 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:11:21,600 gw4 T0000: DEBUG scapy
+0:11:21,600 gw4 T0000: DEBUG + ip link add veth_9_0_4 type veth peer name veth1
+0:11:21,601 gw4 T0000: DEBUG + ip link set veth1 netns ns_9_0_4
+0:11:21,601 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ethtool --offload veth1 rx off tx off
+0:11:21,601 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ip link set dev veth1 up
+0:11:21,601 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ethtool --offload veth1 rx off tx off
+0:11:21,601 gw4 T0000: DEBUG + ip link set dev veth_9_0_4 up
+0:11:21,601 gw4 T0000: DEBUG + ip link add name eth9-br type bridge
+0:11:21,601 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:11:21,601 gw4 T0000: DEBUG + ip link set dev veth_9_0_4 master eth9-br
+0:11:21,601 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ip link set veth1 address 00:0A:01:01:23:05
+0:11:21,601 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ip -6 addr add 2001::104/64 dev veth1
+0:11:21,601 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ip -6 route add default via 2001::1
+0:11:21,602 gw4 T0000: DEBUG + sleep 2
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ndisc6 -w 2000 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ndisc6 -w 2000 -s 2001::100 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ndisc6 -w 2000 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ndisc6 -w 2000 -s 2001::101 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ndisc6 -w 2000 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ndisc6 -w 2000 -s 2001::102 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ndisc6 -w 2000 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,602 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ndisc6 -w 2000 -s 2001::103 2001::1 veth1
+0:11:21,602 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,602 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,602 gw4 T0000: DEBUG  from 2001::1
+0:11:21,603 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ndisc6 -w 2000 2001::1 veth1
+0:11:21,603 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,603 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,603 gw4 T0000: DEBUG  from 2001::1
+0:11:21,603 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ndisc6 -w 2000 -s 2001::104 2001::1 veth1
+0:11:21,603 gw4 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+0:11:21,603 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:11:21,603 gw4 T0000: DEBUG  from 2001::1
+0:11:21,603 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ip -6 neigh show
+0:11:21,603 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ifconfig veth1
+0:11:21,603 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:11:21,603 gw4 T0000: DEBUG         inet6 fe80::a801:eeff:fe3e:30fc  prefixlen 64  scopeid 0x20<link>
+0:11:21,603 gw4 T0000: DEBUG         inet6 2001::100  prefixlen 64  scopeid 0x0<global>
+0:11:21,603 gw4 T0000: DEBUG         ether 00:0a:01:01:23:01  txqueuelen 1000  (Ethernet)
+0:11:21,603 gw4 T0000: DEBUG         RX packets 48  bytes 4444 (4.4 KB)
+0:11:21,603 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:11:21,603 gw4 T0000: DEBUG         TX packets 11  bytes 1034 (1.0 KB)
+0:11:21,603 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:11:21,603 gw4 T0000: DEBUG
+0:11:21,603 gw4 T0000: DEBUG + ip netns exec ns_9_0_0 ip addr ls veth1
+0:11:21,603 gw4 T0000: DEBUG 230: veth1@if231: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:11:21,603 gw4 T0000: DEBUG     link/ether 00:0a:01:01:23:01 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:11:21,603 gw4 T0000: DEBUG     inet6 2001::100/64 scope global
+0:11:21,603 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,603 gw4 T0000: DEBUG     inet6 fe80::a801:eeff:fe3e:30fc/64 scope link
+0:11:21,603 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,603 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ip -6 neigh show
+0:11:21,603 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ifconfig veth1
+0:11:21,603 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:11:21,603 gw4 T0000: DEBUG         inet6 fe80::f415:18ff:fe26:dff8  prefixlen 64  scopeid 0x20<link>
+0:11:21,603 gw4 T0000: DEBUG         inet6 2001::101  prefixlen 64  scopeid 0x0<global>
+0:11:21,603 gw4 T0000: DEBUG         ether 00:0a:01:01:23:02  txqueuelen 1000  (Ethernet)
+0:11:21,603 gw4 T0000: DEBUG         RX packets 46  bytes 4244 (4.2 KB)
+0:11:21,604 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:11:21,604 gw4 T0000: DEBUG         TX packets 10  bytes 944 (944.0 B)
+0:11:21,604 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:11:21,604 gw4 T0000: DEBUG
+0:11:21,604 gw4 T0000: DEBUG + ip netns exec ns_9_0_1 ip addr ls veth1
+0:11:21,604 gw4 T0000: DEBUG 232: veth1@if233: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:11:21,604 gw4 T0000: DEBUG     link/ether 00:0a:01:01:23:02 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:11:21,604 gw4 T0000: DEBUG     inet6 2001::101/64 scope global
+0:11:21,604 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,604 gw4 T0000: DEBUG     inet6 fe80::f415:18ff:fe26:dff8/64 scope link
+0:11:21,604 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,604 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ip -6 neigh show
+0:11:21,604 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ifconfig veth1
+0:11:21,604 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:11:21,604 gw4 T0000: DEBUG         inet6 2001::102  prefixlen 64  scopeid 0x0<global>
+0:11:21,604 gw4 T0000: DEBUG         inet6 fe80::6c1d:8ff:fe85:af2c  prefixlen 64  scopeid 0x20<link>
+0:11:21,604 gw4 T0000: DEBUG         ether 00:0a:01:01:23:03  txqueuelen 1000  (Ethernet)
+0:11:21,604 gw4 T0000: DEBUG         RX packets 42  bytes 3868 (3.8 KB)
+0:11:21,604 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:11:21,604 gw4 T0000: DEBUG         TX packets 11  bytes 1034 (1.0 KB)
+0:11:21,604 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:11:21,604 gw4 T0000: DEBUG
+0:11:21,604 gw4 T0000: DEBUG + ip netns exec ns_9_0_2 ip addr ls veth1
+0:11:21,604 gw4 T0000: DEBUG 234: veth1@if235: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:11:21,604 gw4 T0000: DEBUG     link/ether 00:0a:01:01:23:03 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:11:21,604 gw4 T0000: DEBUG     inet6 2001::102/64 scope global
+0:11:21,604 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,604 gw4 T0000: DEBUG     inet6 fe80::6c1d:8ff:fe85:af2c/64 scope link
+0:11:21,604 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,604 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ip -6 neigh show
+0:11:21,604 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ifconfig veth1
+0:11:21,604 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:11:21,604 gw4 T0000: DEBUG         inet6 2001::103  prefixlen 64  scopeid 0x0<global>
+0:11:21,605 gw4 T0000: DEBUG         inet6 fe80::f034:daff:fe8e:1cfd  prefixlen 64  scopeid 0x20<link>
+0:11:21,605 gw4 T0000: DEBUG         ether 00:0a:01:01:23:04  txqueuelen 1000  (Ethernet)
+0:11:21,605 gw4 T0000: DEBUG         RX packets 39  bytes 3606 (3.6 KB)
+0:11:21,605 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:11:21,605 gw4 T0000: DEBUG         TX packets 9  bytes 834 (834.0 B)
+0:11:21,605 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:11:21,605 gw4 T0000: DEBUG
+0:11:21,605 gw4 T0000: DEBUG + ip netns exec ns_9_0_3 ip addr ls veth1
+0:11:21,605 gw4 T0000: DEBUG 236: veth1@if237: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:11:21,605 gw4 T0000: DEBUG     link/ether 00:0a:01:01:23:04 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:11:21,605 gw4 T0000: DEBUG     inet6 2001::103/64 scope global
+0:11:21,605 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,605 gw4 T0000: DEBUG     inet6 fe80::f034:daff:fe8e:1cfd/64 scope link
+0:11:21,605 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,605 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ip -6 neigh show
+0:11:21,605 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ifconfig veth1
+0:11:21,605 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:11:21,605 gw4 T0000: DEBUG         inet6 2001::104  prefixlen 64  scopeid 0x0<global>
+0:11:21,605 gw4 T0000: DEBUG         inet6 fe80::9833:66ff:fe30:f7eb  prefixlen 64  scopeid 0x20<link>
+0:11:21,605 gw4 T0000: DEBUG         ether 00:0a:01:01:23:05  txqueuelen 1000  (Ethernet)
+0:11:21,605 gw4 T0000: DEBUG         RX packets 33  bytes 3038 (3.0 KB)
+0:11:21,605 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:11:21,605 gw4 T0000: DEBUG         TX packets 10  bytes 944 (944.0 B)
+0:11:21,605 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:11:21,605 gw4 T0000: DEBUG
+0:11:21,605 gw4 T0000: DEBUG + ip netns exec ns_9_0_4 ip addr ls veth1
+0:11:21,605 gw4 T0000: DEBUG 238: veth1@if239: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:11:21,605 gw4 T0000: DEBUG     link/ether 00:0a:01:01:23:05 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:11:21,605 gw4 T0000: DEBUG     inet6 2001::104/64 scope global
+0:11:21,605 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,605 gw4 T0000: DEBUG     inet6 fe80::9833:66ff:fe30:f7eb/64 scope link
+0:11:21,605 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:11:21,606 gw4 T0000: DEBUG
+0:11:21,606 gw4 T0000: INFO  read the mac addresses of created interfaces
+0:11:21,606 gw4 T0000: DEBUG cmdexec: ip netns exec ns_9_0_0 ip addr show dev veth1
+0:11:21,635 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '2001::100/64', 'state': 'UP', 'link/ether': '00:0a:01:01:23:01'}
+0:11:21,636 gw4 T0000: DEBUG cmdexec: ip netns exec ns_9_0_1 ip addr show dev veth1
+0:11:21,666 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '2001::101/64', 'state': 'UP', 'link/ether': '00:0a:01:01:23:02'}
+0:11:21,667 gw4 T0000: DEBUG cmdexec: ip netns exec ns_9_0_2 ip addr show dev veth1
+0:11:21,696 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '2001::102/64', 'state': 'UP', 'link/ether': '00:0a:01:01:23:03'}
+0:11:21,697 gw4 T0000: DEBUG cmdexec: ip netns exec ns_9_0_3 ip addr show dev veth1
+0:11:21,728 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '2001::103/64', 'state': 'UP', 'link/ether': '00:0a:01:01:23:04'}
+0:11:21,728 gw4 T0000: DEBUG cmdexec: ip netns exec ns_9_0_4 ip addr show dev veth1
+0:11:21,758 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '2001::104/64', 'state': 'UP', 'link/ether': '00:0a:01:01:23:05'}
+0:11:21,759 gw4 T0000: DEBUG New interface ['iface-9-0', 'iface-9-0', 'iface-9-0', 'iface-9-0', 'iface-9-0']...
+0:11:23,760 gw4 T0000: DEBUG RESULT: {"status": "1", "handle": ["iface-9-0", "iface-9-0", "iface-9-0", "iface-9-0", "iface-9-0"]}
+0:11:23,769 gw4 T0000: DEBUG gw4 ('gw4',) {'port_handle': 'port-10', 'mode': 'config', 'ipv6_intf_addr': '3001::100', 'ipv6_prefix_length': '64', 'ipv6_gateway': '3001::1', 'src_mac_addr': '00:0b:01:01:23:01', 'arp_send_req': '1', 'vlan_id': '64', 'vlan': '1', 'count': '5'}
+0:11:23,770 gw4 T0000: DEBUG gw4 exposed_tg_interface_config () {'port_handle': 'port-10', 'mode': 'config', 'ipv6_intf_addr': '3001::100', 'ipv6_prefix_length': '64', 'ipv6_gateway': '3001::1', 'src_mac_addr': '00:0b:01:01:23:01', 'arp_send_req': '1', 'vlan_id': '64', 'vlan': '1', 'count': '5'}
+0:11:23,773 gw4 T0000: DEBUG shexec:
+0:11:23,773 gw4 T0000: DEBUG ip netns del ns_10_0_0
+0:11:23,774 gw4 T0000: DEBUG ip link del veth_10_0_0
+0:11:23,774 gw4 T0000: DEBUG
+0:11:23,774 gw4 T0000: DEBUG ip netns add ns_10_0_0
+0:11:23,774 gw4 T0000: DEBUG ip netns list
+0:11:23,774 gw4 T0000: DEBUG ip link add veth_10_0_0 type veth peer name veth0
+0:11:23,774 gw4 T0000: DEBUG ip link set veth0 netns ns_10_0_0
+0:11:23,774 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ethtool --offload veth0 rx off  tx off > /dev/null 2>&1
+0:11:23,774 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip link set dev veth0 up
+0:11:23,774 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ethtool --offload veth0 rx off tx off
+0:11:23,774 gw4 T0000: DEBUG ip link set dev veth_10_0_0 up
+0:11:23,774 gw4 T0000: DEBUG ip link add name eth10-br type bridge
+0:11:23,774 gw4 T0000: DEBUG ip link set dev veth_10_0_0 master eth10-br
+0:11:23,774 gw4 T0000: DEBUG
+0:11:23,774 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip link add link veth0 name veth1 type vlan id 64
+0:11:23,774 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip link set veth1 up
+0:11:23,774 gw4 T0000: DEBUG
+0:11:23,775 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip link set veth1 address 00:0b:01:01:23:01
+0:11:23,775 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip -6 addr add 3001::100/64 dev veth1
+0:11:23,775 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip -6 route add default via 3001::1
+0:11:23,775 gw4 T0000: DEBUG
+0:11:23,775 gw4 T0000: DEBUG ip netns del ns_10_0_1
+0:11:23,775 gw4 T0000: DEBUG ip link del veth_10_0_1
+0:11:23,775 gw4 T0000: DEBUG
+0:11:23,775 gw4 T0000: DEBUG ip netns add ns_10_0_1
+0:11:23,775 gw4 T0000: DEBUG ip netns list
+0:11:23,775 gw4 T0000: DEBUG ip link add veth_10_0_1 type veth peer name veth0
+0:11:23,775 gw4 T0000: DEBUG ip link set veth0 netns ns_10_0_1
+0:11:23,775 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ethtool --offload veth0 rx off  tx off > /dev/null 2>&1
+0:11:23,775 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip link set dev veth0 up
+0:11:23,775 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ethtool --offload veth0 rx off tx off
+0:11:23,775 gw4 T0000: DEBUG ip link set dev veth_10_0_1 up
+0:11:23,775 gw4 T0000: DEBUG ip link add name eth10-br type bridge
+0:11:23,776 gw4 T0000: DEBUG ip link set dev veth_10_0_1 master eth10-br
+0:11:23,776 gw4 T0000: DEBUG
+0:11:23,776 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip link add link veth0 name veth1 type vlan id 65
+0:11:23,776 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip link set veth1 up
+0:11:23,776 gw4 T0000: DEBUG
+0:11:23,776 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip link set veth1 address 00:0B:01:01:23:02
+0:11:23,776 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip -6 addr add 3001::101/64 dev veth1
+0:11:23,776 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip -6 route add default via 3001::1
+0:11:23,776 gw4 T0000: DEBUG
+0:11:23,776 gw4 T0000: DEBUG ip netns del ns_10_0_2
+0:11:23,776 gw4 T0000: DEBUG ip link del veth_10_0_2
+0:11:23,776 gw4 T0000: DEBUG
+0:11:23,776 gw4 T0000: DEBUG ip netns add ns_10_0_2
+0:11:23,776 gw4 T0000: DEBUG ip netns list
+0:11:23,776 gw4 T0000: DEBUG ip link add veth_10_0_2 type veth peer name veth0
+0:11:23,776 gw4 T0000: DEBUG ip link set veth0 netns ns_10_0_2
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ethtool --offload veth0 rx off  tx off > /dev/null 2>&1
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip link set dev veth0 up
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ethtool --offload veth0 rx off tx off
+0:11:23,777 gw4 T0000: DEBUG ip link set dev veth_10_0_2 up
+0:11:23,777 gw4 T0000: DEBUG ip link add name eth10-br type bridge
+0:11:23,777 gw4 T0000: DEBUG ip link set dev veth_10_0_2 master eth10-br
+0:11:23,777 gw4 T0000: DEBUG
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip link add link veth0 name veth1 type vlan id 66
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip link set veth1 up
+0:11:23,777 gw4 T0000: DEBUG
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip link set veth1 address 00:0B:01:01:23:03
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip -6 addr add 3001::102/64 dev veth1
+0:11:23,777 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip -6 route add default via 3001::1
+0:11:23,777 gw4 T0000: DEBUG
+0:11:23,777 gw4 T0000: DEBUG ip netns del ns_10_0_3
+0:11:23,777 gw4 T0000: DEBUG ip link del veth_10_0_3
+0:11:23,778 gw4 T0000: DEBUG
+0:11:23,778 gw4 T0000: DEBUG ip netns add ns_10_0_3
+0:11:23,778 gw4 T0000: DEBUG ip netns list
+0:11:23,778 gw4 T0000: DEBUG ip link add veth_10_0_3 type veth peer name veth0
+0:11:23,778 gw4 T0000: DEBUG ip link set veth0 netns ns_10_0_3
+0:11:23,778 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ethtool --offload veth0 rx off  tx off > /dev/null 2>&1
+0:11:23,778 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip link set dev veth0 up
+0:11:23,778 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ethtool --offload veth0 rx off tx off
+0:11:23,778 gw4 T0000: DEBUG ip link set dev veth_10_0_3 up
+0:11:23,778 gw4 T0000: DEBUG ip link add name eth10-br type bridge
+0:11:23,778 gw4 T0000: DEBUG ip link set dev veth_10_0_3 master eth10-br
+0:11:23,778 gw4 T0000: DEBUG
+0:11:23,778 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip link add link veth0 name veth1 type vlan id 67
+0:11:23,778 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip link set veth1 up
+0:11:23,778 gw4 T0000: DEBUG
+0:11:23,778 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip link set veth1 address 00:0B:01:01:23:04
+0:11:23,779 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip -6 addr add 3001::103/64 dev veth1
+0:11:23,779 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip -6 route add default via 3001::1
+0:11:23,779 gw4 T0000: DEBUG
+0:11:23,779 gw4 T0000: DEBUG ip netns del ns_10_0_4
+0:11:23,779 gw4 T0000: DEBUG ip link del veth_10_0_4
+0:11:23,779 gw4 T0000: DEBUG
+0:11:23,779 gw4 T0000: DEBUG ip netns add ns_10_0_4
+0:11:23,779 gw4 T0000: DEBUG ip netns list
+0:11:23,779 gw4 T0000: DEBUG ip link add veth_10_0_4 type veth peer name veth0
+0:11:23,779 gw4 T0000: DEBUG ip link set veth0 netns ns_10_0_4
+0:11:23,779 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ethtool --offload veth0 rx off  tx off > /dev/null 2>&1
+0:11:23,779 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip link set dev veth0 up
+0:11:23,779 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ethtool --offload veth0 rx off tx off
+0:11:23,779 gw4 T0000: DEBUG ip link set dev veth_10_0_4 up
+0:11:23,779 gw4 T0000: DEBUG ip link add name eth10-br type bridge
+0:11:23,779 gw4 T0000: DEBUG ip link set dev veth_10_0_4 master eth10-br
+0:11:23,780 gw4 T0000: DEBUG
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip link add link veth0 name veth1 type vlan id 68
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip link set veth1 up
+0:11:23,780 gw4 T0000: DEBUG
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip link set veth1 address 00:0B:01:01:23:05
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip -6 addr add 3001::104/64 dev veth1
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip -6 route add default via 3001::1
+0:11:23,780 gw4 T0000: DEBUG sleep 2
+0:11:23,780 gw4 T0000: DEBUG
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ndisc6 -w 2000 3001::1 veth1
+0:11:23,780 gw4 T0000: DEBUG
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ndisc6 -w 2000 -s 3001::100 3001::1 veth1
+0:11:23,780 gw4 T0000: DEBUG
+0:11:23,780 gw4 T0000: DEBUG
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ndisc6 -w 2000 3001::1 veth1
+0:11:23,780 gw4 T0000: DEBUG
+0:11:23,780 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ndisc6 -w 2000 -s 3001::101 3001::1 veth1
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ndisc6 -w 2000 3001::1 veth1
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ndisc6 -w 2000 -s 3001::102 3001::1 veth1
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ndisc6 -w 2000 3001::1 veth1
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ndisc6 -w 2000 -s 3001::103 3001::1 veth1
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ndisc6 -w 2000 3001::1 veth1
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,781 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ndisc6 -w 2000 -s 3001::104 3001::1 veth1
+0:11:23,781 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip -6 neigh show
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ifconfig veth1
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_0 ip addr ls veth1
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip -6 neigh show
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ifconfig veth1
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_1 ip addr ls veth1
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip -6 neigh show
+0:11:23,782 gw4 T0000: DEBUG
+0:11:23,782 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ifconfig veth1
+0:11:23,783 gw4 T0000: DEBUG ip netns exec ns_10_0_2 ip addr ls veth1
+0:11:23,783 gw4 T0000: DEBUG
+0:11:23,783 gw4 T0000: DEBUG
+0:11:23,783 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip -6 neigh show
+0:11:23,783 gw4 T0000: DEBUG
+0:11:23,783 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ifconfig veth1
+0:11:23,783 gw4 T0000: DEBUG ip netns exec ns_10_0_3 ip addr ls veth1
+0:11:23,783 gw4 T0000: DEBUG
+0:11:23,783 gw4 T0000: DEBUG
+0:11:23,783 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip -6 neigh show
+0:11:23,783 gw4 T0000: DEBUG
+0:11:23,783 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ifconfig veth1
+0:11:23,783 gw4 T0000: DEBUG ip netns exec ns_10_0_4 ip addr ls veth1
+0:11:23,783 gw4 T0000: DEBUG
+0:11:26,248 gw4 T0082: DEBUG readp:eth9 len:86 count:616
+0:11:26,249 gw4 T0082: DEBUG readp:eth9 len:86 count:617
+0:11:26,250 gw4 T0082: DEBUG readp:eth9 len:86 count:618
+0:11:26,251 gw4 T0082: DEBUG readp:eth9 len:86 count:619
+0:11:26,252 gw4 T0082: DEBUG readp:eth9 len:86 count:620
+0:11:26,253 gw4 T0082: DEBUG readp:eth9 len:86 count:621
+0:11:26,254 gw4 T0082: DEBUG readp:eth9 len:86 count:622
+0:11:26,255 gw4 T0082: DEBUG readp:eth9 len:86 count:623
+0:11:26,256 gw4 T0082: DEBUG readp:eth9 len:86 count:624
+0:11:26,503 gw4 T0082: DEBUG readp:eth9 len:86 count:625
+0:11:27,114 gw4 T0086: DEBUG readp:eth10 len:90 count:57
+0:11:27,134 gw4 T0086: DEBUG readp:eth10 len:90 count:58
+0:11:29,338 gw4 T0082: DEBUG readp:eth9 len:263 count:626
+0:11:29,339 gw4 T0090: DEBUG readp:eth11 len:263 count:40
+0:11:29,345 gw4 T0094: DEBUG readp:eth12 len:265 count:47
+0:11:29,378 gw4 T0086: DEBUG readp:eth10 len:263 count:59
+0:11:31,287 gw4 T0082: DEBUG readp:eth9 len:78 count:627
+0:11:31,288 gw4 T0082: DEBUG readp:eth9 len:78 count:628
+0:11:31,289 gw4 T0082: DEBUG readp:eth9 len:78 count:629
+0:11:31,290 gw4 T0082: DEBUG readp:eth9 len:78 count:630
+0:11:31,291 gw4 T0082: DEBUG readp:eth9 len:78 count:631
+0:11:32,135 gw4 T0086: DEBUG readp:eth10 len:90 count:60
+0:11:32,137 gw4 T0086: DEBUG readp:eth10 len:90 count:61
+0:11:37,175 gw4 T0086: DEBUG readp:eth10 len:82 count:62
+0:11:59,340 gw4 T0090: DEBUG readp:eth11 len:263 count:41
+0:11:59,342 gw4 T0082: DEBUG readp:eth9 len:263 count:632
+0:11:59,348 gw4 T0094: DEBUG readp:eth12 len:265 count:48
+0:11:59,381 gw4 T0086: DEBUG readp:eth10 len:263 count:63
+0:12:15,688 gw4 T0000: DEBUG + ip netns del ns_10_0_0
+0:12:15,688 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_10_0_0": No such file or directory
+0:12:15,688 gw4 T0000: DEBUG + ip link del veth_10_0_0
+0:12:15,688 gw4 T0000: DEBUG Cannot find device "veth_10_0_0"
+0:12:15,688 gw4 T0000: DEBUG + ip netns add ns_10_0_0
+0:12:15,688 gw4 T0000: DEBUG + ip netns list
+0:12:15,688 gw4 T0000: DEBUG ns_10_0_0
+0:12:15,689 gw4 T0000: DEBUG ns_9_0_4 (id: 10)
+0:12:15,689 gw4 T0000: DEBUG ns_9_0_3 (id: 9)
+0:12:15,689 gw4 T0000: DEBUG ns_9_0_2 (id: 8)
+0:12:15,689 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:12:15,689 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:12:15,689 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:12:15,689 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:12:15,690 gw4 T0000: DEBUG scapy
+0:12:15,690 gw4 T0000: DEBUG + ip link add veth_10_0_0 type veth peer name veth0
+0:12:15,690 gw4 T0000: DEBUG + ip link set veth0 netns ns_10_0_0
+0:12:15,690 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ethtool --offload veth0 rx off tx off
+0:12:15,690 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip link set dev veth0 up
+0:12:15,690 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ethtool --offload veth0 rx off tx off
+0:12:15,690 gw4 T0000: DEBUG + ip link set dev veth_10_0_0 up
+0:12:15,690 gw4 T0000: DEBUG + ip link add name eth10-br type bridge
+0:12:15,690 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:12:15,690 gw4 T0000: DEBUG + ip link set dev veth_10_0_0 master eth10-br
+0:12:15,691 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip link add link veth0 name veth1 type vlan id 64
+0:12:15,691 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip link set veth1 up
+0:12:15,691 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip link set veth1 address 00:0b:01:01:23:01
+0:12:15,691 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip -6 addr add 3001::100/64 dev veth1
+0:12:15,691 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip -6 route add default via 3001::1
+0:12:15,691 gw4 T0000: DEBUG + ip netns del ns_10_0_1
+0:12:15,691 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_10_0_1": No such file or directory
+0:12:15,691 gw4 T0000: DEBUG + ip link del veth_10_0_1
+0:12:15,691 gw4 T0000: DEBUG Cannot find device "veth_10_0_1"
+0:12:15,692 gw4 T0000: DEBUG + ip netns add ns_10_0_1
+0:12:15,692 gw4 T0000: DEBUG + ip netns list
+0:12:15,692 gw4 T0000: DEBUG ns_10_0_1
+0:12:15,692 gw4 T0000: DEBUG ns_10_0_0 (id: 11)
+0:12:15,692 gw4 T0000: DEBUG ns_9_0_4 (id: 10)
+0:12:15,692 gw4 T0000: DEBUG ns_9_0_3 (id: 9)
+0:12:15,692 gw4 T0000: DEBUG ns_9_0_2 (id: 8)
+0:12:15,692 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:12:15,692 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:12:15,693 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:12:15,693 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:12:15,693 gw4 T0000: DEBUG scapy
+0:12:15,693 gw4 T0000: DEBUG + ip link add veth_10_0_1 type veth peer name veth0
+0:12:15,693 gw4 T0000: DEBUG + ip link set veth0 netns ns_10_0_1
+0:12:15,693 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ethtool --offload veth0 rx off tx off
+0:12:15,693 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip link set dev veth0 up
+0:12:15,693 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ethtool --offload veth0 rx off tx off
+0:12:15,693 gw4 T0000: DEBUG + ip link set dev veth_10_0_1 up
+0:12:15,693 gw4 T0000: DEBUG + ip link add name eth10-br type bridge
+0:12:15,694 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:12:15,694 gw4 T0000: DEBUG + ip link set dev veth_10_0_1 master eth10-br
+0:12:15,694 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip link add link veth0 name veth1 type vlan id 65
+0:12:15,694 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip link set veth1 up
+0:12:15,694 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip link set veth1 address 00:0B:01:01:23:02
+0:12:15,694 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip -6 addr add 3001::101/64 dev veth1
+0:12:15,694 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip -6 route add default via 3001::1
+0:12:15,694 gw4 T0000: DEBUG + ip netns del ns_10_0_2
+0:12:15,694 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_10_0_2": No such file or directory
+0:12:15,695 gw4 T0000: DEBUG + ip link del veth_10_0_2
+0:12:15,695 gw4 T0000: DEBUG Cannot find device "veth_10_0_2"
+0:12:15,695 gw4 T0000: DEBUG + ip netns add ns_10_0_2
+0:12:15,695 gw4 T0000: DEBUG + ip netns list
+0:12:15,695 gw4 T0000: DEBUG ns_10_0_2
+0:12:15,695 gw4 T0000: DEBUG ns_10_0_1 (id: 12)
+0:12:15,695 gw4 T0000: DEBUG ns_10_0_0 (id: 11)
+0:12:15,695 gw4 T0000: DEBUG ns_9_0_4 (id: 10)
+0:12:15,695 gw4 T0000: DEBUG ns_9_0_3 (id: 9)
+0:12:15,695 gw4 T0000: DEBUG ns_9_0_2 (id: 8)
+0:12:15,696 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:12:15,696 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:12:15,696 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:12:15,696 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:12:15,696 gw4 T0000: DEBUG scapy
+0:12:15,696 gw4 T0000: DEBUG + ip link add veth_10_0_2 type veth peer name veth0
+0:12:15,696 gw4 T0000: DEBUG + ip link set veth0 netns ns_10_0_2
+0:12:15,696 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ethtool --offload veth0 rx off tx off
+0:12:15,696 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip link set dev veth0 up
+0:12:15,696 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ethtool --offload veth0 rx off tx off
+0:12:15,697 gw4 T0000: DEBUG + ip link set dev veth_10_0_2 up
+0:12:15,697 gw4 T0000: DEBUG + ip link add name eth10-br type bridge
+0:12:15,697 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:12:15,697 gw4 T0000: DEBUG + ip link set dev veth_10_0_2 master eth10-br
+0:12:15,697 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip link add link veth0 name veth1 type vlan id 66
+0:12:15,697 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip link set veth1 up
+0:12:15,697 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip link set veth1 address 00:0B:01:01:23:03
+0:12:15,697 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip -6 addr add 3001::102/64 dev veth1
+0:12:15,697 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip -6 route add default via 3001::1
+0:12:15,697 gw4 T0000: DEBUG + ip netns del ns_10_0_3
+0:12:15,697 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_10_0_3": No such file or directory
+0:12:15,697 gw4 T0000: DEBUG + ip link del veth_10_0_3
+0:12:15,697 gw4 T0000: DEBUG Cannot find device "veth_10_0_3"
+0:12:15,697 gw4 T0000: DEBUG + ip netns add ns_10_0_3
+0:12:15,698 gw4 T0000: DEBUG + ip netns list
+0:12:15,698 gw4 T0000: DEBUG ns_10_0_3
+0:12:15,698 gw4 T0000: DEBUG ns_10_0_2 (id: 13)
+0:12:15,698 gw4 T0000: DEBUG ns_10_0_1 (id: 12)
+0:12:15,698 gw4 T0000: DEBUG ns_10_0_0 (id: 11)
+0:12:15,698 gw4 T0000: DEBUG ns_9_0_4 (id: 10)
+0:12:15,698 gw4 T0000: DEBUG ns_9_0_3 (id: 9)
+0:12:15,698 gw4 T0000: DEBUG ns_9_0_2 (id: 8)
+0:12:15,698 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:12:15,698 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:12:15,698 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:12:15,698 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:12:15,698 gw4 T0000: DEBUG scapy
+0:12:15,698 gw4 T0000: DEBUG + ip link add veth_10_0_3 type veth peer name veth0
+0:12:15,698 gw4 T0000: DEBUG + ip link set veth0 netns ns_10_0_3
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ethtool --offload veth0 rx off tx off
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip link set dev veth0 up
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ethtool --offload veth0 rx off tx off
+0:12:15,698 gw4 T0000: DEBUG + ip link set dev veth_10_0_3 up
+0:12:15,698 gw4 T0000: DEBUG + ip link add name eth10-br type bridge
+0:12:15,698 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:12:15,698 gw4 T0000: DEBUG + ip link set dev veth_10_0_3 master eth10-br
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip link add link veth0 name veth1 type vlan id 67
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip link set veth1 up
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip link set veth1 address 00:0B:01:01:23:04
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip -6 addr add 3001::103/64 dev veth1
+0:12:15,698 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip -6 route add default via 3001::1
+0:12:15,698 gw4 T0000: DEBUG + ip netns del ns_10_0_4
+0:12:15,698 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_10_0_4": No such file or directory
+0:12:15,698 gw4 T0000: DEBUG + ip link del veth_10_0_4
+0:12:15,698 gw4 T0000: DEBUG Cannot find device "veth_10_0_4"
+0:12:15,698 gw4 T0000: DEBUG + ip netns add ns_10_0_4
+0:12:15,698 gw4 T0000: DEBUG + ip netns list
+0:12:15,699 gw4 T0000: DEBUG ns_10_0_4
+0:12:15,699 gw4 T0000: DEBUG ns_10_0_3 (id: 15)
+0:12:15,699 gw4 T0000: DEBUG ns_10_0_2 (id: 13)
+0:12:15,699 gw4 T0000: DEBUG ns_10_0_1 (id: 12)
+0:12:15,699 gw4 T0000: DEBUG ns_10_0_0 (id: 11)
+0:12:15,699 gw4 T0000: DEBUG ns_9_0_4 (id: 10)
+0:12:15,699 gw4 T0000: DEBUG ns_9_0_3 (id: 9)
+0:12:15,699 gw4 T0000: DEBUG ns_9_0_2 (id: 8)
+0:12:15,699 gw4 T0000: DEBUG ns_9_0_1 (id: 4)
+0:12:15,699 gw4 T0000: DEBUG ns_9_0_0 (id: 3)
+0:12:15,699 gw4 T0000: DEBUG ns_14_0_0 (id: 2)
+0:12:15,699 gw4 T0000: DEBUG ns_13_0_0 (id: 1)
+0:12:15,699 gw4 T0000: DEBUG scapy
+0:12:15,699 gw4 T0000: DEBUG + ip link add veth_10_0_4 type veth peer name veth0
+0:12:15,699 gw4 T0000: DEBUG + ip link set veth0 netns ns_10_0_4
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ethtool --offload veth0 rx off tx off
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip link set dev veth0 up
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ethtool --offload veth0 rx off tx off
+0:12:15,699 gw4 T0000: DEBUG + ip link set dev veth_10_0_4 up
+0:12:15,699 gw4 T0000: DEBUG + ip link add name eth10-br type bridge
+0:12:15,699 gw4 T0000: DEBUG RTNETLINK answers: File exists
+0:12:15,699 gw4 T0000: DEBUG + ip link set dev veth_10_0_4 master eth10-br
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip link add link veth0 name veth1 type vlan id 68
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip link set veth1 up
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip link set veth1 address 00:0B:01:01:23:05
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip -6 addr add 3001::104/64 dev veth1
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip -6 route add default via 3001::1
+0:12:15,699 gw4 T0000: DEBUG + sleep 2
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ndisc6 -w 2000 3001::1 veth1
+0:12:15,699 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,699 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:12:15,699 gw4 T0000: DEBUG  from 3001::1
+0:12:15,699 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ndisc6 -w 2000 -s 3001::100 3001::1 veth1
+0:12:15,699 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,699 gw4 T0000: DEBUG Target link-layer address: 52:54:00:12:34:56
+0:12:15,700 gw4 T0000: DEBUG  from 3001::1
+0:12:15,700 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ndisc6 -w 2000 3001::1 veth1
+0:12:15,700 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG No response.
+0:12:15,700 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ndisc6 -w 2000 -s 3001::101 3001::1 veth1
+0:12:15,700 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG No response.
+0:12:15,700 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ndisc6 -w 2000 3001::1 veth1
+0:12:15,700 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG No response.
+0:12:15,700 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ndisc6 -w 2000 -s 3001::102 3001::1 veth1
+0:12:15,700 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG No response.
+0:12:15,700 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ndisc6 -w 2000 3001::1 veth1
+0:12:15,700 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG No response.
+0:12:15,700 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ndisc6 -w 2000 -s 3001::103 3001::1 veth1
+0:12:15,700 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,700 gw4 T0000: DEBUG Timed out.
+0:12:15,701 gw4 T0000: DEBUG No response.
+0:12:15,701 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ndisc6 -w 2000 3001::1 veth1
+0:12:15,701 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,701 gw4 T0000: DEBUG Timed out.
+0:12:15,701 gw4 T0000: DEBUG Timed out.
+0:12:15,701 gw4 T0000: DEBUG Timed out.
+0:12:15,701 gw4 T0000: DEBUG No response.
+0:12:15,701 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ndisc6 -w 2000 -s 3001::104 3001::1 veth1
+0:12:15,701 gw4 T0000: DEBUG Soliciting 3001::1 (3001::1) on veth1...
+0:12:15,701 gw4 T0000: DEBUG Timed out.
+0:12:15,701 gw4 T0000: DEBUG Timed out.
+0:12:15,701 gw4 T0000: DEBUG Timed out.
+0:12:15,701 gw4 T0000: DEBUG No response.
+0:12:15,701 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip -6 neigh show
+0:12:15,701 gw4 T0000: DEBUG fe80::5054:ff:fe12:3456 dev veth1 lladdr 52:54:00:12:34:56 router STALE
+0:12:15,701 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ifconfig veth1
+0:12:15,701 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:12:15,701 gw4 T0000: DEBUG         inet6 3001::100  prefixlen 64  scopeid 0x0<global>
+0:12:15,701 gw4 T0000: DEBUG         inet6 fe80::440:b4ff:fea2:b213  prefixlen 64  scopeid 0x20<link>
+0:12:15,701 gw4 T0000: DEBUG         ether 00:0b:01:01:23:01  txqueuelen 1000  (Ethernet)
+0:12:15,701 gw4 T0000: DEBUG         RX packets 5  bytes 352 (352.0 B)
+0:12:15,701 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:12:15,701 gw4 T0000: DEBUG         TX packets 17  bytes 1506 (1.5 KB)
+0:12:15,701 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:12:15,701 gw4 T0000: DEBUG
+0:12:15,701 gw4 T0000: DEBUG + ip netns exec ns_10_0_0 ip addr ls veth1
+0:12:15,701 gw4 T0000: DEBUG 2: veth1@veth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:12:15,701 gw4 T0000: DEBUG     link/ether 00:0b:01:01:23:01 brd ff:ff:ff:ff:ff:ff
+0:12:15,701 gw4 T0000: DEBUG     inet6 3001::100/64 scope global
+0:12:15,701 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,701 gw4 T0000: DEBUG     inet6 fe80::440:b4ff:fea2:b213/64 scope link
+0:12:15,701 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,701 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip -6 neigh show
+0:12:15,701 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ifconfig veth1
+0:12:15,702 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:12:15,702 gw4 T0000: DEBUG         inet6 3001::101  prefixlen 64  scopeid 0x0<global>
+0:12:15,702 gw4 T0000: DEBUG         inet6 fe80::64df:d8ff:fec2:836f  prefixlen 64  scopeid 0x20<link>
+0:12:15,702 gw4 T0000: DEBUG         ether 00:0b:01:01:23:02  txqueuelen 1000  (Ethernet)
+0:12:15,702 gw4 T0000: DEBUG         RX packets 0  bytes 0 (0.0 B)
+0:12:15,702 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:12:15,702 gw4 T0000: DEBUG         TX packets 18  bytes 1608 (1.6 KB)
+0:12:15,702 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:12:15,702 gw4 T0000: DEBUG
+0:12:15,702 gw4 T0000: DEBUG + ip netns exec ns_10_0_1 ip addr ls veth1
+0:12:15,702 gw4 T0000: DEBUG 2: veth1@veth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:12:15,702 gw4 T0000: DEBUG     link/ether 00:0b:01:01:23:02 brd ff:ff:ff:ff:ff:ff
+0:12:15,702 gw4 T0000: DEBUG     inet6 3001::101/64 scope global
+0:12:15,702 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,702 gw4 T0000: DEBUG     inet6 fe80::64df:d8ff:fec2:836f/64 scope link
+0:12:15,702 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,702 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip -6 neigh show
+0:12:15,702 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ifconfig veth1
+0:12:15,702 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:12:15,702 gw4 T0000: DEBUG         inet6 fe80::a0b3:81ff:feed:7ab6  prefixlen 64  scopeid 0x20<link>
+0:12:15,702 gw4 T0000: DEBUG         inet6 3001::102  prefixlen 64  scopeid 0x0<global>
+0:12:15,702 gw4 T0000: DEBUG         ether 00:0b:01:01:23:03  txqueuelen 1000  (Ethernet)
+0:12:15,702 gw4 T0000: DEBUG         RX packets 0  bytes 0 (0.0 B)
+0:12:15,702 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:12:15,702 gw4 T0000: DEBUG         TX packets 19  bytes 1718 (1.7 KB)
+0:12:15,702 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:12:15,702 gw4 T0000: DEBUG
+0:12:15,702 gw4 T0000: DEBUG + ip netns exec ns_10_0_2 ip addr ls veth1
+0:12:15,702 gw4 T0000: DEBUG 2: veth1@veth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:12:15,702 gw4 T0000: DEBUG     link/ether 00:0b:01:01:23:03 brd ff:ff:ff:ff:ff:ff
+0:12:15,702 gw4 T0000: DEBUG     inet6 3001::102/64 scope global
+0:12:15,702 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,702 gw4 T0000: DEBUG     inet6 fe80::a0b3:81ff:feed:7ab6/64 scope link
+0:12:15,703 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,703 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip -6 neigh show
+0:12:15,703 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ifconfig veth1
+0:12:15,703 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:12:15,703 gw4 T0000: DEBUG         inet6 fe80::8467:edff:fe3b:faf7  prefixlen 64  scopeid 0x20<link>
+0:12:15,703 gw4 T0000: DEBUG         inet6 3001::103  prefixlen 64  scopeid 0x0<global>
+0:12:15,703 gw4 T0000: DEBUG         ether 00:0b:01:01:23:04  txqueuelen 1000  (Ethernet)
+0:12:15,703 gw4 T0000: DEBUG         RX packets 0  bytes 0 (0.0 B)
+0:12:15,703 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:12:15,703 gw4 T0000: DEBUG         TX packets 18  bytes 1608 (1.6 KB)
+0:12:15,703 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:12:15,703 gw4 T0000: DEBUG
+0:12:15,703 gw4 T0000: DEBUG + ip netns exec ns_10_0_3 ip addr ls veth1
+0:12:15,703 gw4 T0000: DEBUG 2: veth1@veth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:12:15,703 gw4 T0000: DEBUG     link/ether 00:0b:01:01:23:04 brd ff:ff:ff:ff:ff:ff
+0:12:15,703 gw4 T0000: DEBUG     inet6 3001::103/64 scope global
+0:12:15,703 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,703 gw4 T0000: DEBUG     inet6 fe80::8467:edff:fe3b:faf7/64 scope link
+0:12:15,703 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,703 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip -6 neigh show
+0:12:15,703 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ifconfig veth1
+0:12:15,703 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:12:15,703 gw4 T0000: DEBUG         inet6 3001::104  prefixlen 64  scopeid 0x0<global>
+0:12:15,703 gw4 T0000: DEBUG         inet6 fe80::d0b2:61ff:fe1c:f09b  prefixlen 64  scopeid 0x20<link>
+0:12:15,703 gw4 T0000: DEBUG         ether 00:0b:01:01:23:05  txqueuelen 1000  (Ethernet)
+0:12:15,703 gw4 T0000: DEBUG         RX packets 0  bytes 0 (0.0 B)
+0:12:15,703 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:12:15,703 gw4 T0000: DEBUG         TX packets 20  bytes 1808 (1.8 KB)
+0:12:15,703 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:12:15,703 gw4 T0000: DEBUG
+0:12:15,703 gw4 T0000: DEBUG + ip netns exec ns_10_0_4 ip addr ls veth1
+0:12:15,703 gw4 T0000: DEBUG 2: veth1@veth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:12:15,703 gw4 T0000: DEBUG     link/ether 00:0b:01:01:23:05 brd ff:ff:ff:ff:ff:ff
+0:12:15,703 gw4 T0000: DEBUG     inet6 3001::104/64 scope global
+0:12:15,704 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,704 gw4 T0000: DEBUG     inet6 fe80::d0b2:61ff:fe1c:f09b/64 scope link
+0:12:15,704 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:12:15,704 gw4 T0000: DEBUG
+0:12:15,704 gw4 T0000: INFO  read the mac addresses of created interfaces
+0:12:15,704 gw4 T0000: DEBUG cmdexec: ip netns exec ns_10_0_0 ip addr show dev veth1
+0:12:15,735 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '3001::100/64', 'state': 'UP', 'link/ether': '00:0b:01:01:23:01'}
+0:12:15,735 gw4 T0000: DEBUG cmdexec: ip netns exec ns_10_0_1 ip addr show dev veth1
+0:12:15,764 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '3001::101/64', 'state': 'UP', 'link/ether': '00:0b:01:01:23:02'}
+0:12:15,765 gw4 T0000: DEBUG cmdexec: ip netns exec ns_10_0_2 ip addr show dev veth1
+0:12:15,797 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '3001::102/64', 'state': 'UP', 'link/ether': '00:0b:01:01:23:03'}
+0:12:15,798 gw4 T0000: DEBUG cmdexec: ip netns exec ns_10_0_3 ip addr show dev veth1
+0:12:15,828 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '3001::103/64', 'state': 'UP', 'link/ether': '00:0b:01:01:23:04'}
+0:12:15,829 gw4 T0000: DEBUG cmdexec: ip netns exec ns_10_0_4 ip addr show dev veth1
+0:12:15,852 gw4 T0000: INFO  ip addr show dev veth1 {'inet6': '3001::104/64', 'state': 'UP', 'link/ether': '00:0b:01:01:23:05'}
+0:12:15,852 gw4 T0000: DEBUG New interface ['iface-10-0', 'iface-10-0', 'iface-10-0', 'iface-10-0', 'iface-10-0']...
+0:12:17,855 gw4 T0000: DEBUG RESULT: {"status": "1", "handle": ["iface-10-0", "iface-10-0", "iface-10-0", "iface-10-0", "iface-10-0"]}
+0:12:29,344 gw4 T0090: DEBUG readp:eth11 len:263 count:42
+0:12:29,345 gw4 T0082: DEBUG readp:eth9 len:263 count:633
+0:12:29,348 gw4 T0094: DEBUG readp:eth12 len:265 count:49
+0:12:29,381 gw4 T0086: DEBUG readp:eth10 len:263 count:64
+0:12:49,739 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-start test_ft_ipv6_neighbor_entry gw4') {}
+0:12:49,739 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-start test_ft_ipv6_neighbor_entry gw4 () {}
+0:12:49,739 gw4 T0000: INFO  ################################################################################
+0:12:49,739 gw4 T0000: INFO  gw4 gw4 add-log test-start test_ft_ipv6_neighbor_entry gw4
+0:12:49,740 gw4 T0000: INFO  ################################################################################
+0:12:49,740 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:12:49,740 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:12:59,345 gw4 T0090: DEBUG readp:eth11 len:263 count:43
+0:12:59,346 gw4 T0082: DEBUG readp:eth9 len:263 count:634
+0:12:59,349 gw4 T0094: DEBUG readp:eth12 len:265 count:50
+0:12:59,382 gw4 T0086: DEBUG readp:eth10 len:263 count:65
+0:13:00,684 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-finish test_ft_ipv6_neighbor_entry gw4') {}
+0:13:00,684 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-finish test_ft_ipv6_neighbor_entry gw4 () {}
+0:13:00,684 gw4 T0000: INFO  ################################################################################
+0:13:00,684 gw4 T0000: INFO  gw4 gw4 add-log test-finish test_ft_ipv6_neighbor_entry gw4
+0:13:00,684 gw4 T0000: INFO  ################################################################################
+0:13:00,685 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:13:00,685 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:13:27,564 gw4 T0082: DEBUG readp:eth9 len:90 count:635
+0:13:27,976 gw4 T0082: DEBUG readp:eth9 len:90 count:636
+0:13:29,183 gw4 T0086: DEBUG readp:eth10 len:94 count:66
+0:13:29,346 gw4 T0082: DEBUG readp:eth9 len:263 count:637
+0:13:29,347 gw4 T0090: DEBUG readp:eth11 len:263 count:44
+0:13:29,348 gw4 T0094: DEBUG readp:eth12 len:265 count:51
+0:13:29,378 gw4 T0086: DEBUG readp:eth10 len:263 count:67
+0:13:29,673 gw4 T0086: DEBUG readp:eth10 len:94 count:68
+0:13:54,290 gw4 T0000: DEBUG gw4 ('gw4', 'read-log', 'results_mlog_routing_test_ndp.tgen') {}
+0:13:54,291 gw4 T0000: DEBUG gw4 exposed_server_control read-log results_mlog_routing_test_ndp.tgen () {}

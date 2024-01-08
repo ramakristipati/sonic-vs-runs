@@ -1,0 +1,120 @@
+Building configuration...
+
+Current configuration:
+!
+frr version 7.5.1-sonic
+frr defaults traditional
+hostname sonic
+log syslog
+log facility local4
+no service integrated-vtysh-config
+!
+debug bgp keepalives
+debug bgp neighbor-events
+!
+password zebra
+enable password zebra
+!
+router bgp 101 vrf Vrf-101
+ bgp router-id 11.11.11.11
+ no bgp ebgp-requires-policy
+ neighbor 1.0.1.2 remote-as 300
+ neighbor 3.0.101.2 remote-as 101
+ neighbor 2011::2 remote-as 300
+ neighbor 3101::2 remote-as 101
+ !
+ address-family ipv4 unicast
+  neighbor 3.0.101.2 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor 2011::2 activate
+  neighbor 2011::2 route-map UseGlobal in
+  neighbor 3101::2 activate
+  neighbor 3101::2 next-hop-self
+ exit-address-family
+!
+router bgp 102 vrf Vrf-102
+ bgp router-id 11.11.11.11
+ no bgp ebgp-requires-policy
+ neighbor 1.0.2.2 remote-as 300
+ neighbor 3.0.101.2 remote-as 102
+ neighbor 2012::2 remote-as 300
+ neighbor 3101::2 remote-as 102
+ !
+ address-family ipv4 unicast
+  neighbor 3.0.101.2 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor 2012::2 activate
+  neighbor 2012::2 route-map UseGlobal in
+  neighbor 3101::2 activate
+  neighbor 3101::2 next-hop-self
+ exit-address-family
+!
+router bgp 103 vrf Vrf-103
+ bgp router-id 11.11.11.11
+ no bgp ebgp-requires-policy
+ neighbor 1.0.3.2 remote-as 300
+ neighbor 3.0.101.2 remote-as 103
+ neighbor 2013::2 remote-as 300
+ neighbor 3101::2 remote-as 103
+ !
+ address-family ipv4 unicast
+  neighbor 3.0.101.2 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor 2013::2 activate
+  neighbor 2013::2 route-map UseGlobal in
+  neighbor 3101::2 activate
+  neighbor 3101::2 next-hop-self
+ exit-address-family
+!
+route-map ALLOW_LIST_DEPLOYMENT_ID_0_V4 permit 65535
+!
+route-map ALLOW_LIST_DEPLOYMENT_ID_0_V6 permit 65535
+!
+route-map FROM_BGP_PEER_V4 permit 10
+ call ALLOW_LIST_DEPLOYMENT_ID_0_V4
+ on-match next
+!
+route-map FROM_BGP_PEER_V4 permit 11
+!
+route-map FROM_BGP_PEER_V4 permit 100
+!
+route-map FROM_BGP_PEER_V6 permit 10
+ call ALLOW_LIST_DEPLOYMENT_ID_0_V6
+ on-match next
+!
+route-map FROM_BGP_PEER_V6 permit 11
+!
+route-map FROM_BGP_PEER_V6 permit 1
+ on-match next
+!
+route-map FROM_BGP_PEER_V6 permit 100
+!
+route-map TO_BGP_PEER_V4 permit 100
+!
+route-map TO_BGP_PEER_V6 permit 100
+!
+route-map RM_SET_SRC permit 10
+ set src 10.1.0.1
+!
+route-map test-rmap deny 20
+ match ip address test-access-list2
+!
+route-map test-rmap permit 30
+ match ip address test-access-list3
+!
+route-map UseGlobal permit 10
+ set ipv6 next-hop prefer-global 
+!
+ip nht resolve-via-default
+!
+ip protocol bgp route-map RM_SET_SRC
+!
+line vty
+!
+end

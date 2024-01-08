@@ -1,0 +1,93 @@
+version: 2.0
+services:
+  default: !include sonic_services.yaml
+params: !include sonic_params.yaml
+builds: !include sonic_builds.yaml
+speeds: !include sonic_speeds.yaml
+errors: !include sonic_errors.yaml
+instrument: !include sonic_instrument.yaml
+configs: !include sonic_configs_all.yaml
+overrides:
+  services:
+    default:
+      snmptrap:
+        ip: 127.0.0.1
+        username: ubuntu
+        password: ubuntu
+devices:
+  V3:
+    device_type: sonicvs
+    access:
+      protocol: ssh
+      ip: null
+      port: 22
+    rps:
+      model: none
+      ip: 127.0.0.1
+      port: 22
+      outlet: V3
+      username: ubuntu
+      password: ubuntu
+    credentials:
+      username: admin
+      password: YourPaSsWoRd
+      altpassword: broadcom
+    properties:
+      config: default
+      build: default
+      services: default
+      params: def_dut
+      speed: default
+    params:
+      chip: VS
+  tgen-01:
+    device_type: TGEN
+    properties:
+      type: scapy
+      version: 1.0
+      ip: 127.0.0.1
+      virtual: 1
+      console: None
+topology:
+  V3:
+    interfaces:
+      Ethernet16:
+        reserved: true
+      Ethernet20:
+        reserved: true
+      Ethernet24:
+        reserved: true
+      Ethernet28:
+        reserved: true
+      Ethernet32:
+        reserved: true
+      Ethernet36:
+        reserved: true
+      Ethernet40:
+        reserved: true
+      Ethernet44:
+        reserved: true
+      Ethernet0:
+        EndDevice: tgen-01
+        EndPort: 1/9
+      Ethernet4:
+        EndDevice: tgen-01
+        EndPort: 1/10
+      Ethernet8:
+        EndDevice: tgen-01
+        EndPort: 1/11
+      Ethernet12:
+        EndDevice: tgen-01
+        EndPort: 1/12
+      Ethernet48:
+        reserved: true
+      Ethernet52:
+        reserved: true
+      Ethernet56:
+        reserved: true
+      Ethernet60:
+        reserved: true
+      Ethernet64:
+        reserved: true
+      Ethernet68:
+        reserved: true

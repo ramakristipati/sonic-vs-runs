@@ -1,0 +1,255 @@
+framework,,,D1,normal-user,sudo vtysh
+framework,,,D1,normal-user,configure terminal
+framework,,,D1,vtysh-config,no router bgp
+framework,,,D1,vtysh-config,exit
+framework,,,D1,vtysh-config,exit
+framework,,,D1,normal-user,sudo -s config feature state sflow enabled
+framework,,,D1,normal-user,sudo -s config feature state nat enabled
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-prolog-routing-test_ip.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-prolog-routing-test_ip.py.json
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-prolog-routing-test_ip.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-prolog-routing-test_ip.py.txt
+module-prolog,routing/test_ip.py,,D1,normal-user,show platform summary
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config vlan add 370
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config vlan member add 370 Ethernet16
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add Vlan370 192.168.2.1/24
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add Vlan370 3301::1/96
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config portchannel add PortChannel100
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config portchannel member add PortChannel100 Ethernet20
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config portchannel member add PortChannel100 Ethernet24
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add PortChannel100 192.168.3.1/24
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add PortChannel100 4441::1/96
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add Ethernet28 192.168.4.1/24
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add Ethernet28 5551::1/96
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 192.168.1.2/24
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 2001::2/96
+module-prolog,routing/test_ip.py,,D1,normal-user,sudo vtysh
+module-prolog,routing/test_ip.py,,D1,normal-user,configure terminal
+module-prolog,routing/test_ip.py,,D1,vtysh-config,ipv6 route 6661::/64 5551::2
+module-prolog,routing/test_ip.py,,D1,vtysh-config,ip route 192.168.5.0/24 192.168.4.2
+framework,routing/test_ip.py,,D1,vtysh-config,exit
+framework,routing/test_ip.py,,D1,vtysh-config,exit
+framework,routing/test_ip.py,,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-prolog-routing-test_ip.py.json -y
+framework,routing/test_ip.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-prolog-routing-test_ip.py.json
+framework,routing/test_ip.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-prolog-routing-test_ip.py.txt
+framework,routing/test_ip.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-prolog-routing-test_ip.py.txt
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,normal-user,show ip route
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,normal-user,show ip interface
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,normal-user,sudo show interfaces status
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,normal-user,sudo vtysh
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,normal-user,configure terminal
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-config,router bgp 100\nno bgp ebgp-requires-policy
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-config,timers bgp 60 180
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-config,router bgp 100\nno bgp ebgp-requires-policy
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-config,neighbor 192.168.1.1 remote-as 200
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-config,neighbor 192.168.1.1 timers 60 180
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-config,address-family ipv4 unicast
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-af-config,neighbor 192.168.1.1 activate
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-af-config,exit
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-af-config,exit
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-af-config,exit
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,vtysh-router-af-config,exit
+function-or-epilog,routing/test_ip.py,test_l3_v4_route_po_1,D1,normal-user,/sbin/ifconfig Ethernet0
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_vlan,D1,normal-user,sudo -s ping -4 192.168.2.2 -c 1
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s ping -4 192.168.3.3 -c 1
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s config interface ip remove PortChannel100 192.168.3.1/24
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s config interface ip remove PortChannel100 4441::1/96
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s config interface ip add PortChannel100 192.168.6.1/24
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s config interface ip add PortChannel100 7771::1/96
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s ip -6 neighbor replace 7771::2 lladdr 00:00:00:EA:23:0F dev PortChannel100
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,show ndp 7771::2
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s ip -6 neighbor del 7771::2 lladdr 00:00:00:EA:23:0F dev PortChannel100
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s ping -4 192.168.6.2 -c 1
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D1,normal-user,sudo -s ping -6 7771::2 -c 1
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ip6_static_route_traffic_forward_blackhole,D1,normal-user,/sbin/ifconfig Ethernet4
+function-or-epilog,routing/test_ip.py,test_ft_ip6_static_route_traffic_forward_blackhole,D1,normal-user,show interfaces counters -a | grep -Ew "(IFACE|Ethernet28|Ethernet0|Ethernet4)" 
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ip_static_route_traffic_forward,D1,normal-user,/sbin/ifconfig Ethernet0
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s ping -4 192.168.4.2 -c 3
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo vtysh
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,configure terminal
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,no ipv6 route 6661::/64 blackhole
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,no ip route 192.168.5.0/24 192.168.4.2
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,no ipv6 route 6661::/64 5551::2
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,exit
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,exit
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config interface ip remove Ethernet28 192.168.4.1/24
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config interface ip remove Ethernet28 5551::1/96
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config interface ip remove Ethernet0 192.168.1.2/24
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config vlan add 3413
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config vlan member add 3413 Ethernet28
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config vlan member add 3413 Ethernet0
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config vlan member del 3413 Ethernet28
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config vlan member del 3413 Ethernet0
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config interface ip add Ethernet28 192.168.4.1/24
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo vtysh
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,configure terminal
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,ip route 192.168.5.0/24 192.168.4.2
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,exit
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,exit
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s config interface ip add Ethernet28 5551::1/96
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo vtysh
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,configure terminal
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,ipv6 route 6661::/64 blackhole
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,exit
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,exit
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo -s ping -4 192.168.4.2 -c 3
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,sudo vtysh
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,normal-user,configure terminal
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,no ipv6 route 6661::/64 blackhole
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D1,vtysh-config,ipv6 route 6661::/64 5551::2
+framework,routing/test_ip.py,,D1,vtysh-config,exit
+framework,routing/test_ip.py,,D1,vtysh-config,exit
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet108 192.168.7.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet84 192.168.8.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet124 192.168.9.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet92 192.168.10.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet112 2001::1:0:1/96
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet88 2001::2:0:1/96
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet72 2001::3:0:1/96
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip add Ethernet100 2001::4:0:1/96
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show ip interface
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show ipv6 interface
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet108 192.168.7.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet84 192.168.8.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet124 192.168.9.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet92 192.168.10.2/24
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet112 2001::1:0:1/96
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet88 2001::2:0:1/96
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet72 2001::3:0:1/96
+function-or-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet100 2001::4:0:1/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-epilog-routing-test_ip.py.json -y
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-epilog-routing-test_ip.py.json
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-epilog-routing-test_ip.py.txt
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-epilog-routing-test_ip.py.txt
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo vtysh
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,configure terminal
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,vtysh-config,no ip route 192.168.5.0/24 192.168.4.2
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,vtysh-config,no ipv6 route 6661::/64 5551::2
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,vtysh-config,exit
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,vtysh-config,exit
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show ip interface
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet28 192.168.4.1/24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove PortChannel100 192.168.6.1/24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Vlan370 192.168.2.1/24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show ipv6 interface
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet4 2001::2/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Ethernet28 5551::1/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove PortChannel100 7771::1/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config interface ip remove Vlan370 3301::1/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show vlan config
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show interfaces portchannel
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show interfaces portchannel | grep -w PortChannel100
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config portchannel member del PortChannel100 Ethernet20
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config portchannel member del PortChannel100 Ethernet24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config portchannel del PortChannel100
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,show interfaces portchannel | grep -w PortChannel100
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-epilog-routing-test_ip.py.json -y
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-epilog-routing-test_ip.py.json
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-epilog-routing-test_ip.py.txt
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-epilog-routing-test_ip.py.txt
+framework,,,D2,normal-user,sudo vtysh
+framework,,,D2,normal-user,configure terminal
+framework,,,D2,vtysh-config,no router bgp
+framework,,,D2,vtysh-config,exit
+framework,,,D2,vtysh-config,exit
+framework,,,D2,normal-user,sudo -s config feature state sflow enabled
+framework,,,D2,normal-user,sudo -s config feature state nat enabled
+framework,,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,,,D2,normal-user,sudo show interfaces status
+framework,,,D2,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-prolog-routing-test_ip.py.json -y
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-prolog-routing-test_ip.py.json
+framework,,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-prolog-routing-test_ip.py.txt
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-prolog-routing-test_ip.py.txt
+module-prolog,routing/test_ip.py,,D2,normal-user,show platform summary
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config vlan add 370
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config vlan member add 370 Ethernet16
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add Vlan370 192.168.2.2/24
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add Vlan370 3301::2/96
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config portchannel add PortChannel100
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config portchannel member add PortChannel100 Ethernet20
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config portchannel member add PortChannel100 Ethernet24
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add PortChannel100 192.168.3.3/24
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add PortChannel100 4441::2/96
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add Ethernet28 192.168.4.2/24
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add Ethernet28 5551::2/96
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add Ethernet0 192.168.5.1/24
+module-prolog,routing/test_ip.py,,D2,normal-user,sudo -s config interface ip add Ethernet4 6661::1/96
+framework,routing/test_ip.py,,D2,normal-user,sudo -s config save /tmp/config-db-V2-post-module-prolog-routing-test_ip.py.json -y
+framework,routing/test_ip.py,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-prolog-routing-test_ip.py.json
+framework,routing/test_ip.py,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-prolog-routing-test_ip.py.txt
+framework,routing/test_ip.py,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-prolog-routing-test_ip.py.txt
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_vlan,D2,normal-user,sudo -s ping -6 3301::1 -c 1
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D2,normal-user,show interfaces portchannel | grep -w PortChannel100
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D2,normal-user,sudo -s ping -6 4441::1 -c 1
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D2,normal-user,sudo -s config interface ip remove PortChannel100 192.168.3.3/24
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D2,normal-user,sudo -s config interface ip remove PortChannel100 4441::2/96
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D2,normal-user,sudo -s config interface ip add PortChannel100 192.168.6.2/24
+function-or-epilog,routing/test_ip.py,test_ft_ping_v4_v6_after_ip_change_pc,D2,normal-user,sudo -s config interface ip add PortChannel100 7771::2/96
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ip6_static_route_traffic_forward_blackhole,D2,normal-user,show interfaces counters -a | grep -Ew "(IFACE|Ethernet28|Ethernet0|Ethernet4)" 
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s ping -6 5551::1 -c 3
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config interface ip remove Ethernet28 192.168.4.2/24
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config interface ip remove Ethernet28 5551::2/96
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config interface ip remove Ethernet0 192.168.5.1/24
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config vlan add 3413
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config vlan member add 3413 Ethernet28
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config vlan member add 3413 Ethernet0
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config vlan member del 3413 Ethernet28
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config vlan member del 3413 Ethernet0
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config interface ip add Ethernet28 192.168.4.2/24
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s config interface ip add Ethernet28 5551::2/96
+function-or-epilog,routing/test_ip.py,test_ft_ip_v4_v6_L2_L3_translation,D2,normal-user,sudo -s ping -6 5551::1 -c 3
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status
+framework,routing/test_ip.py,,D2,normal-user,sudo show interfaces status Ethernet124
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-epilog-routing-test_ip.py.json -y
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-epilog-routing-test_ip.py.json
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-epilog-routing-test_ip.py.txt
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-epilog-routing-test_ip.py.txt
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,show ip interface
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config interface ip remove Ethernet28 192.168.4.2/24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config interface ip remove PortChannel100 192.168.6.2/24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config interface ip remove Vlan370 192.168.2.2/24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,show ipv6 interface
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config interface ip remove Ethernet4 6661::1/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config interface ip remove Ethernet28 5551::2/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config interface ip remove PortChannel100 7771::2/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config interface ip remove Vlan370 3301::2/96
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,show vlan config
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,show interfaces portchannel
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,show interfaces portchannel | grep -w PortChannel100
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config portchannel member del PortChannel100 Ethernet20
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config portchannel member del PortChannel100 Ethernet24
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config portchannel del PortChannel100
+module-or-class-epilog,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,show interfaces portchannel | grep -w PortChannel100
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s config save /tmp/config-db-V2-post-module-epilog-routing-test_ip.py.json -y
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-epilog-routing-test_ip.py.json
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-epilog-routing-test_ip.py.txt
+framework,routing/test_ip.py,test_ft_verify_interfaces_order,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-epilog-routing-test_ip.py.txt

@@ -1,0 +1,14 @@
+REQ: tg_connect(port_list=['1/5', '1/6', '1/7', '1/8'])
+RESP: tg_connect {"port_handle": {"1/5": "port-5", "1/6": "port-6", "1/7": "port-7", "1/8": "port-8"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle=['port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-5',mode='config',intf_ip_addr='10.10.10.2',gateway='10.10.10.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-5-0"}
+REQ: tg_interface_config(port_handle='port-6',mode='config',intf_ip_addr='20.20.20.2',gateway='20.20.20.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-6-0"}
+REQ: tg_emulation_bgp_config(handle='iface-5-0',mode='enable',active_connect_enable='1',local_as=200,remote_as=100,remote_ip_addr='10.10.10.1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-5-0"}
+REQ: tg_emulation_bgp_route_config(handle='iface-5-0',mode='add',num_routes=16000,prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-5-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-5-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}

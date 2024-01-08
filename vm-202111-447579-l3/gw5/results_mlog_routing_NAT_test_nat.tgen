@@ -1,0 +1,1967 @@
+0:05:35,833 gw5 T0000: INFO  ################################################################################
+0:05:35,833 gw5 T0000: INFO  Python: 3.8.10
+0:05:35,833 gw5 T0000: INFO  ################################################################################
+0:05:35,833 gw5 T0000: INFO  ################################################################################
+0:05:35,833 gw5 T0000: INFO  Open file /data/work/scapy-tgen/logs/current/inst-2024_01_05_00_19_56_674077/gw5/results_mlog_routing_NAT_test_nat.tgen
+0:05:35,833 gw5 T0000: INFO  ################################################################################
+0:05:35,833 gw5 T0000: INFO  ################################################################################
+0:05:35,833 gw5 T0000: INFO  gw5 gw5 init-log results_mlog_routing_NAT_test_nat.tgen
+0:05:35,834 gw5 T0000: INFO  ################################################################################
+0:05:35,835 gw5 T0000: DEBUG gw5 ('gw5', 'get-alerts', '') {}
+0:05:35,835 gw5 T0000: DEBUG gw5 exposed_server_control get-alerts  () {}
+0:05:37,018 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-5', 'mode': 'config', 'intf_ip_addr': '12.12.0.2', 'gateway': '12.12.0.1', 'netmask': '255.255.0.0', 'arp_send_req': '1', 'count': '10', 'gateway_step': '0.0.0.0'}
+0:05:37,018 gw5 T0000: DEBUG gw5 exposed_tg_interface_config () {'port_handle': 'port-5', 'mode': 'config', 'intf_ip_addr': '12.12.0.2', 'gateway': '12.12.0.1', 'netmask': '255.255.0.0', 'arp_send_req': '1', 'count': '10', 'gateway_step': '0.0.0.0'}
+0:05:37,021 gw5 T0000: DEBUG shexec:
+0:05:37,022 gw5 T0000: DEBUG ip netns del ns_5_0_0
+0:05:37,022 gw5 T0000: DEBUG ip link del veth_5_0_0
+0:05:37,022 gw5 T0000: DEBUG
+0:05:37,022 gw5 T0000: DEBUG ip netns add ns_5_0_0
+0:05:37,022 gw5 T0000: DEBUG ip netns list
+0:05:37,022 gw5 T0000: DEBUG ip link add veth_5_0_0 type veth peer name veth1
+0:05:37,022 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_0
+0:05:37,023 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,023 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ip link set dev veth1 up
+0:05:37,023 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:05:37,023 gw5 T0000: DEBUG ip link set dev veth_5_0_0 up
+0:05:37,023 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,023 gw5 T0000: DEBUG ip link set dev veth_5_0_0 master eth5-br
+0:05:37,023 gw5 T0000: DEBUG
+0:05:37,023 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ip addr add 12.12.0.2/24 dev veth1
+0:05:37,023 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ip route add default via 12.12.0.1
+0:05:37,023 gw5 T0000: DEBUG
+0:05:37,024 gw5 T0000: DEBUG ip netns del ns_5_0_1
+0:05:37,024 gw5 T0000: DEBUG ip link del veth_5_0_1
+0:05:37,024 gw5 T0000: DEBUG
+0:05:37,024 gw5 T0000: DEBUG ip netns add ns_5_0_1
+0:05:37,024 gw5 T0000: DEBUG ip netns list
+0:05:37,024 gw5 T0000: DEBUG ip link add veth_5_0_1 type veth peer name veth1
+0:05:37,024 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_1
+0:05:37,024 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,024 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ip link set dev veth1 up
+0:05:37,025 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ethtool --offload veth1 rx off tx off
+0:05:37,025 gw5 T0000: DEBUG ip link set dev veth_5_0_1 up
+0:05:37,025 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,025 gw5 T0000: DEBUG ip link set dev veth_5_0_1 master eth5-br
+0:05:37,025 gw5 T0000: DEBUG
+0:05:37,025 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ip addr add 12.12.0.3/24 dev veth1
+0:05:37,025 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ip route add default via 12.12.0.1
+0:05:37,025 gw5 T0000: DEBUG
+0:05:37,025 gw5 T0000: DEBUG ip netns del ns_5_0_2
+0:05:37,025 gw5 T0000: DEBUG ip link del veth_5_0_2
+0:05:37,026 gw5 T0000: DEBUG
+0:05:37,026 gw5 T0000: DEBUG ip netns add ns_5_0_2
+0:05:37,026 gw5 T0000: DEBUG ip netns list
+0:05:37,026 gw5 T0000: DEBUG ip link add veth_5_0_2 type veth peer name veth1
+0:05:37,026 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_2
+0:05:37,026 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,026 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ip link set dev veth1 up
+0:05:37,026 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ethtool --offload veth1 rx off tx off
+0:05:37,026 gw5 T0000: DEBUG ip link set dev veth_5_0_2 up
+0:05:37,026 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,027 gw5 T0000: DEBUG ip link set dev veth_5_0_2 master eth5-br
+0:05:37,027 gw5 T0000: DEBUG
+0:05:37,027 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ip addr add 12.12.0.4/24 dev veth1
+0:05:37,027 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ip route add default via 12.12.0.1
+0:05:37,027 gw5 T0000: DEBUG
+0:05:37,027 gw5 T0000: DEBUG ip netns del ns_5_0_3
+0:05:37,027 gw5 T0000: DEBUG ip link del veth_5_0_3
+0:05:37,027 gw5 T0000: DEBUG
+0:05:37,027 gw5 T0000: DEBUG ip netns add ns_5_0_3
+0:05:37,028 gw5 T0000: DEBUG ip netns list
+0:05:37,028 gw5 T0000: DEBUG ip link add veth_5_0_3 type veth peer name veth1
+0:05:37,028 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_3
+0:05:37,028 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,028 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ip link set dev veth1 up
+0:05:37,028 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ethtool --offload veth1 rx off tx off
+0:05:37,028 gw5 T0000: DEBUG ip link set dev veth_5_0_3 up
+0:05:37,028 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,028 gw5 T0000: DEBUG ip link set dev veth_5_0_3 master eth5-br
+0:05:37,028 gw5 T0000: DEBUG
+0:05:37,029 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ip addr add 12.12.0.5/24 dev veth1
+0:05:37,029 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ip route add default via 12.12.0.1
+0:05:37,029 gw5 T0000: DEBUG
+0:05:37,029 gw5 T0000: DEBUG ip netns del ns_5_0_4
+0:05:37,029 gw5 T0000: DEBUG ip link del veth_5_0_4
+0:05:37,029 gw5 T0000: DEBUG
+0:05:37,031 gw5 T0000: DEBUG ip netns add ns_5_0_4
+0:05:37,031 gw5 T0000: DEBUG ip netns list
+0:05:37,031 gw5 T0000: DEBUG ip link add veth_5_0_4 type veth peer name veth1
+0:05:37,032 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_4
+0:05:37,032 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,032 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ip link set dev veth1 up
+0:05:37,032 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ethtool --offload veth1 rx off tx off
+0:05:37,032 gw5 T0000: DEBUG ip link set dev veth_5_0_4 up
+0:05:37,032 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,032 gw5 T0000: DEBUG ip link set dev veth_5_0_4 master eth5-br
+0:05:37,032 gw5 T0000: DEBUG
+0:05:37,032 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ip addr add 12.12.0.6/24 dev veth1
+0:05:37,033 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ip route add default via 12.12.0.1
+0:05:37,033 gw5 T0000: DEBUG
+0:05:37,033 gw5 T0000: DEBUG ip netns del ns_5_0_5
+0:05:37,033 gw5 T0000: DEBUG ip link del veth_5_0_5
+0:05:37,033 gw5 T0000: DEBUG
+0:05:37,033 gw5 T0000: DEBUG ip netns add ns_5_0_5
+0:05:37,033 gw5 T0000: DEBUG ip netns list
+0:05:37,033 gw5 T0000: DEBUG ip link add veth_5_0_5 type veth peer name veth1
+0:05:37,033 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_5
+0:05:37,034 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,034 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ip link set dev veth1 up
+0:05:37,034 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ethtool --offload veth1 rx off tx off
+0:05:37,034 gw5 T0000: DEBUG ip link set dev veth_5_0_5 up
+0:05:37,034 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,034 gw5 T0000: DEBUG ip link set dev veth_5_0_5 master eth5-br
+0:05:37,034 gw5 T0000: DEBUG
+0:05:37,034 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ip addr add 12.12.0.7/24 dev veth1
+0:05:37,034 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ip route add default via 12.12.0.1
+0:05:37,034 gw5 T0000: DEBUG
+0:05:37,035 gw5 T0000: DEBUG ip netns del ns_5_0_6
+0:05:37,035 gw5 T0000: DEBUG ip link del veth_5_0_6
+0:05:37,035 gw5 T0000: DEBUG
+0:05:37,035 gw5 T0000: DEBUG ip netns add ns_5_0_6
+0:05:37,035 gw5 T0000: DEBUG ip netns list
+0:05:37,035 gw5 T0000: DEBUG ip link add veth_5_0_6 type veth peer name veth1
+0:05:37,035 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_6
+0:05:37,035 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,035 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ip link set dev veth1 up
+0:05:37,036 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ethtool --offload veth1 rx off tx off
+0:05:37,036 gw5 T0000: DEBUG ip link set dev veth_5_0_6 up
+0:05:37,036 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,036 gw5 T0000: DEBUG ip link set dev veth_5_0_6 master eth5-br
+0:05:37,036 gw5 T0000: DEBUG
+0:05:37,036 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ip addr add 12.12.0.8/24 dev veth1
+0:05:37,036 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ip route add default via 12.12.0.1
+0:05:37,036 gw5 T0000: DEBUG
+0:05:37,036 gw5 T0000: DEBUG ip netns del ns_5_0_7
+0:05:37,037 gw5 T0000: DEBUG ip link del veth_5_0_7
+0:05:37,037 gw5 T0000: DEBUG
+0:05:37,037 gw5 T0000: DEBUG ip netns add ns_5_0_7
+0:05:37,037 gw5 T0000: DEBUG ip netns list
+0:05:37,037 gw5 T0000: DEBUG ip link add veth_5_0_7 type veth peer name veth1
+0:05:37,037 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_7
+0:05:37,037 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,037 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ip link set dev veth1 up
+0:05:37,037 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ethtool --offload veth1 rx off tx off
+0:05:37,037 gw5 T0000: DEBUG ip link set dev veth_5_0_7 up
+0:05:37,038 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,038 gw5 T0000: DEBUG ip link set dev veth_5_0_7 master eth5-br
+0:05:37,038 gw5 T0000: DEBUG
+0:05:37,038 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ip addr add 12.12.0.9/24 dev veth1
+0:05:37,038 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ip route add default via 12.12.0.1
+0:05:37,038 gw5 T0000: DEBUG
+0:05:37,038 gw5 T0000: DEBUG ip netns del ns_5_0_8
+0:05:37,038 gw5 T0000: DEBUG ip link del veth_5_0_8
+0:05:37,038 gw5 T0000: DEBUG
+0:05:37,039 gw5 T0000: DEBUG ip netns add ns_5_0_8
+0:05:37,039 gw5 T0000: DEBUG ip netns list
+0:05:37,039 gw5 T0000: DEBUG ip link add veth_5_0_8 type veth peer name veth1
+0:05:37,039 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_8
+0:05:37,039 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,039 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ip link set dev veth1 up
+0:05:37,039 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ethtool --offload veth1 rx off tx off
+0:05:37,039 gw5 T0000: DEBUG ip link set dev veth_5_0_8 up
+0:05:37,039 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,039 gw5 T0000: DEBUG ip link set dev veth_5_0_8 master eth5-br
+0:05:37,040 gw5 T0000: DEBUG
+0:05:37,040 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ip addr add 12.12.0.10/24 dev veth1
+0:05:37,040 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ip route add default via 12.12.0.1
+0:05:37,040 gw5 T0000: DEBUG
+0:05:37,040 gw5 T0000: DEBUG ip netns del ns_5_0_9
+0:05:37,040 gw5 T0000: DEBUG ip link del veth_5_0_9
+0:05:37,040 gw5 T0000: DEBUG
+0:05:37,040 gw5 T0000: DEBUG ip netns add ns_5_0_9
+0:05:37,040 gw5 T0000: DEBUG ip netns list
+0:05:37,040 gw5 T0000: DEBUG ip link add veth_5_0_9 type veth peer name veth1
+0:05:37,041 gw5 T0000: DEBUG ip link set veth1 netns ns_5_0_9
+0:05:37,041 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:37,041 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ip link set dev veth1 up
+0:05:37,041 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ethtool --offload veth1 rx off tx off
+0:05:37,041 gw5 T0000: DEBUG ip link set dev veth_5_0_9 up
+0:05:37,041 gw5 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:37,041 gw5 T0000: DEBUG ip link set dev veth_5_0_9 master eth5-br
+0:05:37,041 gw5 T0000: DEBUG
+0:05:37,041 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ip addr add 12.12.0.11/24 dev veth1
+0:05:37,042 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ip route add default via 12.12.0.1
+0:05:37,042 gw5 T0000: DEBUG sleep 2
+0:05:37,042 gw5 T0000: DEBUG
+0:05:37,042 gw5 T0000: DEBUG ip netns exec ns_5_0_0 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,042 gw5 T0000: DEBUG
+0:05:37,042 gw5 T0000: DEBUG
+0:05:37,042 gw5 T0000: DEBUG ip netns exec ns_5_0_1 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,042 gw5 T0000: DEBUG
+0:05:37,042 gw5 T0000: DEBUG
+0:05:37,042 gw5 T0000: DEBUG ip netns exec ns_5_0_2 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG ip netns exec ns_5_0_3 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG ip netns exec ns_5_0_4 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG ip netns exec ns_5_0_5 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG
+0:05:37,043 gw5 T0000: DEBUG ip netns exec ns_5_0_6 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_7 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_8 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_9 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ip neigh show
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ifconfig veth1
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_0 ip addr ls veth1
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ip neigh show
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ifconfig veth1
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_1 ip addr ls veth1
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ip neigh show
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ifconfig veth1
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_2 ip addr ls veth1
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,044 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ip neigh show
+0:05:37,044 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ifconfig veth1
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_3 ip addr ls veth1
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ip neigh show
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ifconfig veth1
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_4 ip addr ls veth1
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ip neigh show
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ifconfig veth1
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_5 ip addr ls veth1
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ip neigh show
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ifconfig veth1
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_6 ip addr ls veth1
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ip neigh show
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ifconfig veth1
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_7 ip addr ls veth1
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ip neigh show
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ifconfig veth1
+0:05:37,045 gw5 T0000: DEBUG ip netns exec ns_5_0_8 ip addr ls veth1
+0:05:37,045 gw5 T0000: DEBUG
+0:05:37,046 gw5 T0000: DEBUG
+0:05:37,046 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ip neigh show
+0:05:37,046 gw5 T0000: DEBUG
+0:05:37,046 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ifconfig veth1
+0:05:37,046 gw5 T0000: DEBUG ip netns exec ns_5_0_9 ip addr ls veth1
+0:05:37,046 gw5 T0000: DEBUG
+0:05:40,944 gw5 T0082: DEBUG readp:eth5 len:42 count:24
+0:05:42,142 gw5 T0082: DEBUG readp:eth5 len:42 count:25
+0:05:43,346 gw5 T0082: DEBUG readp:eth5 len:42 count:26
+0:05:44,530 gw5 T0082: DEBUG readp:eth5 len:42 count:27
+0:05:45,482 gw5 T0090: DEBUG readp:eth7 len:263 count:20
+0:05:45,490 gw5 T0082: DEBUG readp:eth5 len:263 count:28
+0:05:45,498 gw5 T0096: DEBUG readp:eth8 len:265 count:20
+0:05:45,542 gw5 T0086: DEBUG readp:eth6 len:263 count:20
+0:05:45,694 gw5 T0082: DEBUG readp:eth5 len:42 count:29
+0:05:46,882 gw5 T0082: DEBUG readp:eth5 len:42 count:30
+0:05:46,955 gw5 T0086: DEBUG readp:eth6 len:42 count:21
+0:05:47,984 gw5 T0086: DEBUG readp:eth6 len:42 count:22
+0:05:48,106 gw5 T0082: DEBUG readp:eth5 len:42 count:31
+0:05:49,012 gw5 T0086: DEBUG readp:eth6 len:42 count:23
+0:05:49,306 gw5 T0082: DEBUG readp:eth5 len:42 count:32
+0:05:50,510 gw5 T0082: DEBUG readp:eth5 len:42 count:33
+0:05:51,682 gw5 T0082: DEBUG readp:eth5 len:42 count:34
+0:05:53,392 gw5 T0000: DEBUG + ip netns del ns_5_0_0
+0:05:53,397 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_0": No such file or directory
+0:05:53,397 gw5 T0000: DEBUG + ip link del veth_5_0_0
+0:05:53,397 gw5 T0000: DEBUG Cannot find device "veth_5_0_0"
+0:05:53,397 gw5 T0000: DEBUG + ip netns add ns_5_0_0
+0:05:53,398 gw5 T0000: DEBUG + ip netns list
+0:05:53,398 gw5 T0000: DEBUG ns_5_0_0
+0:05:53,398 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,398 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,398 gw5 T0000: DEBUG scapy
+0:05:53,398 gw5 T0000: DEBUG + ip link add veth_5_0_0 type veth peer name veth1
+0:05:53,398 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_0
+0:05:53,398 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:05:53,398 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ip link set dev veth1 up
+0:05:53,398 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:05:53,399 gw5 T0000: DEBUG + ip link set dev veth_5_0_0 up
+0:05:53,399 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,399 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,399 gw5 T0000: DEBUG + ip link set dev veth_5_0_0 master eth5-br
+0:05:53,399 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ip addr add 12.12.0.2/24 dev veth1
+0:05:53,399 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ip route add default via 12.12.0.1
+0:05:53,399 gw5 T0000: DEBUG + ip netns del ns_5_0_1
+0:05:53,399 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_1": No such file or directory
+0:05:53,399 gw5 T0000: DEBUG + ip link del veth_5_0_1
+0:05:53,400 gw5 T0000: DEBUG Cannot find device "veth_5_0_1"
+0:05:53,400 gw5 T0000: DEBUG + ip netns add ns_5_0_1
+0:05:53,400 gw5 T0000: DEBUG + ip netns list
+0:05:53,400 gw5 T0000: DEBUG ns_5_0_1
+0:05:53,400 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,400 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,400 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,400 gw5 T0000: DEBUG scapy
+0:05:53,400 gw5 T0000: DEBUG + ip link add veth_5_0_1 type veth peer name veth1
+0:05:53,401 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_1
+0:05:53,401 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ethtool --offload veth1 rx off tx off
+0:05:53,401 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ip link set dev veth1 up
+0:05:53,401 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ethtool --offload veth1 rx off tx off
+0:05:53,401 gw5 T0000: DEBUG + ip link set dev veth_5_0_1 up
+0:05:53,401 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,401 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,401 gw5 T0000: DEBUG + ip link set dev veth_5_0_1 master eth5-br
+0:05:53,401 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ip addr add 12.12.0.3/24 dev veth1
+0:05:53,402 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ip route add default via 12.12.0.1
+0:05:53,402 gw5 T0000: DEBUG + ip netns del ns_5_0_2
+0:05:53,402 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_2": No such file or directory
+0:05:53,402 gw5 T0000: DEBUG + ip link del veth_5_0_2
+0:05:53,402 gw5 T0000: DEBUG Cannot find device "veth_5_0_2"
+0:05:53,402 gw5 T0000: DEBUG + ip netns add ns_5_0_2
+0:05:53,402 gw5 T0000: DEBUG + ip netns list
+0:05:53,402 gw5 T0000: DEBUG ns_5_0_2
+0:05:53,402 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,403 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,403 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,403 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,403 gw5 T0000: DEBUG scapy
+0:05:53,403 gw5 T0000: DEBUG + ip link add veth_5_0_2 type veth peer name veth1
+0:05:53,403 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_2
+0:05:53,403 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ethtool --offload veth1 rx off tx off
+0:05:53,403 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ip link set dev veth1 up
+0:05:53,403 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ethtool --offload veth1 rx off tx off
+0:05:53,403 gw5 T0000: DEBUG + ip link set dev veth_5_0_2 up
+0:05:53,404 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,404 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,404 gw5 T0000: DEBUG + ip link set dev veth_5_0_2 master eth5-br
+0:05:53,404 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ip addr add 12.12.0.4/24 dev veth1
+0:05:53,404 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ip route add default via 12.12.0.1
+0:05:53,404 gw5 T0000: DEBUG + ip netns del ns_5_0_3
+0:05:53,404 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_3": No such file or directory
+0:05:53,404 gw5 T0000: DEBUG + ip link del veth_5_0_3
+0:05:53,404 gw5 T0000: DEBUG Cannot find device "veth_5_0_3"
+0:05:53,405 gw5 T0000: DEBUG + ip netns add ns_5_0_3
+0:05:53,405 gw5 T0000: DEBUG + ip netns list
+0:05:53,405 gw5 T0000: DEBUG ns_5_0_3
+0:05:53,405 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:05:53,405 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,405 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,405 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,405 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,405 gw5 T0000: DEBUG scapy
+0:05:53,405 gw5 T0000: DEBUG + ip link add veth_5_0_3 type veth peer name veth1
+0:05:53,406 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_3
+0:05:53,406 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ethtool --offload veth1 rx off tx off
+0:05:53,406 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ip link set dev veth1 up
+0:05:53,406 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ethtool --offload veth1 rx off tx off
+0:05:53,406 gw5 T0000: DEBUG + ip link set dev veth_5_0_3 up
+0:05:53,406 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,406 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,406 gw5 T0000: DEBUG + ip link set dev veth_5_0_3 master eth5-br
+0:05:53,406 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ip addr add 12.12.0.5/24 dev veth1
+0:05:53,406 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ip route add default via 12.12.0.1
+0:05:53,407 gw5 T0000: DEBUG + ip netns del ns_5_0_4
+0:05:53,407 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_4": No such file or directory
+0:05:53,407 gw5 T0000: DEBUG + ip link del veth_5_0_4
+0:05:53,407 gw5 T0000: DEBUG Cannot find device "veth_5_0_4"
+0:05:53,407 gw5 T0000: DEBUG + ip netns add ns_5_0_4
+0:05:53,407 gw5 T0000: DEBUG + ip netns list
+0:05:53,407 gw5 T0000: DEBUG ns_5_0_4
+0:05:53,407 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:05:53,407 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:05:53,407 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,408 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,408 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,408 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,408 gw5 T0000: DEBUG scapy
+0:05:53,408 gw5 T0000: DEBUG + ip link add veth_5_0_4 type veth peer name veth1
+0:05:53,408 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_4
+0:05:53,408 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ethtool --offload veth1 rx off tx off
+0:05:53,408 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ip link set dev veth1 up
+0:05:53,408 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ethtool --offload veth1 rx off tx off
+0:05:53,408 gw5 T0000: DEBUG + ip link set dev veth_5_0_4 up
+0:05:53,408 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,408 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,408 gw5 T0000: DEBUG + ip link set dev veth_5_0_4 master eth5-br
+0:05:53,408 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ip addr add 12.12.0.6/24 dev veth1
+0:05:53,408 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ip route add default via 12.12.0.1
+0:05:53,408 gw5 T0000: DEBUG + ip netns del ns_5_0_5
+0:05:53,408 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_5": No such file or directory
+0:05:53,408 gw5 T0000: DEBUG + ip link del veth_5_0_5
+0:05:53,408 gw5 T0000: DEBUG Cannot find device "veth_5_0_5"
+0:05:53,408 gw5 T0000: DEBUG + ip netns add ns_5_0_5
+0:05:53,408 gw5 T0000: DEBUG + ip netns list
+0:05:53,408 gw5 T0000: DEBUG ns_5_0_5
+0:05:53,408 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:05:53,408 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:05:53,408 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:05:53,408 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,408 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,408 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,408 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,408 gw5 T0000: DEBUG scapy
+0:05:53,408 gw5 T0000: DEBUG + ip link add veth_5_0_5 type veth peer name veth1
+0:05:53,408 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_5
+0:05:53,408 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ethtool --offload veth1 rx off tx off
+0:05:53,409 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ip link set dev veth1 up
+0:05:53,409 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ethtool --offload veth1 rx off tx off
+0:05:53,409 gw5 T0000: DEBUG + ip link set dev veth_5_0_5 up
+0:05:53,409 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,409 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,409 gw5 T0000: DEBUG + ip link set dev veth_5_0_5 master eth5-br
+0:05:53,409 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ip addr add 12.12.0.7/24 dev veth1
+0:05:53,409 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ip route add default via 12.12.0.1
+0:05:53,409 gw5 T0000: DEBUG + ip netns del ns_5_0_6
+0:05:53,409 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_6": No such file or directory
+0:05:53,409 gw5 T0000: DEBUG + ip link del veth_5_0_6
+0:05:53,409 gw5 T0000: DEBUG Cannot find device "veth_5_0_6"
+0:05:53,409 gw5 T0000: DEBUG + ip netns add ns_5_0_6
+0:05:53,409 gw5 T0000: DEBUG + ip netns list
+0:05:53,409 gw5 T0000: DEBUG ns_5_0_6
+0:05:53,409 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:05:53,409 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:05:53,409 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:05:53,409 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:05:53,409 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,409 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,409 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,409 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,409 gw5 T0000: DEBUG scapy
+0:05:53,409 gw5 T0000: DEBUG + ip link add veth_5_0_6 type veth peer name veth1
+0:05:53,409 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_6
+0:05:53,409 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ethtool --offload veth1 rx off tx off
+0:05:53,409 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ip link set dev veth1 up
+0:05:53,409 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ethtool --offload veth1 rx off tx off
+0:05:53,409 gw5 T0000: DEBUG + ip link set dev veth_5_0_6 up
+0:05:53,409 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,409 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,409 gw5 T0000: DEBUG + ip link set dev veth_5_0_6 master eth5-br
+0:05:53,410 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ip addr add 12.12.0.8/24 dev veth1
+0:05:53,410 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ip route add default via 12.12.0.1
+0:05:53,410 gw5 T0000: DEBUG + ip netns del ns_5_0_7
+0:05:53,410 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_7": No such file or directory
+0:05:53,410 gw5 T0000: DEBUG + ip link del veth_5_0_7
+0:05:53,410 gw5 T0000: DEBUG Cannot find device "veth_5_0_7"
+0:05:53,410 gw5 T0000: DEBUG + ip netns add ns_5_0_7
+0:05:53,410 gw5 T0000: DEBUG + ip netns list
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_7
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,410 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,410 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,410 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,410 gw5 T0000: DEBUG scapy
+0:05:53,410 gw5 T0000: DEBUG + ip link add veth_5_0_7 type veth peer name veth1
+0:05:53,410 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_7
+0:05:53,410 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ethtool --offload veth1 rx off tx off
+0:05:53,410 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ip link set dev veth1 up
+0:05:53,410 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ethtool --offload veth1 rx off tx off
+0:05:53,410 gw5 T0000: DEBUG + ip link set dev veth_5_0_7 up
+0:05:53,410 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,410 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,410 gw5 T0000: DEBUG + ip link set dev veth_5_0_7 master eth5-br
+0:05:53,410 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ip addr add 12.12.0.9/24 dev veth1
+0:05:53,410 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ip route add default via 12.12.0.1
+0:05:53,410 gw5 T0000: DEBUG + ip netns del ns_5_0_8
+0:05:53,410 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_8": No such file or directory
+0:05:53,410 gw5 T0000: DEBUG + ip link del veth_5_0_8
+0:05:53,411 gw5 T0000: DEBUG Cannot find device "veth_5_0_8"
+0:05:53,411 gw5 T0000: DEBUG + ip netns add ns_5_0_8
+0:05:53,411 gw5 T0000: DEBUG + ip netns list
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_8
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,411 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,411 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,411 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,411 gw5 T0000: DEBUG scapy
+0:05:53,411 gw5 T0000: DEBUG + ip link add veth_5_0_8 type veth peer name veth1
+0:05:53,411 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_8
+0:05:53,411 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ethtool --offload veth1 rx off tx off
+0:05:53,411 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ip link set dev veth1 up
+0:05:53,411 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ethtool --offload veth1 rx off tx off
+0:05:53,411 gw5 T0000: DEBUG + ip link set dev veth_5_0_8 up
+0:05:53,411 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,411 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,411 gw5 T0000: DEBUG + ip link set dev veth_5_0_8 master eth5-br
+0:05:53,411 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ip addr add 12.12.0.10/24 dev veth1
+0:05:53,411 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ip route add default via 12.12.0.1
+0:05:53,411 gw5 T0000: DEBUG + ip netns del ns_5_0_9
+0:05:53,411 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_9": No such file or directory
+0:05:53,411 gw5 T0000: DEBUG + ip link del veth_5_0_9
+0:05:53,411 gw5 T0000: DEBUG Cannot find device "veth_5_0_9"
+0:05:53,411 gw5 T0000: DEBUG + ip netns add ns_5_0_9
+0:05:53,411 gw5 T0000: DEBUG + ip netns list
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_9
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:05:53,412 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:05:53,412 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:05:53,412 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:05:53,412 gw5 T0000: DEBUG scapy
+0:05:53,412 gw5 T0000: DEBUG + ip link add veth_5_0_9 type veth peer name veth1
+0:05:53,412 gw5 T0000: DEBUG + ip link set veth1 netns ns_5_0_9
+0:05:53,412 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ethtool --offload veth1 rx off tx off
+0:05:53,412 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ip link set dev veth1 up
+0:05:53,412 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ethtool --offload veth1 rx off tx off
+0:05:53,412 gw5 T0000: DEBUG + ip link set dev veth_5_0_9 up
+0:05:53,412 gw5 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:53,412 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:05:53,412 gw5 T0000: DEBUG + ip link set dev veth_5_0_9 master eth5-br
+0:05:53,412 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ip addr add 12.12.0.11/24 dev veth1
+0:05:53,412 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ip route add default via 12.12.0.1
+0:05:53,412 gw5 T0000: DEBUG + sleep 2
+0:05:53,412 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,412 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,412 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=543.937 usec
+0:05:53,412 gw5 T0000: DEBUG
+0:05:53,412 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,412 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,412 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.544/0.544/0.544/0.000 ms
+0:05:53,412 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=520.813 usec
+0:05:53,413 gw5 T0000: DEBUG
+0:05:53,413 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,413 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,413 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.521/0.521/0.521/0.000 ms
+0:05:53,413 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=555.864 usec
+0:05:53,413 gw5 T0000: DEBUG
+0:05:53,413 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,413 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,413 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.556/0.556/0.556/0.000 ms
+0:05:53,413 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=553.762 usec
+0:05:53,413 gw5 T0000: DEBUG
+0:05:53,413 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,413 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,413 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.554/0.554/0.554/0.000 ms
+0:05:53,413 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=554.835 usec
+0:05:53,413 gw5 T0000: DEBUG
+0:05:53,413 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,413 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,413 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.555/0.555/0.555/0.000 ms
+0:05:53,413 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,413 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=424.328 usec
+0:05:53,413 gw5 T0000: DEBUG
+0:05:53,413 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,413 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,413 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.424/0.424/0.424/0.000 ms
+0:05:53,414 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=437.874 usec
+0:05:53,414 gw5 T0000: DEBUG
+0:05:53,414 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,414 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,414 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.438/0.438/0.438/0.000 ms
+0:05:53,414 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=408.530 usec
+0:05:53,414 gw5 T0000: DEBUG
+0:05:53,414 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,414 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,414 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.409/0.409/0.409/0.000 ms
+0:05:53,414 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=553.291 usec
+0:05:53,414 gw5 T0000: DEBUG
+0:05:53,414 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,414 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,414 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.553/0.553/0.553/0.000 ms
+0:05:53,414 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 arping -w 7 -c 1 -I veth1 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG ARPING 12.12.0.1
+0:05:53,414 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (12.12.0.1): index=0 time=528.960 usec
+0:05:53,414 gw5 T0000: DEBUG
+0:05:53,414 gw5 T0000: DEBUG --- 12.12.0.1 statistics ---
+0:05:53,414 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:05:53,414 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.529/0.529/0.529/0.000 ms
+0:05:53,414 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ip neigh show
+0:05:53,414 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ifconfig veth1
+0:05:53,414 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,414 gw5 T0000: DEBUG         inet 12.12.0.2  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,415 gw5 T0000: DEBUG         inet6 fe80::40f2:feff:feea:fd09  prefixlen 64  scopeid 0x20<link>
+0:05:53,415 gw5 T0000: DEBUG         ether 42:f2:fe:ea:fd:09  txqueuelen 1000  (Ethernet)
+0:05:53,415 gw5 T0000: DEBUG         RX packets 85  bytes 6774 (6.7 KB)
+0:05:53,415 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,415 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,415 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,415 gw5 T0000: DEBUG
+0:05:53,415 gw5 T0000: DEBUG + ip netns exec ns_5_0_0 ip addr ls veth1
+0:05:53,415 gw5 T0000: DEBUG 170: veth1@if171: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,415 gw5 T0000: DEBUG     link/ether 42:f2:fe:ea:fd:09 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,415 gw5 T0000: DEBUG     inet 12.12.0.2/24 scope global veth1
+0:05:53,415 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,415 gw5 T0000: DEBUG     inet6 fe80::40f2:feff:feea:fd09/64 scope link
+0:05:53,415 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,415 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ip neigh show
+0:05:53,415 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ifconfig veth1
+0:05:53,415 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,415 gw5 T0000: DEBUG         inet 12.12.0.3  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,415 gw5 T0000: DEBUG         inet6 fe80::1c5f:abff:fe80:dfc4  prefixlen 64  scopeid 0x20<link>
+0:05:53,415 gw5 T0000: DEBUG         ether 1e:5f:ab:80:df:c4  txqueuelen 1000  (Ethernet)
+0:05:53,415 gw5 T0000: DEBUG         RX packets 86  bytes 6824 (6.8 KB)
+0:05:53,415 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,415 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,415 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,415 gw5 T0000: DEBUG
+0:05:53,415 gw5 T0000: DEBUG + ip netns exec ns_5_0_1 ip addr ls veth1
+0:05:53,415 gw5 T0000: DEBUG 172: veth1@if173: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,415 gw5 T0000: DEBUG     link/ether 1e:5f:ab:80:df:c4 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,415 gw5 T0000: DEBUG     inet 12.12.0.3/24 scope global veth1
+0:05:53,415 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,415 gw5 T0000: DEBUG     inet6 fe80::1c5f:abff:fe80:dfc4/64 scope link
+0:05:53,415 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,416 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ip neigh show
+0:05:53,416 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ifconfig veth1
+0:05:53,416 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,416 gw5 T0000: DEBUG         inet 12.12.0.4  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,416 gw5 T0000: DEBUG         inet6 fe80::48ab:36ff:fe9c:8f66  prefixlen 64  scopeid 0x20<link>
+0:05:53,416 gw5 T0000: DEBUG         ether 4a:ab:36:9c:8f:66  txqueuelen 1000  (Ethernet)
+0:05:53,416 gw5 T0000: DEBUG         RX packets 86  bytes 6804 (6.8 KB)
+0:05:53,416 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,416 gw5 T0000: DEBUG         TX packets 8  bytes 644 (644.0 B)
+0:05:53,416 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,416 gw5 T0000: DEBUG
+0:05:53,416 gw5 T0000: DEBUG + ip netns exec ns_5_0_2 ip addr ls veth1
+0:05:53,416 gw5 T0000: DEBUG 174: veth1@if175: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,416 gw5 T0000: DEBUG     link/ether 4a:ab:36:9c:8f:66 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,416 gw5 T0000: DEBUG     inet 12.12.0.4/24 scope global veth1
+0:05:53,416 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,416 gw5 T0000: DEBUG     inet6 fe80::48ab:36ff:fe9c:8f66/64 scope link
+0:05:53,416 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,416 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ip neigh show
+0:05:53,416 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ifconfig veth1
+0:05:53,416 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,416 gw5 T0000: DEBUG         inet 12.12.0.5  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,416 gw5 T0000: DEBUG         inet6 fe80::c028:ddff:fe3c:b5af  prefixlen 64  scopeid 0x20<link>
+0:05:53,416 gw5 T0000: DEBUG         ether c2:28:dd:3c:b5:af  txqueuelen 1000  (Ethernet)
+0:05:53,416 gw5 T0000: DEBUG         RX packets 83  bytes 6554 (6.5 KB)
+0:05:53,416 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,416 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,416 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,416 gw5 T0000: DEBUG
+0:05:53,416 gw5 T0000: DEBUG + ip netns exec ns_5_0_3 ip addr ls veth1
+0:05:53,416 gw5 T0000: DEBUG 176: veth1@if177: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,416 gw5 T0000: DEBUG     link/ether c2:28:dd:3c:b5:af brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,416 gw5 T0000: DEBUG     inet 12.12.0.5/24 scope global veth1
+0:05:53,416 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,417 gw5 T0000: DEBUG     inet6 fe80::c028:ddff:fe3c:b5af/64 scope link
+0:05:53,417 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,417 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ip neigh show
+0:05:53,417 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ifconfig veth1
+0:05:53,417 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,417 gw5 T0000: DEBUG         inet 12.12.0.6  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,417 gw5 T0000: DEBUG         inet6 fe80::a8bc:d8ff:fee3:dc62  prefixlen 64  scopeid 0x20<link>
+0:05:53,417 gw5 T0000: DEBUG         ether aa:bc:d8:e3:dc:62  txqueuelen 1000  (Ethernet)
+0:05:53,417 gw5 T0000: DEBUG         RX packets 82  bytes 6444 (6.4 KB)
+0:05:53,417 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,417 gw5 T0000: DEBUG         TX packets 8  bytes 644 (644.0 B)
+0:05:53,417 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,417 gw5 T0000: DEBUG
+0:05:53,417 gw5 T0000: DEBUG + ip netns exec ns_5_0_4 ip addr ls veth1
+0:05:53,417 gw5 T0000: DEBUG 178: veth1@if179: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,417 gw5 T0000: DEBUG     link/ether aa:bc:d8:e3:dc:62 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,417 gw5 T0000: DEBUG     inet 12.12.0.6/24 scope global veth1
+0:05:53,417 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,417 gw5 T0000: DEBUG     inet6 fe80::a8bc:d8ff:fee3:dc62/64 scope link
+0:05:53,417 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,417 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ip neigh show
+0:05:53,417 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ifconfig veth1
+0:05:53,417 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,417 gw5 T0000: DEBUG         inet 12.12.0.7  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,417 gw5 T0000: DEBUG         inet6 fe80::485:c5ff:fe09:2abc  prefixlen 64  scopeid 0x20<link>
+0:05:53,417 gw5 T0000: DEBUG         ether 06:85:c5:09:2a:bc  txqueuelen 1000  (Ethernet)
+0:05:53,417 gw5 T0000: DEBUG         RX packets 80  bytes 6232 (6.2 KB)
+0:05:53,417 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,417 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,417 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,417 gw5 T0000: DEBUG
+0:05:53,417 gw5 T0000: DEBUG + ip netns exec ns_5_0_5 ip addr ls veth1
+0:05:53,418 gw5 T0000: DEBUG 180: veth1@if181: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,418 gw5 T0000: DEBUG     link/ether 06:85:c5:09:2a:bc brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,418 gw5 T0000: DEBUG     inet 12.12.0.7/24 scope global veth1
+0:05:53,418 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,418 gw5 T0000: DEBUG     inet6 fe80::485:c5ff:fe09:2abc/64 scope link
+0:05:53,418 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,418 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ip neigh show
+0:05:53,418 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ifconfig veth1
+0:05:53,418 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,418 gw5 T0000: DEBUG         inet 12.12.0.8  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,418 gw5 T0000: DEBUG         inet6 fe80::64ee:a9ff:fef1:991e  prefixlen 64  scopeid 0x20<link>
+0:05:53,418 gw5 T0000: DEBUG         ether 66:ee:a9:f1:99:1e  txqueuelen 1000  (Ethernet)
+0:05:53,418 gw5 T0000: DEBUG         RX packets 78  bytes 6056 (6.0 KB)
+0:05:53,418 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,418 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,418 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,418 gw5 T0000: DEBUG
+0:05:53,418 gw5 T0000: DEBUG + ip netns exec ns_5_0_6 ip addr ls veth1
+0:05:53,418 gw5 T0000: DEBUG 182: veth1@if183: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,418 gw5 T0000: DEBUG     link/ether 66:ee:a9:f1:99:1e brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,418 gw5 T0000: DEBUG     inet 12.12.0.8/24 scope global veth1
+0:05:53,418 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,418 gw5 T0000: DEBUG     inet6 fe80::64ee:a9ff:fef1:991e/64 scope link
+0:05:53,418 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,418 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ip neigh show
+0:05:53,418 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ifconfig veth1
+0:05:53,418 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,418 gw5 T0000: DEBUG         inet 12.12.0.9  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,418 gw5 T0000: DEBUG         inet6 fe80::f06d:5dff:fe98:6b18  prefixlen 64  scopeid 0x20<link>
+0:05:53,418 gw5 T0000: DEBUG         ether f2:6d:5d:98:6b:18  txqueuelen 1000  (Ethernet)
+0:05:53,418 gw5 T0000: DEBUG         RX packets 75  bytes 5790 (5.7 KB)
+0:05:53,418 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,418 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,419 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,419 gw5 T0000: DEBUG
+0:05:53,419 gw5 T0000: DEBUG + ip netns exec ns_5_0_7 ip addr ls veth1
+0:05:53,419 gw5 T0000: DEBUG 184: veth1@if185: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,419 gw5 T0000: DEBUG     link/ether f2:6d:5d:98:6b:18 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,419 gw5 T0000: DEBUG     inet 12.12.0.9/24 scope global veth1
+0:05:53,419 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,419 gw5 T0000: DEBUG     inet6 fe80::f06d:5dff:fe98:6b18/64 scope link
+0:05:53,419 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,419 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ip neigh show
+0:05:53,419 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ifconfig veth1
+0:05:53,419 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,419 gw5 T0000: DEBUG         inet 12.12.0.10  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,419 gw5 T0000: DEBUG         inet6 fe80::a43f:98ff:fed9:63a5  prefixlen 64  scopeid 0x20<link>
+0:05:53,419 gw5 T0000: DEBUG         ether a6:3f:98:d9:63:a5  txqueuelen 1000  (Ethernet)
+0:05:53,419 gw5 T0000: DEBUG         RX packets 73  bytes 5610 (5.6 KB)
+0:05:53,419 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,419 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,419 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,419 gw5 T0000: DEBUG
+0:05:53,419 gw5 T0000: DEBUG + ip netns exec ns_5_0_8 ip addr ls veth1
+0:05:53,419 gw5 T0000: DEBUG 186: veth1@if187: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,419 gw5 T0000: DEBUG     link/ether a6:3f:98:d9:63:a5 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,419 gw5 T0000: DEBUG     inet 12.12.0.10/24 scope global veth1
+0:05:53,419 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,419 gw5 T0000: DEBUG     inet6 fe80::a43f:98ff:fed9:63a5/64 scope link
+0:05:53,419 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,419 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ip neigh show
+0:05:53,419 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ifconfig veth1
+0:05:53,419 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:53,419 gw5 T0000: DEBUG         inet 12.12.0.11  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:53,419 gw5 T0000: DEBUG         inet6 fe80::7047:f3ff:fedd:e90d  prefixlen 64  scopeid 0x20<link>
+0:05:53,420 gw5 T0000: DEBUG         ether 72:47:f3:dd:e9:0d  txqueuelen 1000  (Ethernet)
+0:05:53,420 gw5 T0000: DEBUG         RX packets 68  bytes 5172 (5.1 KB)
+0:05:53,420 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:53,420 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:05:53,420 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:53,420 gw5 T0000: DEBUG
+0:05:53,420 gw5 T0000: DEBUG + ip netns exec ns_5_0_9 ip addr ls veth1
+0:05:53,420 gw5 T0000: DEBUG 188: veth1@if189: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:53,420 gw5 T0000: DEBUG     link/ether 72:47:f3:dd:e9:0d brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:53,420 gw5 T0000: DEBUG     inet 12.12.0.11/24 scope global veth1
+0:05:53,420 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,420 gw5 T0000: DEBUG     inet6 fe80::7047:f3ff:fedd:e90d/64 scope link
+0:05:53,420 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:53,420 gw5 T0000: DEBUG
+0:05:53,420 gw5 T0000: INFO  read the mac addresses of created interfaces
+0:05:53,420 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_0 ip addr show dev veth1
+0:05:53,443 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.2/24', 'inet6': 'fe80::40f2:feff:feea:fd09/64', 'state': 'UP', 'link/ether': '42:f2:fe:ea:fd:09'}
+0:05:53,444 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_1 ip addr show dev veth1
+0:05:53,473 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.3/24', 'inet6': 'fe80::1c5f:abff:fe80:dfc4/64', 'state': 'UP', 'link/ether': '1e:5f:ab:80:df:c4'}
+0:05:53,473 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_2 ip addr show dev veth1
+0:05:53,503 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.4/24', 'inet6': 'fe80::48ab:36ff:fe9c:8f66/64', 'state': 'UP', 'link/ether': '4a:ab:36:9c:8f:66'}
+0:05:53,503 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_3 ip addr show dev veth1
+0:05:53,534 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.5/24', 'inet6': 'fe80::c028:ddff:fe3c:b5af/64', 'state': 'UP', 'link/ether': 'c2:28:dd:3c:b5:af'}
+0:05:53,534 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_4 ip addr show dev veth1
+0:05:53,560 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.6/24', 'inet6': 'fe80::a8bc:d8ff:fee3:dc62/64', 'state': 'UP', 'link/ether': 'aa:bc:d8:e3:dc:62'}
+0:05:53,560 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_5 ip addr show dev veth1
+0:05:53,586 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.7/24', 'inet6': 'fe80::485:c5ff:fe09:2abc/64', 'state': 'UP', 'link/ether': '06:85:c5:09:2a:bc'}
+0:05:53,586 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_6 ip addr show dev veth1
+0:05:53,613 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.8/24', 'inet6': 'fe80::64ee:a9ff:fef1:991e/64', 'state': 'UP', 'link/ether': '66:ee:a9:f1:99:1e'}
+0:05:53,614 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_7 ip addr show dev veth1
+0:05:53,644 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.9/24', 'inet6': 'fe80::f06d:5dff:fe98:6b18/64', 'state': 'UP', 'link/ether': 'f2:6d:5d:98:6b:18'}
+0:05:53,644 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_8 ip addr show dev veth1
+0:05:53,673 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.10/24', 'inet6': 'fe80::a43f:98ff:fed9:63a5/64', 'state': 'UP', 'link/ether': 'a6:3f:98:d9:63:a5'}
+0:05:53,673 gw5 T0000: DEBUG cmdexec: ip netns exec ns_5_0_9 ip addr show dev veth1
+0:05:53,702 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '12.12.0.11/24', 'inet6': 'fe80::7047:f3ff:fedd:e90d/64', 'state': 'UP', 'link/ether': '72:47:f3:dd:e9:0d'}
+0:05:53,703 gw5 T0000: DEBUG New interface ['iface-5-0', 'iface-5-0', 'iface-5-0', 'iface-5-0', 'iface-5-0', 'iface-5-0', 'iface-5-0', 'iface-5-0', 'iface-5-0', 'iface-5-0']...
+0:05:55,706 gw5 T0000: DEBUG RESULT: {"status": "1", "handle": ["iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0", "iface-5-0"]}
+0:05:55,717 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'config', 'intf_ip_addr': '125.56.90.1', 'gateway': '125.56.90.12', 'netmask': '255.255.255.0', 'arp_send_req': '1', 'count': '10', 'gateway_step': '0.0.0.0'}
+0:05:55,717 gw5 T0000: DEBUG gw5 exposed_tg_interface_config () {'port_handle': 'port-6', 'mode': 'config', 'intf_ip_addr': '125.56.90.1', 'gateway': '125.56.90.12', 'netmask': '255.255.255.0', 'arp_send_req': '1', 'count': '10', 'gateway_step': '0.0.0.0'}
+0:05:55,720 gw5 T0000: DEBUG shexec:
+0:05:55,720 gw5 T0000: DEBUG ip netns del ns_6_0_0
+0:05:55,721 gw5 T0000: DEBUG ip link del veth_6_0_0
+0:05:55,721 gw5 T0000: DEBUG
+0:05:55,721 gw5 T0000: DEBUG ip netns add ns_6_0_0
+0:05:55,721 gw5 T0000: DEBUG ip netns list
+0:05:55,721 gw5 T0000: DEBUG ip link add veth_6_0_0 type veth peer name veth1
+0:05:55,721 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_0
+0:05:55,721 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,721 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ip link set dev veth1 up
+0:05:55,721 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ethtool --offload veth1 rx off tx off
+0:05:55,721 gw5 T0000: DEBUG ip link set dev veth_6_0_0 up
+0:05:55,721 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,721 gw5 T0000: DEBUG ip link set dev veth_6_0_0 master eth6-br
+0:05:55,721 gw5 T0000: DEBUG
+0:05:55,722 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ip addr add 125.56.90.1/24 dev veth1
+0:05:55,722 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ip route add default via 125.56.90.12
+0:05:55,722 gw5 T0000: DEBUG
+0:05:55,722 gw5 T0000: DEBUG ip netns del ns_6_0_1
+0:05:55,722 gw5 T0000: DEBUG ip link del veth_6_0_1
+0:05:55,722 gw5 T0000: DEBUG
+0:05:55,722 gw5 T0000: DEBUG ip netns add ns_6_0_1
+0:05:55,722 gw5 T0000: DEBUG ip netns list
+0:05:55,722 gw5 T0000: DEBUG ip link add veth_6_0_1 type veth peer name veth1
+0:05:55,722 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_1
+0:05:55,722 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,722 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ip link set dev veth1 up
+0:05:55,722 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ethtool --offload veth1 rx off tx off
+0:05:55,722 gw5 T0000: DEBUG ip link set dev veth_6_0_1 up
+0:05:55,723 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,723 gw5 T0000: DEBUG ip link set dev veth_6_0_1 master eth6-br
+0:05:55,723 gw5 T0000: DEBUG
+0:05:55,723 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ip addr add 125.56.90.2/24 dev veth1
+0:05:55,723 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ip route add default via 125.56.90.12
+0:05:55,723 gw5 T0000: DEBUG
+0:05:55,723 gw5 T0000: DEBUG ip netns del ns_6_0_2
+0:05:55,723 gw5 T0000: DEBUG ip link del veth_6_0_2
+0:05:55,723 gw5 T0000: DEBUG
+0:05:55,723 gw5 T0000: DEBUG ip netns add ns_6_0_2
+0:05:55,723 gw5 T0000: DEBUG ip netns list
+0:05:55,723 gw5 T0000: DEBUG ip link add veth_6_0_2 type veth peer name veth1
+0:05:55,723 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_2
+0:05:55,723 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,723 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ip link set dev veth1 up
+0:05:55,724 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ethtool --offload veth1 rx off tx off
+0:05:55,724 gw5 T0000: DEBUG ip link set dev veth_6_0_2 up
+0:05:55,724 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,724 gw5 T0000: DEBUG ip link set dev veth_6_0_2 master eth6-br
+0:05:55,724 gw5 T0000: DEBUG
+0:05:55,724 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ip addr add 125.56.90.3/24 dev veth1
+0:05:55,724 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ip route add default via 125.56.90.12
+0:05:55,724 gw5 T0000: DEBUG
+0:05:55,724 gw5 T0000: DEBUG ip netns del ns_6_0_3
+0:05:55,724 gw5 T0000: DEBUG ip link del veth_6_0_3
+0:05:55,724 gw5 T0000: DEBUG
+0:05:55,724 gw5 T0000: DEBUG ip netns add ns_6_0_3
+0:05:55,724 gw5 T0000: DEBUG ip netns list
+0:05:55,724 gw5 T0000: DEBUG ip link add veth_6_0_3 type veth peer name veth1
+0:05:55,725 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_3
+0:05:55,725 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,725 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ip link set dev veth1 up
+0:05:55,725 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ethtool --offload veth1 rx off tx off
+0:05:55,725 gw5 T0000: DEBUG ip link set dev veth_6_0_3 up
+0:05:55,725 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,725 gw5 T0000: DEBUG ip link set dev veth_6_0_3 master eth6-br
+0:05:55,725 gw5 T0000: DEBUG
+0:05:55,725 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ip addr add 125.56.90.4/24 dev veth1
+0:05:55,725 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ip route add default via 125.56.90.12
+0:05:55,725 gw5 T0000: DEBUG
+0:05:55,725 gw5 T0000: DEBUG ip netns del ns_6_0_4
+0:05:55,725 gw5 T0000: DEBUG ip link del veth_6_0_4
+0:05:55,725 gw5 T0000: DEBUG
+0:05:55,725 gw5 T0000: DEBUG ip netns add ns_6_0_4
+0:05:55,726 gw5 T0000: DEBUG ip netns list
+0:05:55,726 gw5 T0000: DEBUG ip link add veth_6_0_4 type veth peer name veth1
+0:05:55,726 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_4
+0:05:55,726 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,726 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ip link set dev veth1 up
+0:05:55,726 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ethtool --offload veth1 rx off tx off
+0:05:55,726 gw5 T0000: DEBUG ip link set dev veth_6_0_4 up
+0:05:55,726 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,726 gw5 T0000: DEBUG ip link set dev veth_6_0_4 master eth6-br
+0:05:55,726 gw5 T0000: DEBUG
+0:05:55,726 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ip addr add 125.56.90.5/24 dev veth1
+0:05:55,726 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ip route add default via 125.56.90.12
+0:05:55,726 gw5 T0000: DEBUG
+0:05:55,726 gw5 T0000: DEBUG ip netns del ns_6_0_5
+0:05:55,726 gw5 T0000: DEBUG ip link del veth_6_0_5
+0:05:55,727 gw5 T0000: DEBUG
+0:05:55,727 gw5 T0000: DEBUG ip netns add ns_6_0_5
+0:05:55,727 gw5 T0000: DEBUG ip netns list
+0:05:55,727 gw5 T0000: DEBUG ip link add veth_6_0_5 type veth peer name veth1
+0:05:55,727 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_5
+0:05:55,727 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,727 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ip link set dev veth1 up
+0:05:55,727 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ethtool --offload veth1 rx off tx off
+0:05:55,727 gw5 T0000: DEBUG ip link set dev veth_6_0_5 up
+0:05:55,727 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,727 gw5 T0000: DEBUG ip link set dev veth_6_0_5 master eth6-br
+0:05:55,727 gw5 T0000: DEBUG
+0:05:55,727 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ip addr add 125.56.90.6/24 dev veth1
+0:05:55,727 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ip route add default via 125.56.90.12
+0:05:55,728 gw5 T0000: DEBUG
+0:05:55,728 gw5 T0000: DEBUG ip netns del ns_6_0_6
+0:05:55,728 gw5 T0000: DEBUG ip link del veth_6_0_6
+0:05:55,728 gw5 T0000: DEBUG
+0:05:55,728 gw5 T0000: DEBUG ip netns add ns_6_0_6
+0:05:55,728 gw5 T0000: DEBUG ip netns list
+0:05:55,728 gw5 T0000: DEBUG ip link add veth_6_0_6 type veth peer name veth1
+0:05:55,728 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_6
+0:05:55,728 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,728 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ip link set dev veth1 up
+0:05:55,728 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ethtool --offload veth1 rx off tx off
+0:05:55,728 gw5 T0000: DEBUG ip link set dev veth_6_0_6 up
+0:05:55,728 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,728 gw5 T0000: DEBUG ip link set dev veth_6_0_6 master eth6-br
+0:05:55,728 gw5 T0000: DEBUG
+0:05:55,729 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ip addr add 125.56.90.7/24 dev veth1
+0:05:55,729 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ip route add default via 125.56.90.12
+0:05:55,729 gw5 T0000: DEBUG
+0:05:55,729 gw5 T0000: DEBUG ip netns del ns_6_0_7
+0:05:55,729 gw5 T0000: DEBUG ip link del veth_6_0_7
+0:05:55,729 gw5 T0000: DEBUG
+0:05:55,729 gw5 T0000: DEBUG ip netns add ns_6_0_7
+0:05:55,729 gw5 T0000: DEBUG ip netns list
+0:05:55,729 gw5 T0000: DEBUG ip link add veth_6_0_7 type veth peer name veth1
+0:05:55,729 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_7
+0:05:55,729 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,729 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ip link set dev veth1 up
+0:05:55,729 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ethtool --offload veth1 rx off tx off
+0:05:55,729 gw5 T0000: DEBUG ip link set dev veth_6_0_7 up
+0:05:55,730 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,730 gw5 T0000: DEBUG ip link set dev veth_6_0_7 master eth6-br
+0:05:55,730 gw5 T0000: DEBUG
+0:05:55,730 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ip addr add 125.56.90.8/24 dev veth1
+0:05:55,730 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ip route add default via 125.56.90.12
+0:05:55,730 gw5 T0000: DEBUG
+0:05:55,730 gw5 T0000: DEBUG ip netns del ns_6_0_8
+0:05:55,730 gw5 T0000: DEBUG ip link del veth_6_0_8
+0:05:55,730 gw5 T0000: DEBUG
+0:05:55,730 gw5 T0000: DEBUG ip netns add ns_6_0_8
+0:05:55,730 gw5 T0000: DEBUG ip netns list
+0:05:55,730 gw5 T0000: DEBUG ip link add veth_6_0_8 type veth peer name veth1
+0:05:55,730 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_8
+0:05:55,730 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,730 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ip link set dev veth1 up
+0:05:55,731 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ethtool --offload veth1 rx off tx off
+0:05:55,731 gw5 T0000: DEBUG ip link set dev veth_6_0_8 up
+0:05:55,731 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,731 gw5 T0000: DEBUG ip link set dev veth_6_0_8 master eth6-br
+0:05:55,731 gw5 T0000: DEBUG
+0:05:55,731 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ip addr add 125.56.90.9/24 dev veth1
+0:05:55,731 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ip route add default via 125.56.90.12
+0:05:55,731 gw5 T0000: DEBUG
+0:05:55,731 gw5 T0000: DEBUG ip netns del ns_6_0_9
+0:05:55,731 gw5 T0000: DEBUG ip link del veth_6_0_9
+0:05:55,731 gw5 T0000: DEBUG
+0:05:55,731 gw5 T0000: DEBUG ip netns add ns_6_0_9
+0:05:55,731 gw5 T0000: DEBUG ip netns list
+0:05:55,731 gw5 T0000: DEBUG ip link add veth_6_0_9 type veth peer name veth1
+0:05:55,731 gw5 T0000: DEBUG ip link set veth1 netns ns_6_0_9
+0:05:55,731 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:55,731 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ip link set dev veth1 up
+0:05:55,731 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ethtool --offload veth1 rx off tx off
+0:05:55,731 gw5 T0000: DEBUG ip link set dev veth_6_0_9 up
+0:05:55,731 gw5 T0000: DEBUG ip link add name eth6-br type bridge
+0:05:55,732 gw5 T0000: DEBUG ip link set dev veth_6_0_9 master eth6-br
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ip addr add 125.56.90.10/24 dev veth1
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ip route add default via 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG sleep 2
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_0 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_1 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_2 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_3 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_4 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_5 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_6 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_7 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG
+0:05:55,732 gw5 T0000: DEBUG ip netns exec ns_6_0_8 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_9 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ip neigh show
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ifconfig veth1
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_0 ip addr ls veth1
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ip neigh show
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ifconfig veth1
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_1 ip addr ls veth1
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ip neigh show
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ifconfig veth1
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_2 ip addr ls veth1
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ip neigh show
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ifconfig veth1
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_3 ip addr ls veth1
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ip neigh show
+0:05:55,733 gw5 T0000: DEBUG
+0:05:55,733 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ifconfig veth1
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_4 ip addr ls veth1
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ip neigh show
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ifconfig veth1
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_5 ip addr ls veth1
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ip neigh show
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ifconfig veth1
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_6 ip addr ls veth1
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ip neigh show
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ifconfig veth1
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_7 ip addr ls veth1
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ip neigh show
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ifconfig veth1
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_8 ip addr ls veth1
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ip neigh show
+0:05:55,734 gw5 T0000: DEBUG
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ifconfig veth1
+0:05:55,734 gw5 T0000: DEBUG ip netns exec ns_6_0_9 ip addr ls veth1
+0:05:55,734 gw5 T0000: DEBUG
+0:05:59,673 gw5 T0086: DEBUG readp:eth6 len:42 count:24
+0:06:00,834 gw5 T0086: DEBUG readp:eth6 len:42 count:25
+0:06:02,042 gw5 T0086: DEBUG readp:eth6 len:42 count:26
+0:06:03,254 gw5 T0086: DEBUG readp:eth6 len:42 count:27
+0:06:04,462 gw5 T0086: DEBUG readp:eth6 len:42 count:28
+0:06:05,686 gw5 T0086: DEBUG readp:eth6 len:42 count:29
+0:06:06,802 gw5 T0086: DEBUG readp:eth6 len:42 count:30
+0:06:08,014 gw5 T0086: DEBUG readp:eth6 len:42 count:31
+0:06:09,262 gw5 T0086: DEBUG readp:eth6 len:42 count:32
+0:06:10,446 gw5 T0086: DEBUG readp:eth6 len:42 count:33
+0:06:12,303 gw5 T0000: DEBUG + ip netns del ns_6_0_0
+0:06:12,303 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_0": No such file or directory
+0:06:12,303 gw5 T0000: DEBUG + ip link del veth_6_0_0
+0:06:12,304 gw5 T0000: DEBUG Cannot find device "veth_6_0_0"
+0:06:12,304 gw5 T0000: DEBUG + ip netns add ns_6_0_0
+0:06:12,304 gw5 T0000: DEBUG + ip netns list
+0:06:12,304 gw5 T0000: DEBUG ns_6_0_0
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,304 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,305 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,305 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,305 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,305 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,305 gw5 T0000: DEBUG scapy
+0:06:12,305 gw5 T0000: DEBUG + ip link add veth_6_0_0 type veth peer name veth1
+0:06:12,305 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_0
+0:06:12,305 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ethtool --offload veth1 rx off tx off
+0:06:12,305 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ip link set dev veth1 up
+0:06:12,305 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ethtool --offload veth1 rx off tx off
+0:06:12,305 gw5 T0000: DEBUG + ip link set dev veth_6_0_0 up
+0:06:12,305 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,306 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,306 gw5 T0000: DEBUG + ip link set dev veth_6_0_0 master eth6-br
+0:06:12,306 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ip addr add 125.56.90.1/24 dev veth1
+0:06:12,306 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ip route add default via 125.56.90.12
+0:06:12,306 gw5 T0000: DEBUG + ip netns del ns_6_0_1
+0:06:12,306 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_1": No such file or directory
+0:06:12,306 gw5 T0000: DEBUG + ip link del veth_6_0_1
+0:06:12,306 gw5 T0000: DEBUG Cannot find device "veth_6_0_1"
+0:06:12,306 gw5 T0000: DEBUG + ip netns add ns_6_0_1
+0:06:12,306 gw5 T0000: DEBUG + ip netns list
+0:06:12,306 gw5 T0000: DEBUG ns_6_0_1
+0:06:12,306 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,307 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,307 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,307 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,307 gw5 T0000: DEBUG scapy
+0:06:12,308 gw5 T0000: DEBUG + ip link add veth_6_0_1 type veth peer name veth1
+0:06:12,308 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_1
+0:06:12,308 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ethtool --offload veth1 rx off tx off
+0:06:12,308 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ip link set dev veth1 up
+0:06:12,308 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ethtool --offload veth1 rx off tx off
+0:06:12,308 gw5 T0000: DEBUG + ip link set dev veth_6_0_1 up
+0:06:12,308 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,308 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,308 gw5 T0000: DEBUG + ip link set dev veth_6_0_1 master eth6-br
+0:06:12,308 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ip addr add 125.56.90.2/24 dev veth1
+0:06:12,308 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ip route add default via 125.56.90.12
+0:06:12,308 gw5 T0000: DEBUG + ip netns del ns_6_0_2
+0:06:12,309 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_2": No such file or directory
+0:06:12,309 gw5 T0000: DEBUG + ip link del veth_6_0_2
+0:06:12,309 gw5 T0000: DEBUG Cannot find device "veth_6_0_2"
+0:06:12,309 gw5 T0000: DEBUG + ip netns add ns_6_0_2
+0:06:12,309 gw5 T0000: DEBUG + ip netns list
+0:06:12,309 gw5 T0000: DEBUG ns_6_0_2
+0:06:12,309 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,309 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,309 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,309 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,309 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,309 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,309 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,310 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,310 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,310 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,310 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,310 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,310 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,310 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,310 gw5 T0000: DEBUG scapy
+0:06:12,310 gw5 T0000: DEBUG + ip link add veth_6_0_2 type veth peer name veth1
+0:06:12,310 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_2
+0:06:12,310 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ethtool --offload veth1 rx off tx off
+0:06:12,310 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ip link set dev veth1 up
+0:06:12,310 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ethtool --offload veth1 rx off tx off
+0:06:12,311 gw5 T0000: DEBUG + ip link set dev veth_6_0_2 up
+0:06:12,311 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,311 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,311 gw5 T0000: DEBUG + ip link set dev veth_6_0_2 master eth6-br
+0:06:12,311 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ip addr add 125.56.90.3/24 dev veth1
+0:06:12,311 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ip route add default via 125.56.90.12
+0:06:12,311 gw5 T0000: DEBUG + ip netns del ns_6_0_3
+0:06:12,311 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_3": No such file or directory
+0:06:12,311 gw5 T0000: DEBUG + ip link del veth_6_0_3
+0:06:12,311 gw5 T0000: DEBUG Cannot find device "veth_6_0_3"
+0:06:12,311 gw5 T0000: DEBUG + ip netns add ns_6_0_3
+0:06:12,311 gw5 T0000: DEBUG + ip netns list
+0:06:12,312 gw5 T0000: DEBUG ns_6_0_3
+0:06:12,312 gw5 T0000: DEBUG ns_6_0_2 (id: 18)
+0:06:12,312 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,312 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,312 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,312 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,312 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,312 gw5 T0000: DEBUG scapy
+0:06:12,312 gw5 T0000: DEBUG + ip link add veth_6_0_3 type veth peer name veth1
+0:06:12,312 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_3
+0:06:12,312 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ethtool --offload veth1 rx off tx off
+0:06:12,312 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ip link set dev veth1 up
+0:06:12,312 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ethtool --offload veth1 rx off tx off
+0:06:12,312 gw5 T0000: DEBUG + ip link set dev veth_6_0_3 up
+0:06:12,312 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,312 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,312 gw5 T0000: DEBUG + ip link set dev veth_6_0_3 master eth6-br
+0:06:12,312 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ip addr add 125.56.90.4/24 dev veth1
+0:06:12,312 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ip route add default via 125.56.90.12
+0:06:12,312 gw5 T0000: DEBUG + ip netns del ns_6_0_4
+0:06:12,312 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_4": No such file or directory
+0:06:12,313 gw5 T0000: DEBUG + ip link del veth_6_0_4
+0:06:12,313 gw5 T0000: DEBUG Cannot find device "veth_6_0_4"
+0:06:12,313 gw5 T0000: DEBUG + ip netns add ns_6_0_4
+0:06:12,313 gw5 T0000: DEBUG + ip netns list
+0:06:12,313 gw5 T0000: DEBUG ns_6_0_4
+0:06:12,313 gw5 T0000: DEBUG ns_6_0_3 (id: 19)
+0:06:12,313 gw5 T0000: DEBUG ns_6_0_2 (id: 18)
+0:06:12,313 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,313 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,313 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,313 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,313 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,313 gw5 T0000: DEBUG scapy
+0:06:12,313 gw5 T0000: DEBUG + ip link add veth_6_0_4 type veth peer name veth1
+0:06:12,313 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_4
+0:06:12,313 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ethtool --offload veth1 rx off tx off
+0:06:12,313 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ip link set dev veth1 up
+0:06:12,313 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ethtool --offload veth1 rx off tx off
+0:06:12,313 gw5 T0000: DEBUG + ip link set dev veth_6_0_4 up
+0:06:12,313 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,313 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,313 gw5 T0000: DEBUG + ip link set dev veth_6_0_4 master eth6-br
+0:06:12,313 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ip addr add 125.56.90.5/24 dev veth1
+0:06:12,314 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ip route add default via 125.56.90.12
+0:06:12,314 gw5 T0000: DEBUG + ip netns del ns_6_0_5
+0:06:12,314 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_5": No such file or directory
+0:06:12,314 gw5 T0000: DEBUG + ip link del veth_6_0_5
+0:06:12,314 gw5 T0000: DEBUG Cannot find device "veth_6_0_5"
+0:06:12,314 gw5 T0000: DEBUG + ip netns add ns_6_0_5
+0:06:12,314 gw5 T0000: DEBUG + ip netns list
+0:06:12,314 gw5 T0000: DEBUG ns_6_0_5
+0:06:12,314 gw5 T0000: DEBUG ns_6_0_4 (id: 20)
+0:06:12,314 gw5 T0000: DEBUG ns_6_0_3 (id: 19)
+0:06:12,314 gw5 T0000: DEBUG ns_6_0_2 (id: 18)
+0:06:12,314 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,314 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,314 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,314 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,314 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,314 gw5 T0000: DEBUG scapy
+0:06:12,314 gw5 T0000: DEBUG + ip link add veth_6_0_5 type veth peer name veth1
+0:06:12,314 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_5
+0:06:12,314 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ethtool --offload veth1 rx off tx off
+0:06:12,314 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ip link set dev veth1 up
+0:06:12,314 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ethtool --offload veth1 rx off tx off
+0:06:12,315 gw5 T0000: DEBUG + ip link set dev veth_6_0_5 up
+0:06:12,315 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,315 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,315 gw5 T0000: DEBUG + ip link set dev veth_6_0_5 master eth6-br
+0:06:12,315 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ip addr add 125.56.90.6/24 dev veth1
+0:06:12,315 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ip route add default via 125.56.90.12
+0:06:12,315 gw5 T0000: DEBUG + ip netns del ns_6_0_6
+0:06:12,315 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_6": No such file or directory
+0:06:12,315 gw5 T0000: DEBUG + ip link del veth_6_0_6
+0:06:12,315 gw5 T0000: DEBUG Cannot find device "veth_6_0_6"
+0:06:12,315 gw5 T0000: DEBUG + ip netns add ns_6_0_6
+0:06:12,315 gw5 T0000: DEBUG + ip netns list
+0:06:12,315 gw5 T0000: DEBUG ns_6_0_6
+0:06:12,315 gw5 T0000: DEBUG ns_6_0_5 (id: 21)
+0:06:12,315 gw5 T0000: DEBUG ns_6_0_4 (id: 20)
+0:06:12,315 gw5 T0000: DEBUG ns_6_0_3 (id: 19)
+0:06:12,315 gw5 T0000: DEBUG ns_6_0_2 (id: 18)
+0:06:12,315 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,315 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,315 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,315 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,315 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,316 gw5 T0000: DEBUG scapy
+0:06:12,316 gw5 T0000: DEBUG + ip link add veth_6_0_6 type veth peer name veth1
+0:06:12,316 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_6
+0:06:12,316 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ethtool --offload veth1 rx off tx off
+0:06:12,316 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ip link set dev veth1 up
+0:06:12,316 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ethtool --offload veth1 rx off tx off
+0:06:12,316 gw5 T0000: DEBUG + ip link set dev veth_6_0_6 up
+0:06:12,316 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,316 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,316 gw5 T0000: DEBUG + ip link set dev veth_6_0_6 master eth6-br
+0:06:12,316 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ip addr add 125.56.90.7/24 dev veth1
+0:06:12,316 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ip route add default via 125.56.90.12
+0:06:12,316 gw5 T0000: DEBUG + ip netns del ns_6_0_7
+0:06:12,316 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_7": No such file or directory
+0:06:12,316 gw5 T0000: DEBUG + ip link del veth_6_0_7
+0:06:12,316 gw5 T0000: DEBUG Cannot find device "veth_6_0_7"
+0:06:12,316 gw5 T0000: DEBUG + ip netns add ns_6_0_7
+0:06:12,316 gw5 T0000: DEBUG + ip netns list
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_7
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_6 (id: 22)
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_5 (id: 21)
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_4 (id: 20)
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_3 (id: 19)
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_2 (id: 18)
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,316 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,316 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,316 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,316 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,316 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,316 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,317 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,317 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,317 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,317 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,317 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,317 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,317 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,317 gw5 T0000: DEBUG scapy
+0:06:12,317 gw5 T0000: DEBUG + ip link add veth_6_0_7 type veth peer name veth1
+0:06:12,317 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_7
+0:06:12,317 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ethtool --offload veth1 rx off tx off
+0:06:12,317 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ip link set dev veth1 up
+0:06:12,317 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ethtool --offload veth1 rx off tx off
+0:06:12,317 gw5 T0000: DEBUG + ip link set dev veth_6_0_7 up
+0:06:12,317 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,317 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,317 gw5 T0000: DEBUG + ip link set dev veth_6_0_7 master eth6-br
+0:06:12,317 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ip addr add 125.56.90.8/24 dev veth1
+0:06:12,317 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ip route add default via 125.56.90.12
+0:06:12,317 gw5 T0000: DEBUG + ip netns del ns_6_0_8
+0:06:12,317 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_8": No such file or directory
+0:06:12,317 gw5 T0000: DEBUG + ip link del veth_6_0_8
+0:06:12,317 gw5 T0000: DEBUG Cannot find device "veth_6_0_8"
+0:06:12,317 gw5 T0000: DEBUG + ip netns add ns_6_0_8
+0:06:12,317 gw5 T0000: DEBUG + ip netns list
+0:06:12,317 gw5 T0000: DEBUG ns_6_0_8
+0:06:12,317 gw5 T0000: DEBUG ns_6_0_7 (id: 23)
+0:06:12,317 gw5 T0000: DEBUG ns_6_0_6 (id: 22)
+0:06:12,317 gw5 T0000: DEBUG ns_6_0_5 (id: 21)
+0:06:12,317 gw5 T0000: DEBUG ns_6_0_4 (id: 20)
+0:06:12,317 gw5 T0000: DEBUG ns_6_0_3 (id: 19)
+0:06:12,318 gw5 T0000: DEBUG ns_6_0_2 (id: 18)
+0:06:12,318 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,318 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,318 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,318 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,318 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,318 gw5 T0000: DEBUG scapy
+0:06:12,318 gw5 T0000: DEBUG + ip link add veth_6_0_8 type veth peer name veth1
+0:06:12,318 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_8
+0:06:12,318 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ethtool --offload veth1 rx off tx off
+0:06:12,318 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ip link set dev veth1 up
+0:06:12,318 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ethtool --offload veth1 rx off tx off
+0:06:12,318 gw5 T0000: DEBUG + ip link set dev veth_6_0_8 up
+0:06:12,318 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,318 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,318 gw5 T0000: DEBUG + ip link set dev veth_6_0_8 master eth6-br
+0:06:12,318 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ip addr add 125.56.90.9/24 dev veth1
+0:06:12,318 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ip route add default via 125.56.90.12
+0:06:12,318 gw5 T0000: DEBUG + ip netns del ns_6_0_9
+0:06:12,318 gw5 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_9": No such file or directory
+0:06:12,318 gw5 T0000: DEBUG + ip link del veth_6_0_9
+0:06:12,318 gw5 T0000: DEBUG Cannot find device "veth_6_0_9"
+0:06:12,318 gw5 T0000: DEBUG + ip netns add ns_6_0_9
+0:06:12,319 gw5 T0000: DEBUG + ip netns list
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_9
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_8 (id: 24)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_7 (id: 23)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_6 (id: 22)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_5 (id: 21)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_4 (id: 20)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_3 (id: 19)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_2 (id: 18)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_1 (id: 17)
+0:06:12,319 gw5 T0000: DEBUG ns_6_0_0 (id: 16)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_9 (id: 15)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_8 (id: 14)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_7 (id: 13)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_6 (id: 12)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_5 (id: 11)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_4 (id: 10)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_3 (id: 9)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_2 (id: 8)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_1 (id: 7)
+0:06:12,319 gw5 T0000: DEBUG ns_5_0_0 (id: 6)
+0:06:12,319 gw5 T0000: DEBUG ns_2_0_0 (id: 5)
+0:06:12,319 gw5 T0000: DEBUG ns_1_0_0 (id: 3)
+0:06:12,319 gw5 T0000: DEBUG scapy
+0:06:12,319 gw5 T0000: DEBUG + ip link add veth_6_0_9 type veth peer name veth1
+0:06:12,319 gw5 T0000: DEBUG + ip link set veth1 netns ns_6_0_9
+0:06:12,319 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ethtool --offload veth1 rx off tx off
+0:06:12,319 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ip link set dev veth1 up
+0:06:12,319 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ethtool --offload veth1 rx off tx off
+0:06:12,319 gw5 T0000: DEBUG + ip link set dev veth_6_0_9 up
+0:06:12,319 gw5 T0000: DEBUG + ip link add name eth6-br type bridge
+0:06:12,320 gw5 T0000: DEBUG RTNETLINK answers: File exists
+0:06:12,320 gw5 T0000: DEBUG + ip link set dev veth_6_0_9 master eth6-br
+0:06:12,320 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ip addr add 125.56.90.10/24 dev veth1
+0:06:12,320 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ip route add default via 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG + sleep 2
+0:06:12,320 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=2.063 msec
+0:06:12,320 gw5 T0000: DEBUG
+0:06:12,320 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,320 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,320 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 2.063/2.063/2.063/0.000 ms
+0:06:12,320 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=548.326 usec
+0:06:12,320 gw5 T0000: DEBUG
+0:06:12,320 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,320 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,320 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.548/0.548/0.548/0.000 ms
+0:06:12,320 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=451.535 usec
+0:06:12,320 gw5 T0000: DEBUG
+0:06:12,320 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,320 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,320 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.452/0.452/0.452/0.000 ms
+0:06:12,320 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,320 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=569.940 usec
+0:06:12,320 gw5 T0000: DEBUG
+0:06:12,320 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,321 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,321 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.570/0.570/0.570/0.000 ms
+0:06:12,321 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=480.475 usec
+0:06:12,321 gw5 T0000: DEBUG
+0:06:12,321 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,321 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,321 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.480/0.480/0.480/0.000 ms
+0:06:12,321 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=545.508 usec
+0:06:12,321 gw5 T0000: DEBUG
+0:06:12,321 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,321 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,321 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.546/0.546/0.546/0.000 ms
+0:06:12,321 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=589.286 usec
+0:06:12,321 gw5 T0000: DEBUG
+0:06:12,321 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,321 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,321 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.589/0.589/0.589/0.000 ms
+0:06:12,321 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,321 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=558.949 usec
+0:06:12,321 gw5 T0000: DEBUG
+0:06:12,321 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,321 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,321 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.559/0.559/0.559/0.000 ms
+0:06:12,321 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,322 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,322 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=548.200 usec
+0:06:12,322 gw5 T0000: DEBUG
+0:06:12,322 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,322 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,322 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.548/0.548/0.548/0.000 ms
+0:06:12,322 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 arping -w 7 -c 1 -I veth1 125.56.90.12
+0:06:12,322 gw5 T0000: DEBUG ARPING 125.56.90.12
+0:06:12,322 gw5 T0000: DEBUG 42 bytes from 52:54:00:12:34:56 (125.56.90.12): index=0 time=603.220 usec
+0:06:12,322 gw5 T0000: DEBUG
+0:06:12,322 gw5 T0000: DEBUG --- 125.56.90.12 statistics ---
+0:06:12,322 gw5 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+0:06:12,322 gw5 T0000: DEBUG rtt min/avg/max/std-dev = 0.603/0.603/0.603/0.000 ms
+0:06:12,322 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ip neigh show
+0:06:12,322 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ifconfig veth1
+0:06:12,322 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,322 gw5 T0000: DEBUG         inet 125.56.90.1  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,322 gw5 T0000: DEBUG         inet6 fe80::50bf:ebff:feab:d828  prefixlen 64  scopeid 0x20<link>
+0:06:12,322 gw5 T0000: DEBUG         ether 52:bf:eb:ab:d8:28  txqueuelen 1000  (Ethernet)
+0:06:12,322 gw5 T0000: DEBUG         RX packets 89  bytes 7054 (7.0 KB)
+0:06:12,322 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,322 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,322 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,322 gw5 T0000: DEBUG
+0:06:12,322 gw5 T0000: DEBUG + ip netns exec ns_6_0_0 ip addr ls veth1
+0:06:12,322 gw5 T0000: DEBUG 190: veth1@if191: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,322 gw5 T0000: DEBUG     link/ether 52:bf:eb:ab:d8:28 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,322 gw5 T0000: DEBUG     inet 125.56.90.1/24 scope global veth1
+0:06:12,322 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,322 gw5 T0000: DEBUG     inet6 fe80::50bf:ebff:feab:d828/64 scope link
+0:06:12,322 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,322 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ip neigh show
+0:06:12,323 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ifconfig veth1
+0:06:12,323 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,323 gw5 T0000: DEBUG         inet 125.56.90.2  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,323 gw5 T0000: DEBUG         inet6 fe80::1c3f:d0ff:fe8e:3619  prefixlen 64  scopeid 0x20<link>
+0:06:12,323 gw5 T0000: DEBUG         ether 1e:3f:d0:8e:36:19  txqueuelen 1000  (Ethernet)
+0:06:12,323 gw5 T0000: DEBUG         RX packets 88  bytes 6964 (6.9 KB)
+0:06:12,323 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,323 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,323 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,323 gw5 T0000: DEBUG
+0:06:12,323 gw5 T0000: DEBUG + ip netns exec ns_6_0_1 ip addr ls veth1
+0:06:12,323 gw5 T0000: DEBUG 192: veth1@if193: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,323 gw5 T0000: DEBUG     link/ether 1e:3f:d0:8e:36:19 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,323 gw5 T0000: DEBUG     inet 125.56.90.2/24 scope global veth1
+0:06:12,323 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,323 gw5 T0000: DEBUG     inet6 fe80::1c3f:d0ff:fe8e:3619/64 scope link
+0:06:12,323 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,323 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ip neigh show
+0:06:12,323 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ifconfig veth1
+0:06:12,323 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,323 gw5 T0000: DEBUG         inet 125.56.90.3  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,323 gw5 T0000: DEBUG         inet6 fe80::5cd8:c3ff:fe28:6a2c  prefixlen 64  scopeid 0x20<link>
+0:06:12,323 gw5 T0000: DEBUG         ether 5e:d8:c3:28:6a:2c  txqueuelen 1000  (Ethernet)
+0:06:12,323 gw5 T0000: DEBUG         RX packets 86  bytes 6788 (6.7 KB)
+0:06:12,323 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,323 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,323 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,323 gw5 T0000: DEBUG
+0:06:12,323 gw5 T0000: DEBUG + ip netns exec ns_6_0_2 ip addr ls veth1
+0:06:12,323 gw5 T0000: DEBUG 194: veth1@if195: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,324 gw5 T0000: DEBUG     link/ether 5e:d8:c3:28:6a:2c brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,324 gw5 T0000: DEBUG     inet 125.56.90.3/24 scope global veth1
+0:06:12,324 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,324 gw5 T0000: DEBUG     inet6 fe80::5cd8:c3ff:fe28:6a2c/64 scope link
+0:06:12,324 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,324 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ip neigh show
+0:06:12,324 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ifconfig veth1
+0:06:12,324 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,324 gw5 T0000: DEBUG         inet 125.56.90.4  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,324 gw5 T0000: DEBUG         inet6 fe80::28c4:70ff:fe7c:a9d4  prefixlen 64  scopeid 0x20<link>
+0:06:12,324 gw5 T0000: DEBUG         ether 2a:c4:70:7c:a9:d4  txqueuelen 1000  (Ethernet)
+0:06:12,324 gw5 T0000: DEBUG         RX packets 84  bytes 6608 (6.6 KB)
+0:06:12,324 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,324 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,324 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,324 gw5 T0000: DEBUG
+0:06:12,324 gw5 T0000: DEBUG + ip netns exec ns_6_0_3 ip addr ls veth1
+0:06:12,324 gw5 T0000: DEBUG 196: veth1@if197: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,324 gw5 T0000: DEBUG     link/ether 2a:c4:70:7c:a9:d4 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,324 gw5 T0000: DEBUG     inet 125.56.90.4/24 scope global veth1
+0:06:12,324 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,324 gw5 T0000: DEBUG     inet6 fe80::28c4:70ff:fe7c:a9d4/64 scope link
+0:06:12,324 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,324 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ip neigh show
+0:06:12,324 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ifconfig veth1
+0:06:12,324 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,324 gw5 T0000: DEBUG         inet 125.56.90.5  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,324 gw5 T0000: DEBUG         inet6 fe80::dcfc:4dff:fe28:e073  prefixlen 64  scopeid 0x20<link>
+0:06:12,324 gw5 T0000: DEBUG         ether de:fc:4d:28:e0:73  txqueuelen 1000  (Ethernet)
+0:06:12,324 gw5 T0000: DEBUG         RX packets 81  bytes 6342 (6.3 KB)
+0:06:12,324 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,324 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,324 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,325 gw5 T0000: DEBUG
+0:06:12,325 gw5 T0000: DEBUG + ip netns exec ns_6_0_4 ip addr ls veth1
+0:06:12,325 gw5 T0000: DEBUG 198: veth1@if199: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,325 gw5 T0000: DEBUG     link/ether de:fc:4d:28:e0:73 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,325 gw5 T0000: DEBUG     inet 125.56.90.5/24 scope global veth1
+0:06:12,325 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,325 gw5 T0000: DEBUG     inet6 fe80::dcfc:4dff:fe28:e073/64 scope link
+0:06:12,325 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,325 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ip neigh show
+0:06:12,325 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ifconfig veth1
+0:06:12,325 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,325 gw5 T0000: DEBUG         inet 125.56.90.6  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,325 gw5 T0000: DEBUG         inet6 fe80::6c60:48ff:fecf:905a  prefixlen 64  scopeid 0x20<link>
+0:06:12,325 gw5 T0000: DEBUG         ether 6e:60:48:cf:90:5a  txqueuelen 1000  (Ethernet)
+0:06:12,325 gw5 T0000: DEBUG         RX packets 78  bytes 6092 (6.0 KB)
+0:06:12,325 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,325 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,325 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,325 gw5 T0000: DEBUG
+0:06:12,325 gw5 T0000: DEBUG + ip netns exec ns_6_0_5 ip addr ls veth1
+0:06:12,325 gw5 T0000: DEBUG 200: veth1@if201: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,325 gw5 T0000: DEBUG     link/ether 6e:60:48:cf:90:5a brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,325 gw5 T0000: DEBUG     inet 125.56.90.6/24 scope global veth1
+0:06:12,325 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,325 gw5 T0000: DEBUG     inet6 fe80::6c60:48ff:fecf:905a/64 scope link
+0:06:12,325 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,325 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ip neigh show
+0:06:12,325 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ifconfig veth1
+0:06:12,325 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,325 gw5 T0000: DEBUG         inet 125.56.90.7  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,325 gw5 T0000: DEBUG         inet6 fe80::30bb:13ff:fe02:7607  prefixlen 64  scopeid 0x20<link>
+0:06:12,325 gw5 T0000: DEBUG         ether 32:bb:13:02:76:07  txqueuelen 1000  (Ethernet)
+0:06:12,325 gw5 T0000: DEBUG         RX packets 75  bytes 5806 (5.8 KB)
+0:06:12,326 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,326 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,326 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,326 gw5 T0000: DEBUG
+0:06:12,326 gw5 T0000: DEBUG + ip netns exec ns_6_0_6 ip addr ls veth1
+0:06:12,326 gw5 T0000: DEBUG 202: veth1@if203: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,326 gw5 T0000: DEBUG     link/ether 32:bb:13:02:76:07 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,326 gw5 T0000: DEBUG     inet 125.56.90.7/24 scope global veth1
+0:06:12,326 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,326 gw5 T0000: DEBUG     inet6 fe80::30bb:13ff:fe02:7607/64 scope link
+0:06:12,326 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,326 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ip neigh show
+0:06:12,326 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ifconfig veth1
+0:06:12,326 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,326 gw5 T0000: DEBUG         inet 125.56.90.8  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,326 gw5 T0000: DEBUG         inet6 fe80::6cbd:a3ff:fe52:c6cd  prefixlen 64  scopeid 0x20<link>
+0:06:12,326 gw5 T0000: DEBUG         ether 6e:bd:a3:52:c6:cd  txqueuelen 1000  (Ethernet)
+0:06:12,326 gw5 T0000: DEBUG         RX packets 72  bytes 5540 (5.5 KB)
+0:06:12,326 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,326 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,326 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,326 gw5 T0000: DEBUG
+0:06:12,326 gw5 T0000: DEBUG + ip netns exec ns_6_0_7 ip addr ls veth1
+0:06:12,326 gw5 T0000: DEBUG 204: veth1@if205: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,326 gw5 T0000: DEBUG     link/ether 6e:bd:a3:52:c6:cd brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,326 gw5 T0000: DEBUG     inet 125.56.90.8/24 scope global veth1
+0:06:12,326 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,326 gw5 T0000: DEBUG     inet6 fe80::6cbd:a3ff:fe52:c6cd/64 scope link
+0:06:12,326 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,326 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ip neigh show
+0:06:12,326 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ifconfig veth1
+0:06:12,326 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,326 gw5 T0000: DEBUG         inet 125.56.90.9  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,327 gw5 T0000: DEBUG         inet6 fe80::e45b:19ff:fec5:6773  prefixlen 64  scopeid 0x20<link>
+0:06:12,327 gw5 T0000: DEBUG         ether e6:5b:19:c5:67:73  txqueuelen 1000  (Ethernet)
+0:06:12,327 gw5 T0000: DEBUG         RX packets 66  bytes 5032 (5.0 KB)
+0:06:12,327 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,327 gw5 T0000: DEBUG         TX packets 9  bytes 714 (714.0 B)
+0:06:12,327 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,327 gw5 T0000: DEBUG
+0:06:12,327 gw5 T0000: DEBUG + ip netns exec ns_6_0_8 ip addr ls veth1
+0:06:12,327 gw5 T0000: DEBUG 206: veth1@if207: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,327 gw5 T0000: DEBUG     link/ether e6:5b:19:c5:67:73 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,327 gw5 T0000: DEBUG     inet 125.56.90.9/24 scope global veth1
+0:06:12,327 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,327 gw5 T0000: DEBUG     inet6 fe80::e45b:19ff:fec5:6773/64 scope link
+0:06:12,327 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,327 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ip neigh show
+0:06:12,327 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ifconfig veth1
+0:06:12,327 gw5 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:06:12,327 gw5 T0000: DEBUG         inet 125.56.90.10  netmask 255.255.255.0  broadcast 0.0.0.0
+0:06:12,327 gw5 T0000: DEBUG         inet6 fe80::1f:91ff:fe94:7f6b  prefixlen 64  scopeid 0x20<link>
+0:06:12,327 gw5 T0000: DEBUG         ether 02:1f:91:94:7f:6b  txqueuelen 1000  (Ethernet)
+0:06:12,327 gw5 T0000: DEBUG         RX packets 63  bytes 4762 (4.7 KB)
+0:06:12,327 gw5 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:06:12,327 gw5 T0000: DEBUG         TX packets 8  bytes 644 (644.0 B)
+0:06:12,327 gw5 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:06:12,327 gw5 T0000: DEBUG
+0:06:12,327 gw5 T0000: DEBUG + ip netns exec ns_6_0_9 ip addr ls veth1
+0:06:12,327 gw5 T0000: DEBUG 208: veth1@if209: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:06:12,327 gw5 T0000: DEBUG     link/ether 02:1f:91:94:7f:6b brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:06:12,327 gw5 T0000: DEBUG     inet 125.56.90.10/24 scope global veth1
+0:06:12,327 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,327 gw5 T0000: DEBUG     inet6 fe80::1f:91ff:fe94:7f6b/64 scope link
+0:06:12,327 gw5 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:06:12,328 gw5 T0000: DEBUG
+0:06:12,328 gw5 T0000: INFO  read the mac addresses of created interfaces
+0:06:12,328 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_0 ip addr show dev veth1
+0:06:12,357 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.1/24', 'inet6': 'fe80::50bf:ebff:feab:d828/64', 'state': 'UP', 'link/ether': '52:bf:eb:ab:d8:28'}
+0:06:12,357 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_1 ip addr show dev veth1
+0:06:12,389 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.2/24', 'inet6': 'fe80::1c3f:d0ff:fe8e:3619/64', 'state': 'UP', 'link/ether': '1e:3f:d0:8e:36:19'}
+0:06:12,389 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_2 ip addr show dev veth1
+0:06:12,419 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.3/24', 'inet6': 'fe80::5cd8:c3ff:fe28:6a2c/64', 'state': 'UP', 'link/ether': '5e:d8:c3:28:6a:2c'}
+0:06:12,419 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_3 ip addr show dev veth1
+0:06:12,446 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.4/24', 'inet6': 'fe80::28c4:70ff:fe7c:a9d4/64', 'state': 'UP', 'link/ether': '2a:c4:70:7c:a9:d4'}
+0:06:12,447 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_4 ip addr show dev veth1
+0:06:12,472 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.5/24', 'inet6': 'fe80::dcfc:4dff:fe28:e073/64', 'state': 'UP', 'link/ether': 'de:fc:4d:28:e0:73'}
+0:06:12,472 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_5 ip addr show dev veth1
+0:06:12,506 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.6/24', 'inet6': 'fe80::6c60:48ff:fecf:905a/64', 'state': 'UP', 'link/ether': '6e:60:48:cf:90:5a'}
+0:06:12,507 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_6 ip addr show dev veth1
+0:06:12,531 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.7/24', 'inet6': 'fe80::30bb:13ff:fe02:7607/64', 'state': 'UP', 'link/ether': '32:bb:13:02:76:07'}
+0:06:12,532 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_7 ip addr show dev veth1
+0:06:12,564 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.8/24', 'inet6': 'fe80::6cbd:a3ff:fe52:c6cd/64', 'state': 'UP', 'link/ether': '6e:bd:a3:52:c6:cd'}
+0:06:12,565 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_8 ip addr show dev veth1
+0:06:12,594 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.9/24', 'inet6': 'fe80::e45b:19ff:fec5:6773/64', 'state': 'UP', 'link/ether': 'e6:5b:19:c5:67:73'}
+0:06:12,594 gw5 T0000: DEBUG cmdexec: ip netns exec ns_6_0_9 ip addr show dev veth1
+0:06:12,622 gw5 T0000: INFO  ip addr show dev veth1 {'inet': '125.56.90.10/24', 'inet6': 'fe80::1f:91ff:fe94:7f6b/64', 'state': 'UP', 'link/ether': '02:1f:91:94:7f:6b'}
+0:06:12,623 gw5 T0000: DEBUG New interface ['iface-6-0', 'iface-6-0', 'iface-6-0', 'iface-6-0', 'iface-6-0', 'iface-6-0', 'iface-6-0', 'iface-6-0', 'iface-6-0', 'iface-6-0']...
+0:06:14,625 gw5 T0000: DEBUG RESULT: {"status": "1", "handle": ["iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0", "iface-6-0"]}
+0:06:14,636 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.2', 'ip_dst_addr': '129.2.30.12'}
+0:06:14,636 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.2', 'ip_dst_addr': '129.2.30.12'}
+0:06:14,636 gw5 T0000: DEBUG New stream stream-5-0 tracking [] ...
+0:06:14,637 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-5-0"}
+0:06:14,641 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.3', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'tcp', 'tcp_src_port': '1002', 'tcp_dst_port': '3345', 'tcp_syn_flag': '1', 'frame_size': '1500'}
+0:06:14,642 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.3', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'tcp', 'tcp_src_port': '1002', 'tcp_dst_port': '3345', 'tcp_syn_flag': '1', 'frame_size': '1500'}
+0:06:14,642 gw5 T0000: DEBUG New stream stream-5-1 tracking [] ...
+0:06:14,642 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-5-1"}
+0:06:14,645 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '88.98.128.2', 'ip_dst_addr': '129.2.30.12'}
+0:06:14,645 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '88.98.128.2', 'ip_dst_addr': '129.2.30.12'}
+0:06:14,646 gw5 T0000: DEBUG New stream stream-5-2 tracking [] ...
+0:06:14,646 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-5-2"}
+0:06:14,649 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.4', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'udp', 'udp_src_port': '7781', 'udp_dst_port': '8812'}
+0:06:14,649 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.4', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'udp', 'udp_src_port': '7781', 'udp_dst_port': '8812'}
+0:06:14,649 gw5 T0000: DEBUG New stream stream-5-3 tracking [] ...
+0:06:14,649 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-5-3"}
+0:06:14,652 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.5', 'ip_dst_addr': '15.15.0.1'}
+0:06:14,652 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.5', 'ip_dst_addr': '15.15.0.1'}
+0:06:14,653 gw5 T0000: DEBUG New stream stream-5-4 tracking [] ...
+0:06:14,653 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-5-4"}
+0:06:14,656 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.11', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'udp', 'udp_src_port': '251', 'udp_dst_port': '444'}
+0:06:14,656 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.11', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'udp', 'udp_src_port': '251', 'udp_dst_port': '444'}
+0:06:14,656 gw5 T0000: DEBUG New stream stream-5-5 tracking [] ...
+0:06:14,656 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-5-5"}
+0:06:14,660 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.12'}
+0:06:14,660 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.12'}
+0:06:14,660 gw5 T0000: DEBUG New stream stream-6-0 tracking [] ...
+0:06:14,660 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-0"}
+0:06:14,664 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.13', 'l4_protocol': 'tcp', 'tcp_src_port': '3345', 'tcp_dst_port': '100', 'tcp_syn_flag': '1', 'tcp_seq_num': '1', 'tcp_ack_flag': '1', 'frame_size': '1500'}
+0:06:14,664 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.13', 'l4_protocol': 'tcp', 'tcp_src_port': '3345', 'tcp_dst_port': '100', 'tcp_syn_flag': '1', 'tcp_seq_num': '1', 'tcp_ack_flag': '1', 'frame_size': '1500'}
+0:06:14,664 gw5 T0000: DEBUG New stream stream-6-1 tracking [] ...
+0:06:14,665 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-1"}
+0:06:14,674 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '11.11.11.2'}
+0:06:14,674 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '11.11.11.2'}
+0:06:14,674 gw5 T0000: DEBUG New stream stream-6-2 tracking [] ...
+0:06:14,674 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-2"}
+0:06:14,681 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.14', 'l4_protocol': 'udp', 'udp_src_port': '5516', 'udp_dst_port': '7811'}
+0:06:14,681 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.14', 'l4_protocol': 'udp', 'udp_src_port': '5516', 'udp_dst_port': '7811'}
+0:06:14,681 gw5 T0000: DEBUG New stream stream-6-3 tracking [] ...
+0:06:14,681 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-3"}
+0:06:14,685 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '99.99.99.1', 'ip_dst_addr': '125.56.90.15'}
+0:06:14,686 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '99.99.99.1', 'ip_dst_addr': '125.56.90.15'}
+0:06:14,686 gw5 T0000: DEBUG New stream stream-6-4 tracking [] ...
+0:06:14,686 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-4"}
+0:06:14,689 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.23', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '251'}
+0:06:14,689 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.23', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '251'}
+0:06:14,690 gw5 T0000: DEBUG New stream stream-6-5 tracking [] ...
+0:06:14,690 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-5"}
+0:06:14,693 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.23', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '334'}
+0:06:14,693 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.23', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '334'}
+0:06:14,694 gw5 T0000: DEBUG New stream stream-6-6 tracking [] ...
+0:06:14,694 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-6"}
+0:06:14,697 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.24', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '333'}
+0:06:14,697 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.24', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '333'}
+0:06:14,697 gw5 T0000: DEBUG New stream stream-6-7 tracking [] ...
+0:06:14,697 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-7"}
+0:06:14,700 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.24', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '334'}
+0:06:14,701 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.24', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '334'}
+0:06:14,701 gw5 T0000: DEBUG New stream stream-6-8 tracking [] ...
+0:06:14,701 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-8"}
+0:06:14,704 gw5 T0000: DEBUG gw5 ('gw5',) {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.23', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '333'}
+0:06:14,704 gw5 T0000: DEBUG gw5 exposed_tg_traffic_config () {'port_handle': 'port-6', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:43:32:1A:01', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '129.2.30.12', 'ip_dst_addr': '125.56.90.23', 'l4_protocol': 'udp', 'udp_src_port': '12001', 'udp_dst_port': '333'}
+0:06:14,704 gw5 T0000: DEBUG New stream stream-6-9 tracking [] ...
+0:06:14,704 gw5 T0000: DEBUG RESULT: {"stream_id": "stream-6-9"}
+0:06:15,484 gw5 T0090: DEBUG readp:eth7 len:263 count:21
+0:06:15,488 gw5 T0082: DEBUG readp:eth5 len:263 count:35
+0:06:15,496 gw5 T0096: DEBUG readp:eth8 len:265 count:21
+0:06:15,541 gw5 T0086: DEBUG readp:eth6 len:263 count:34
+0:06:45,480 gw5 T0090: DEBUG readp:eth7 len:263 count:22
+0:06:45,488 gw5 T0082: DEBUG readp:eth5 len:263 count:36
+0:06:45,496 gw5 T0096: DEBUG readp:eth8 len:265 count:22
+0:06:45,541 gw5 T0086: DEBUG readp:eth6 len:263 count:35
+0:06:46,288 gw5 T0000: DEBUG gw5 ('gw5', 'add-log', 'test-start test_ft_nat_docker_restart gw5') {}
+0:06:46,288 gw5 T0000: DEBUG gw5 exposed_server_control add-log test-start test_ft_nat_docker_restart gw5 () {}
+0:06:46,288 gw5 T0000: INFO  ################################################################################
+0:06:46,288 gw5 T0000: INFO  gw5 gw5 add-log test-start test_ft_nat_docker_restart gw5
+0:06:46,288 gw5 T0000: INFO  ################################################################################
+0:06:46,289 gw5 T0000: DEBUG gw5 ('gw5', 'get-alerts', '') {}
+0:06:46,289 gw5 T0000: DEBUG gw5 exposed_server_control get-alerts  () {}
+0:06:49,166 gw5 T0000: DEBUG gw5 ('gw5',) {'action': 'run', 'handle': 'stream-5-5'}
+0:06:49,167 gw5 T0000: DEBUG gw5 exposed_tg_traffic_control () {'action': 'run', 'handle': 'stream-5-5'}
+0:06:49,167 gw5 T0000: DEBUG PRE5: TX: 0 RX: 36
+0:06:49,167 gw5 T0000: DEBUG     stream-5-0: TX: 0 RX: 0
+0:06:49,167 gw5 T0000: DEBUG     stream-5-1: TX: 0 RX: 0
+0:06:49,167 gw5 T0000: DEBUG     stream-5-2: TX: 0 RX: 0
+0:06:49,167 gw5 T0000: DEBUG     stream-5-3: TX: 0 RX: 0
+0:06:49,168 gw5 T0000: DEBUG     stream-5-4: TX: 0 RX: 0
+0:06:49,168 gw5 T0000: DEBUG     stream-5-5: TX: 0 RX: 0
+0:06:49,168 gw5 T0000: DEBUG PRE6: TX: 0 RX: 35
+0:06:49,168 gw5 T0000: DEBUG     stream-6-0: TX: 0 RX: 0
+0:06:49,168 gw5 T0000: DEBUG     stream-6-1: TX: 0 RX: 0
+0:06:49,168 gw5 T0000: DEBUG     stream-6-2: TX: 0 RX: 0
+0:06:49,168 gw5 T0000: DEBUG     stream-6-3: TX: 0 RX: 0
+0:06:49,168 gw5 T0000: DEBUG     stream-6-4: TX: 0 RX: 0
+0:06:49,169 gw5 T0000: DEBUG     stream-6-5: TX: 0 RX: 0
+0:06:49,169 gw5 T0000: DEBUG     stream-6-6: TX: 0 RX: 0
+0:06:49,169 gw5 T0000: DEBUG     stream-6-7: TX: 0 RX: 0
+0:06:49,169 gw5 T0000: DEBUG     stream-6-8: TX: 0 RX: 0
+0:06:49,169 gw5 T0000: DEBUG     stream-6-9: TX: 0 RX: 0
+0:06:49,169 gw5 T0000: DEBUG PRE7: TX: 0 RX: 22
+0:06:49,169 gw5 T0000: DEBUG PRE8: TX: 0 RX: 22
+0:06:49,170 gw5 T0000: DEBUG start-tx: eth5 {'action': 'run', 'handle': 'stream-5-5'} TX: 0
+0:06:49,170 gw5 T0000: DEBUG tx-enable: eth5 stream-5-5 PKTS: 0
+0:06:49,170 gw5 T0000: DEBUG signal-tx: eth5 {'action': 'run', 'handle': 'stream-5-5'} TX: 0
+0:06:49,171 gw5 T0000: DEBUG start-tx-ack-0: eth5 {'tx_state': False, 'action': 'run', 'handle': 'stream-5-5'} TX: 0
+0:06:50,171 gw5 T0084: DEBUG txThreadMainInner eth5 start odict_keys(['stream-5-0', 'stream-5-1', 'stream-5-2', 'stream-5-3', 'stream-5-4', 'stream-5-5'])
+0:06:50,171 gw5 T0084: DEBUG INITIAL: stream-5-5 = {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.11', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'udp', 'udp_src_port': '251', 'udp_dst_port': '444'}
+0:06:50,172 gw5 T0084: DEBUG UPDATED: stream-5-5 = {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.11', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'udp', 'udp_src_port': '251', 'udp_dst_port': '444'}
+0:06:50,172 gw5 T0084: INFO  =========== build_first this stream-5-5 = {'port_handle': 'port-5', 'mode': 'create', 'transmit_mode': 'single_burst', 'pkts_per_burst': '10', 'rate_pps': '10', 'l3_protocol': 'ipv4', 'mac_src': '00:00:23:11:14:08', 'mac_dst': '52:54:00:12:34:56', 'ip_src_addr': '12.12.0.11', 'ip_dst_addr': '129.2.30.12', 'l4_protocol': 'udp', 'udp_src_port': '251', 'udp_dst_port': '444'}
+0:06:50,177 gw5 T0084: DEBUG stream: stream-5-5 delay: -8.940696716308594e-05 pps: 10
+0:06:50,178 gw5 T0000: DEBUG start-tx-ack-1: eth5 {'action': 'run', 'handle': 'stream-5-5'} TX: 0
+0:06:50,180 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:1
+0:06:50,220 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=10
+0:06:50,221 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.04271054267883301 pps: 10
+0:06:50,222 gw5 T0086: DEBUG readp:eth6 len:42 count:36
+0:06:50,226 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:2
+0:06:50,226 gw5 T0086: DEBUG readp:eth6 len:42 count:37
+0:06:50,227 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=9
+0:06:50,228 gw5 T0086: DEBUG readp:eth6 len:42 count:38
+0:06:50,229 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.005101919174194336 pps: 10
+0:06:50,229 gw5 T0086: DEBUG readp:eth6 len:42 count:39
+0:06:50,231 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:3
+0:06:50,232 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=8
+0:06:50,232 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.002607107162475586 pps: 10
+0:06:50,233 gw5 T0086: DEBUG readp:eth6 len:42 count:40
+0:06:50,234 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:4
+0:06:50,234 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=7
+0:06:50,234 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.001298666000366211 pps: 10
+0:06:50,235 gw5 T0086: DEBUG readp:eth6 len:42 count:41
+0:06:50,236 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:5
+0:06:50,236 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=6
+0:06:50,237 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.0015573501586914062 pps: 10
+0:06:50,237 gw5 T0086: DEBUG readp:eth6 len:42 count:42
+0:06:50,238 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:6
+0:06:50,238 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=5
+0:06:50,239 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.0012104511260986328 pps: 10
+0:06:50,240 gw5 T0086: DEBUG readp:eth6 len:42 count:43
+0:06:50,241 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:7
+0:06:50,242 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=4
+0:06:50,242 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.0021440982818603516 pps: 10
+0:06:50,243 gw5 T0086: DEBUG readp:eth6 len:42 count:44
+0:06:50,244 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:8
+0:06:50,244 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=3
+0:06:50,244 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.001168966293334961 pps: 10
+0:06:50,245 gw5 T0086: DEBUG readp:eth6 len:42 count:45
+0:06:50,246 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:9
+0:06:50,246 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=2
+0:06:50,246 gw5 T0084: DEBUG stream: stream-5-5 delay: -0.00115203857421875 pps: 10
+0:06:50,246 gw5 T0086: DEBUG readp:eth6 len:42 count:46
+0:06:50,247 gw5 T0084: DEBUG sendp:eth5:stream-5-5 len:64 count:10
+0:06:50,247 gw5 T0084: DEBUG build_next eth5/stream-5-5 single_burst left=1
+0:06:50,247 gw5 T0084: DEBUG txThreadMainInner eth5 Completed Stream stream-5-5
+0:06:50,248 gw5 T0084: DEBUG txThreadMainInner eth5 Completed 10
+0:06:50,248 gw5 T0086: DEBUG readp:eth6 len:42 count:47
+0:06:50,248 gw5 T0084: DEBUG txThreadMain eth5 Wait
+0:06:51,181 gw5 T0000: DEBUG TX Completed waiting 3 sec for RX
+0:06:54,185 gw5 T0000: DEBUG start-tx-finished: eth5 {'action': 'run', 'handle': 'stream-5-5'} TX: 10
+0:06:55,441 gw5 T0086: DEBUG readp:eth6 len:42 count:48
+0:06:56,187 gw5 T0000: DEBUG POST5: TX: 10 RX: 36
+0:06:56,187 gw5 T0000: DEBUG     stream-5-0: TX: 0 RX: 0
+0:06:56,187 gw5 T0000: DEBUG     stream-5-1: TX: 0 RX: 0
+0:06:56,187 gw5 T0000: DEBUG     stream-5-2: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-5-3: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-5-4: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-5-5: TX: 10 RX: 0
+0:06:56,188 gw5 T0000: DEBUG POST6: TX: 0 RX: 48
+0:06:56,188 gw5 T0000: DEBUG     stream-6-0: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-1: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-2: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-3: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-4: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-5: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-6: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-7: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-8: TX: 0 RX: 0
+0:06:56,188 gw5 T0000: DEBUG     stream-6-9: TX: 0 RX: 0
+0:06:56,189 gw5 T0000: DEBUG POST7: TX: 0 RX: 22
+0:06:56,189 gw5 T0000: DEBUG POST8: TX: 0 RX: 22
+0:06:56,189 gw5 T0000: DEBUG RESULT: true
+0:06:56,197 gw5 T0000: DEBUG gw5 ('gw5',) {'action': 'stop', 'handle': 'stream-5-5'}
+0:06:56,197 gw5 T0000: DEBUG gw5 exposed_tg_traffic_control () {'action': 'stop', 'handle': 'stream-5-5'}
+0:06:56,197 gw5 T0000: DEBUG PRE5: TX: 10 RX: 36
+0:06:56,197 gw5 T0000: DEBUG     stream-5-0: TX: 0 RX: 0
+0:06:56,197 gw5 T0000: DEBUG     stream-5-1: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-5-2: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-5-3: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-5-4: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-5-5: TX: 10 RX: 0
+0:06:56,198 gw5 T0000: DEBUG PRE6: TX: 0 RX: 48
+0:06:56,198 gw5 T0000: DEBUG     stream-6-0: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-6-1: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-6-2: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-6-3: TX: 0 RX: 0
+0:06:56,198 gw5 T0000: DEBUG     stream-6-4: TX: 0 RX: 0
+0:06:56,199 gw5 T0000: DEBUG     stream-6-5: TX: 0 RX: 0
+0:06:56,199 gw5 T0000: DEBUG     stream-6-6: TX: 0 RX: 0
+0:06:56,199 gw5 T0000: DEBUG     stream-6-7: TX: 0 RX: 0
+0:06:56,199 gw5 T0000: DEBUG     stream-6-8: TX: 0 RX: 0
+0:06:56,199 gw5 T0000: DEBUG     stream-6-9: TX: 0 RX: 0
+0:06:56,199 gw5 T0000: DEBUG PRE7: TX: 0 RX: 22
+0:06:56,199 gw5 T0000: DEBUG PRE8: TX: 0 RX: 22
+0:06:58,202 gw5 T0000: DEBUG POST5: TX: 10 RX: 36
+0:06:58,202 gw5 T0000: DEBUG     stream-5-0: TX: 0 RX: 0
+0:06:58,202 gw5 T0000: DEBUG     stream-5-1: TX: 0 RX: 0
+0:06:58,202 gw5 T0000: DEBUG     stream-5-2: TX: 0 RX: 0
+0:06:58,202 gw5 T0000: DEBUG     stream-5-3: TX: 0 RX: 0
+0:06:58,202 gw5 T0000: DEBUG     stream-5-4: TX: 0 RX: 0
+0:06:58,202 gw5 T0000: DEBUG     stream-5-5: TX: 10 RX: 0
+0:06:58,202 gw5 T0000: DEBUG POST6: TX: 0 RX: 48
+0:06:58,202 gw5 T0000: DEBUG     stream-6-0: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-1: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-2: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-3: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-4: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-5: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-6: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-7: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-8: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG     stream-6-9: TX: 0 RX: 0
+0:06:58,203 gw5 T0000: DEBUG POST7: TX: 0 RX: 22
+0:06:58,203 gw5 T0000: DEBUG POST8: TX: 0 RX: 22
+0:06:58,203 gw5 T0000: DEBUG RESULT: true
+0:07:15,482 gw5 T0090: DEBUG readp:eth7 len:263 count:23
+0:07:15,490 gw5 T0082: DEBUG readp:eth5 len:263 count:37
+0:07:15,498 gw5 T0096: DEBUG readp:eth8 len:265 count:23
+0:07:15,543 gw5 T0086: DEBUG readp:eth6 len:263 count:49
+0:07:33,217 gw5 T0000: DEBUG gw5 ('gw5', 'add-log', 'test-finish test_ft_nat_docker_restart gw5') {}
+0:07:33,217 gw5 T0000: DEBUG gw5 exposed_server_control add-log test-finish test_ft_nat_docker_restart gw5 () {}
+0:07:33,217 gw5 T0000: INFO  ################################################################################
+0:07:33,217 gw5 T0000: INFO  gw5 gw5 add-log test-finish test_ft_nat_docker_restart gw5
+0:07:33,217 gw5 T0000: INFO  ################################################################################
+0:07:33,218 gw5 T0000: DEBUG gw5 ('gw5', 'get-alerts', '') {}
+0:07:33,218 gw5 T0000: DEBUG gw5 exposed_server_control get-alerts  () {}
+0:07:45,482 gw5 T0090: DEBUG readp:eth7 len:263 count:24
+0:07:45,490 gw5 T0082: DEBUG readp:eth5 len:263 count:38
+0:07:45,498 gw5 T0096: DEBUG readp:eth8 len:265 count:24
+0:07:45,543 gw5 T0086: DEBUG readp:eth6 len:263 count:50
+0:08:15,481 gw5 T0090: DEBUG readp:eth7 len:263 count:25
+0:08:15,489 gw5 T0082: DEBUG readp:eth5 len:263 count:39
+0:08:15,498 gw5 T0096: DEBUG readp:eth8 len:265 count:25
+0:08:15,542 gw5 T0086: DEBUG readp:eth6 len:263 count:51
+0:08:32,262 gw5 T0000: DEBUG gw5 ('gw5', 'read-log', 'results_mlog_routing_NAT_test_nat.tgen') {}
+0:08:32,262 gw5 T0000: DEBUG gw5 exposed_server_control read-log results_mlog_routing_NAT_test_nat.tgen () {}

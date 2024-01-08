@@ -1,0 +1,167 @@
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-prolog-switching-test_portchannel.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-prolog-switching-test_portchannel.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-prolog-switching-test_portchannel.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-prolog-switching-test_portchannel.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,switching/test_portchannel.py,,D1,normal-user,/sbin/ifconfig Ethernet0
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config portchannel add PortChannel7
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet16
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet20
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet24
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet28
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config vlan add 752
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config vlan member add 752 Ethernet0
+module-prolog,switching/test_portchannel.py,,D1,normal-user,sudo -s config vlan member add 752 PortChannel7
+framework,switching/test_portchannel.py,,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-prolog-switching-test_portchannel.py.json -y
+framework,switching/test_portchannel.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-prolog-switching-test_portchannel.py.json
+framework,switching/test_portchannel.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,switching/test_portchannel.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-prolog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-prolog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,switching/test_portchannel.py,,D1,normal-user,sudo show interfaces status
+framework,switching/test_portchannel.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-prolog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet24
+function-prolog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,show interfaces portchannel | grep -w PortChannel7
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel add PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member add PortChannel8 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member add PortChannel8 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,show interfaces portchannel | grep -w PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config vlan add 1072
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config vlan member add 1072 PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,show interfaces portchannel | grep -w PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config vlan member del 1072 PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,show vlan config
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config vlan del 1072
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,show vlan config
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member del PortChannel8 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member del PortChannel8 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel del PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,show interfaces portchannel | grep -w PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet28
+framework,switching/test_portchannel.py,,D1,normal-user,sudo show interfaces status
+framework,switching/test_portchannel.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-prolog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,show interfaces portchannel
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel add PortChannel7  --min-links 4
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,show interfaces portchannel
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet16
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet20
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet16
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet20
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,show interfaces portchannel
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel add PortChannel7  --min-links True
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-epilog-switching-test_portchannel.py.json -y
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-epilog-switching-test_portchannel.py.json
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-epilog-switching-test_portchannel.py.txt
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-epilog-switching-test_portchannel.py.txt
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,show vlan config
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,show interfaces portchannel
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,show interfaces portchannel | grep -w PortChannel7
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet28
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet16
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet24
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet20
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config portchannel del PortChannel7
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-epilog-switching-test_portchannel.py.json -y
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-epilog-switching-test_portchannel.py.json
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,/sbin/ip route list dev eth0
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-epilog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-epilog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,,,D2,normal-user,sudo show interfaces status
+framework,,,D2,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-prolog-switching-test_portchannel.py.json -y
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-prolog-switching-test_portchannel.py.json
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-prolog-switching-test_portchannel.py.txt
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-prolog-switching-test_portchannel.py.txt
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config portchannel add PortChannel7
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet16
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet20
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet24
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet28
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config vlan add 752
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config vlan member add 752 Ethernet0
+module-prolog,switching/test_portchannel.py,,D2,normal-user,sudo -s config vlan member add 752 PortChannel7
+framework,switching/test_portchannel.py,,D2,normal-user,sudo -s config save /tmp/config-db-V2-post-module-prolog-switching-test_portchannel.py.json -y
+framework,switching/test_portchannel.py,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-prolog-switching-test_portchannel.py.json
+framework,switching/test_portchannel.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,switching/test_portchannel.py,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-prolog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-prolog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,switching/test_portchannel.py,,D2,normal-user,sudo show interfaces status
+framework,switching/test_portchannel.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-prolog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet24
+function-prolog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,show interfaces portchannel | grep -w PortChannel7
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel add PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member add PortChannel8 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member add PortChannel8 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,show interfaces portchannel | grep -w PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config vlan add 1072
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config vlan member add 1072 PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,show interfaces portchannel | grep -w PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config vlan member del 1072 PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,show vlan config
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config vlan del 1072
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,show vlan config
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member del PortChannel8 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member del PortChannel8 Ethernet28
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel del PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,show interfaces portchannel | grep -w PortChannel8
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet24
+function-or-epilog,switching/test_portchannel.py,test_ft_portchannel_with_vlan_variations,D2,normal-user,sudo -s config portchannel member add PortChannel7 Ethernet28
+framework,switching/test_portchannel.py,,D2,normal-user,sudo show interfaces status
+framework,switching/test_portchannel.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-prolog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,show interfaces portchannel
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config portchannel add PortChannel7  --min-links 4
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,show interfaces portchannel
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,show interfaces portchannel
+function-or-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config portchannel add PortChannel7  --min-links True
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-epilog-switching-test_portchannel.py.json -y
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-epilog-switching-test_portchannel.py.json
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-epilog-switching-test_portchannel.py.txt
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-epilog-switching-test_portchannel.py.txt
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,show vlan config
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,show interfaces portchannel
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,show interfaces portchannel | grep -w PortChannel7
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet20
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet28
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet24
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config portchannel member del PortChannel7 Ethernet16
+module-or-class-epilog,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config portchannel del PortChannel7
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s config save /tmp/config-db-V2-post-module-epilog-switching-test_portchannel.py.json -y
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-epilog-switching-test_portchannel.py.json
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,/sbin/ip route list dev eth0
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-epilog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-epilog-switching-test_portchannel.py.txt
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,switching/test_portchannel.py,test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007,D2,normal-user,/sbin/ip route list dev eth0

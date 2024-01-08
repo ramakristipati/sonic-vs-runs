@@ -1,0 +1,38 @@
+REQ: tg_connect(port_list=['1/1', '1/2', '1/3', '1/4', '1/5', '1/6', '1/7', '1/8'])
+RESP: tg_connect {"port_handle": {"1/1": "port-1", "1/2": "port-2", "1/3": "port-3", "1/4": "port-4", "1/5": "port-5", "1/6": "port-6", "1/7": "port-7", "1/8": "port-8"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle=['port-1', 'port-2', 'port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_config(port_handle='port-1',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,l2_encap='ethernet_ii_vlan',vlan_id='424',mac_src='00:0a:01:00:00:01',mac_dst='00:0a:02:00:00:01',high_speed_result_analysis=0,vlan='enable',track_by='trackingenabled0 vlanVlanId0',vlan_id_tracking=1,port_handle2='port-2',frame_size=68)
+RESP: tg_traffic_config {"stream_id": "stream-1-0"}
+REQ: tg_traffic_config(port_handle='port-2',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,l2_encap='ethernet_ii_vlan',vlan_id='424',mac_src='00:0a:02:00:00:01',mac_dst='00:0a:01:00:00:01',high_speed_result_analysis=0,vlan='enable',track_by='trackingenabled0 vlanVlanId0',vlan_id_tracking=1,port_handle2='port-1',frame_size=68)
+RESP: tg_traffic_config {"stream_id": "stream-2-0"}
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-1', 'port-2', 'port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',stream_handle=['stream-1-0', 'stream-2-0'],get='vlan_id')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle=['stream-1-0', 'stream-2-0'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-1',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-1": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 1604, "pkt_byte_count": 109072, "total_pkts": 1604, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1604, "pkt_byte_count": 109462, "total_pkts": 1604, "oversize_count": 0, "name": "port-1"}}, "name": "eth1"}}
+REQ: tg_traffic_stats(port_handle='port-2',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-2": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 1602, "pkt_byte_count": 108936, "total_pkts": 1602, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1606, "pkt_byte_count": 109598, "total_pkts": 1606, "oversize_count": 0, "name": "port-2"}}, "name": "eth2"}}
+REQ: tg_traffic_stats(mode='streams',port_handle='port-1')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-1": {"stream": {"stream-1-0": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 1604, "pkt_byte_count": 109072, "total_pkts": 1604, "name": "stream-1-0"}}}}, "port-2": {"name": "eth2", "stream": {"stream-1-0": {"rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1606, "pkt_byte_count": 109598, "total_pkts": 1606, "oversize_count": 0, "name": "port-2"}}}}}
+REQ: tg_traffic_stats(port_handle='port-2',mode='flow')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "flow": {"1": {"rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1606, "pkt_byte_count": 109598, "total_pkts": 1606, "oversize_count": 0, "name": "port-2"}, "pgid_value": "N/A", "tracking": {"count": "2", "1": {"tracking_name": "Traffic_Item", "tracking_value": "stream_id"}, "2": {"tracking_name": "vlanId", "tracking_value": "100"}}, "flow_name": "stream id", "tx": {"total_pkt_rate": 1, "raw_pkt_count": 1602, "pkt_byte_count": 108936, "total_pkts": 1602, "name": ""}}, "2": {"rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1606, "pkt_byte_count": 109598, "total_pkts": 1606, "oversize_count": 0, "name": "port-2"}, "pgid_value": "N/A", "tracking": {"count": "2", "1": {"tracking_name": "Traffic_Item", "tracking_value": "stream_id"}, "2": {"tracking_name": "vlanId", "tracking_value": "100"}}, "flow_name": "stream id", "tx": {"total_pkt_rate": 1, "raw_pkt_count": 1602, "pkt_byte_count": 108936, "total_pkts": 1602, "name": ""}}}}
+REQ: tg_traffic_control(action='reset',port_handle=['port-1', 'port-2', 'port-5', 'port-6'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_config(port_handle='port-1',mode='create',length_mode='fixed',frame_size=72,mac_src='00:01:00:00:00:01',mac_src_step='00:00:00:00:00:01',mac_src_mode='increment',mac_src_count=100,mac_dst='00:02:00:00:00:02',rate_pps=2000,l2_encap='ethernet_ii_vlan',vlan='enable',vlan_id='424',transmit_mode='continuous')
+RESP: tg_traffic_config {"stream_id": "stream-1-0"}
+REQ: tg_traffic_control(action='run',stream_handle='stream-1-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle='stream-1-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',stream_handle='stream-1-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle='stream-1-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',stream_handle='stream-1-0')
+RESP: tg_traffic_control True
+REQ: tg_disconnect()
+RESP: tg_disconnect {"status": 1}

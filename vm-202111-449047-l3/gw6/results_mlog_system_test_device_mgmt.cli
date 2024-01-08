@@ -1,0 +1,56 @@
+framework,,,D1,normal-user,sudo vtysh
+framework,,,D1,normal-user,configure terminal
+framework,,,D1,vtysh-config,no router bgp
+framework,,,D1,vtysh-config,exit
+framework,,,D1,vtysh-config,exit
+framework,,,D1,normal-user,sudo -s config feature state sflow enabled
+framework,,,D1,normal-user,sudo -s config feature state nat enabled
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-prolog-system-test_device_mgmt.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-prolog-system-test_device_mgmt.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-prolog-system-test_device_mgmt.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-prolog-system-test_device_mgmt.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo -s config save /tmp/config-db-V2-post-module-prolog-system-test_device_mgmt.py.json -y
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-prolog-system-test_device_mgmt.py.json
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_device_mgmt.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-prolog-system-test_device_mgmt.py.txt
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-prolog-system-test_device_mgmt.py.txt
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_device_mgmt.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo show interfaces status
+framework,system/test_device_mgmt.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s dhclient  eth0
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,/sbin/ifconfig eth0
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,/sbin/ifconfig eth0
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo route -n
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s ifconfig eth0 192.168.122.224 netmask 255.255.255.0
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s ip route add default via 192.168.122.1
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s ping -4 192.168.122.1 -c 3
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s ip addr del 192.168.122.224/255.255.255.0 dev eth0
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,/sbin/ifconfig eth0
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s dhclient  eth0
+function-or-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s ping -4 192.168.122.1 -c 3
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-epilog-system-test_device_mgmt.py.json -y
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-epilog-system-test_device_mgmt.py.json
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-epilog-system-test_device_mgmt.py.txt
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-epilog-system-test_device_mgmt.py.txt
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s config save /tmp/config-db-V2-post-module-epilog-system-test_device_mgmt.py.json -y
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-epilog-system-test_device_mgmt.py.json
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,/sbin/ip route list dev eth0
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-epilog-system-test_device_mgmt.py.txt
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-epilog-system-test_device_mgmt.py.txt
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,system/test_device_mgmt.py,test_ft_ip_static_ip_on_mgmt_intrf,D1,normal-user,/sbin/ip route list dev eth0

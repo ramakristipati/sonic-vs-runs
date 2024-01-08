@@ -1,0 +1,14 @@
+REQ: tg_connect(port_list=['1/9', '1/10', '1/11', '1/12'])
+RESP: tg_connect {"port_handle": {"1/9": "port-9", "1/10": "port-10", "1/11": "port-11", "1/12": "port-12"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle=['port-9', 'port-10'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-9', 'port-10'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_config(port_handle='port-9',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,frame_size=72,l2_encap='ethernet_ii_vlan',vlan_id='2270',mac_src='00:0a:01:00:00:01',mac_src_step='00:00:00:00:00:01',mac_src_mode='increment',mac_src_count=10,mac_dst='00:0a:12:00:00:01',vlan='enable')
+RESP: tg_traffic_config {"stream_id": "stream-9-0"}
+REQ: tg_traffic_config(port_handle='port-10',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=10,l2_encap='ethernet_ii_vlan',vlan_id='2270',mac_src='00:0a:12:00:00:01',mac_dst='00:0a:01:00:00:01',vlan='enable')
+RESP: tg_traffic_config {"stream_id": "stream-10-0"}
+REQ: tg_traffic_control(action='run',stream_handle=['stream-9-0', 'stream-10-0'])
+RESP: tg_traffic_control True
+REQ: tg_disconnect()
+RESP: tg_disconnect {"status": 1}

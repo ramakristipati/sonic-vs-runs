@@ -1,0 +1,164 @@
+REQ: tg_connect(port_list=['1/9', '1/10', '1/11', '1/12', '1/13', '1/14', '1/15', '1/16'])
+RESP: tg_connect {"port_handle": {"1/9": "port-9", "1/10": "port-10", "1/11": "port-11", "1/12": "port-12", "1/13": "port-13", "1/14": "port-14", "1/15": "port-15", "1/16": "port-16"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='193.1.1.2',gateway='193.1.1.1',netmask='255.255.255.0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',ipv6_intf_addr='1093:1:1::2',ipv6_prefix_length='64',ipv6_gateway='1093:1:1::1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-1"}
+REQ: tg_traffic_control(action='reset',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='193.2.1.2',gateway='193.2.1.1',netmask='255.255.255.0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',ipv6_intf_addr='1093:2:1::2',ipv6_prefix_length='64',ipv6_gateway='1093:2:1::1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-1"}
+REQ: tg_emulation_bgp_config(handle='iface-13-0',mode='enable',active_connect_enable='1',local_as=63001,remote_as=650002,remote_ip_addr='193.1.1.1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_emulation_bgp_control(handle='iface-13-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-13-1',mode='enable',ip_version='6',active_connect_enable='1',local_as=63001,remote_as=650002,remote_ipv6_addr='1093:1:1::1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-13-1"}
+REQ: tg_emulation_bgp_control(handle='iface-13-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-0',mode='enable',active_connect_enable='1',local_as=64002,remote_as=65001,remote_ip_addr='193.2.1.1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-1',mode='enable',ip_version='6',active_connect_enable='1',local_as=64002,remote_as=65001,remote_ipv6_addr='1093:2:1::1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-1"}
+REQ: tg_emulation_bgp_control(handle='iface-9-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_control(port_handle='port-9',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(port_handle='port-13',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes='100',prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-13',emulation_src_handle='iface-13-0',emulation_dst_handle='bgp-route-9-0-0',circuit_endpoint_type='ipv4',mode='create',transmit_mode='single_burst',pkts_per_burst=200,length_mode='fixed',rate_pps=100)
+RESP: tg_traffic_config {"stream_id": "stream-13-0"}
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',handle='stream-13-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-13-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 2474, "pkt_byte_count": 84944, "total_pkts": 2474, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 200, "pkt_byte_count": 12800, "total_pkts": 200, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 10, "pkt_byte_count": 1160, "total_pkts": 10, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-13-0',mode='add',num_routes='4',prefix='123.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-13-0-0"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-13-0-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-13-0',mode='remove',num_routes='4',prefix='123.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-13-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-1',mode='add',ip_version='6',num_routes='4',prefix='6002:1::0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-1-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-9-1-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-1',mode='remove',ip_version='6',num_routes='4',prefix='6002:1::0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-1-0"}
+REQ: tg_traffic_control(port_handle='port-9',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(port_handle='port-13',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes='100',prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-1"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-13',emulation_src_handle='iface-13-0',emulation_dst_handle='bgp-route-9-0-1',circuit_endpoint_type='ipv4',mode='create',transmit_mode='single_burst',pkts_per_burst=200,length_mode='fixed',rate_pps=100)
+RESP: tg_traffic_config {"stream_id": "stream-13-1"}
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',handle='stream-13-1')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-13-1')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 657, "pkt_byte_count": 23210, "total_pkts": 657, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 200, "pkt_byte_count": 12800, "total_pkts": 200, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 9, "pkt_byte_count": 1118, "total_pkts": 9, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_control(port_handle='port-9',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(port_handle='port-13',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes='100',prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-2"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-13',emulation_src_handle='iface-13-0',emulation_dst_handle='bgp-route-9-0-2',circuit_endpoint_type='ipv4',mode='create',transmit_mode='single_burst',pkts_per_burst=200,length_mode='fixed',rate_pps=100)
+RESP: tg_traffic_config {"stream_id": "stream-13-2"}
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',handle='stream-13-2')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-13-2')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 645, "pkt_byte_count": 22627, "total_pkts": 645, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 200, "pkt_byte_count": 12800, "total_pkts": 200, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 10, "pkt_byte_count": 1160, "total_pkts": 10, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_control(action='reset',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-13',handle='iface-13-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_interface_config(port_handle='port-13',handle='iface-13-1',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_traffic_control(action='reset',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',handle='iface-9-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_interface_config(port_handle='port-9',handle='iface-9-1',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_traffic_control(action='reset',port_handle=['port-9', 'port-13', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-9', 'port-13', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='100.168.1.1',gateway='100.168.1.2',src_mac_addr='00:00:00:00:00:0A',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='100.168.3.3',gateway='100.168.3.1',src_mac_addr='00:00:00:00:00:0B',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_interface_config(port_handle='port-14',mode='config',intf_ip_addr='100.168.4.4',gateway='100.168.4.1',src_mac_addr='00:00:00:00:00:0C',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-14-0"}
+REQ: tg_interface_config(port_handle='port-14',mode='config',ipv6_intf_addr='2001::2',ipv6_prefix_length='64',ipv6_gateway='2001::1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-14-1"}
+REQ: tg_traffic_config(port_handle='port-9',mode='create',transmit_mode='continuous',pkts_per_burst=100000,ip_protocol='17',length_mode='fixed',rate_pps=100000,l3_protocol='ipv4',mac_src='00:00:00:00:00:0A',mac_dst='02:42:ac:12:00:04',ip_src_addr='100.168.1.1',ip_dst_addr='100.168.3.3',l4_protocol='tcp',high_speed_result_analysis=0)
+RESP: tg_traffic_config {"stream_id": "stream-9-0"}
+REQ: tg_packet_control(port_handle='port-14',action='start')
+RESP: tg_packet_control True
+REQ: tg_traffic_control(action='run',handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_packet_control(port_handle='port-14',action='stop')
+RESP: tg_packet_control 1
+REQ: tg_packet_stats(port_handle='port-14',format='var',output_type='hex')
+RESP: tg_packet_stats {"status": "1", "port-14": {"aggregate": {"num_frames": 1}, "frame": {"0": {"length": 263, "frame_pylist": ["01", "80", "C2", "00", "00", "0E", "02", "42", "AC", "12", "00", "05", "88", "CC", "02", "07", "04", "02", "42", "AC", "12", "00", "05", "04", "0D", "07", "66", "6F", "72", "74", "79", "47", "69", "67", "45", "30", "2F", "34", "06", "02", "00", "78", "0A", "05", "73", "6F", "6E", "69", "63", "0C", "83", "53", "4F", "4E", "69", "43", "20", "53", "6F", "66", "74", "77", "61", "72", "65", "20", "56", "65", "72", "73", "69", "6F", "6E", "3A", "20", "53", "4F", "4E", "69", "43", "2E", "32", "30", "32", "31", "31", "31", "2E", "34", "34", "37", "35", "37", "39", "2D", "66", "32", "61", "32", "39", "30", "36", "62", "36", "20", "2D", "20", "48", "77", "53", "6B", "75", "3A", "20", "46", "6F", "72", "63", "65", "31", "30", "2D", "53", "36", "30", "30", "30", "20", "2D", "20", "44", "69", "73", "74", "72", "69", "62", "75", "74", "69", "6F", "6E", "3A", "20", "44", "65", "62", "69", "61", "6E", "20", "31", "31", "2E", "37", "20", "2D", "20", "4B", "65", "72", "6E", "65", "6C", "3A", "20", "35", "2E", "31", "30", "2E", "30", "2D", "38", "2D", "32", "2D", "61", "6D", "64", "36", "34", "0E", "04", "00", "9C", "00", "14", "10", "0C", "05", "01", "F0", "7F", "01", "01", "02", "00", "00", "00", "02", "00", "10", "18", "11", "02", "FD", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "01", "02", "00", "00", "00", "02", "00", "08", "09", "45", "74", "68", "65", "72", "6E", "65", "74", "34", "FE", "09", "00", "12", "0F", "03", "01", "00", "00", "00", "00", "FE", "09", "00", "12", "0F", "01", "00", "80", "00", "00", "0B", "00", "00"], "frame": "01 80 C2 00 00 0E 02 42 AC 12 00 05 88 CC 02 07 04 02 42 AC 12 00 05 04 0D 07 66 6F 72 74 79 47 69 67 45 30 2F 34 06 02 00 78 0A 05 73 6F 6E 69 63 0C 83 53 4F 4E 69 43 20 53 6F 66 74 77 61 72 65 20 56 65 72 73 69 6F 6E 3A 20 53 4F 4E 69 43 2E 32 30 32 31 31 31 2E 34 34 37 35 37 39 2D 66 32 61 32 39 30 36 62 36 20 2D 20 48 77 53 6B 75 3A 20 46 6F 72 63 65 31 30 2D 53 36 30 30 30 20 2D 20 44 69 73 74 72 69 62 75 74 69 6F 6E 3A 20 44 65 62 69 61 6E 20 31 31 2E 37 20 2D 20 4B 65 72 6E 65 6C 3A 20 35 2E 31 30 2E 30 2D 38 2D 32 2D 61 6D 64 36 34 0E 04 00 9C 00 14 10 0C 05 01 F0 7F 01 01 02 00 00 00 02 00 10 18 11 02 FD 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 02 00 00 00 02 00 08 09 45 74 68 65 72 6E 65 74 34 FE 09 00 12 0F 03 01 00 00 00 00 FE 09 00 12 0F 01 00 80 00 00 0B 00 00"}}}}
+REQ: tg_packet_control(port_handle='port-14',action='start')
+RESP: tg_packet_control True
+REQ: tg_traffic_control(action='run',handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_packet_control(port_handle='port-14',action='stop')
+RESP: tg_packet_control 4
+REQ: tg_packet_stats(port_handle='port-14',format='var',output_type='hex')
+RESP: tg_packet_stats {"status": "1", "port-14": {"aggregate": {"num_frames": 4}, "frame": {"0": {"length": 42, "frame_pylist": ["00", "00", "00", "00", "00", "0C", "02", "42", "AC", "12", "00", "05", "08", "06", "00", "01", "08", "00", "06", "04", "00", "02", "02", "42", "AC", "12", "00", "05", "64", "A8", "04", "01", "00", "00", "00", "00", "00", "0C", "64", "A8", "04", "04"], "frame": "00 00 00 00 00 0C 02 42 AC 12 00 05 08 06 00 01 08 00 06 04 00 02 02 42 AC 12 00 05 64 A8 04 01 00 00 00 00 00 0C 64 A8 04 04"}, "1": {"length": 263, "frame_pylist": ["01", "80", "C2", "00", "00", "0E", "02", "42", "AC", "12", "00", "05", "88", "CC", "02", "07", "04", "02", "42", "AC", "12", "00", "05", "04", "0D", "07", "66", "6F", "72", "74", "79", "47", "69", "67", "45", "30", "2F", "34", "06", "02", "00", "78", "0A", "05", "73", "6F", "6E", "69", "63", "0C", "83", "53", "4F", "4E", "69", "43", "20", "53", "6F", "66", "74", "77", "61", "72", "65", "20", "56", "65", "72", "73", "69", "6F", "6E", "3A", "20", "53", "4F", "4E", "69", "43", "2E", "32", "30", "32", "31", "31", "31", "2E", "34", "34", "37", "35", "37", "39", "2D", "66", "32", "61", "32", "39", "30", "36", "62", "36", "20", "2D", "20", "48", "77", "53", "6B", "75", "3A", "20", "46", "6F", "72", "63", "65", "31", "30", "2D", "53", "36", "30", "30", "30", "20", "2D", "20", "44", "69", "73", "74", "72", "69", "62", "75", "74", "69", "6F", "6E", "3A", "20", "44", "65", "62", "69", "61", "6E", "20", "31", "31", "2E", "37", "20", "2D", "20", "4B", "65", "72", "6E", "65", "6C", "3A", "20", "35", "2E", "31", "30", "2E", "30", "2D", "38", "2D", "32", "2D", "61", "6D", "64", "36", "34", "0E", "04", "00", "9C", "00", "14", "10", "0C", "05", "01", "F0", "7F", "01", "01", "02", "00", "00", "00", "02", "00", "10", "18", "11", "02", "FD", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "01", "02", "00", "00", "00", "02", "00", "08", "09", "45", "74", "68", "65", "72", "6E", "65", "74", "34", "FE", "09", "00", "12", "0F", "03", "01", "00", "00", "00", "00", "FE", "09", "00", "12", "0F", "01", "00", "80", "00", "00", "0B", "00", "00"], "frame": "01 80 C2 00 00 0E 02 42 AC 12 00 05 88 CC 02 07 04 02 42 AC 12 00 05 04 0D 07 66 6F 72 74 79 47 69 67 45 30 2F 34 06 02 00 78 0A 05 73 6F 6E 69 63 0C 83 53 4F 4E 69 43 20 53 6F 66 74 77 61 72 65 20 56 65 72 73 69 6F 6E 3A 20 53 4F 4E 69 43 2E 32 30 32 31 31 31 2E 34 34 37 35 37 39 2D 66 32 61 32 39 30 36 62 36 20 2D 20 48 77 53 6B 75 3A 20 46 6F 72 63 65 31 30 2D 53 36 30 30 30 20 2D 20 44 69 73 74 72 69 62 75 74 69 6F 6E 3A 20 44 65 62 69 61 6E 20 31 31 2E 37 20 2D 20 4B 65 72 6E 65 6C 3A 20 35 2E 31 30 2E 30 2D 38 2D 32 2D 61 6D 64 36 34 0E 04 00 9C 00 14 10 0C 05 01 F0 7F 01 01 02 00 00 00 02 00 10 18 11 02 FD 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 02 00 00 00 02 00 08 09 45 74 68 65 72 6E 65 74 34 FE 09 00 12 0F 03 01 00 00 00 00 FE 09 00 12 0F 01 00 80 00 00 0B 00 00"}, "2": {"length": 263, "frame_pylist": ["01", "80", "C2", "00", "00", "0E", "02", "42", "AC", "12", "00", "05", "88", "CC", "02", "07", "04", "02", "42", "AC", "12", "00", "05", "04", "0D", "07", "66", "6F", "72", "74", "79", "47", "69", "67", "45", "30", "2F", "34", "06", "02", "00", "78", "0A", "05", "73", "6F", "6E", "69", "63", "0C", "83", "53", "4F", "4E", "69", "43", "20", "53", "6F", "66", "74", "77", "61", "72", "65", "20", "56", "65", "72", "73", "69", "6F", "6E", "3A", "20", "53", "4F", "4E", "69", "43", "2E", "32", "30", "32", "31", "31", "31", "2E", "34", "34", "37", "35", "37", "39", "2D", "66", "32", "61", "32", "39", "30", "36", "62", "36", "20", "2D", "20", "48", "77", "53", "6B", "75", "3A", "20", "46", "6F", "72", "63", "65", "31", "30", "2D", "53", "36", "30", "30", "30", "20", "2D", "20", "44", "69", "73", "74", "72", "69", "62", "75", "74", "69", "6F", "6E", "3A", "20", "44", "65", "62", "69", "61", "6E", "20", "31", "31", "2E", "37", "20", "2D", "20", "4B", "65", "72", "6E", "65", "6C", "3A", "20", "35", "2E", "31", "30", "2E", "30", "2D", "38", "2D", "32", "2D", "61", "6D", "64", "36", "34", "0E", "04", "00", "9C", "00", "14", "10", "0C", "05", "01", "F0", "7F", "01", "01", "02", "00", "00", "00", "02", "00", "10", "18", "11", "02", "FD", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "01", "02", "00", "00", "00", "02", "00", "08", "09", "45", "74", "68", "65", "72", "6E", "65", "74", "34", "FE", "09", "00", "12", "0F", "03", "01", "00", "00", "00", "00", "FE", "09", "00", "12", "0F", "01", "00", "80", "00", "00", "0B", "00", "00"], "frame": "01 80 C2 00 00 0E 02 42 AC 12 00 05 88 CC 02 07 04 02 42 AC 12 00 05 04 0D 07 66 6F 72 74 79 47 69 67 45 30 2F 34 06 02 00 78 0A 05 73 6F 6E 69 63 0C 83 53 4F 4E 69 43 20 53 6F 66 74 77 61 72 65 20 56 65 72 73 69 6F 6E 3A 20 53 4F 4E 69 43 2E 32 30 32 31 31 31 2E 34 34 37 35 37 39 2D 66 32 61 32 39 30 36 62 36 20 2D 20 48 77 53 6B 75 3A 20 46 6F 72 63 65 31 30 2D 53 36 30 30 30 20 2D 20 44 69 73 74 72 69 62 75 74 69 6F 6E 3A 20 44 65 62 69 61 6E 20 31 31 2E 37 20 2D 20 4B 65 72 6E 65 6C 3A 20 35 2E 31 30 2E 30 2D 38 2D 32 2D 61 6D 64 36 34 0E 04 00 9C 00 14 10 0C 05 01 F0 7F 01 01 02 00 00 00 02 00 10 18 11 02 FD 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 02 00 00 00 02 00 08 09 45 74 68 65 72 6E 65 74 34 FE 09 00 12 0F 03 01 00 00 00 00 FE 09 00 12 0F 01 00 80 00 00 0B 00 00"}, "3": {"length": 263, "frame_pylist": ["01", "80", "C2", "00", "00", "0E", "02", "42", "AC", "12", "00", "05", "88", "CC", "02", "07", "04", "02", "42", "AC", "12", "00", "05", "04", "0D", "07", "66", "6F", "72", "74", "79", "47", "69", "67", "45", "30", "2F", "34", "06", "02", "00", "78", "0A", "05", "73", "6F", "6E", "69", "63", "0C", "83", "53", "4F", "4E", "69", "43", "20", "53", "6F", "66", "74", "77", "61", "72", "65", "20", "56", "65", "72", "73", "69", "6F", "6E", "3A", "20", "53", "4F", "4E", "69", "43", "2E", "32", "30", "32", "31", "31", "31", "2E", "34", "34", "37", "35", "37", "39", "2D", "66", "32", "61", "32", "39", "30", "36", "62", "36", "20", "2D", "20", "48", "77", "53", "6B", "75", "3A", "20", "46", "6F", "72", "63", "65", "31", "30", "2D", "53", "36", "30", "30", "30", "20", "2D", "20", "44", "69", "73", "74", "72", "69", "62", "75", "74", "69", "6F", "6E", "3A", "20", "44", "65", "62", "69", "61", "6E", "20", "31", "31", "2E", "37", "20", "2D", "20", "4B", "65", "72", "6E", "65", "6C", "3A", "20", "35", "2E", "31", "30", "2E", "30", "2D", "38", "2D", "32", "2D", "61", "6D", "64", "36", "34", "0E", "04", "00", "9C", "00", "14", "10", "0C", "05", "01", "F0", "7F", "01", "01", "02", "00", "00", "00", "02", "00", "10", "18", "11", "02", "FD", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "00", "01", "02", "00", "00", "00", "02", "00", "08", "09", "45", "74", "68", "65", "72", "6E", "65", "74", "34", "FE", "09", "00", "12", "0F", "03", "01", "00", "00", "00", "00", "FE", "09", "00", "12", "0F", "01", "00", "80", "00", "00", "0B", "00", "00"], "frame": "01 80 C2 00 00 0E 02 42 AC 12 00 05 88 CC 02 07 04 02 42 AC 12 00 05 04 0D 07 66 6F 72 74 79 47 69 67 45 30 2F 34 06 02 00 78 0A 05 73 6F 6E 69 63 0C 83 53 4F 4E 69 43 20 53 6F 66 74 77 61 72 65 20 56 65 72 73 69 6F 6E 3A 20 53 4F 4E 69 43 2E 32 30 32 31 31 31 2E 34 34 37 35 37 39 2D 66 32 61 32 39 30 36 62 36 20 2D 20 48 77 53 6B 75 3A 20 46 6F 72 63 65 31 30 2D 53 36 30 30 30 20 2D 20 44 69 73 74 72 69 62 75 74 69 6F 6E 3A 20 44 65 62 69 61 6E 20 31 31 2E 37 20 2D 20 4B 65 72 6E 65 6C 3A 20 35 2E 31 30 2E 30 2D 38 2D 32 2D 61 6D 64 36 34 0E 04 00 9C 00 14 10 0C 05 01 F0 7F 01 01 02 00 00 00 02 00 10 18 11 02 FD 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 02 00 00 00 02 00 08 09 45 74 68 65 72 6E 65 74 34 FE 09 00 12 0F 03 01 00 00 00 00 FE 09 00 12 0F 01 00 80 00 00 0B 00 00"}}}}

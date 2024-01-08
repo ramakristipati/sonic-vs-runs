@@ -1,0 +1,191 @@
+framework,,,D2,normal-user,sudo vtysh
+framework,,,D2,normal-user,configure terminal
+framework,,,D2,vtysh-config,no router bgp
+framework,,,D2,vtysh-config,exit
+framework,,,D2,vtysh-config,exit
+framework,,,D2,normal-user,sudo -s config feature state sflow enabled
+framework,,,D2,normal-user,sudo -s config feature state nat enabled
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,,,D2,normal-user,sudo show interfaces status
+framework,,,D2,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-prolog-sanity-test_sanity_l3.py.json -y
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-prolog-sanity-test_sanity_l3.py.json
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-prolog-sanity-test_sanity_l3.py.txt
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-prolog-sanity-test_sanity_l3.py.txt
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,show ip interface
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,show ipv6 interface
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,show vlan config
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,show interfaces portchannel
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s config interface ip add Ethernet0 192.168.13.1/24
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s config interface ip add Ethernet48 192.168.12.2/24
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,sudo vtysh
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,configure terminal
+module-prolog,sanity/test_sanity_l3.py,,D2,vtysh-config,ip route 192.168.11.0/24 192.168.12.1
+module-prolog,sanity/test_sanity_l3.py,,D2,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D2,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s config interface ip add Ethernet0 2013::1/64
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s config interface ip add Ethernet48 2012::2/64
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,sudo vtysh
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,configure terminal
+module-prolog,sanity/test_sanity_l3.py,,D2,vtysh-config,ipv6 route 2011::/64 2012::1
+module-prolog,sanity/test_sanity_l3.py,,D2,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D2,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s ping -4 192.168.13.2 -c 3 -W 7
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s config save /tmp/config-db-V4-post-module-prolog-sanity-test_sanity_l3.py.json -y
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-prolog-sanity-test_sanity_l3.py.json
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-prolog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-prolog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo show interfaces status
+framework,sanity/test_sanity_l3.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s sonic-clear arp
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s sonic-clear ndp
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s ping -4 192.168.12.1 -c 3
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s ping -6 2012::1 -c 3
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-epilog-sanity-test_sanity_l3.py.json -y
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-epilog-sanity-test_sanity_l3.py.json
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-epilog-sanity-test_sanity_l3.py.txt
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-epilog-sanity-test_sanity_l3.py.txt
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo vtysh
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,configure terminal
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,vtysh-config,no ipv6 route 2011::/64 2012::1
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s config interface ip remove Ethernet0 2013::1/64
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s config interface ip remove Ethernet48 2012::2/64
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo vtysh
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,configure terminal
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,vtysh-config,no ip route 192.168.11.0/24 192.168.12.1
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s config interface ip remove Ethernet48 192.168.12.2/24
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s config interface ip remove Ethernet0 192.168.13.1/24
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s config save /tmp/config-db-V4-post-module-epilog-sanity-test_sanity_l3.py.json -y
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-epilog-sanity-test_sanity_l3.py.json
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,/sbin/ip route list dev eth0
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-epilog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-epilog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh
+framework,,,D1,normal-user,configure terminal
+framework,,,D1,vtysh-config,no router bgp
+framework,,,D1,vtysh-config,exit
+framework,,,D1,vtysh-config,exit
+framework,,,D1,normal-user,sudo -s config feature state sflow enabled
+framework,,,D1,normal-user,sudo -s config feature state nat enabled
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-prolog-sanity-test_sanity_l3.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-sanity-test_sanity_l3.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-sanity-test_sanity_l3.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-sanity-test_sanity_l3.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,show ip interface
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,show ipv6 interface
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,show vlan config
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,show interfaces portchannel
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 192.168.11.1/24
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s config interface ip add Ethernet48 192.168.12.1/24
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,sudo vtysh
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,configure terminal
+module-prolog,sanity/test_sanity_l3.py,,D1,vtysh-config,ip route 192.168.13.0/24 192.168.12.2
+module-prolog,sanity/test_sanity_l3.py,,D1,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D1,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 2011::1/64
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s config interface ip add Ethernet48 2012::1/64
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,sudo vtysh
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,configure terminal
+module-prolog,sanity/test_sanity_l3.py,,D1,vtysh-config,ipv6 route 2013::/64 2012::2
+module-prolog,sanity/test_sanity_l3.py,,D1,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D1,vtysh-config,exit
+module-prolog,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s ping -4 192.168.11.2 -c 3 -W 7
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-prolog-sanity-test_sanity_l3.py.json -y
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-prolog-sanity-test_sanity_l3.py.json
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-prolog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-prolog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo show interfaces status
+framework,sanity/test_sanity_l3.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config vlan add 10
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Ethernet48 192.168.12.1/24
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo vtysh
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,configure terminal
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,no ipv6 route 2013::/64 2012::2
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Ethernet48 2012::1/64
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip add Vlan10 192.168.12.1/24
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip add Vlan10 2012::1/64
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo vtysh
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,configure terminal
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,ipv6 route 2013::/64 2012::2
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config vlan member add 10 Ethernet48 -u
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,show vlan config
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s ping -4 192.168.13.1 -c 3 -W 7
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s ping -6 2013::1 -c 3 -W 7
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s sonic-clear arp
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s sonic-clear ndp
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config vlan member del 10 Ethernet48
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Vlan10 192.168.12.1/24
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Vlan10 2012::1/64
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,show vlan config
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config vlan del 10
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,show vlan config
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip add Ethernet48 192.168.12.1/24
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip add Ethernet48 2012::1/64
+function-or-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s ping -4 192.168.13.1 -c 3 -W 7
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-epilog-sanity-test_sanity_l3.py.json -y
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-epilog-sanity-test_sanity_l3.py.json
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-epilog-sanity-test_sanity_l3.py.txt
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-epilog-sanity-test_sanity_l3.py.txt
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo vtysh
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,configure terminal
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,no ipv6 route 2013::/64 2012::2
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Ethernet48 192.168.12.1/24
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Ethernet0 192.168.11.1/24
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo vtysh
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,configure terminal
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,no ip route 192.168.13.0/24 192.168.12.2
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,vtysh-config,exit
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Ethernet48 2012::1/64
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config interface ip remove Ethernet0 2011::1/64
+module-or-class-epilog,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,show vlan config
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-epilog-sanity-test_sanity_l3.py.json -y
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-epilog-sanity-test_sanity_l3.py.json
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,/sbin/ip route list dev eth0
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-epilog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-epilog-sanity-test_sanity_l3.py.txt
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,sanity/test_sanity_l3.py,test_l2_to_l3_port,D1,normal-user,/sbin/ip route list dev eth0

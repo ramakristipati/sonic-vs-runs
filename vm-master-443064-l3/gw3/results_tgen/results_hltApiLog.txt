@@ -1,0 +1,328 @@
+REQ: tg_connect(port_list=['1/9', '1/10', '1/11', '1/12', '1/13', '1/14', '1/15', '1/16'])
+RESP: tg_connect {"port_handle": {"1/9": "port-9", "1/10": "port-10", "1/11": "port-11", "1/12": "port-12", "1/13": "port-13", "1/14": "port-14", "1/15": "port-15", "1/16": "port-16"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='193.1.1.2',gateway='193.1.1.1',netmask='255.255.255.0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',ipv6_intf_addr='1093:1:1::2',ipv6_prefix_length='64',ipv6_gateway='1093:1:1::1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-1"}
+REQ: tg_traffic_control(action='reset',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='193.2.1.2',gateway='193.2.1.1',netmask='255.255.255.0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',ipv6_intf_addr='1093:2:1::2',ipv6_prefix_length='64',ipv6_gateway='1093:2:1::1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-1"}
+REQ: tg_emulation_bgp_config(handle='iface-13-0',mode='enable',active_connect_enable='1',local_as=63001,remote_as=650002,remote_ip_addr='193.1.1.1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_emulation_bgp_control(handle='iface-13-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-13-1',mode='enable',ip_version='6',active_connect_enable='1',local_as=63001,remote_as=650002,remote_ipv6_addr='1093:1:1::1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-13-1"}
+REQ: tg_emulation_bgp_control(handle='iface-13-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-0',mode='enable',active_connect_enable='1',local_as=64002,remote_as=65001,remote_ip_addr='193.2.1.1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-1',mode='enable',ip_version='6',active_connect_enable='1',local_as=64002,remote_as=65001,remote_ipv6_addr='1093:2:1::1',enable_4_byte_as='1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-1"}
+REQ: tg_emulation_bgp_control(handle='iface-9-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_control(port_handle='port-9',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(port_handle='port-13',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes='100',prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-13',emulation_src_handle='iface-13-0',emulation_dst_handle='bgp-route-9-0-0',circuit_endpoint_type='ipv4',mode='create',transmit_mode='single_burst',pkts_per_burst=200,length_mode='fixed',rate_pps=100)
+RESP: tg_traffic_config {"stream_id": "stream-13-0"}
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',handle='stream-13-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-13-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1054, "pkt_byte_count": 36271, "total_pkts": 1054, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 200, "pkt_byte_count": 12800, "total_pkts": 200, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 6, "pkt_byte_count": 868, "total_pkts": 6, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-13-0',mode='add',num_routes='4',prefix='122.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-13-0-0"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-13-0-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-13-0',mode='add',num_routes='4',prefix='123.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-13-0-1"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-13-0-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-13-0',mode='remove',num_routes='4',prefix='123.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-13-0-1"}
+REQ: tg_emulation_bgp_control(handle='iface-9-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-1',mode='add',ip_version='6',num_routes='4',prefix='6002:1::0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-1-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-9-1-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_control(port_handle='port-9',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(port_handle='port-13',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes='100',prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-1"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-13',emulation_src_handle='iface-13-0',emulation_dst_handle='bgp-route-9-0-1',circuit_endpoint_type='ipv4',mode='create',transmit_mode='single_burst',pkts_per_burst=200,length_mode='fixed',rate_pps=100)
+RESP: tg_traffic_config {"stream_id": "stream-13-1"}
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',handle='stream-13-1')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-13-1')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1061, "pkt_byte_count": 36782, "total_pkts": 1061, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 200, "pkt_byte_count": 12800, "total_pkts": 200, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 6, "pkt_byte_count": 868, "total_pkts": 6, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_control(port_handle='port-9',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(port_handle='port-13',action='clear_stats')
+RESP: tg_traffic_control True
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes='100',prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-2"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-13',emulation_src_handle='iface-13-0',emulation_dst_handle='bgp-route-9-0-2',circuit_endpoint_type='ipv4',mode='create',transmit_mode='single_burst',pkts_per_burst=200,length_mode='fixed',rate_pps=100)
+RESP: tg_traffic_config {"stream_id": "stream-13-2"}
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',handle='stream-13-2')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',handle='stream-13-2')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 645, "pkt_byte_count": 22594, "total_pkts": 645, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 200, "pkt_byte_count": 12800, "total_pkts": 200, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 8, "pkt_byte_count": 988, "total_pkts": 8, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_control(action='reset',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-13',handle='iface-13-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_interface_config(port_handle='port-13',handle='iface-13-1',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_traffic_control(action='reset',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',handle='iface-9-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_interface_config(port_handle='port-9',handle='iface-9-1',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='1.0.1.2',gateway='1.0.1.1',netmask='255.255.255.0',vlan='1',vlan_id='11',intf_ip_addr_step='0.0.0.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='6.0.6.2',gateway='6.0.6.1',netmask='255.255.255.0',vlan='1',vlan_id='16',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',ipv6_intf_addr='2011::2',ipv6_prefix_length='64',ipv6_gateway='2011::1',arp_send_req='1',vlan='1',vlan_id='11')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-1"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',ipv6_intf_addr='2026::2',ipv6_prefix_length='64',ipv6_gateway='2026::1',arp_send_req='1',vlan='1',vlan_id='16')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-1"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='1.0.2.2',gateway='1.0.2.1',netmask='255.255.255.0',vlan='1',vlan_id='12',intf_ip_addr_step='0.0.0.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-2"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='6.0.7.2',gateway='6.0.7.1',netmask='255.255.255.0',vlan='1',vlan_id='17',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-2"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',ipv6_intf_addr='2012::2',ipv6_prefix_length='64',ipv6_gateway='2012::1',arp_send_req='1',vlan='1',vlan_id='12')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-3"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',ipv6_intf_addr='2027::2',ipv6_prefix_length='64',ipv6_gateway='2027::1',arp_send_req='1',vlan='1',vlan_id='17')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-3"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='1.0.3.2',gateway='1.0.3.1',netmask='255.255.255.0',vlan='1',vlan_id='13',intf_ip_addr_step='0.0.0.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-4"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='6.0.8.2',gateway='6.0.8.1',netmask='255.255.255.0',vlan='1',vlan_id='18',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-4"}
+REQ: tg_interface_config(port_handle='port-9',mode='config',ipv6_intf_addr='2013::2',ipv6_prefix_length='64',ipv6_gateway='2013::1',arp_send_req='1',vlan='1',vlan_id='13')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-5"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',ipv6_intf_addr='2028::2',ipv6_prefix_length='64',ipv6_gateway='2028::1',arp_send_req='1',vlan='1',vlan_id='18')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-5"}
+REQ: tg_interface_config(protocol_handle='iface-9-0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-9": {}}
+REQ: tg_interface_config(protocol_handle='iface-9-2',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-9": {}}
+REQ: tg_interface_config(protocol_handle='iface-9-4',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-9": {}}
+REQ: tg_interface_config(protocol_handle='iface-9-1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-9": {}}
+REQ: tg_interface_config(protocol_handle='iface-9-3',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-9": {}}
+REQ: tg_interface_config(protocol_handle='iface-9-5',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-9": {}}
+REQ: tg_interface_config(protocol_handle='iface-13-0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-13": {}}
+REQ: tg_interface_config(protocol_handle='iface-13-2',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-13": {}}
+REQ: tg_interface_config(protocol_handle='iface-13-4',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-13": {}}
+REQ: tg_interface_config(protocol_handle='iface-13-1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-13": {}}
+REQ: tg_interface_config(protocol_handle='iface-13-3',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-13": {}}
+REQ: tg_interface_config(protocol_handle='iface-13-5',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "port-13": {}}
+REQ: tg_emulation_bgp_config(handle='iface-9-0',mode='enable',active_connect_enable='1',local_as='300',remote_as='101',remote_ip_addr='1.0.1.1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes='50',as_path='as_seq:1',prefix='10.0.0.0')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-1',mode='enable',ip_version='6',active_connect_enable='1',local_as='300',remote_as='101',remote_ipv6_addr='2011::1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-1"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-1',mode='add',ip_version='6',num_routes='50',as_path='as_seq:1',prefix='2110::1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-1-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-1',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-2',mode='enable',active_connect_enable='1',local_as='300',remote_as='102',remote_ip_addr='1.0.2.1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-2"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-2',mode='add',num_routes='50',as_path='as_seq:1',prefix='10.0.0.0')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-2-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-2',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-3',mode='enable',ip_version='6',active_connect_enable='1',local_as='300',remote_as='102',remote_ipv6_addr='2012::1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-3"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-3',mode='add',ip_version='6',num_routes='50',as_path='as_seq:1',prefix='2110::1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-3-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-3',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-4',mode='enable',active_connect_enable='1',local_as='300',remote_as='103',remote_ip_addr='1.0.3.1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-4"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-4',mode='add',num_routes='50',as_path='as_seq:1',prefix='10.0.0.0')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-4-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-4',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_config(handle='iface-9-5',mode='enable',ip_version='6',active_connect_enable='1',local_as='300',remote_as='103',remote_ipv6_addr='2013::1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-5"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-5',mode='add',ip_version='6',num_routes='50',as_path='as_seq:1',prefix='2110::1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-5-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-5',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-13',duration='2',emulation_src_handle='iface-13-0',emulation_dst_handle='bgp-route-9-0-0',circuit_endpoint_type='ipv4',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,port_handle2='port-9')
+RESP: tg_traffic_config {"stream_id": "stream-13-0"}
+REQ: tg_traffic_config(port_handle='port-13',duration='2',emulation_src_handle='iface-13-2',emulation_dst_handle='bgp-route-9-2-0',circuit_endpoint_type='ipv4',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,port_handle2='port-9')
+RESP: tg_traffic_config {"stream_id": "stream-13-1"}
+REQ: tg_traffic_config(port_handle='port-13',duration='2',emulation_src_handle='iface-13-4',emulation_dst_handle='bgp-route-9-4-0',circuit_endpoint_type='ipv4',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,port_handle2='port-9')
+RESP: tg_traffic_config {"stream_id": "stream-13-2"}
+REQ: tg_traffic_config(port_handle='port-13',duration='2',emulation_src_handle='iface-13-1',emulation_dst_handle='bgp-route-9-1-0',circuit_endpoint_type='ipv6',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,port_handle2='port-9')
+RESP: tg_traffic_config {"stream_id": "stream-13-3"}
+REQ: tg_traffic_config(port_handle='port-13',duration='2',emulation_src_handle='iface-13-3',emulation_dst_handle='bgp-route-9-3-0',circuit_endpoint_type='ipv6',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,port_handle2='port-9')
+RESP: tg_traffic_config {"stream_id": "stream-13-4"}
+REQ: tg_traffic_config(port_handle='port-13',duration='2',emulation_src_handle='iface-13-5',emulation_dst_handle='bgp-route-9-5-0',circuit_endpoint_type='ipv6',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,port_handle2='port-9')
+RESP: tg_traffic_config {"stream_id": "stream-13-5"}
+REQ: tg_traffic_control(action='reset',port_handle=['port-9', 'port-13'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-9', 'port-13'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='192.168.1.1',gateway='192.168.1.2',src_mac_addr='00:00:00:EA:23:0F',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='192.168.5.2',gateway='192.168.5.1',src_mac_addr='00:00:11:0A:45:33',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_interface_config(protocol_handle='iface-9-0',send_ping='1',ping_dst='192.168.1.2')
+RESP: tg_interface_config {"status": "1", "port-9": {"ping_details": "PING 192.168.1.2 (192.168.1.2) 56(84) bytes of data.\n64 bytes from 192.168.1.2: icmp_seq=1 ttl=64 time=1.68 ms\n\n--- 192.168.1.2 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 1.682/1.682/1.682/0.000 ms\n"}}
+REQ: tg_emulation_bgp_config(handle='iface-9-0',mode='enable',active_connect_enable='1',local_as='200',remote_as='100',remote_ip_addr='192.168.1.2')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_emulation_bgp_route_config(handle='iface-9-0',mode='add',num_routes=256,prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-9-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-9-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_traffic_config(port_handle='port-9',mode='create',transmit_mode='single_burst',pkts_per_burst=100,length_mode='fixed',rate_pps=100,l3_protocol='ipv4',mac_src='00:00:00:EA:23:0F',mac_dst='52:54:00:38:43:99',ip_src_addr='192.168.1.1',ip_dst_addr='192.168.5.2')
+RESP: tg_traffic_config {"stream_id": "stream-9-0"}
+REQ: tg_traffic_control(action='run',stream_handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 100, "pkt_byte_count": 6400, "total_pkts": 100, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 130, "pkt_byte_count": 14027, "total_pkts": 130, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 107, "pkt_byte_count": 4578, "total_pkts": 107, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 100, "pkt_byte_count": 6400, "total_pkts": 100, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 131, "pkt_byte_count": 14290, "total_pkts": 131, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 107, "pkt_byte_count": 4578, "total_pkts": 107, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_traffic_control(action='reset',port_handle=['port-10', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-10', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-10',mode='config',ipv6_intf_addr='2001::1',ipv6_prefix_length='64',ipv6_gateway='2001::2',src_mac_addr='00:00:00:EA:23:0F',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-10-0"}
+REQ: tg_interface_config(port_handle='port-14',mode='config',ipv6_intf_addr='6661::2',ipv6_prefix_length='64',ipv6_gateway='6661::1',src_mac_addr='00:00:11:0A:45:33',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-14-0"}
+REQ: tg_interface_config(protocol_handle='iface-10-0',send_ping='1',ping_dst='2001::2')
+RESP: tg_interface_config {"status": "1", "port-10": {"ping_details": "PING 2001::2(2001::2) 56 data bytes\n64 bytes from 2001::2: icmp_seq=1 ttl=64 time=0.854 ms\n\n--- 2001::2 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 0.854/0.854/0.854/0.000 ms\n"}}
+REQ: tg_traffic_config(port_handle='port-10',mode='create',transmit_mode='single_burst',pkts_per_burst=100,length_mode='fixed',rate_pps=100,l3_protocol='ipv6',mac_src='00:00:00:EA:23:0F',mac_dst='52:54:00:38:43:99',ipv6_src_addr='2001::1',ipv6_dst_addr='6661::2')
+RESP: tg_traffic_config {"stream_id": "stream-10-0"}
+REQ: tg_traffic_control(action='run',stream_handle='stream-10-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle='stream-10-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-10',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-10": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 100, "pkt_byte_count": 6400, "total_pkts": 100, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 8, "pkt_byte_count": 889, "total_pkts": 8, "oversize_count": 0, "name": "port-10"}}, "name": "eth10"}}
+REQ: tg_traffic_stats(port_handle='port-14',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-14": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 106, "pkt_byte_count": 6085, "total_pkts": 106, "oversize_count": 0, "name": "port-14"}}, "name": "eth14"}}
+REQ: tg_traffic_stats(port_handle='port-10',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-10": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 100, "pkt_byte_count": 6400, "total_pkts": 100, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 9, "pkt_byte_count": 1152, "total_pkts": 9, "oversize_count": 0, "name": "port-10"}}, "name": "eth10"}}
+REQ: tg_traffic_stats(port_handle='port-14',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-14": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 107, "pkt_byte_count": 6348, "total_pkts": 107, "oversize_count": 0, "name": "port-14"}}, "name": "eth14"}}
+REQ: tg_traffic_control(action='reset',port_handle=['port-9', 'port-13'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-9', 'port-13'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='192.168.1.1',gateway='192.168.1.2',src_mac_addr='00:00:00:EA:23:0F',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-1"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='192.168.5.2',gateway='192.168.5.1',src_mac_addr='00:00:11:0A:45:33',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-1"}
+REQ: tg_interface_config(protocol_handle='iface-9-1',send_ping='1',ping_dst='192.168.1.2')
+RESP: tg_interface_config {"status": "1", "port-9": {"ping_details": "PING 192.168.1.2 (192.168.1.2) 56(84) bytes of data.\n64 bytes from 192.168.1.2: icmp_seq=1 ttl=64 time=0.724 ms\n\n--- 192.168.1.2 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 0.724/0.724/0.724/0.000 ms\n"}}
+REQ: tg_traffic_config(port_handle='port-9',mode='create',transmit_mode='single_burst',pkts_per_burst=100,length_mode='fixed',rate_pps=100,l3_protocol='ipv4',mac_src='00:00:00:EA:23:0F',mac_dst='52:54:00:38:43:99',ip_src_addr='192.168.1.1',ip_dst_addr='192.168.5.2')
+RESP: tg_traffic_config {"stream_id": "stream-9-0"}
+REQ: tg_traffic_control(action='run',stream_handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 100, "pkt_byte_count": 6400, "total_pkts": 100, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 7, "pkt_byte_count": 859, "total_pkts": 7, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 104, "pkt_byte_count": 4010, "total_pkts": 104, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_traffic_control(action='stop',stream_handle='stream-9-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='reset',port_handle=['port-9', 'port-13'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-9', 'port-13'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_config(port_handle='port-13',mode='create',rate_pps=100,mac_src_mode='fixed',transmit_mode='single_burst',pkts_per_burst=100,length_mode='fixed',l2_encap='ethernet_ii_vlan',vlan_id='1863',mac_dst_mode='fixed',vlan='enable',mac_src='00:a1:bb:cc:dd:01',mac_dst='00:b1:bb:cc:dd:01')
+RESP: tg_traffic_config {"stream_id": "stream-13-0"}
+REQ: tg_traffic_control(action='run',stream_handle='stream-13-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle='stream-13-0')
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 100, "pkt_byte_count": 6400, "total_pkts": 100, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 2, "pkt_byte_count": 560, "total_pkts": 2, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 102, "pkt_byte_count": 6960, "total_pkts": 102, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_control(action='reset',port_handle=['port-9', 'port-13'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='192.168.11.2',gateway='192.168.11.1',src_mac_addr='00:0a:01:00:11:01',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='192.168.13.2',gateway='192.168.13.1',src_mac_addr='00:0a:01:00:12:01',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_traffic_config(port_handle='port-9',port_handle2='port-13',mode='create',transmit_mode='continuous',length_mode='fixed',l3_length=500,rate_pps=100,emulation_src_handle='iface-9-0',emulation_dst_handle='iface-13-0')
+RESP: tg_traffic_config {"stream_id": "stream-9-0"}
+REQ: tg_traffic_config(port_handle='port-13',port_handle2='port-9',mode='create',transmit_mode='continuous',length_mode='fixed',l3_length=500,rate_pps=100,emulation_src_handle='iface-13-0',emulation_dst_handle='iface-9-0')
+RESP: tg_traffic_config {"stream_id": "stream-13-0"}
+REQ: tg_disconnect()
+RESP: tg_disconnect {"status": 1}

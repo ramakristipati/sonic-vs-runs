@@ -1,0 +1,30 @@
+REQ: tg_connect(port_list=['1/13', '1/14', '1/15', '1/16'])
+RESP: tg_connect {"port_handle": {"1/13": "port-13", "1/14": "port-14", "1/15": "port-15", "1/16": "port-16"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle=['port-13', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='10.10.10.2',gateway='10.10.10.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_interface_config(port_handle='port-14',mode='config',intf_ip_addr='20.20.20.2',gateway='20.20.20.1',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-14-0"}
+REQ: tg_emulation_bgp_config(handle='iface-13-0',mode='enable',active_connect_enable='1',local_as=200,remote_as=100,remote_ip_addr='10.10.10.1')
+RESP: tg_emulation_bgp_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_emulation_bgp_route_config(handle='iface-13-0',mode='add',num_routes=16000,prefix='121.1.1.0',as_path='as_seq:1')
+RESP: tg_emulation_bgp_route_config {"status": "1", "handle": "bgp-route-13-0-0"}
+REQ: tg_emulation_bgp_control(handle='iface-13-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-13-0-0',mode='stop')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_emulation_bgp_control(handle='bgp-route-13-0-0',mode='start')
+RESP: tg_emulation_bgp_control {"status": "1"}
+REQ: tg_interface_config(port_handle='port-13',handle='iface-13-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_interface_config(port_handle='port-14',handle='iface-14-0',mode='destroy')
+RESP: tg_interface_config {"status": "1"}
+REQ: tg_traffic_control(action='reset',port_handle=['port-13', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_interface_config(port_handle='port-13',mode='config',ipv6_intf_addr='2001::100',ipv6_prefix_length='64',ipv6_gateway='2001::1',src_mac_addr='00:0a:01:01:23:01',arp_send_req='1',count=5)
+RESP: tg_interface_config {"status": "1", "handle": ["iface-13-0", "iface-13-0", "iface-13-0", "iface-13-0", "iface-13-0"]}
+REQ: tg_interface_config(port_handle='port-14',mode='config',ipv6_intf_addr='3001::100',ipv6_prefix_length='64',ipv6_gateway='3001::1',src_mac_addr='00:0b:01:01:23:01',arp_send_req='1',vlan_id=64,vlan=1,count=5)
+RESP: tg_interface_config {"status": "1", "handle": ["iface-14-0", "iface-14-0", "iface-14-0", "iface-14-0", "iface-14-0"]}
+REQ: tg_disconnect()
+RESP: tg_disconnect {"status": 1}

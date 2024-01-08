@@ -1,0 +1,1524 @@
+framework,,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,,,D2,normal-user,sudo show interfaces status
+framework,,,D2,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-prolog-routing-BGP-test_bgp.py.json -y
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-prolog-routing-BGP-test_bgp.py.json
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-prolog-routing-BGP-test_bgp.py.txt
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-prolog-routing-BGP-test_bgp.py.txt
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,show ip interface
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,show ipv6 interface
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,show vlan config
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,show interfaces portchannel
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s config interface ip add Loopback0 1.2.3.4/32
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s config interface ip add Loopback0 6001::1/128
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s config interface ip add Ethernet0 193.1.1.1/24
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s config interface ip add Ethernet0 1093:1:1::1/64
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo vtysh
+module-prolog,routing/BGP/test_bgp.py,,D2,normal-user,configure terminal
+module-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+module-prolog,routing/BGP/test_bgp.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 63001\nneighbor 193.1.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+module-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+module-prolog,routing/BGP/test_bgp.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 63001\nneighbor 1093:1:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.1/24
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::1/64
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s ping -4 11.1.1.2 -c 3
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s ping -6 67fe:1:1::2 -c 3
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,,D2,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine peer-group\nneighbor leaf_spine remote-as 65001\nneighbor leaf_spine password Test_127\nneighbor 11.1.1.2 peer-group leaf_spine\naddress-family ipv4 unicast\nneighbor leaf_spine activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine6 peer-group\nneighbor leaf_spine6 remote-as 65001\nneighbor leaf_spine6 password Test_127\nneighbor 67fe:1:1::2 peer-group leaf_spine6\naddress-family ipv6 unicast\nneighbor leaf_spine6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 63001\nneighbor 193.1.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 63001\nneighbor 1093:1:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,do show bgp ipv4 summary
+class-prolog,routing/BGP/test_bgp.py,,D2,vtysh-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s config save /tmp/config-db-V4-post-module-prolog-routing-BGP-test_bgp.py.json -y
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-prolog-routing-BGP-test_bgp.py.json
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-prolog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-prolog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,neighbor Ethernet48 interface remote-as 65001\naddress-family ipv6 unicast\nneighbor Ethernet48 activate\nexit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,do show bgp ipv6 neighbors
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D2,vtysh-router-config,no neighbor Ethernet48 interface remote-as 65001
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,clear ip bgp *
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,clear ip bgp ipv4 *
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,clear ip bgp ipv6 *
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_graceful_restart_and_aware_routers,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_graceful_restart_and_aware_routers,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_graceful_restart_and_aware_routers,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_graceful_restart_and_aware_routers,D2,vtysh-router-config,bgp graceful-restart
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_graceful_restart_and_aware_routers,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_graceful_restart_and_aware_routers,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_graceful_restart_and_aware_routers,D2,vtysh-router-config,no bgp graceful-restart
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D2,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D2,vtysh-router-config,address-family ipv4\naggregate-address 122.1.1.0/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D2,vtysh-router-config,address-family ipv4\nno aggregate-address 122.1.1.0/24
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D2,vtysh-user,show ip bgp neighbors
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D2,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D2,vtysh-router-config,address-family ipv4\naggregate-address 151.1.0.0/16 summary-only as-set
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D2,vtysh-router-config,address-family ipv4\nno aggregate-address 151.1.0.0/16 summary-only as-set
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D2,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,normal-user,sudo -s config interface ip add Ethernet48 45.45.45.45/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-config,neighbor spine_leaf peer-group\nneighbor spine_leaf remote-as 65001\nneighbor spine_leaf timers 60 180\naddress-family ipv4 unicast\nneighbor spine_leaf activate
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-config,neighbor 45.45.45.46 peer-group spine_leaf
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-config,no neighbor 45.45.45.46 remote-as 65001
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D2,normal-user,sudo -s config interface ip remove Ethernet48 45.45.45.45/24
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,normal-user,sudo -s config interface ip add Ethernet48 2001::2/64
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,neighbor leaf_spine6 peer-group\nneighbor leaf_spine6 remote-as 65001\nneighbor leaf_spine6 timers 60 180\naddress-family ipv6 unicast\nneighbor leaf_spine6 activate
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,bgp listen range 2001::0/64 peer-group leaf_spine6
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,no bgp listen range 2001::0/64 peer-group leaf_spine6
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D2,normal-user,sudo -s config interface ip remove Ethernet48 2001::2/64
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,bgp listen limit 5
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,neighbor leaf_spine peer-group\nneighbor leaf_spine remote-as 65001\nneighbor leaf_spine timers 60 180\naddress-family ipv4 unicast\nneighbor leaf_spine activate
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip add Ethernet48 21.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,bgp listen range 21.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip add Ethernet48 22.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,bgp listen range 22.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip add Ethernet48 23.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,bgp listen range 23.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip add Ethernet48 24.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,bgp listen range 24.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip add Ethernet48 25.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,bgp listen range 25.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,no bgp listen limit 5
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,no bgp listen range 21.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip remove Ethernet48 21.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,no bgp listen range 22.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip remove Ethernet48 22.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,no bgp listen range 23.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip remove Ethernet48 23.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,no bgp listen range 24.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip remove Ethernet48 24.0.5.1/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,no bgp listen range 25.0.5.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D2,normal-user,sudo -s config interface ip remove Ethernet48 25.0.5.1/24
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,network 134.5.6.0/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,access-list test-access-list1 deny 134.5.6.0/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,route-map test-rmap deny 10
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-route-map-config,match ip address test-access-list1\nexit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,network 134.5.6.0/24 route-map test-rmap
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,no route-map test-rmap permit 10
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,no access-list test-access-list1 deny 134.5.6.0/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,no network 134.5.6.0/24 route-map test-rmap
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,do show running bgp
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,no router bgp 650002
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.1/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::1/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.1/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::1/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo -s ping -4 11.1.1.2 -c 3
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo -s ping -6 67fe:1:1::2 -c 3
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine peer-group\nneighbor leaf_spine remote-as 65001\nneighbor leaf_spine password Test_127\nneighbor 11.1.1.2 peer-group leaf_spine\naddress-family ipv4 unicast\nneighbor leaf_spine activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine6 peer-group\nneighbor leaf_spine6 remote-as 65001\nneighbor leaf_spine6 password Test_127\nneighbor 67fe:1:1::2 peer-group leaf_spine6\naddress-family ipv6 unicast\nneighbor leaf_spine6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 63001\nneighbor 193.1.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 63001\nneighbor 1093:1:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,do show bgp ipv4 summary
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,do show bgp ipv6 summary
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,address-family ipv4 unicast\nnetwork 201.1.1.0/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,address-family ipv4 unicast\nnetwork 202.1.1.0/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,address-family ipv6 unicast\nnetwork 201:1::/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,address-family ipv6 unicast\nnetwork 202:1::/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-af-config,route-map UseGlobal permit 10\nset ipv6 next-hop prefer-global
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-route-map-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 route-map UseGlobal in\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D2,vtysh-router-config,access-list 11 deny 102.1.1.0/24\naccess-list 11 permit any\nipv6 access-list 12 deny 102:1::/64\nipv6 access-list 12 permit any\nip prefix-list PREFIXOUT seq 5 deny 202.1.1.0/24\nip prefix-list PREFIXOUT seq 6 permit any\nipv6 prefix-list PREFIXOUT6 seq 7 deny 202:1::/64\nipv6 prefix-list PREFIXOUT6 seq 8 permit any\nbgp as-path access-list FILTER deny 65001\nbgp as-path access-list FILTER6 deny 65001\nip prefix-list MATCHPREFIX1 seq 9 permit 101.1.1.0/24\nip prefix-list MATCHPREFIX1 seq 10 deny any\nip prefix-list MATCHPREFIX2 seq 11 permit 102.1.1.0/24\nip prefix-list MATCHPREFIX2 seq 12 deny any\nipv6 prefix-list MATCHPREFIX61 seq 13 permit 101:1::/64\nipv6 prefix-list MATCHPREFIX61 seq 14 deny any\nipv6 prefix-list MATCHPREFIX62 seq 15 permit 102:1::/64\nipv6 prefix-list MATCHPREFIX62 seq 16 deny any\nroute-map SETPROPS permit 10\nmatch ip address prefix-list MATCHPREFIX1\nset local-preference 200\nroute-map SETPROPS permit 20\nmatch ip address prefix-list MATCHPREFIX2\nset metric 400\nroute-map SETPROPS6 permit 10\nmatch ipv6 address prefix-list MATCHPREFIX61\nset ipv6 next-hop prefer-global\nset local-preference 6200\nroute-map SETPROPS6 permit 20\nmatch ipv6 address prefix-list MATCHPREFIX62\nset ipv6 next-hop prefer-global\nset metric 6400
+framework,routing/BGP/test_bgp.py,,D2,vtysh-route-map-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-route-map-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-route-map-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D2,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D2,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D2,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.1.1.2 distribute-list 11 in\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,vtysh-router-config,do show bgp ipv4
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nno neighbor 11.1.1.2 distribute-list 11 in\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.1.1.2 filter-list FILTER in\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,vtysh-router-config,do show bgp ipv4
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nno neighbor 11.1.1.2 filter-list FILTER in\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.1.1.2 prefix-list PREFIXOUT out\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nneighbor 67fe:1:1::2 prefix-list PREFIXOUT out\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 prefix-list PREFIXOUT out\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nno neighbor 11.1.1.2 prefix-list PREFIXOUT out\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nno neighbor 67fe:1:1::2 prefix-list PREFIXOUT out\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 prefix-list PREFIXOUT out\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.1.1.2 default-originate route-map UseGlobal\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nno neighbor 11.1.1.2 default-originate route-map UseGlobal\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv4,D2,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv4,D2,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv4,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv4,D2,vtysh-router-config,address-family ipv4 unicast\nno neighbor 11.1.1.2 route-map SETPROPS in\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D2,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D2,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D2,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 distribute-list 12 in\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,vtysh-router-config,do show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_distribute_list_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 distribute-list 12 in\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 filter-list FILTER in\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,vtysh-router-config,do show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 filter-list FILTER in\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 prefix-list PREFIXOUT6 out\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 prefix-list PREFIXOUT6 out\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 filter-list FILTER6 out\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 filter-list FILTER6 out\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 default-originate route-map UseGlobal\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 default-originate route-map UseGlobal\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,normal-user,sudo vtysh
+function-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,normal-user,configure terminal
+function-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 route-map UseGlobal in\nexit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,do show bgp ipv6
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 route-map SETPROPS6 in\nexit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,do show bgp ipv6
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 route-map SETPROPS6 in\nexit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_map_in_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::2 route-map UseGlobal in\nexit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,vtysh-config,route-map rmap1 permit 10\nset community 100:100\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,vtysh-router-config,bgp confederation peers 65001\naddress-family ipv4 unicast\nneighbor 11.1.1.2 route-map rmap1 in\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,vtysh-router-config,do show bgp ipv4 40.1.1.1/32
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,vtysh-router-config,no bgp confederation peers 65001\naddress-family ipv4 unicast\nno neighbor 11.1.1.2 route-map rmap1 in\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D2,vtysh-router-config,no route-map rmap1 permit 10
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,neighbor 11.1.1.2 update-source 11.1.1.1
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,neighbor 11.1.1.2 ebgp-multihop 2
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-user,clear ip bgp ipv4 *
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,no neighbor 11.1.1.2 update-source 11.1.1.1
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,router bgp 650002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D2,vtysh-router-config,no neighbor 11.1.1.2 ebgp-multihop 2
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-router-config,neighbor 11.1.1.2 password broadcom
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-user,clear ip bgp ipv4 *
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D2,vtysh-router-config,no neighbor 11.1.1.2 password broadcom
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D2,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-user,show bgp ipv6
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,address-family ipv4 unicast\nno network 201.1.1.0/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,address-family ipv4 unicast\nno network 202.1.1.0/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno network 201:1::/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno network 202:1::/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-af-config,router bgp 650002\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::2 route-map UseGlobal in\nexit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,no route-map SETPROPS6\nno route-map SETPROPS\nno ipv6 prefix-list MATCHPREFIX62\nno ipv6 prefix-list MATCHPREFIX61\nno ip prefix-list MATCHPREFIX2\nno ip prefix-list MATCHPREFIX1\nno bgp as-path access-list FILTER6\nno bgp as-path access-list FILTER\nno ipv6 prefix-list PREFIXOUT6\nno ip prefix-list PREFIXOUT\nno ipv6 access-list 12\nno access-list 11\nno route-map UseGlobal
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,do show running bgp
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,no router bgp 650002
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,exit
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,exit
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.1/24
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::1/64
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,show ip interface
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.1/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::1/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo -s ping -4 11.1.1.2 -c 3
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo -s ping -6 67fe:1:1::2 -c 3
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine peer-group\nneighbor leaf_spine remote-as 65001\nneighbor leaf_spine password Test_127\nneighbor 11.1.1.2 peer-group leaf_spine\naddress-family ipv4 unicast\nneighbor leaf_spine activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine6 peer-group\nneighbor leaf_spine6 remote-as 65001\nneighbor leaf_spine6 password Test_127\nneighbor 67fe:1:1::2 peer-group leaf_spine6\naddress-family ipv6 unicast\nneighbor leaf_spine6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 63001\nneighbor 193.1.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 63001\nneighbor 1093:1:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,do show bgp ipv4 summary
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D2,vtysh-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,clear ip bgp *
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,clear ip bgp ipv4 *
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,clear ip bgp ipv6 *
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D2,vtysh-user,show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-user,show running bgp
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,no router bgp 650002
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.1/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::1/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo -s config vlan member del 11 PortChannel11
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.1/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::1/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo -s ping -4 11.1.1.2 -c 3
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo -s ping -6 67fe:1:1::2 -c 3
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine peer-group\nneighbor leaf_spine remote-as 65001\nneighbor leaf_spine password Test_127\nneighbor 11.1.1.2 peer-group leaf_spine\naddress-family ipv4 unicast\nneighbor leaf_spine activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine6 peer-group\nneighbor leaf_spine6 remote-as 65001\nneighbor leaf_spine6 password Test_127\nneighbor 67fe:1:1::2 peer-group leaf_spine6\naddress-family ipv6 unicast\nneighbor leaf_spine6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 63001\nneighbor 193.1.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,router bgp 650002\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 63001\nneighbor 1093:1:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,do show bgp ipv4 summary
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D2,vtysh-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,show bgp ipv4 summary
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,show running bgp
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-config,no router bgp 650002
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.1/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::1/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config portchannel member del PortChannel11 Ethernet48
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-epilog-routing-BGP-test_bgp.py.json -y
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-epilog-routing-BGP-test_bgp.py.json
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,/sbin/ip route list dev eth0
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-epilog-routing-BGP-test_bgp.py.txt
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-epilog-routing-BGP-test_bgp.py.txt
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,/sbin/ip route list dev eth0
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Loopback0 1.2.3.4/32
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Loopback0 6001::1/128
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet0 193.1.1.1/24
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet0 1093:1:1::1/64
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo vtysh
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,show running bgp
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,vtysh-user,exit
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,show ip interface
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,show ipv6 interface
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,show vlan config
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,show interfaces portchannel
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s config save /tmp/config-db-V4-post-module-epilog-routing-BGP-test_bgp.py.json -y
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-epilog-routing-BGP-test_bgp.py.json
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-epilog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-epilog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-prolog-routing-BGP-test_bgp.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-routing-BGP-test_bgp.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-BGP-test_bgp.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-BGP-test_bgp.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,show ip interface
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,show ipv6 interface
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,show vlan config
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,show interfaces portchannel
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s config interface ip add Loopback0 2.3.4.5/32
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s config interface ip add Loopback0 6002::2/128
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 193.2.1.1/24
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 1093:2:1::1/64
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo vtysh
+module-prolog,routing/BGP/test_bgp.py,,D1,normal-user,configure terminal
+module-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+module-prolog,routing/BGP/test_bgp.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 64002\nneighbor 193.2.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+module-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+module-prolog,routing/BGP/test_bgp.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 64002\nneighbor 1093:2:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+class-prolog,routing/BGP/test_bgp.py,,D1,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,,D1,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.2/24
+class-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::2/64
+class-prolog,routing/BGP/test_bgp.py,,D1,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,,D1,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf peer-group\nneighbor spine_leaf remote-as 650002\nneighbor spine_leaf password Test_127\nneighbor 11.1.1.1 peer-group spine_leaf\naddress-family ipv4 unicast\nneighbor spine_leaf activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf6 peer-group\nneighbor spine_leaf6 remote-as 650002\nneighbor spine_leaf6 password Test_127\nneighbor 67fe:1:1::1 peer-group spine_leaf6\naddress-family ipv6 unicast\nneighbor spine_leaf6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 64002\nneighbor 193.2.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 64002\nneighbor 1093:2:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-prolog-routing-BGP-test_bgp.py.json -y
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-prolog-routing-BGP-test_bgp.py.json
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-prolog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-prolog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,neighbor Ethernet48 interface remote-as 650002\naddress-family ipv6 unicast\nneighbor Ethernet48 activate\nexit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 neighbors
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,do show bgp ipv6 neighbors
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_link_local_bgp,D1,vtysh-router-config,no neighbor Ethernet48 interface remote-as 650002
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D1,vtysh-user,clear ip bgp *
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D1,vtysh-user,clear ip bgp ipv4 *
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_clear,D1,vtysh-user,clear ip bgp ipv6 *
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,update-delay 60
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-user,clear ip bgp ipv4 *
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,neighbor 193.2.1.2 timers connect 10
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo -s ping -4 193.2.1.2 -c 3
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,update-delay 0
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_no_route_aggregation_for_exact_prefix_match,D1,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv4_route_aggregation_atomic_aggregate_without_as_set,D1,vtysh-user,show ip bgp neighbors
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_bgp_route_aggregation_4byteASN,D1,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D1,vtysh-router-config,address-family ipv6\naggregate-address 6002:1::0/64 summary-only as-set
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D1,vtysh-router-af-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_ipv6_route_aggregation_with_as_set,D1,vtysh-router-config,address-family ipv6\nno aggregate-address 6002:1::0/64 summary-only as-set
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,normal-user,sudo -s config interface ip add Ethernet48 45.45.45.46/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,neighbor leaf_spine peer-group\nneighbor leaf_spine remote-as 650002\nneighbor leaf_spine timers 60 180\naddress-family ipv4 unicast\nneighbor leaf_spine activate
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,bgp listen range 45.45.45.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,do show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,no bgp listen range 45.45.45.0/24 peer-group leaf_spine
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_dyn_nbr,D1,normal-user,sudo -s config interface ip remove Ethernet48 45.45.45.46/24
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,normal-user,sudo -s config interface ip add Ethernet48 2001::1/64
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-config,neighbor spine_leaf6 peer-group\nneighbor spine_leaf6 remote-as 650002\nneighbor spine_leaf6 timers 60 180\naddress-family ipv6 unicast\nneighbor spine_leaf6 activate
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-config,neighbor 2001::2 peer-group spine_leaf6
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-config,address-family ipv6 unicast
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-af-config,neighbor 2001::2 activate
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-config,no neighbor 2001::2 remote-as 650002
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v6_dyn_nbr,D1,normal-user,sudo -s config interface ip remove Ethernet48 2001::1/64
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip add Ethernet48 21.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,neighbor 21.0.5.1 peer-group spine_leaf
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip add Ethernet48 22.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,neighbor 22.0.5.1 peer-group spine_leaf
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip add Ethernet48 23.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,neighbor 23.0.5.1 peer-group spine_leaf
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip add Ethernet48 24.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,neighbor 24.0.5.1 peer-group spine_leaf
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip add Ethernet48 25.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,neighbor 25.0.5.1 peer-group spine_leaf
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,no neighbor 21.0.5.1 remote-as 650002
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip remove Ethernet48 21.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,no neighbor 22.0.5.1 remote-as 650002
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip remove Ethernet48 22.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,no neighbor 23.0.5.1 remote-as 650002
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip remove Ethernet48 23.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,no neighbor 24.0.5.1 remote-as 650002
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip remove Ethernet48 24.0.5.2/24
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,no neighbor 25.0.5.1 remote-as 650002
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_v4_max_dyn_nbr,D1,normal-user,sudo -s config interface ip remove Ethernet48 25.0.5.2/24
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-user,show ip route
+framework,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-user,show ip route
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-user,show running bgp
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,no router bgp 65001
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.2/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::2/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.2/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::2/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf peer-group\nneighbor spine_leaf remote-as 650002\nneighbor spine_leaf password Test_127\nneighbor 11.1.1.1 peer-group spine_leaf\naddress-family ipv4 unicast\nneighbor spine_leaf activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf6 peer-group\nneighbor spine_leaf6 remote-as 650002\nneighbor spine_leaf6 password Test_127\nneighbor 67fe:1:1::1 peer-group spine_leaf6\naddress-family ipv6 unicast\nneighbor spine_leaf6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 64002\nneighbor 193.2.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 64002\nneighbor 1093:2:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,address-family ipv4 unicast\nnetwork 101.1.1.0/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,address-family ipv4 unicast\nnetwork 102.1.1.0/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,address-family ipv6 unicast\nnetwork 101:1::/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,address-family ipv6 unicast\nnetwork 102:1::/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-af-config,route-map UseGlobal permit 10\nset ipv6 next-hop prefer-global
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-route-map-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPRif::test_ft_bgp_rmap,D1,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:1:1::1 route-map UseGlobal in\nexit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-router-config,address-family ipv4 unicast\nredistribute connected
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,normal-user,show ip route
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv4,D1,vtysh-router-config,address-family ipv4 unicast\nno redistribute connected
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-config,ip route 100.1.1.1/32 Ethernet48
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,normal-user,show ip route
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-router-config,address-family ipv4 unicast\nredistribute static
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-router-config,address-family ipv4 unicast\nno redistribute static
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv4,D1,vtysh-router-af-config,no ip route 100.1.1.1/32 Ethernet48
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D1,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv4,D1,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D1,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv4,D1,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nredistribute connected
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,normal-user,show ipv6 route
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_connected_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nno redistribute connected
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-config,ipv6 route 100:1::1:1/128 Ethernet48
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,normal-user,show ipv6 route
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nredistribute static
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nno redistribute static
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_redistribute_static_ipv6,D1,vtysh-router-af-config,no ipv6 route 100:1::1:1/128 Ethernet48
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D1,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_prefix_list_out_ipv6,D1,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D1,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_filter_list_out_ipv6,D1,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D1,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_default_originate_ipv6,D1,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,vtysh-config,ip route 40.1.1.1/32 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,vtysh-router-config,address-family ipv4 unicast\nredistribute static\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,vtysh-router-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,vtysh-router-config,address-family ipv4 unicast\nno redistribute static\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_route_map_with_community,D1,vtysh-router-config,no ip route 40.1.1.1/32 blackhole
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,neighbor 11.1.1.1 update-source 11.1.1.2
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,neighbor 11.1.1.1 ebgp-multihop 2
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-user,clear ip bgp ipv4 *
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,no neighbor 11.1.1.1 update-source 11.1.1.2
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_update_source,D1,vtysh-router-config,no neighbor 11.1.1.1 ebgp-multihop 2
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-router-config,neighbor 11.1.1.1 password broadcom
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-user,clear ip bgp ipv4 *
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-user,end\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo -s ls -lrt /tmp/tmpklhzco8u
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo -s config load -y /tmp/tmpklhzco8u
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo -s config save -y
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-config,do copy running-config startup-config
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-config,do copy running-config startup-config
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo -s fast-reboot
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,login_prompt,admin
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,login_prompt,YourPaSsWoRd
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,export TMOUT=0;stty cols 5000;uptime
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,cat /proc/uptime
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,export TMOUT=0;stty cols 5000;uptime
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,cat /proc/uptime
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo vtysh -c 'show running-config | include hostname'
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,export TMOUT=0;stty cols 5000;uptime
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo -s date --set='Mon Dec 25 23:29:03 2023'
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_bgp_ebgp4_nbr_authentication,D1,vtysh-router-config,no neighbor 11.1.1.1 password broadcom
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-config,ipv6 route 2018:3:1::/64 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-config,ipv6 route 2018:3:2::/64 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-config,ipv6 route 2018:3:3::/64 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-config,address-family ipv6\naggregate-address 2018:3::/32 summary-only
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nredistribute static
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-af-config,do show bgp ipv6
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-config,address-family ipv6\nno aggregate-address 2018:3::/32 summary-only
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-af-config,no ipv6 route 2018:3:1::/64 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-config,no ipv6 route 2018:3:2::/64 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-config,no ipv6 route 2018:3:3::/64 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_route_aggregate_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nno redistribute static
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,ipv6 route 2012:1::/64 blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,route-map rmap_blackhole permit 10\nset metric 50\nexit
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nredistribute static route-map rmap_blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nno redistribute static route-map rmap_blackhole
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-af-config,no route-map rmap_blackhole permit 10
+framework,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,no ipv6 route 2012:1::/64 blackhole
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,address-family ipv4 unicast\nno network 101.1.1.0/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,address-family ipv4 unicast\nno network 102.1.1.0/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nno network 101:1::/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nno network 102:1::/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:1:1::1 route-map UseGlobal in\nexit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,no route-map UseGlobal
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,do show running bgp
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,no router bgp 65001
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,exit
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,exit
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.2/24
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::2/64
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,show ip interface
+module-epilog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.2/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::2/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf peer-group\nneighbor spine_leaf remote-as 650002\nneighbor spine_leaf password Test_127\nneighbor 11.1.1.1 peer-group spine_leaf\naddress-family ipv4 unicast\nneighbor spine_leaf activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf6 peer-group\nneighbor spine_leaf6 remote-as 650002\nneighbor spine_leaf6 password Test_127\nneighbor 67fe:1:1::1 peer-group spine_leaf6\naddress-family ipv6 unicast\nneighbor spine_leaf6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 64002\nneighbor 193.2.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPIPvxRouteAdvertisementFilter::test_static_blackhole_rt_redistribute_with_routemap_ipv6,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 64002\nneighbor 1093:2:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D1,vtysh-user,clear ip bgp *
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D1,vtysh-user,clear ip bgp ipv4 *
+framework,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_clear,D1,vtysh-user,clear ip bgp ipv6 *
+framework,routing/BGP/test_bgp.py,,D1,vtysh-user,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,update-delay 60
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-user,clear ip bgp ipv4 *
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,neighbor 193.2.1.2 timers connect 10
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,exit
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo -s ping -4 193.2.1.2 -c 3
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,update-delay 0
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,do show running bgp
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,no router bgp 65001
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.2/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::2/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo -s config vlan member del 11 PortChannel11
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.2/24
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::2/64
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf peer-group\nneighbor spine_leaf remote-as 650002\nneighbor spine_leaf password Test_127\nneighbor 11.1.1.1 peer-group spine_leaf\naddress-family ipv4 unicast\nneighbor spine_leaf activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf6 peer-group\nneighbor spine_leaf6 remote-as 650002\nneighbor spine_leaf6 password Test_127\nneighbor 67fe:1:1::1 peer-group spine_leaf6\naddress-family ipv6 unicast\nneighbor spine_leaf6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 64002\nneighbor 193.2.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp.py,TestBGPVeLag::test_ft_bgp_peer_traffic_check,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 64002\nneighbor 1093:2:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-router-config,update-delay 60
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-user,clear ip bgp ipv4 *
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-user,configure terminal
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-router-config,neighbor 193.2.1.2 timers connect 10
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-router-config,exit
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s ping -4 193.2.1.2 -c 3
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-user,show running bgp
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-config,no router bgp 65001
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.2/24
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::2/64
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config portchannel member del PortChannel11 Ethernet48
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-epilog-routing-BGP-test_bgp.py.json -y
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-epilog-routing-BGP-test_bgp.py.json
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,/sbin/ip route list dev eth0
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-BGP-test_bgp.py.txt
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-BGP-test_bgp.py.txt
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,/sbin/ip route list dev eth0
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Loopback0 2.3.4.5/32
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Loopback0 6002::2/128
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet0 193.2.1.1/24
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet0 1093:2:1::1/64
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo vtysh
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-user,show running bgp
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,vtysh-user,exit
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,show ip interface
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,show ipv6 interface
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,show vlan config
+module-epilog,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,show interfaces portchannel
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-epilog-routing-BGP-test_bgp.py.json -y
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-epilog-routing-BGP-test_bgp.py.json
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-epilog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-epilog-routing-BGP-test_bgp.py.txt
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp.py,TestBGPL3Lag::test_ft_bgp_l3lag_peer_traffic_check,D1,normal-user,/sbin/ip route list dev eth0

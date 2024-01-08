@@ -1,0 +1,81 @@
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-prolog-routing-NAT-test_nat.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-routing-NAT-test_nat.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-NAT-test_nat.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-NAT-test_nat.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,show platform summary
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 12.12.0.1/16
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 125.56.90.12/24
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 125.56.90.13/24
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 125.56.90.14/24
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 125.56.90.15/24
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 125.56.90.23/24
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 125.56.90.24/24
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,/sbin/ifconfig Ethernet0
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo vtysh
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,configure terminal
+module-prolog,routing/NAT/test_nat.py,,D1,vtysh-config,ip route 129.2.30.0/24 125.56.90.1
+module-prolog,routing/NAT/test_nat.py,,D1,vtysh-config,ip route 88.98.128.0/24 12.12.0.2
+module-prolog,routing/NAT/test_nat.py,,D1,vtysh-config,ip route 99.99.99.0/24 125.56.90.1
+module-prolog,routing/NAT/test_nat.py,,D1,vtysh-config,exit
+module-prolog,routing/NAT/test_nat.py,,D1,vtysh-config,exit
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat feature enable
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add interface Ethernet0 -nat_zone 0
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add interface Ethernet4 -nat_zone 1
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add static basic 125.56.90.12 12.12.0.2  -nat_type dnat
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add static tcp 125.56.90.13 100 12.12.0.3 1002 -nat_type dnat
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add static udp 12.12.0.4 7781 125.56.90.14 7811 -nat_type snat
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add static basic 88.98.128.2 11.11.11.2  -nat_type snat
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add static basic 125.56.90.15 12.12.0.5  -nat_type dnat -twice_nat_id 100
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add static basic 99.99.99.1 15.15.0.1  -nat_type snat -twice_nat_id 100
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,show nat translations
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add pool pool_123_nat  125.56.90.23-125.56.90.24 333-334
+module-prolog,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config nat add binding bind_1 pool_123_nat
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-prolog-routing-NAT-test_nat.py.json -y
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-prolog-routing-NAT-test_nat.py.json
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/NAT/test_nat.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-prolog-routing-NAT-test_nat.py.txt
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-prolog-routing-NAT-test_nat.py.txt
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/NAT/test_nat.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo show interfaces status
+framework,routing/NAT/test_nat.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-prolog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s sonic-clear counters
+function-prolog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s sonic-clear nat statistics
+function-or-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s systemctl stop nat
+function-or-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s systemctl start nat
+function-or-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,show nat translations
+function-or-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,show nat translations
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-epilog-routing-NAT-test_nat.py.json -y
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-epilog-routing-NAT-test_nat.py.json
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-NAT-test_nat.py.txt
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-NAT-test_nat.py.txt
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s config nat remove interface Ethernet0
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s config nat remove interface Ethernet4
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo config nat remove static all;sudo config nat remove bindings;sudo config nat remove pools;
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s config nat feature disable
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo vtysh
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,configure terminal
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,vtysh-config,no ip route 129.2.30.0/24 125.56.90.1
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,vtysh-config,exit
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,vtysh-config,exit
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,show ip interface
+module-or-class-epilog,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s config interface ip remove Ethernet0 12.12.0.1/16
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-epilog-routing-NAT-test_nat.py.json -y
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-epilog-routing-NAT-test_nat.py.json
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-epilog-routing-NAT-test_nat.py.txt
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-epilog-routing-NAT-test_nat.py.txt
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/NAT/test_nat.py,test_ft_nat_docker_restart,D1,normal-user,/sbin/ip route list dev eth0

@@ -1,0 +1,170 @@
+framework,,,D2,normal-user,sudo vtysh
+framework,,,D2,normal-user,configure terminal
+framework,,,D2,vtysh-config,no router bgp
+framework,,,D2,vtysh-config,exit
+framework,,,D2,vtysh-config,exit
+framework,,,D2,normal-user,sudo -s config feature state sflow enabled
+framework,,,D2,normal-user,sudo -s config feature state nat enabled
+framework,,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,,,D2,normal-user,sudo show interfaces status
+framework,,,D2,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json -y
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json
+framework,,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s config interface ip add Loopback0 1.2.3.4/32
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s config interface ip add Loopback0 6001::1/128
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s config interface ip add Ethernet0 193.1.1.1/24
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s config interface ip add Ethernet0 1093:1:1::1/64
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.1/24
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::1/64
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s ping -4 11.1.1.2 -c 3
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s ping -6 67fe:1:1::2 -c 3
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 63001\nneighbor 193.1.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 63001\nneighbor 1093:1:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine peer-group\nneighbor leaf_spine remote-as 65001\nneighbor leaf_spine password Test_127\nneighbor 11.1.1.2 peer-group leaf_spine\naddress-family ipv4 unicast\nneighbor leaf_spine activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_spine6 peer-group\nneighbor leaf_spine6 remote-as 65001\nneighbor leaf_spine6 password Test_127\nneighbor 67fe:1:1::2 peer-group leaf_spine6\naddress-family ipv6 unicast\nneighbor leaf_spine6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,do show bgp ipv4 summary
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s config save /tmp/config-db-V4-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json -y
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_rr_traffic.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-user,show bgp ipv6 summary
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-user,show bgp ipv6 summary
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-user,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s sonic-clear counters
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-user,show running bgp
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-config,no router bgp 65001
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.1/24
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::1/64
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-config,no router bgp
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet0 193.1.1.1/24
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Loopback0 1.2.3.4/32
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet0 1093:1:1::1/64
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Loopback0 6001::1/128
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-user,show running bgp
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,vtysh-user,exit
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json -y
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Loopback0 1.2.3.4/32
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Loopback0 6001::1/128
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet0 193.1.1.1/24
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config interface ip remove Ethernet0 1093:1:1::1/64
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s config save /tmp/config-db-V4-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json -y
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,,,D1,normal-user,sudo vtysh
+framework,,,D1,normal-user,configure terminal
+framework,,,D1,vtysh-config,no router bgp
+framework,,,D1,vtysh-config,exit
+framework,,,D1,vtysh-config,exit
+framework,,,D1,normal-user,sudo -s config feature state sflow enabled
+framework,,,D1,normal-user,sudo -s config feature state nat enabled
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s config interface ip add Loopback0 2.3.4.5/32
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s config interface ip add Loopback0 6002::2/128
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 193.2.1.1/24
+module-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 1093:2:1::1/64
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,show ip interface
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,show ipv6 interface
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s config interface ip add Ethernet48 11.1.1.2/24
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s config interface ip add Ethernet48 67fe:1:1::2/64
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg peer-group\nneighbor leaf_tg remote-as 65001\nneighbor 193.2.1.2 peer-group leaf_tg\naddress-family ipv4 unicast\nneighbor leaf_tg activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor leaf_tg6 peer-group\nneighbor leaf_tg6 remote-as 65001\nneighbor 1093:2:1::2 peer-group leaf_tg6\naddress-family ipv6 unicast\nneighbor leaf_tg6 activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf peer-group\nneighbor spine_leaf remote-as 65001\nneighbor spine_leaf password Test_127\nneighbor 11.1.1.1 peer-group spine_leaf\naddress-family ipv4 unicast\nneighbor spine_leaf activate\nexit\nexit
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-router-config,no bgp default ipv4-unicast\nneighbor spine_leaf6 peer-group\nneighbor spine_leaf6 remote-as 65001\nneighbor spine_leaf6 password Test_127\nneighbor 67fe:1:1::1 peer-group spine_leaf6\naddress-family ipv6 unicast\nneighbor spine_leaf6 activate\nexit\nexit
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json -y
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.json
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-prolog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_rr_traffic.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-router-config,address-family ipv6 unicast\nneighbor spine_leaf6 route-reflector-client
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-router-config,address-family ipv6 unicast\nneighbor spine_leaf6 next-hop-self force
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s sonic-clear counters
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-user,show running bgp
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-config,no router bgp 65001
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet48 11.1.1.2/24
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet48 67fe:1:1::2/64
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-config,no router bgp
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet0 193.2.1.1/24
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Loopback0 2.3.4.5/32
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet0 1093:2:1::1/64
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Loopback0 6002::2/128
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,show ip interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,show ipv6 interface
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-user,show running bgp
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,vtysh-user,exit
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json -y
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Loopback0 2.3.4.5/32
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Loopback0 6002::2/128
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet0 193.2.1.1/24
+module-epilog,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config interface ip remove Ethernet0 1093:2:1::1/64
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json -y
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.json
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt
+framework,routing/BGP/test_bgp_rr_traffic.py,TestBGPRrTraffic::test_ft_bgp6_rr_traffic_check,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-epilog-routing-BGP-test_bgp_rr_traffic.py.txt

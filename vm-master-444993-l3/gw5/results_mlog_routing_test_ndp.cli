@@ -1,0 +1,51 @@
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-prolog-routing-test_ndp.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-prolog-routing-test_ndp.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-prolog-routing-test_ndp.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-prolog-routing-test_ndp.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/test_ndp.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 2001::1/64
+module-prolog,routing/test_ndp.py,,D1,normal-user,sudo -s config vlan add 64
+module-prolog,routing/test_ndp.py,,D1,normal-user,sudo -s config vlan member add 64 Ethernet4
+module-prolog,routing/test_ndp.py,,D1,normal-user,sudo -s config interface ip add Vlan64 3001::1/64
+framework,routing/test_ndp.py,,D1,normal-user,sudo -s config save /tmp/config-db-V2-post-module-prolog-routing-test_ndp.py.json -y
+framework,routing/test_ndp.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-prolog-routing-test_ndp.py.json
+framework,routing/test_ndp.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/test_ndp.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/test_ndp.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-prolog-routing-test_ndp.py.txt
+framework,routing/test_ndp.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-prolog-routing-test_ndp.py.txt
+framework,routing/test_ndp.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/test_ndp.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/test_ndp.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_ndp.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,show ndp
+function-or-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,show ndp | grep 'Total number of entries'
+function-or-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s sonic-clear ndp
+function-or-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,show ndp | grep 'Total number of entries'
+function-or-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s ip -6 neighbor replace 2001::500 lladdr 00:0c:01:01:23:01 dev Ethernet0
+function-or-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,show ndp | grep 'Total number of entries'
+function-or-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s ip -6 neighbor del 2001::500 lladdr 00:0c:01:01:23:01 dev Ethernet0
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-epilog-routing-test_ndp.py.json -y
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-epilog-routing-test_ndp.py.json
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-epilog-routing-test_ndp.py.txt
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-epilog-routing-test_ndp.py.txt
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,show ipv6 interface
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s config interface ip remove Ethernet0 2001::1/64
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s config interface ip remove Vlan64 3001::1/64
+module-or-class-epilog,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,show vlan config
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s config save /tmp/config-db-V2-post-module-epilog-routing-test_ndp.py.json -y
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-epilog-routing-test_ndp.py.json
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-epilog-routing-test_ndp.py.txt
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-epilog-routing-test_ndp.py.txt
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/test_ndp.py,test_ft_ipv6_neighbor_entry,D1,normal-user,/sbin/ip route list dev eth0

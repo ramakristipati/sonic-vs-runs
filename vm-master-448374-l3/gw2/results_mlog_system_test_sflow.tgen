@@ -1,0 +1,766 @@
+1:10:32,409 gw2 T0000: INFO  ################################################################################
+1:10:32,410 gw2 T0000: INFO  Python: 3.8.10
+1:10:32,410 gw2 T0000: INFO  ################################################################################
+1:10:32,410 gw2 T0000: INFO  ################################################################################
+1:10:32,410 gw2 T0000: INFO  Open file /data/work/scapy-tgen/logs/current/inst-2024_01_05_22_49_42_466226/gw2/results_mlog_system_test_sflow.tgen
+1:10:32,410 gw2 T0000: INFO  ################################################################################
+1:10:32,410 gw2 T0000: INFO  ################################################################################
+1:10:32,410 gw2 T0000: INFO  gw2 gw2 init-log results_mlog_system_test_sflow.tgen
+1:10:32,410 gw2 T0000: INFO  ################################################################################
+1:10:32,412 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+1:10:32,412 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+1:10:33,090 gw2 T0038: DEBUG readp:eth9 len:263 count:93
+1:10:33,158 gw2 T0042: DEBUG readp:eth10 len:263 count:169
+1:10:33,198 gw2 T0050: DEBUG readp:eth12 len:265 count:177
+1:10:33,669 gw2 T0046: DEBUG readp:eth11 len:263 count:161
+1:10:34,398 gw2 T0058: DEBUG readp:eth14 len:263 count:171
+1:10:34,406 gw2 T0062: DEBUG readp:eth15 len:263 count:166
+1:10:34,415 gw2 T0054: DEBUG readp:eth13 len:263 count:93
+1:10:34,460 gw2 T0066: DEBUG readp:eth16 len:265 count:177
+1:10:35,005 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'reset', 'port_handle': ['port-9', 'port-13', 'port-14']}
+1:10:35,005 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'reset', 'port_handle': ['port-9', 'port-13', 'port-14']}
+1:10:39,931 gw2 T0058: DEBUG readp:eth14 len:150 count:172
+1:10:40,388 gw2 T0058: DEBUG readp:eth14 len:150 count:173
+1:10:41,008 gw2 T0000: DEBUG RESULT: true
+1:10:41,016 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'clear_stats', 'port_handle': ['port-9', 'port-13', 'port-14']}
+1:10:41,016 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'clear_stats', 'port_handle': ['port-9', 'port-13', 'port-14']}
+1:10:47,021 gw2 T0000: DEBUG RESULT: true
+1:10:47,031 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-9', 'mode': 'config', 'intf_ip_addr': '100.168.1.1', 'gateway': '100.168.1.2', 'src_mac_addr': '00:00:00:00:00:0A', 'arp_send_req': '1'}
+1:10:47,031 gw2 T0000: DEBUG gw2 exposed_tg_interface_config () {'port_handle': 'port-9', 'mode': 'config', 'intf_ip_addr': '100.168.1.1', 'gateway': '100.168.1.2', 'src_mac_addr': '00:00:00:00:00:0A', 'arp_send_req': '1'}
+1:10:47,033 gw2 T0000: DEBUG shexec:
+1:10:47,033 gw2 T0000: DEBUG ip netns del ns_9_0_0
+1:10:47,033 gw2 T0000: DEBUG ip link del veth_9_0_0
+1:10:47,033 gw2 T0000: DEBUG
+1:10:47,033 gw2 T0000: DEBUG ip netns add ns_9_0_0
+1:10:47,034 gw2 T0000: DEBUG ip netns list
+1:10:47,034 gw2 T0000: DEBUG ip link add veth_9_0_0 type veth peer name veth1
+1:10:47,034 gw2 T0000: DEBUG ip link set veth1 netns ns_9_0_0
+1:10:47,034 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+1:10:47,034 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ip link set dev veth1 up
+1:10:47,034 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ethtool --offload veth1 rx off tx off
+1:10:47,034 gw2 T0000: DEBUG ip link set dev veth_9_0_0 up
+1:10:47,034 gw2 T0000: DEBUG ip link add name eth9-br type bridge
+1:10:47,034 gw2 T0000: DEBUG ip link set dev veth_9_0_0 master eth9-br
+1:10:47,034 gw2 T0000: DEBUG
+1:10:47,035 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ip link set veth1 address 00:00:00:00:00:0A
+1:10:47,035 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ip addr add 100.168.1.1/24 dev veth1
+1:10:47,035 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ip route add default via 100.168.1.2
+1:10:47,035 gw2 T0000: DEBUG sleep 2
+1:10:47,035 gw2 T0000: DEBUG
+1:10:47,035 gw2 T0000: DEBUG ip netns exec ns_9_0_0 arping -w 7 -c 1 -I veth1 100.168.1.2
+1:10:47,035 gw2 T0000: DEBUG
+1:10:47,035 gw2 T0000: DEBUG
+1:10:47,035 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ip neigh show
+1:10:47,036 gw2 T0000: DEBUG
+1:10:47,036 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ifconfig veth1
+1:10:47,036 gw2 T0000: DEBUG ip netns exec ns_9_0_0 ip addr ls veth1
+1:10:47,036 gw2 T0000: DEBUG
+1:10:49,447 gw2 T0038: DEBUG readp:eth9 len:42 count:1
+1:10:50,672 gw2 T0000: DEBUG + ip netns del ns_9_0_0
+1:10:50,673 gw2 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_9_0_0": No such file or directory
+1:10:50,673 gw2 T0000: DEBUG + ip link del veth_9_0_0
+1:10:50,673 gw2 T0000: DEBUG Cannot find device "veth_9_0_0"
+1:10:50,673 gw2 T0000: DEBUG + ip netns add ns_9_0_0
+1:10:50,673 gw2 T0000: DEBUG + ip netns list
+1:10:50,673 gw2 T0000: DEBUG ns_9_0_0
+1:10:50,673 gw2 T0000: DEBUG scapy
+1:10:50,673 gw2 T0000: DEBUG + ip link add veth_9_0_0 type veth peer name veth1
+1:10:50,673 gw2 T0000: DEBUG + ip link set veth1 netns ns_9_0_0
+1:10:50,673 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ethtool --offload veth1 rx off tx off
+1:10:50,673 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ip link set dev veth1 up
+1:10:50,674 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ethtool --offload veth1 rx off tx off
+1:10:50,674 gw2 T0000: DEBUG + ip link set dev veth_9_0_0 up
+1:10:50,674 gw2 T0000: DEBUG + ip link add name eth9-br type bridge
+1:10:50,674 gw2 T0000: DEBUG RTNETLINK answers: File exists
+1:10:50,674 gw2 T0000: DEBUG + ip link set dev veth_9_0_0 master eth9-br
+1:10:50,674 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ip link set veth1 address 00:00:00:00:00:0A
+1:10:50,674 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ip addr add 100.168.1.1/24 dev veth1
+1:10:50,674 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ip route add default via 100.168.1.2
+1:10:50,674 gw2 T0000: DEBUG + sleep 2
+1:10:50,674 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 arping -w 7 -c 1 -I veth1 100.168.1.2
+1:10:50,674 gw2 T0000: DEBUG ARPING 100.168.1.2
+1:10:50,674 gw2 T0000: DEBUG 42 bytes from 52:54:00:a5:ee:41 (100.168.1.2): index=0 time=594.318 usec
+1:10:50,674 gw2 T0000: DEBUG
+1:10:50,675 gw2 T0000: DEBUG --- 100.168.1.2 statistics ---
+1:10:50,675 gw2 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+1:10:50,675 gw2 T0000: DEBUG rtt min/avg/max/std-dev = 0.594/0.594/0.594/0.000 ms
+1:10:50,675 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ip neigh show
+1:10:50,675 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ifconfig veth1
+1:10:50,675 gw2 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+1:10:50,675 gw2 T0000: DEBUG         inet 100.168.1.1  netmask 255.255.255.0  broadcast 0.0.0.0
+1:10:50,675 gw2 T0000: DEBUG         inet6 fe80::980a:69ff:fe4b:a0a0  prefixlen 64  scopeid 0x20<link>
+1:10:50,675 gw2 T0000: DEBUG         ether 00:00:00:00:00:0a  txqueuelen 1000  (Ethernet)
+1:10:50,675 gw2 T0000: DEBUG         RX packets 7  bytes 558 (558.0 B)
+1:10:50,675 gw2 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+1:10:50,675 gw2 T0000: DEBUG         TX packets 7  bytes 574 (574.0 B)
+1:10:50,675 gw2 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+1:10:50,676 gw2 T0000: DEBUG
+1:10:50,676 gw2 T0000: DEBUG + ip netns exec ns_9_0_0 ip addr ls veth1
+1:10:50,676 gw2 T0000: DEBUG 118: veth1@if119: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+1:10:50,676 gw2 T0000: DEBUG     link/ether 00:00:00:00:00:0a brd ff:ff:ff:ff:ff:ff link-netns scapy
+1:10:50,676 gw2 T0000: DEBUG     inet 100.168.1.1/24 scope global veth1
+1:10:50,676 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:10:50,676 gw2 T0000: DEBUG     inet6 fe80::980a:69ff:fe4b:a0a0/64 scope link
+1:10:50,676 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:10:50,676 gw2 T0000: DEBUG
+1:10:50,676 gw2 T0000: INFO  read the mac addresses of created interfaces
+1:10:50,677 gw2 T0000: DEBUG cmdexec: ip netns exec ns_9_0_0 ip addr show dev veth1
+1:10:50,723 gw2 T0000: INFO  ip addr show dev veth1 {'inet': '100.168.1.1/24', 'inet6': 'fe80::980a:69ff:fe4b:a0a0/64', 'state': 'UP', 'link/ether': '00:00:00:00:00:0a'}
+1:10:50,724 gw2 T0000: DEBUG New interface iface-9-0...
+1:10:52,726 gw2 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-9-0"}
+1:10:52,736 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-13', 'mode': 'config', 'intf_ip_addr': '100.168.3.3', 'gateway': '100.168.3.1', 'src_mac_addr': '00:00:00:00:00:0B', 'arp_send_req': '1'}
+1:10:52,736 gw2 T0000: DEBUG gw2 exposed_tg_interface_config () {'port_handle': 'port-13', 'mode': 'config', 'intf_ip_addr': '100.168.3.3', 'gateway': '100.168.3.1', 'src_mac_addr': '00:00:00:00:00:0B', 'arp_send_req': '1'}
+1:10:52,737 gw2 T0000: DEBUG shexec:
+1:10:52,738 gw2 T0000: DEBUG ip netns del ns_13_0_0
+1:10:52,738 gw2 T0000: DEBUG ip link del veth_13_0_0
+1:10:52,738 gw2 T0000: DEBUG
+1:10:52,738 gw2 T0000: DEBUG ip netns add ns_13_0_0
+1:10:52,738 gw2 T0000: DEBUG ip netns list
+1:10:52,738 gw2 T0000: DEBUG ip link add veth_13_0_0 type veth peer name veth1
+1:10:52,738 gw2 T0000: DEBUG ip link set veth1 netns ns_13_0_0
+1:10:52,738 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+1:10:52,738 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ip link set dev veth1 up
+1:10:52,738 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ethtool --offload veth1 rx off tx off
+1:10:52,739 gw2 T0000: DEBUG ip link set dev veth_13_0_0 up
+1:10:52,739 gw2 T0000: DEBUG ip link add name eth13-br type bridge
+1:10:52,739 gw2 T0000: DEBUG ip link set dev veth_13_0_0 master eth13-br
+1:10:52,739 gw2 T0000: DEBUG
+1:10:52,739 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ip link set veth1 address 00:00:00:00:00:0B
+1:10:52,739 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ip addr add 100.168.3.3/24 dev veth1
+1:10:52,739 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ip route add default via 100.168.3.1
+1:10:52,739 gw2 T0000: DEBUG sleep 2
+1:10:52,739 gw2 T0000: DEBUG
+1:10:52,739 gw2 T0000: DEBUG ip netns exec ns_13_0_0 arping -w 7 -c 1 -I veth1 100.168.3.1
+1:10:52,740 gw2 T0000: DEBUG
+1:10:52,740 gw2 T0000: DEBUG
+1:10:52,740 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ip neigh show
+1:10:52,740 gw2 T0000: DEBUG
+1:10:52,740 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ifconfig veth1
+1:10:52,740 gw2 T0000: DEBUG ip netns exec ns_13_0_0 ip addr ls veth1
+1:10:52,740 gw2 T0000: DEBUG
+1:10:55,120 gw2 T0054: DEBUG readp:eth13 len:42 count:1
+1:10:56,320 gw2 T0000: DEBUG + ip netns del ns_13_0_0
+1:10:56,320 gw2 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_13_0_0": No such file or directory
+1:10:56,320 gw2 T0000: DEBUG + ip link del veth_13_0_0
+1:10:56,320 gw2 T0000: DEBUG Cannot find device "veth_13_0_0"
+1:10:56,320 gw2 T0000: DEBUG + ip netns add ns_13_0_0
+1:10:56,320 gw2 T0000: DEBUG + ip netns list
+1:10:56,320 gw2 T0000: DEBUG ns_13_0_0
+1:10:56,321 gw2 T0000: DEBUG ns_9_0_0 (id: 3)
+1:10:56,321 gw2 T0000: DEBUG scapy
+1:10:56,321 gw2 T0000: DEBUG + ip link add veth_13_0_0 type veth peer name veth1
+1:10:56,321 gw2 T0000: DEBUG + ip link set veth1 netns ns_13_0_0
+1:10:56,321 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ethtool --offload veth1 rx off tx off
+1:10:56,321 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ip link set dev veth1 up
+1:10:56,321 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ethtool --offload veth1 rx off tx off
+1:10:56,321 gw2 T0000: DEBUG + ip link set dev veth_13_0_0 up
+1:10:56,321 gw2 T0000: DEBUG + ip link add name eth13-br type bridge
+1:10:56,321 gw2 T0000: DEBUG RTNETLINK answers: File exists
+1:10:56,322 gw2 T0000: DEBUG + ip link set dev veth_13_0_0 master eth13-br
+1:10:56,322 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ip link set veth1 address 00:00:00:00:00:0B
+1:10:56,322 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ip addr add 100.168.3.3/24 dev veth1
+1:10:56,322 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ip route add default via 100.168.3.1
+1:10:56,322 gw2 T0000: DEBUG + sleep 2
+1:10:56,322 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 arping -w 7 -c 1 -I veth1 100.168.3.1
+1:10:56,322 gw2 T0000: DEBUG ARPING 100.168.3.1
+1:10:56,322 gw2 T0000: DEBUG 42 bytes from 52:54:00:38:bf:96 (100.168.3.1): index=0 time=438.569 usec
+1:10:56,322 gw2 T0000: DEBUG
+1:10:56,322 gw2 T0000: DEBUG --- 100.168.3.1 statistics ---
+1:10:56,323 gw2 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+1:10:56,323 gw2 T0000: DEBUG rtt min/avg/max/std-dev = 0.439/0.439/0.439/0.000 ms
+1:10:56,323 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ip neigh show
+1:10:56,323 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ifconfig veth1
+1:10:56,323 gw2 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+1:10:56,323 gw2 T0000: DEBUG         inet 100.168.3.3  netmask 255.255.255.0  broadcast 0.0.0.0
+1:10:56,323 gw2 T0000: DEBUG         inet6 fe80::7037:cdff:fe2f:a190  prefixlen 64  scopeid 0x20<link>
+1:10:56,323 gw2 T0000: DEBUG         ether 00:00:00:00:00:0b  txqueuelen 1000  (Ethernet)
+1:10:56,323 gw2 T0000: DEBUG         RX packets 7  bytes 558 (558.0 B)
+1:10:56,323 gw2 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+1:10:56,324 gw2 T0000: DEBUG         TX packets 7  bytes 574 (574.0 B)
+1:10:56,324 gw2 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+1:10:56,324 gw2 T0000: DEBUG
+1:10:56,324 gw2 T0000: DEBUG + ip netns exec ns_13_0_0 ip addr ls veth1
+1:10:56,324 gw2 T0000: DEBUG 120: veth1@if121: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+1:10:56,324 gw2 T0000: DEBUG     link/ether 00:00:00:00:00:0b brd ff:ff:ff:ff:ff:ff link-netns scapy
+1:10:56,324 gw2 T0000: DEBUG     inet 100.168.3.3/24 scope global veth1
+1:10:56,324 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:10:56,324 gw2 T0000: DEBUG     inet6 fe80::7037:cdff:fe2f:a190/64 scope link
+1:10:56,324 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:10:56,325 gw2 T0000: DEBUG
+1:10:56,325 gw2 T0000: INFO  read the mac addresses of created interfaces
+1:10:56,325 gw2 T0000: DEBUG cmdexec: ip netns exec ns_13_0_0 ip addr show dev veth1
+1:10:56,369 gw2 T0000: INFO  ip addr show dev veth1 {'inet': '100.168.3.3/24', 'inet6': 'fe80::7037:cdff:fe2f:a190/64', 'state': 'UP', 'link/ether': '00:00:00:00:00:0b'}
+1:10:56,369 gw2 T0000: DEBUG New interface iface-13-0...
+1:10:58,372 gw2 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-13-0"}
+1:10:58,382 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'mode': 'config', 'intf_ip_addr': '100.168.4.4', 'gateway': '100.168.4.1', 'src_mac_addr': '00:00:00:00:00:0C', 'arp_send_req': '1'}
+1:10:58,382 gw2 T0000: DEBUG gw2 exposed_tg_interface_config () {'port_handle': 'port-14', 'mode': 'config', 'intf_ip_addr': '100.168.4.4', 'gateway': '100.168.4.1', 'src_mac_addr': '00:00:00:00:00:0C', 'arp_send_req': '1'}
+1:10:58,384 gw2 T0000: DEBUG shexec:
+1:10:58,384 gw2 T0000: DEBUG ip netns del ns_14_0_0
+1:10:58,384 gw2 T0000: DEBUG ip link del veth_14_0_0
+1:10:58,384 gw2 T0000: DEBUG
+1:10:58,384 gw2 T0000: DEBUG ip netns add ns_14_0_0
+1:10:58,384 gw2 T0000: DEBUG ip netns list
+1:10:58,384 gw2 T0000: DEBUG ip link add veth_14_0_0 type veth peer name veth1
+1:10:58,384 gw2 T0000: DEBUG ip link set veth1 netns ns_14_0_0
+1:10:58,384 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+1:10:58,384 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ip link set dev veth1 up
+1:10:58,385 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ethtool --offload veth1 rx off tx off
+1:10:58,385 gw2 T0000: DEBUG ip link set dev veth_14_0_0 up
+1:10:58,385 gw2 T0000: DEBUG ip link add name eth14-br type bridge
+1:10:58,385 gw2 T0000: DEBUG ip link set dev veth_14_0_0 master eth14-br
+1:10:58,385 gw2 T0000: DEBUG
+1:10:58,385 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ip link set veth1 address 00:00:00:00:00:0C
+1:10:58,385 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ip addr add 100.168.4.4/24 dev veth1
+1:10:58,385 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ip route add default via 100.168.4.1
+1:10:58,385 gw2 T0000: DEBUG sleep 2
+1:10:58,385 gw2 T0000: DEBUG
+1:10:58,385 gw2 T0000: DEBUG ip netns exec ns_14_0_0 arping -w 7 -c 1 -I veth1 100.168.4.1
+1:10:58,385 gw2 T0000: DEBUG
+1:10:58,385 gw2 T0000: DEBUG
+1:10:58,385 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ip neigh show
+1:10:58,386 gw2 T0000: DEBUG
+1:10:58,386 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ifconfig veth1
+1:10:58,386 gw2 T0000: DEBUG ip netns exec ns_14_0_0 ip addr ls veth1
+1:10:58,386 gw2 T0000: DEBUG
+1:11:01,059 gw2 T0058: DEBUG readp:eth14 len:42 count:1
+1:11:02,479 gw2 T0000: DEBUG + ip netns del ns_14_0_0
+1:11:02,479 gw2 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_14_0_0": No such file or directory
+1:11:02,479 gw2 T0000: DEBUG + ip link del veth_14_0_0
+1:11:02,479 gw2 T0000: DEBUG Cannot find device "veth_14_0_0"
+1:11:02,479 gw2 T0000: DEBUG + ip netns add ns_14_0_0
+1:11:02,480 gw2 T0000: DEBUG + ip netns list
+1:11:02,480 gw2 T0000: DEBUG ns_14_0_0
+1:11:02,480 gw2 T0000: DEBUG ns_13_0_0 (id: 5)
+1:11:02,480 gw2 T0000: DEBUG ns_9_0_0 (id: 3)
+1:11:02,480 gw2 T0000: DEBUG scapy
+1:11:02,480 gw2 T0000: DEBUG + ip link add veth_14_0_0 type veth peer name veth1
+1:11:02,480 gw2 T0000: DEBUG + ip link set veth1 netns ns_14_0_0
+1:11:02,480 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ethtool --offload veth1 rx off tx off
+1:11:02,480 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ip link set dev veth1 up
+1:11:02,481 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ethtool --offload veth1 rx off tx off
+1:11:02,481 gw2 T0000: DEBUG + ip link set dev veth_14_0_0 up
+1:11:02,481 gw2 T0000: DEBUG + ip link add name eth14-br type bridge
+1:11:02,481 gw2 T0000: DEBUG RTNETLINK answers: File exists
+1:11:02,481 gw2 T0000: DEBUG + ip link set dev veth_14_0_0 master eth14-br
+1:11:02,481 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ip link set veth1 address 00:00:00:00:00:0C
+1:11:02,481 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ip addr add 100.168.4.4/24 dev veth1
+1:11:02,481 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ip route add default via 100.168.4.1
+1:11:02,481 gw2 T0000: DEBUG + sleep 2
+1:11:02,482 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 arping -w 7 -c 1 -I veth1 100.168.4.1
+1:11:02,482 gw2 T0000: DEBUG ARPING 100.168.4.1
+1:11:02,482 gw2 T0000: DEBUG 42 bytes from 52:54:00:38:bf:96 (100.168.4.1): index=0 time=623.329 usec
+1:11:02,482 gw2 T0000: DEBUG
+1:11:02,482 gw2 T0000: DEBUG --- 100.168.4.1 statistics ---
+1:11:02,482 gw2 T0000: DEBUG 1 packets transmitted, 1 packets received,   0% unanswered (0 extra)
+1:11:02,482 gw2 T0000: DEBUG rtt min/avg/max/std-dev = 0.623/0.623/0.623/0.000 ms
+1:11:02,482 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ip neigh show
+1:11:02,482 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ifconfig veth1
+1:11:02,483 gw2 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+1:11:02,483 gw2 T0000: DEBUG         inet 100.168.4.4  netmask 255.255.255.0  broadcast 0.0.0.0
+1:11:02,483 gw2 T0000: DEBUG         inet6 fe80::40ba:77ff:fe5c:af2b  prefixlen 64  scopeid 0x20<link>
+1:11:02,483 gw2 T0000: DEBUG         ether 00:00:00:00:00:0c  txqueuelen 1000  (Ethernet)
+1:11:02,483 gw2 T0000: DEBUG         RX packets 7  bytes 558 (558.0 B)
+1:11:02,483 gw2 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+1:11:02,483 gw2 T0000: DEBUG         TX packets 7  bytes 574 (574.0 B)
+1:11:02,483 gw2 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+1:11:02,483 gw2 T0000: DEBUG
+1:11:02,484 gw2 T0000: DEBUG + ip netns exec ns_14_0_0 ip addr ls veth1
+1:11:02,484 gw2 T0000: DEBUG 122: veth1@if123: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+1:11:02,484 gw2 T0000: DEBUG     link/ether 00:00:00:00:00:0c brd ff:ff:ff:ff:ff:ff link-netns scapy
+1:11:02,484 gw2 T0000: DEBUG     inet 100.168.4.4/24 scope global veth1
+1:11:02,484 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:11:02,484 gw2 T0000: DEBUG     inet6 fe80::40ba:77ff:fe5c:af2b/64 scope link
+1:11:02,484 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:11:02,484 gw2 T0000: DEBUG
+1:11:02,485 gw2 T0000: INFO  read the mac addresses of created interfaces
+1:11:02,486 gw2 T0000: DEBUG cmdexec: ip netns exec ns_14_0_0 ip addr show dev veth1
+1:11:02,531 gw2 T0000: INFO  ip addr show dev veth1 {'inet': '100.168.4.4/24', 'inet6': 'fe80::40ba:77ff:fe5c:af2b/64', 'state': 'UP', 'link/ether': '00:00:00:00:00:0c'}
+1:11:02,532 gw2 T0000: DEBUG New interface iface-14-0...
+1:11:03,096 gw2 T0038: DEBUG readp:eth9 len:263 count:2
+1:11:03,159 gw2 T0042: DEBUG readp:eth10 len:263 count:170
+1:11:03,200 gw2 T0050: DEBUG readp:eth12 len:265 count:178
+1:11:03,670 gw2 T0046: DEBUG readp:eth11 len:263 count:162
+1:11:04,400 gw2 T0058: DEBUG readp:eth14 len:263 count:2
+1:11:04,408 gw2 T0062: DEBUG readp:eth15 len:263 count:167
+1:11:04,417 gw2 T0054: DEBUG readp:eth13 len:263 count:2
+1:11:04,462 gw2 T0066: DEBUG readp:eth16 len:265 count:178
+1:11:04,532 gw2 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-14-0"}
+1:11:04,542 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'mode': 'config', 'ipv6_intf_addr': '2001::2', 'ipv6_prefix_length': '64', 'ipv6_gateway': '2001::1', 'arp_send_req': '1'}
+1:11:04,542 gw2 T0000: DEBUG gw2 exposed_tg_interface_config () {'port_handle': 'port-14', 'mode': 'config', 'ipv6_intf_addr': '2001::2', 'ipv6_prefix_length': '64', 'ipv6_gateway': '2001::1', 'arp_send_req': '1'}
+1:11:04,544 gw2 T0000: DEBUG shexec:
+1:11:04,544 gw2 T0000: DEBUG ip netns del ns_14_1_0
+1:11:04,544 gw2 T0000: DEBUG ip link del veth_14_1_0
+1:11:04,545 gw2 T0000: DEBUG
+1:11:04,545 gw2 T0000: DEBUG ip netns add ns_14_1_0
+1:11:04,545 gw2 T0000: DEBUG ip netns list
+1:11:04,545 gw2 T0000: DEBUG ip link add veth_14_1_0 type veth peer name veth1
+1:11:04,545 gw2 T0000: DEBUG ip link set veth1 netns ns_14_1_0
+1:11:04,545 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+1:11:04,545 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ip link set dev veth1 up
+1:11:04,545 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ethtool --offload veth1 rx off tx off
+1:11:04,545 gw2 T0000: DEBUG ip link set dev veth_14_1_0 up
+1:11:04,546 gw2 T0000: DEBUG ip link add name eth14-br type bridge
+1:11:04,546 gw2 T0000: DEBUG ip link set dev veth_14_1_0 master eth14-br
+1:11:04,546 gw2 T0000: DEBUG
+1:11:04,546 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ip -6 addr add 2001::2/64 dev veth1
+1:11:04,546 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ip -6 route add default via 2001::1
+1:11:04,546 gw2 T0000: DEBUG sleep 2
+1:11:04,546 gw2 T0000: DEBUG
+1:11:04,546 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ndisc6 -w 2000 2001::1 veth1
+1:11:04,546 gw2 T0000: DEBUG
+1:11:04,547 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ndisc6 -w 2000 -s 2001::2 2001::1 veth1
+1:11:04,547 gw2 T0000: DEBUG
+1:11:04,547 gw2 T0000: DEBUG
+1:11:04,547 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ip -6 neigh show
+1:11:04,547 gw2 T0000: DEBUG
+1:11:04,547 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ifconfig veth1
+1:11:04,547 gw2 T0000: DEBUG ip netns exec ns_14_1_0 ip addr ls veth1
+1:11:04,547 gw2 T0000: DEBUG
+1:11:06,819 gw2 T0058: DEBUG readp:eth14 len:86 count:3
+1:11:06,848 gw2 T0058: DEBUG readp:eth14 len:86 count:4
+1:11:06,943 gw2 T0000: DEBUG + ip netns del ns_14_1_0
+1:11:06,943 gw2 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_14_1_0": No such file or directory
+1:11:06,944 gw2 T0000: DEBUG + ip link del veth_14_1_0
+1:11:06,944 gw2 T0000: DEBUG Cannot find device "veth_14_1_0"
+1:11:06,944 gw2 T0000: DEBUG + ip netns add ns_14_1_0
+1:11:06,944 gw2 T0000: DEBUG + ip netns list
+1:11:06,944 gw2 T0000: DEBUG ns_14_1_0
+1:11:06,944 gw2 T0000: DEBUG ns_14_0_0 (id: 6)
+1:11:06,944 gw2 T0000: DEBUG ns_13_0_0 (id: 5)
+1:11:06,944 gw2 T0000: DEBUG ns_9_0_0 (id: 3)
+1:11:06,945 gw2 T0000: DEBUG scapy
+1:11:06,945 gw2 T0000: DEBUG + ip link add veth_14_1_0 type veth peer name veth1
+1:11:06,945 gw2 T0000: DEBUG + ip link set veth1 netns ns_14_1_0
+1:11:06,945 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ethtool --offload veth1 rx off tx off
+1:11:06,945 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ip link set dev veth1 up
+1:11:06,945 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ethtool --offload veth1 rx off tx off
+1:11:06,945 gw2 T0000: DEBUG + ip link set dev veth_14_1_0 up
+1:11:06,945 gw2 T0000: DEBUG + ip link add name eth14-br type bridge
+1:11:06,945 gw2 T0000: DEBUG RTNETLINK answers: File exists
+1:11:06,945 gw2 T0000: DEBUG + ip link set dev veth_14_1_0 master eth14-br
+1:11:06,946 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ip -6 addr add 2001::2/64 dev veth1
+1:11:06,946 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ip -6 route add default via 2001::1
+1:11:06,946 gw2 T0000: DEBUG + sleep 2
+1:11:06,946 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ndisc6 -w 2000 2001::1 veth1
+1:11:06,946 gw2 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+1:11:06,946 gw2 T0000: DEBUG Target link-layer address: 52:54:00:38:BF:96
+1:11:06,946 gw2 T0000: DEBUG  from 2001::1
+1:11:06,946 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ndisc6 -w 2000 -s 2001::2 2001::1 veth1
+1:11:06,946 gw2 T0000: DEBUG Soliciting 2001::1 (2001::1) on veth1...
+1:11:06,947 gw2 T0000: DEBUG Target link-layer address: 52:54:00:38:BF:96
+1:11:06,947 gw2 T0000: DEBUG  from 2001::1
+1:11:06,947 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ip -6 neigh show
+1:11:06,947 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ifconfig veth1
+1:11:06,947 gw2 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+1:11:06,947 gw2 T0000: DEBUG         inet6 2001::2  prefixlen 64  scopeid 0x0<global>
+1:11:06,947 gw2 T0000: DEBUG         inet6 fe80::e4a9:72ff:fe08:32d4  prefixlen 64  scopeid 0x20<link>
+1:11:06,947 gw2 T0000: DEBUG         ether e6:a9:72:08:32:d4  txqueuelen 1000  (Ethernet)
+1:11:06,947 gw2 T0000: DEBUG         RX packets 8  bytes 688 (688.0 B)
+1:11:06,948 gw2 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+1:11:06,948 gw2 T0000: DEBUG         TX packets 10  bytes 944 (944.0 B)
+1:11:06,948 gw2 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+1:11:06,948 gw2 T0000: DEBUG
+1:11:06,948 gw2 T0000: DEBUG + ip netns exec ns_14_1_0 ip addr ls veth1
+1:11:06,948 gw2 T0000: DEBUG 124: veth1@if125: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+1:11:06,948 gw2 T0000: DEBUG     link/ether e6:a9:72:08:32:d4 brd ff:ff:ff:ff:ff:ff link-netns scapy
+1:11:06,948 gw2 T0000: DEBUG     inet6 2001::2/64 scope global
+1:11:06,948 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:11:06,948 gw2 T0000: DEBUG     inet6 fe80::e4a9:72ff:fe08:32d4/64 scope link
+1:11:06,948 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+1:11:06,948 gw2 T0000: DEBUG
+1:11:06,949 gw2 T0000: INFO  read the mac addresses of created interfaces
+1:11:06,949 gw2 T0000: DEBUG cmdexec: ip netns exec ns_14_1_0 ip addr show dev veth1
+1:11:06,991 gw2 T0000: INFO  ip addr show dev veth1 {'inet6': '2001::2/64', 'state': 'UP', 'link/ether': 'e6:a9:72:08:32:d4'}
+1:11:06,992 gw2 T0000: DEBUG New interface iface-14-1...
+1:11:08,994 gw2 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-14-1"}
+1:11:09,004 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-9', 'mode': 'create', 'transmit_mode': 'continuous', 'pkts_per_burst': '100000', 'ip_protocol': '17', 'length_mode': 'fixed', 'rate_pps': '100000', 'l3_protocol': 'ipv4', 'mac_src': '00:00:00:00:00:0A', 'mac_dst': '52:54:00:a5:ee:41', 'ip_src_addr': '100.168.1.1', 'ip_dst_addr': '100.168.3.3', 'l4_protocol': 'tcp', 'high_speed_result_analysis': '0'}
+1:11:09,005 gw2 T0000: DEBUG gw2 exposed_tg_traffic_config () {'port_handle': 'port-9', 'mode': 'create', 'transmit_mode': 'continuous', 'pkts_per_burst': '100000', 'ip_protocol': '17', 'length_mode': 'fixed', 'rate_pps': '100000', 'l3_protocol': 'ipv4', 'mac_src': '00:00:00:00:00:0A', 'mac_dst': '52:54:00:a5:ee:41', 'ip_src_addr': '100.168.1.1', 'ip_dst_addr': '100.168.3.3', 'l4_protocol': 'tcp', 'high_speed_result_analysis': '0'}
+1:11:09,005 gw2 T0000: DEBUG New stream stream-9-0 tracking [] ...
+1:11:09,005 gw2 T0000: DEBUG RESULT: {"stream_id": "stream-9-0"}
+1:11:12,066 gw2 T0058: DEBUG readp:eth14 len:86 count:5
+1:11:12,066 gw2 T0058: DEBUG readp:eth14 len:86 count:6
+1:11:17,081 gw2 T0058: DEBUG readp:eth14 len:78 count:7
+1:11:33,097 gw2 T0038: DEBUG readp:eth9 len:263 count:3
+1:11:33,158 gw2 T0042: DEBUG readp:eth10 len:263 count:171
+1:11:33,198 gw2 T0050: DEBUG readp:eth12 len:265 count:179
+1:11:33,674 gw2 T0046: DEBUG readp:eth11 len:263 count:163
+1:11:34,401 gw2 T0058: DEBUG readp:eth14 len:263 count:8
+1:11:34,410 gw2 T0062: DEBUG readp:eth15 len:263 count:168
+1:11:34,414 gw2 T0054: DEBUG readp:eth13 len:263 count:3
+1:11:34,459 gw2 T0066: DEBUG readp:eth16 len:265 count:179
+1:11:43,207 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-start test_ft_sflow_sampling_v6_sFlow_collector gw2') {}
+1:11:43,207 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-start test_ft_sflow_sampling_v6_sFlow_collector gw2 () {}
+1:11:43,207 gw2 T0000: INFO  ################################################################################
+1:11:43,207 gw2 T0000: INFO  gw2 gw2 add-log test-start test_ft_sflow_sampling_v6_sFlow_collector gw2
+1:11:43,207 gw2 T0000: INFO  ################################################################################
+1:11:43,208 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+1:11:43,208 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+1:11:55,733 gw2 T0058: DEBUG readp:eth14 len:98 count:9
+1:11:55,734 gw2 T0058: DEBUG readp:eth14 len:42 count:10
+1:11:56,732 gw2 T0058: DEBUG readp:eth14 len:98 count:11
+1:11:57,763 gw2 T0058: DEBUG readp:eth14 len:98 count:12
+1:11:58,787 gw2 T0058: DEBUG readp:eth14 len:98 count:13
+1:12:00,944 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'action': 'start'}
+1:12:00,945 gw2 T0000: DEBUG gw2 exposed_tg_packet_control () {'port_handle': 'port-14', 'action': 'start'}
+1:12:00,945 gw2 T0000: DEBUG start-cap: eth14
+1:12:00,946 gw2 T0000: DEBUG RESULT: true
+1:12:00,955 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'run', 'handle': 'stream-9-0'}
+1:12:00,955 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'run', 'handle': 'stream-9-0'}
+1:12:00,955 gw2 T0000: DEBUG PRE9: TX: 0 RX: 3
+1:12:00,956 gw2 T0000: DEBUG     stream-9-0: TX: 0 RX: 0
+1:12:00,956 gw2 T0000: DEBUG PRE10: TX: 0 RX: 171
+1:12:00,956 gw2 T0000: DEBUG PRE11: TX: 0 RX: 163
+1:12:00,956 gw2 T0000: DEBUG PRE12: TX: 0 RX: 179
+1:12:00,956 gw2 T0000: DEBUG PRE13: TX: 0 RX: 3
+1:12:00,956 gw2 T0000: DEBUG PRE14: TX: 0 RX: 13
+1:12:00,957 gw2 T0000: DEBUG PRE15: TX: 0 RX: 168
+1:12:00,957 gw2 T0000: DEBUG PRE16: TX: 0 RX: 179
+1:12:00,957 gw2 T0000: DEBUG start-tx: eth9 {'action': 'run', 'handle': 'stream-9-0'} TX: 0
+1:12:00,957 gw2 T0000: DEBUG tx-enable: eth9 stream-9-0 PKTS: 0
+1:12:00,957 gw2 T0000: DEBUG signal-tx: eth9 {'action': 'run', 'handle': 'stream-9-0'} TX: 0
+1:12:00,958 gw2 T0000: DEBUG start-tx-ack-0: eth9 {'tx_state': False, 'action': 'run', 'handle': 'stream-9-0'} TX: 0
+1:12:00,962 gw2 T0058: DEBUG readp:eth14 len:42 count:14
+1:12:01,958 gw2 T0039: DEBUG txThreadMainInner eth9 start odict_keys(['stream-9-0'])
+1:12:01,959 gw2 T0039: DEBUG INITIAL: stream-9-0 = {'port_handle': 'port-9', 'mode': 'create', 'transmit_mode': 'continuous', 'pkts_per_burst': '100000', 'ip_protocol': '17', 'length_mode': 'fixed', 'rate_pps': '100000', 'l3_protocol': 'ipv4', 'mac_src': '00:00:00:00:00:0A', 'mac_dst': '52:54:00:a5:ee:41', 'ip_src_addr': '100.168.1.1', 'ip_dst_addr': '100.168.3.3', 'l4_protocol': 'tcp', 'high_speed_result_analysis': '0'}
+1:12:01,960 gw2 T0039: DEBUG UPDATED: stream-9-0 = {'port_handle': 'port-9', 'mode': 'create', 'transmit_mode': 'continuous', 'pkts_per_burst': '100000', 'ip_protocol': '17', 'length_mode': 'fixed', 'rate_pps': '100000', 'l3_protocol': 'ipv4', 'mac_src': '00:00:00:00:00:0A', 'mac_dst': '52:54:00:a5:ee:41', 'ip_src_addr': '100.168.1.1', 'ip_dst_addr': '100.168.3.3', 'l4_protocol': 'tcp', 'high_speed_result_analysis': '0'}
+1:12:01,960 gw2 T0039: INFO  =========== build_first this stream-9-0 = {'port_handle': 'port-9', 'mode': 'create', 'transmit_mode': 'continuous', 'pkts_per_burst': '100000', 'ip_protocol': '17', 'length_mode': 'fixed', 'rate_pps': '100000', 'l3_protocol': 'ipv4', 'mac_src': '00:00:00:00:00:0A', 'mac_dst': '52:54:00:a5:ee:41', 'ip_src_addr': '100.168.1.1', 'ip_dst_addr': '100.168.3.3', 'l4_protocol': 'tcp', 'high_speed_result_analysis': '0'}
+1:12:01,966 gw2 T0039: WARN  ################################################################################
+1:12:01,966 gw2 T0039: WARN  drop the rate from 100000 to 100
+1:12:01,966 gw2 T0039: WARN  ################################################################################
+1:12:01,967 gw2 T0000: DEBUG start-tx-ack-1: eth9 {'action': 'run', 'handle': 'stream-9-0'} TX: 0
+1:12:01,970 gw2 T0000: DEBUG waiting 3 sec
+1:12:01,972 gw2 T0054: DEBUG readp:eth13 len:54 count:4
+1:12:01,974 gw2 T0054: DEBUG readp:eth13 len:42 count:5
+1:12:01,975 gw2 T0038: DEBUG readp:eth9 len:54 count:4
+1:12:03,103 gw2 T0038: DEBUG readp:eth9 len:263 count:5
+1:12:03,160 gw2 T0042: DEBUG readp:eth10 len:263 count:172
+1:12:03,200 gw2 T0050: DEBUG readp:eth12 len:265 count:180
+1:12:03,670 gw2 T0046: DEBUG readp:eth11 len:263 count:164
+1:12:04,400 gw2 T0058: DEBUG readp:eth14 len:263 count:15
+1:12:04,411 gw2 T0062: DEBUG readp:eth15 len:263 count:169
+1:12:04,416 gw2 T0054: DEBUG readp:eth13 len:263 count:6
+1:12:04,461 gw2 T0066: DEBUG readp:eth16 len:265 count:180
+1:12:04,973 gw2 T0000: DEBUG start-tx-finished: eth9 {'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:12:06,975 gw2 T0000: DEBUG POST9: TX: 1 RX: 5
+1:12:06,976 gw2 T0000: DEBUG     stream-9-0: TX: 1 RX: 0
+1:12:06,976 gw2 T0000: DEBUG POST10: TX: 0 RX: 172
+1:12:06,976 gw2 T0000: DEBUG POST11: TX: 0 RX: 164
+1:12:06,977 gw2 T0000: DEBUG POST12: TX: 0 RX: 180
+1:12:06,977 gw2 T0000: DEBUG POST13: TX: 0 RX: 6
+1:12:06,977 gw2 T0000: DEBUG POST14: TX: 0 RX: 15
+1:12:06,977 gw2 T0000: DEBUG POST15: TX: 0 RX: 169
+1:12:06,978 gw2 T0000: DEBUG POST16: TX: 0 RX: 180
+1:12:06,978 gw2 T0000: DEBUG RESULT: true
+1:12:07,106 gw2 T0054: DEBUG readp:eth13 len:42 count:7
+1:12:07,121 gw2 T0038: DEBUG readp:eth9 len:42 count:6
+1:12:18,525 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'stop', 'handle': 'stream-9-0'}
+1:12:18,525 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'stop', 'handle': 'stream-9-0'}
+1:12:18,525 gw2 T0000: DEBUG PRE9: TX: 1 RX: 6
+1:12:18,526 gw2 T0000: DEBUG     stream-9-0: TX: 1 RX: 0
+1:12:18,526 gw2 T0000: DEBUG PRE10: TX: 0 RX: 172
+1:12:18,526 gw2 T0000: DEBUG PRE11: TX: 0 RX: 164
+1:12:18,526 gw2 T0000: DEBUG PRE12: TX: 0 RX: 180
+1:12:18,526 gw2 T0000: DEBUG PRE13: TX: 0 RX: 7
+1:12:18,526 gw2 T0000: DEBUG PRE14: TX: 0 RX: 15
+1:12:18,527 gw2 T0000: DEBUG PRE15: TX: 0 RX: 169
+1:12:18,527 gw2 T0000: DEBUG PRE16: TX: 0 RX: 180
+1:12:20,529 gw2 T0000: DEBUG POST9: TX: 1 RX: 6
+1:12:20,529 gw2 T0000: DEBUG     stream-9-0: TX: 1 RX: 0
+1:12:20,530 gw2 T0000: DEBUG POST10: TX: 0 RX: 172
+1:12:20,530 gw2 T0000: DEBUG POST11: TX: 0 RX: 164
+1:12:20,530 gw2 T0000: DEBUG POST12: TX: 0 RX: 180
+1:12:20,530 gw2 T0000: DEBUG POST13: TX: 0 RX: 7
+1:12:20,530 gw2 T0000: DEBUG POST14: TX: 0 RX: 15
+1:12:20,530 gw2 T0000: DEBUG POST15: TX: 0 RX: 169
+1:12:20,530 gw2 T0000: DEBUG POST16: TX: 0 RX: 180
+1:12:20,531 gw2 T0000: DEBUG RESULT: true
+1:12:20,539 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'action': 'stop'}
+1:12:20,539 gw2 T0000: DEBUG gw2 exposed_tg_packet_control () {'port_handle': 'port-14', 'action': 'stop'}
+1:12:20,540 gw2 T0000: DEBUG stop-cap: eth14
+1:12:21,541 gw2 T0000: DEBUG RESULT: 2
+1:12:21,553 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'format': 'var', 'output_type': 'hex'}
+1:12:21,554 gw2 T0000: DEBUG gw2 exposed_tg_packet_stats () {'port_handle': 'port-14', 'format': 'var', 'output_type': 'hex'}
+1:12:21,554 gw2 T0000: DEBUG get-cap: eth14
+1:12:26,727 gw2 T0058: DEBUG readp:eth14 len:98 count:16
+1:12:27,728 gw2 T0058: DEBUG readp:eth14 len:98 count:17
+1:12:28,729 gw2 T0058: DEBUG readp:eth14 len:98 count:18
+1:12:29,731 gw2 T0058: DEBUG readp:eth14 len:98 count:19
+1:12:29,894 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'action': 'start'}
+1:12:29,894 gw2 T0000: DEBUG gw2 exposed_tg_packet_control () {'port_handle': 'port-14', 'action': 'start'}
+1:12:29,894 gw2 T0000: DEBUG start-cap: eth14
+1:12:29,895 gw2 T0000: DEBUG RESULT: true
+1:12:31,838 gw2 T0058: DEBUG readp:eth14 len:42 count:20
+1:12:31,904 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'run', 'handle': 'stream-9-0'}
+1:12:31,905 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'run', 'handle': 'stream-9-0'}
+1:12:31,905 gw2 T0000: DEBUG PRE9: TX: 1 RX: 6
+1:12:31,905 gw2 T0000: DEBUG     stream-9-0: TX: 1 RX: 0
+1:12:31,905 gw2 T0000: DEBUG PRE10: TX: 0 RX: 172
+1:12:31,905 gw2 T0000: DEBUG PRE11: TX: 0 RX: 164
+1:12:31,905 gw2 T0000: DEBUG PRE12: TX: 0 RX: 180
+1:12:31,906 gw2 T0000: DEBUG PRE13: TX: 0 RX: 7
+1:12:31,906 gw2 T0000: DEBUG PRE14: TX: 0 RX: 20
+1:12:31,906 gw2 T0000: DEBUG PRE15: TX: 0 RX: 169
+1:12:31,906 gw2 T0000: DEBUG PRE16: TX: 0 RX: 180
+1:12:31,906 gw2 T0000: DEBUG start-tx: eth9 {'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:12:31,906 gw2 T0000: DEBUG tx-enable: eth9 stream-9-0 PKTS: 0
+1:12:31,906 gw2 T0000: DEBUG signal-tx: eth9 {'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:12:31,907 gw2 T0000: DEBUG start-tx-ack-0: eth9 {'tx_state': True, 'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:12:33,106 gw2 T0038: DEBUG readp:eth9 len:263 count:7
+1:12:33,158 gw2 T0042: DEBUG readp:eth10 len:263 count:173
+1:12:33,198 gw2 T0050: DEBUG readp:eth12 len:265 count:181
+1:12:33,672 gw2 T0046: DEBUG readp:eth11 len:263 count:165
+1:12:34,398 gw2 T0058: DEBUG readp:eth14 len:263 count:21
+1:12:34,410 gw2 T0062: DEBUG readp:eth15 len:263 count:170
+1:12:34,415 gw2 T0054: DEBUG readp:eth13 len:263 count:8
+1:12:34,460 gw2 T0066: DEBUG readp:eth16 len:265 count:181
+1:12:41,907 gw2 T0000: ERROR start-tx-ack-1: eth9 {'err': True, 'start_tx_state': True, 'tx_state': True, 'enable': True, 'enable2': True, 'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:12:51,908 gw2 T0000: ERROR start-tx-ack-1: eth9 {'err': True, 'start_tx_state': True, 'tx_state': True, 'enable': True, 'enable2': True, 'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:13:01,908 gw2 T0000: ERROR start-tx-ack-1: eth9 {'err': True, 'start_tx_state': True, 'tx_state': True, 'enable': True, 'enable2': True, 'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:13:03,108 gw2 T0038: DEBUG readp:eth9 len:263 count:8
+1:13:03,156 gw2 T0042: DEBUG readp:eth10 len:263 count:174
+1:13:03,197 gw2 T0050: DEBUG readp:eth12 len:265 count:182
+1:13:03,674 gw2 T0046: DEBUG readp:eth11 len:263 count:166
+1:13:04,400 gw2 T0058: DEBUG readp:eth14 len:263 count:22
+1:13:04,412 gw2 T0062: DEBUG readp:eth15 len:263 count:171
+1:13:04,417 gw2 T0054: DEBUG readp:eth13 len:263 count:9
+1:13:04,461 gw2 T0066: DEBUG readp:eth16 len:265 count:182
+1:13:11,909 gw2 T0000: ERROR start-tx-ack-1: eth9 {'err': True, 'start_tx_state': True, 'tx_state': True, 'enable': True, 'enable2': True, 'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:13:21,910 gw2 T0000: ERROR start-tx-ack-1: eth9 {'err': True, 'start_tx_state': True, 'tx_state': True, 'enable': True, 'enable2': True, 'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:13:21,910 gw2 T0000: DEBUG waiting 3 sec
+1:13:24,912 gw2 T0000: DEBUG start-tx-finished: eth9 {'action': 'run', 'handle': 'stream-9-0'} TX: 1
+1:13:26,913 gw2 T0000: DEBUG POST9: TX: 1 RX: 8
+1:13:26,914 gw2 T0000: DEBUG     stream-9-0: TX: 1 RX: 0
+1:13:26,914 gw2 T0000: DEBUG POST10: TX: 0 RX: 174
+1:13:26,914 gw2 T0000: DEBUG POST11: TX: 0 RX: 166
+1:13:26,915 gw2 T0000: DEBUG POST12: TX: 0 RX: 182
+1:13:26,915 gw2 T0000: DEBUG POST13: TX: 0 RX: 9
+1:13:26,915 gw2 T0000: DEBUG POST14: TX: 0 RX: 22
+1:13:26,915 gw2 T0000: DEBUG POST15: TX: 0 RX: 171
+1:13:26,915 gw2 T0000: DEBUG POST16: TX: 0 RX: 182
+1:13:26,916 gw2 T0000: DEBUG RESULT: true
+1:13:33,112 gw2 T0038: DEBUG readp:eth9 len:263 count:9
+1:13:33,156 gw2 T0042: DEBUG readp:eth10 len:263 count:175
+1:13:33,197 gw2 T0050: DEBUG readp:eth12 len:265 count:183
+1:13:33,675 gw2 T0046: DEBUG readp:eth11 len:263 count:167
+1:13:34,401 gw2 T0058: DEBUG readp:eth14 len:263 count:23
+1:13:34,414 gw2 T0062: DEBUG readp:eth15 len:263 count:172
+1:13:34,417 gw2 T0054: DEBUG readp:eth13 len:263 count:10
+1:13:34,458 gw2 T0066: DEBUG readp:eth16 len:265 count:183
+1:13:38,515 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'stop', 'handle': 'stream-9-0'}
+1:13:38,515 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'stop', 'handle': 'stream-9-0'}
+1:13:38,515 gw2 T0000: DEBUG PRE9: TX: 1 RX: 9
+1:13:38,515 gw2 T0000: DEBUG     stream-9-0: TX: 1 RX: 0
+1:13:38,515 gw2 T0000: DEBUG PRE10: TX: 0 RX: 175
+1:13:38,516 gw2 T0000: DEBUG PRE11: TX: 0 RX: 167
+1:13:38,516 gw2 T0000: DEBUG PRE12: TX: 0 RX: 183
+1:13:38,516 gw2 T0000: DEBUG PRE13: TX: 0 RX: 10
+1:13:38,516 gw2 T0000: DEBUG PRE14: TX: 0 RX: 23
+1:13:38,516 gw2 T0000: DEBUG PRE15: TX: 0 RX: 172
+1:13:38,516 gw2 T0000: DEBUG PRE16: TX: 0 RX: 183
+1:13:40,519 gw2 T0000: DEBUG POST9: TX: 1 RX: 9
+1:13:40,519 gw2 T0000: DEBUG     stream-9-0: TX: 1 RX: 0
+1:13:40,519 gw2 T0000: DEBUG POST10: TX: 0 RX: 175
+1:13:40,519 gw2 T0000: DEBUG POST11: TX: 0 RX: 167
+1:13:40,519 gw2 T0000: DEBUG POST12: TX: 0 RX: 183
+1:13:40,519 gw2 T0000: DEBUG POST13: TX: 0 RX: 10
+1:13:40,519 gw2 T0000: DEBUG POST14: TX: 0 RX: 23
+1:13:40,519 gw2 T0000: DEBUG POST15: TX: 0 RX: 172
+1:13:40,519 gw2 T0000: DEBUG POST16: TX: 0 RX: 183
+1:13:40,519 gw2 T0000: DEBUG RESULT: true
+1:13:43,234 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'action': 'stop'}
+1:13:43,234 gw2 T0000: DEBUG gw2 exposed_tg_packet_control () {'port_handle': 'port-14', 'action': 'stop'}
+1:13:43,235 gw2 T0000: DEBUG stop-cap: eth14
+1:13:44,236 gw2 T0000: DEBUG RESULT: 4
+1:13:45,248 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-14', 'format': 'var', 'output_type': 'hex'}
+1:13:45,248 gw2 T0000: DEBUG gw2 exposed_tg_packet_stats () {'port_handle': 'port-14', 'format': 'var', 'output_type': 'hex'}
+1:13:45,248 gw2 T0000: DEBUG get-cap: eth14
+1:14:03,116 gw2 T0038: DEBUG readp:eth9 len:263 count:10
+1:14:03,156 gw2 T0042: DEBUG readp:eth10 len:263 count:176
+1:14:03,197 gw2 T0050: DEBUG readp:eth12 len:265 count:184
+1:14:03,674 gw2 T0046: DEBUG readp:eth11 len:263 count:168
+1:14:04,400 gw2 T0058: DEBUG readp:eth14 len:263 count:24
+1:14:04,412 gw2 T0062: DEBUG readp:eth15 len:263 count:173
+1:14:04,416 gw2 T0054: DEBUG readp:eth13 len:263 count:11
+1:14:04,462 gw2 T0066: DEBUG readp:eth16 len:265 count:184
+1:14:05,221 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-finish test_ft_sflow_sampling_v6_sFlow_collector gw2') {}
+1:14:05,221 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-finish test_ft_sflow_sampling_v6_sFlow_collector gw2 () {}
+1:14:05,221 gw2 T0000: INFO  ################################################################################
+1:14:05,222 gw2 T0000: INFO  gw2 gw2 add-log test-finish test_ft_sflow_sampling_v6_sFlow_collector gw2
+1:14:05,222 gw2 T0000: INFO  ################################################################################
+1:14:05,222 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+1:14:05,222 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+1:14:10,602 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-start test_ft_sflow_max_sflow_collector_config gw2') {}
+1:14:10,602 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-start test_ft_sflow_max_sflow_collector_config gw2 () {}
+1:14:10,602 gw2 T0000: INFO  ################################################################################
+1:14:10,602 gw2 T0000: INFO  gw2 gw2 add-log test-start test_ft_sflow_max_sflow_collector_config gw2
+1:14:10,602 gw2 T0000: INFO  ################################################################################
+1:14:10,603 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+1:14:10,603 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+1:14:33,120 gw2 T0038: DEBUG readp:eth9 len:263 count:11
+1:14:33,160 gw2 T0042: DEBUG readp:eth10 len:263 count:177
+1:14:33,197 gw2 T0050: DEBUG readp:eth12 len:265 count:185
+1:14:33,675 gw2 T0046: DEBUG readp:eth11 len:263 count:169
+1:14:34,401 gw2 T0058: DEBUG readp:eth14 len:263 count:25
+1:14:34,413 gw2 T0062: DEBUG readp:eth15 len:263 count:174
+1:14:34,417 gw2 T0054: DEBUG readp:eth13 len:263 count:12
+1:14:34,459 gw2 T0066: DEBUG readp:eth16 len:265 count:185
+1:14:39,729 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-finish test_ft_sflow_max_sflow_collector_config gw2') {}
+1:14:39,729 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-finish test_ft_sflow_max_sflow_collector_config gw2 () {}
+1:14:39,729 gw2 T0000: INFO  ################################################################################
+1:14:39,729 gw2 T0000: INFO  gw2 gw2 add-log test-finish test_ft_sflow_max_sflow_collector_config gw2
+1:14:39,729 gw2 T0000: INFO  ################################################################################
+1:14:39,730 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+1:14:39,730 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+1:14:44,940 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-start test_ft_system_config_mgmt_verifying_config_with_save_reboot_sflow gw2') {}
+1:14:44,940 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-start test_ft_system_config_mgmt_verifying_config_with_save_reboot_sflow gw2 () {}
+1:14:44,941 gw2 T0000: INFO  ################################################################################
+1:14:44,941 gw2 T0000: INFO  gw2 gw2 add-log test-start test_ft_system_config_mgmt_verifying_config_with_save_reboot_sflow gw2
+1:14:44,941 gw2 T0000: INFO  ################################################################################
+1:14:44,942 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+1:14:44,942 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+1:15:03,120 gw2 T0038: DEBUG readp:eth9 len:263 count:12
+1:15:03,160 gw2 T0042: DEBUG readp:eth10 len:263 count:178
+1:15:03,196 gw2 T0050: DEBUG readp:eth12 len:265 count:186
+1:15:03,675 gw2 T0046: DEBUG readp:eth11 len:263 count:170
+1:15:33,124 gw2 T0038: DEBUG readp:eth9 len:263 count:13
+1:15:33,161 gw2 T0042: DEBUG readp:eth10 len:263 count:179
+1:15:33,197 gw2 T0050: DEBUG readp:eth12 len:265 count:187
+1:15:33,675 gw2 T0046: DEBUG readp:eth11 len:263 count:171
+1:16:03,128 gw2 T0038: DEBUG readp:eth9 len:263 count:14
+1:16:03,160 gw2 T0042: DEBUG readp:eth10 len:263 count:180
+1:16:03,197 gw2 T0050: DEBUG readp:eth12 len:265 count:188
+1:16:03,675 gw2 T0046: DEBUG readp:eth11 len:263 count:172
+1:16:33,133 gw2 T0038: DEBUG readp:eth9 len:263 count:15
+1:16:33,161 gw2 T0042: DEBUG readp:eth10 len:263 count:181
+1:16:33,198 gw2 T0050: DEBUG readp:eth12 len:265 count:189
+1:16:33,675 gw2 T0046: DEBUG readp:eth11 len:263 count:173
+1:16:44,581 gw2 T0054: DEBUG readp:eth13 len:130 count:13
+1:16:44,744 gw2 T0054: DEBUG readp:eth13 len:130 count:14
+1:16:45,288 gw2 T0054: DEBUG readp:eth13 len:86 count:15
+1:16:46,315 gw2 T0054: DEBUG readp:eth13 len:150 count:16
+1:16:46,328 gw2 T0054: DEBUG readp:eth13 len:90 count:17
+1:16:46,573 gw2 T0066: DEBUG readp:eth16 len:130 count:186
+1:16:46,985 gw2 T0054: DEBUG readp:eth13 len:90 count:18
+1:16:47,113 gw2 T0054: DEBUG readp:eth13 len:150 count:19
+1:16:47,117 gw2 T0066: DEBUG readp:eth16 len:130 count:187
+1:16:47,208 gw2 T0066: DEBUG readp:eth16 len:86 count:188
+1:16:48,244 gw2 T0066: DEBUG readp:eth16 len:150 count:189
+1:16:48,249 gw2 T0066: DEBUG readp:eth16 len:90 count:190
+1:16:48,650 gw2 T0066: DEBUG readp:eth16 len:150 count:191
+1:16:49,066 gw2 T0066: DEBUG readp:eth16 len:90 count:192
+1:16:49,577 gw2 T0054: DEBUG readp:eth13 len:130 count:20
+1:16:49,591 gw2 T0054: DEBUG readp:eth13 len:130 count:21
+1:16:49,617 gw2 T0058: DEBUG readp:eth14 len:130 count:26
+1:16:49,705 gw2 T0054: DEBUG readp:eth13 len:130 count:22
+1:16:49,782 gw2 T0066: DEBUG readp:eth16 len:130 count:193
+1:16:49,793 gw2 T0066: DEBUG readp:eth16 len:130 count:194
+1:16:49,907 gw2 T0058: DEBUG readp:eth14 len:42 count:27
+1:16:49,910 gw2 T0058: DEBUG readp:eth14 len:150 count:28
+1:16:49,921 gw2 T0058: DEBUG readp:eth14 len:150 count:29
+1:16:49,942 gw2 T0066: DEBUG readp:eth16 len:130 count:195
+1:16:50,025 gw2 T0058: DEBUG readp:eth14 len:130 count:30
+1:16:50,120 gw2 T0058: DEBUG readp:eth14 len:86 count:31
+1:16:50,153 gw2 T0066: DEBUG readp:eth16 len:130 count:196
+1:16:50,376 gw2 T0054: DEBUG readp:eth13 len:130 count:23
+1:16:50,473 gw2 T0058: DEBUG readp:eth14 len:150 count:32
+1:16:50,570 gw2 T0058: DEBUG readp:eth14 len:150 count:33
+1:16:51,145 gw2 T0058: DEBUG readp:eth14 len:150 count:34
+1:16:51,161 gw2 T0058: DEBUG readp:eth14 len:90 count:35
+1:16:51,593 gw2 T0058: DEBUG readp:eth14 len:90 count:36
+1:16:51,596 gw2 T0058: DEBUG readp:eth14 len:150 count:37
+1:16:53,142 gw2 T0062: DEBUG readp:eth15 len:130 count:175
+1:16:53,636 gw2 T0062: DEBUG readp:eth15 len:86 count:176
+1:16:53,992 gw2 T0062: DEBUG readp:eth15 len:130 count:177
+1:16:54,665 gw2 T0062: DEBUG readp:eth15 len:150 count:178
+1:16:54,680 gw2 T0062: DEBUG readp:eth15 len:90 count:179
+1:16:54,696 gw2 T0062: DEBUG readp:eth15 len:90 count:180
+1:16:54,906 gw2 T0062: DEBUG readp:eth15 len:150 count:181
+1:17:03,132 gw2 T0038: DEBUG readp:eth9 len:263 count:16
+1:17:03,164 gw2 T0042: DEBUG readp:eth10 len:263 count:182
+1:17:03,200 gw2 T0050: DEBUG readp:eth12 len:265 count:190
+1:17:03,675 gw2 T0046: DEBUG readp:eth11 len:263 count:174
+1:17:24,343 gw2 T0054: DEBUG readp:eth13 len:257 count:24
+1:17:24,347 gw2 T0058: DEBUG readp:eth14 len:257 count:38
+1:17:24,348 gw2 T0066: DEBUG readp:eth16 len:258 count:197
+1:17:24,348 gw2 T0062: DEBUG readp:eth15 len:257 count:182
+1:17:26,392 gw2 T0058: DEBUG readp:eth14 len:257 count:39
+1:17:26,395 gw2 T0054: DEBUG readp:eth13 len:257 count:25
+1:17:26,395 gw2 T0062: DEBUG readp:eth15 len:257 count:183
+1:17:26,396 gw2 T0066: DEBUG readp:eth16 len:258 count:198
+1:17:29,573 gw2 T0058: DEBUG readp:eth14 len:38 count:40
+1:17:29,573 gw2 T0058: DEBUG readp:eth14 len:263 count:41
+1:17:29,598 gw2 T0062: DEBUG readp:eth15 len:38 count:184
+1:17:29,598 gw2 T0062: DEBUG readp:eth15 len:263 count:185
+1:17:29,619 gw2 T0066: DEBUG readp:eth16 len:38 count:199
+1:17:29,620 gw2 T0066: DEBUG readp:eth16 len:265 count:200
+1:17:29,656 gw2 T0054: DEBUG readp:eth13 len:38 count:26
+1:17:29,657 gw2 T0054: DEBUG readp:eth13 len:263 count:27
+1:17:33,137 gw2 T0038: DEBUG readp:eth9 len:263 count:17
+1:17:33,161 gw2 T0042: DEBUG readp:eth10 len:263 count:183
+1:17:33,197 gw2 T0050: DEBUG readp:eth12 len:265 count:191
+1:17:33,675 gw2 T0046: DEBUG readp:eth11 len:263 count:175
+1:17:59,577 gw2 T0058: DEBUG readp:eth14 len:263 count:42
+1:17:59,597 gw2 T0062: DEBUG readp:eth15 len:263 count:186
+1:17:59,618 gw2 T0066: DEBUG readp:eth16 len:265 count:201
+1:17:59,658 gw2 T0054: DEBUG readp:eth13 len:263 count:28
+1:18:03,140 gw2 T0038: DEBUG readp:eth9 len:263 count:18
+1:18:03,164 gw2 T0042: DEBUG readp:eth10 len:263 count:184
+1:18:03,201 gw2 T0050: DEBUG readp:eth12 len:265 count:192
+1:18:03,679 gw2 T0046: DEBUG readp:eth11 len:263 count:176
+1:18:29,578 gw2 T0058: DEBUG readp:eth14 len:263 count:43
+1:18:29,599 gw2 T0062: DEBUG readp:eth15 len:263 count:187
+1:18:29,619 gw2 T0066: DEBUG readp:eth16 len:265 count:202
+1:18:29,656 gw2 T0054: DEBUG readp:eth13 len:263 count:29
+1:18:33,139 gw2 T0038: DEBUG readp:eth9 len:263 count:19
+1:18:33,163 gw2 T0042: DEBUG readp:eth10 len:263 count:185
+1:18:33,204 gw2 T0050: DEBUG readp:eth12 len:265 count:193
+1:18:33,678 gw2 T0046: DEBUG readp:eth11 len:263 count:177
+1:18:59,582 gw2 T0058: DEBUG readp:eth14 len:263 count:44
+1:18:59,599 gw2 T0062: DEBUG readp:eth15 len:263 count:188
+1:18:59,619 gw2 T0066: DEBUG readp:eth16 len:265 count:203
+1:18:59,656 gw2 T0054: DEBUG readp:eth13 len:263 count:30
+1:19:03,142 gw2 T0038: DEBUG readp:eth9 len:263 count:20
+1:19:03,161 gw2 T0042: DEBUG readp:eth10 len:263 count:186
+1:19:03,206 gw2 T0050: DEBUG readp:eth12 len:265 count:194
+1:19:03,681 gw2 T0046: DEBUG readp:eth11 len:263 count:178
+1:19:29,585 gw2 T0058: DEBUG readp:eth14 len:263 count:45
+1:19:29,601 gw2 T0062: DEBUG readp:eth15 len:263 count:189
+1:19:29,618 gw2 T0066: DEBUG readp:eth16 len:265 count:204
+1:19:29,659 gw2 T0054: DEBUG readp:eth13 len:263 count:31
+1:19:33,144 gw2 T0038: DEBUG readp:eth9 len:263 count:21
+1:19:33,160 gw2 T0042: DEBUG readp:eth10 len:263 count:187
+1:19:33,205 gw2 T0050: DEBUG readp:eth12 len:265 count:195
+1:19:33,683 gw2 T0046: DEBUG readp:eth11 len:263 count:179
+1:19:59,593 gw2 T0058: DEBUG readp:eth14 len:263 count:46
+1:19:59,602 gw2 T0062: DEBUG readp:eth15 len:263 count:190
+1:19:59,619 gw2 T0066: DEBUG readp:eth16 len:265 count:205
+1:19:59,659 gw2 T0054: DEBUG readp:eth13 len:263 count:32
+1:20:03,148 gw2 T0038: DEBUG readp:eth9 len:263 count:22
+1:20:03,160 gw2 T0042: DEBUG readp:eth10 len:263 count:188
+1:20:03,205 gw2 T0050: DEBUG readp:eth12 len:265 count:196
+1:20:03,680 gw2 T0046: DEBUG readp:eth11 len:263 count:180
+1:20:20,536 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-finish test_ft_system_config_mgmt_verifying_config_with_save_reboot_sflow gw2') {}
+1:20:20,537 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-finish test_ft_system_config_mgmt_verifying_config_with_save_reboot_sflow gw2 () {}
+1:20:20,537 gw2 T0000: INFO  ################################################################################
+1:20:20,537 gw2 T0000: INFO  gw2 gw2 add-log test-finish test_ft_system_config_mgmt_verifying_config_with_save_reboot_sflow gw2
+1:20:20,537 gw2 T0000: INFO  ################################################################################
+1:20:20,538 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+1:20:20,538 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+1:20:29,592 gw2 T0058: DEBUG readp:eth14 len:263 count:47
+1:20:29,600 gw2 T0062: DEBUG readp:eth15 len:263 count:191
+1:20:29,617 gw2 T0066: DEBUG readp:eth16 len:265 count:206
+1:20:29,657 gw2 T0054: DEBUG readp:eth13 len:263 count:33
+1:20:33,151 gw2 T0038: DEBUG readp:eth9 len:263 count:23
+1:20:33,163 gw2 T0042: DEBUG readp:eth10 len:263 count:189
+1:20:33,207 gw2 T0050: DEBUG readp:eth12 len:265 count:197
+1:20:33,681 gw2 T0046: DEBUG readp:eth11 len:263 count:181
+1:20:59,594 gw2 T0058: DEBUG readp:eth14 len:263 count:48
+1:20:59,602 gw2 T0062: DEBUG readp:eth15 len:263 count:192
+1:20:59,619 gw2 T0066: DEBUG readp:eth16 len:265 count:207
+1:20:59,659 gw2 T0054: DEBUG readp:eth13 len:263 count:34
+1:21:03,152 gw2 T0038: DEBUG readp:eth9 len:263 count:24
+1:21:03,164 gw2 T0042: DEBUG readp:eth10 len:263 count:190
+1:21:03,209 gw2 T0050: DEBUG readp:eth12 len:265 count:198
+1:21:03,682 gw2 T0046: DEBUG readp:eth11 len:263 count:182
+1:21:18,843 gw2 T0000: DEBUG gw2 ('gw2', 'read-log', 'results_mlog_system_test_sflow.tgen') {}
+1:21:18,843 gw2 T0000: DEBUG gw2 exposed_server_control read-log results_mlog_system_test_sflow.tgen () {}

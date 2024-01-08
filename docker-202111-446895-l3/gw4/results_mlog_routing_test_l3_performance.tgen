@@ -1,0 +1,920 @@
+0:03:35,456 gw4 T0000: INFO  ################################################################################
+0:03:35,457 gw4 T0000: INFO  Python: 3.8.10
+0:03:35,457 gw4 T0000: INFO  ################################################################################
+0:03:35,457 gw4 T0000: INFO  ################################################################################
+0:03:35,457 gw4 T0000: INFO  Open file /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/results_mlog_routing_test_l3_performance.tgen
+0:03:35,457 gw4 T0000: INFO  ################################################################################
+0:03:35,457 gw4 T0000: INFO  ################################################################################
+0:03:35,457 gw4 T0000: INFO  gw4 gw4 init-log results_mlog_routing_test_l3_performance.tgen
+0:03:35,457 gw4 T0000: INFO  ################################################################################
+0:03:35,459 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:03:35,459 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:04:08,668 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-start test_ft_l3_performance_enhancements_v4_route_intstall_withdraw gw4') {}
+0:04:08,668 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-start test_ft_l3_performance_enhancements_v4_route_intstall_withdraw gw4 () {}
+0:04:08,668 gw4 T0000: INFO  ################################################################################
+0:04:08,668 gw4 T0000: INFO  gw4 gw4 add-log test-start test_ft_l3_performance_enhancements_v4_route_intstall_withdraw gw4
+0:04:08,668 gw4 T0000: INFO  ################################################################################
+0:04:08,669 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:04:08,669 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:04:08,677 gw4 T0000: DEBUG gw4 ('gw4',) {'action': 'reset', 'port_handle': ['port-5', 'port-6']}
+0:04:08,677 gw4 T0000: DEBUG gw4 exposed_tg_traffic_control () {'action': 'reset', 'port_handle': ['port-5', 'port-6']}
+0:04:12,682 gw4 T0000: DEBUG RESULT: true
+0:04:12,692 gw4 T0000: DEBUG gw4 ('gw4',) {'port_handle': 'port-5', 'mode': 'config', 'intf_ip_addr': '10.10.10.2', 'gateway': '10.10.10.1', 'arp_send_req': '1'}
+0:04:12,692 gw4 T0000: DEBUG gw4 exposed_tg_interface_config () {'port_handle': 'port-5', 'mode': 'config', 'intf_ip_addr': '10.10.10.2', 'gateway': '10.10.10.1', 'arp_send_req': '1'}
+0:04:12,693 gw4 T0000: DEBUG shexec:
+0:04:12,693 gw4 T0000: DEBUG ip netns del ns_5_0_0
+0:04:12,694 gw4 T0000: DEBUG ip link del veth_5_0_0
+0:04:12,694 gw4 T0000: DEBUG
+0:04:12,694 gw4 T0000: DEBUG ip netns add ns_5_0_0
+0:04:12,694 gw4 T0000: DEBUG ip netns list
+0:04:12,694 gw4 T0000: DEBUG ip link add veth_5_0_0 type veth peer name veth1
+0:04:12,694 gw4 T0000: DEBUG ip link set veth1 netns ns_5_0_0
+0:04:12,694 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:04:12,694 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ip link set dev veth1 up
+0:04:12,695 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:04:12,695 gw4 T0000: DEBUG ip link set dev veth_5_0_0 up
+0:04:12,695 gw4 T0000: DEBUG ip link add name eth5-br type bridge
+0:04:12,695 gw4 T0000: DEBUG ip link set dev veth_5_0_0 master eth5-br
+0:04:12,695 gw4 T0000: DEBUG
+0:04:12,695 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ip addr add 10.10.10.2/24 dev veth1
+0:04:12,695 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ip route add default via 10.10.10.1
+0:04:12,695 gw4 T0000: DEBUG sleep 2
+0:04:12,695 gw4 T0000: DEBUG
+0:04:12,695 gw4 T0000: DEBUG ip netns exec ns_5_0_0 arping -w 7 -c 1 -I veth1 10.10.10.1
+0:04:12,696 gw4 T0000: DEBUG
+0:04:12,696 gw4 T0000: DEBUG
+0:04:12,696 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ip neigh show
+0:04:12,696 gw4 T0000: DEBUG
+0:04:12,696 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ifconfig veth1
+0:04:12,696 gw4 T0000: DEBUG ip netns exec ns_5_0_0 ip addr ls veth1
+0:04:12,696 gw4 T0000: DEBUG
+0:04:16,116 gw4 T0000: DEBUG + ip netns del ns_5_0_0
+0:04:16,117 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_0": No such file or directory
+0:04:16,117 gw4 T0000: DEBUG + ip link del veth_5_0_0
+0:04:16,117 gw4 T0000: DEBUG Cannot find device "veth_5_0_0"
+0:04:16,117 gw4 T0000: DEBUG + ip netns add ns_5_0_0
+0:04:16,117 gw4 T0000: DEBUG + ip netns list
+0:04:16,117 gw4 T0000: DEBUG ns_5_0_0
+0:04:16,117 gw4 T0000: DEBUG ns_14_0_0 (id: 30)
+0:04:16,117 gw4 T0000: DEBUG ns_10_0_0 (id: 29)
+0:04:16,117 gw4 T0000: DEBUG ns_2_0_9 (id: 28)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_8 (id: 27)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_7 (id: 26)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_6 (id: 25)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_5 (id: 24)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_4 (id: 23)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_3 (id: 22)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_2 (id: 21)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_1 (id: 20)
+0:04:16,118 gw4 T0000: DEBUG ns_2_0_0 (id: 19)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_9 (id: 18)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_8 (id: 17)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_7 (id: 16)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_6 (id: 15)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_5 (id: 14)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_4 (id: 13)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_3 (id: 12)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_2 (id: 11)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_1 (id: 10)
+0:04:16,119 gw4 T0000: DEBUG ns_1_0_0 (id: 9)
+0:04:16,120 gw4 T0000: DEBUG ns_13_0_0 (id: 8)
+0:04:16,120 gw4 T0000: DEBUG ns_9_0_0 (id: 6)
+0:04:16,120 gw4 T0000: DEBUG V4 (id: 3)
+0:04:16,120 gw4 T0000: DEBUG V3 (id: 2)
+0:04:16,120 gw4 T0000: DEBUG V2 (id: 1)
+0:04:16,120 gw4 T0000: DEBUG scapy
+0:04:16,120 gw4 T0000: DEBUG V1 (id: 0)
+0:04:16,120 gw4 T0000: DEBUG + ip link add veth_5_0_0 type veth peer name veth1
+0:04:16,120 gw4 T0000: DEBUG + ip link set veth1 netns ns_5_0_0
+0:04:16,120 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:04:16,121 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ip link set dev veth1 up
+0:04:16,121 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:04:16,121 gw4 T0000: DEBUG + ip link set dev veth_5_0_0 up
+0:04:16,121 gw4 T0000: DEBUG + ip link add name eth5-br type bridge
+0:04:16,121 gw4 T0000: DEBUG + ip link set dev veth_5_0_0 master eth5-br
+0:04:16,121 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ip addr add 10.10.10.2/24 dev veth1
+0:04:16,121 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ip route add default via 10.10.10.1
+0:04:16,121 gw4 T0000: DEBUG + sleep 2
+0:04:16,121 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 arping -w 7 -c 1 -I veth1 10.10.10.1
+0:04:16,121 gw4 T0000: DEBUG ARPING 10.10.10.1
+0:04:16,122 gw4 T0000: DEBUG Timeout
+0:04:16,122 gw4 T0000: DEBUG
+0:04:16,122 gw4 T0000: DEBUG --- 10.10.10.1 statistics ---
+0:04:16,122 gw4 T0000: DEBUG 1 packets transmitted, 0 packets received, 100% unanswered (0 extra)
+0:04:16,122 gw4 T0000: DEBUG
+0:04:16,122 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ip neigh show
+0:04:16,122 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ifconfig veth1
+0:04:16,122 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:04:16,122 gw4 T0000: DEBUG         inet 10.10.10.2  netmask 255.255.255.0  broadcast 0.0.0.0
+0:04:16,123 gw4 T0000: DEBUG         inet6 fe80::b491:6bff:fe57:eda4  prefixlen 64  scopeid 0x20<link>
+0:04:16,123 gw4 T0000: DEBUG         ether b6:91:6b:57:ed:a4  txqueuelen 1000  (Ethernet)
+0:04:16,123 gw4 T0000: DEBUG         RX packets 6  bytes 516 (516.0 B)
+0:04:16,123 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:04:16,123 gw4 T0000: DEBUG         TX packets 7  bytes 574 (574.0 B)
+0:04:16,123 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:04:16,123 gw4 T0000: DEBUG
+0:04:16,123 gw4 T0000: DEBUG + ip netns exec ns_5_0_0 ip addr ls veth1
+0:04:16,123 gw4 T0000: DEBUG 182: veth1@if183: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:04:16,123 gw4 T0000: DEBUG     link/ether b6:91:6b:57:ed:a4 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:04:16,124 gw4 T0000: DEBUG     inet 10.10.10.2/24 scope global veth1
+0:04:16,124 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:04:16,124 gw4 T0000: DEBUG     inet6 fe80::b491:6bff:fe57:eda4/64 scope link
+0:04:16,124 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:04:16,124 gw4 T0000: DEBUG
+0:04:16,124 gw4 T0000: INFO  read the mac addresses of created interfaces
+0:04:16,124 gw4 T0000: DEBUG cmdexec: ip netns exec ns_5_0_0 ip addr show dev veth1
+0:04:16,148 gw4 T0000: INFO  ip addr show dev veth1 {'inet': '10.10.10.2/24', 'inet6': 'fe80::b491:6bff:fe57:eda4/64', 'state': 'UP', 'link/ether': 'b6:91:6b:57:ed:a4'}
+0:04:16,149 gw4 T0000: DEBUG New interface iface-5-0...
+0:04:18,151 gw4 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-5-0"}
+0:04:18,159 gw4 T0000: DEBUG gw4 ('gw4',) {'port_handle': 'port-6', 'mode': 'config', 'intf_ip_addr': '20.20.20.2', 'gateway': '20.20.20.1', 'arp_send_req': '1'}
+0:04:18,160 gw4 T0000: DEBUG gw4 exposed_tg_interface_config () {'port_handle': 'port-6', 'mode': 'config', 'intf_ip_addr': '20.20.20.2', 'gateway': '20.20.20.1', 'arp_send_req': '1'}
+0:04:18,161 gw4 T0000: DEBUG shexec:
+0:04:18,161 gw4 T0000: DEBUG ip netns del ns_6_0_0
+0:04:18,162 gw4 T0000: DEBUG ip link del veth_6_0_0
+0:04:18,162 gw4 T0000: DEBUG
+0:04:18,162 gw4 T0000: DEBUG ip netns add ns_6_0_0
+0:04:18,162 gw4 T0000: DEBUG ip netns list
+0:04:18,162 gw4 T0000: DEBUG ip link add veth_6_0_0 type veth peer name veth1
+0:04:18,162 gw4 T0000: DEBUG ip link set veth1 netns ns_6_0_0
+0:04:18,162 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:04:18,162 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ip link set dev veth1 up
+0:04:18,162 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ethtool --offload veth1 rx off tx off
+0:04:18,163 gw4 T0000: DEBUG ip link set dev veth_6_0_0 up
+0:04:18,163 gw4 T0000: DEBUG ip link add name eth6-br type bridge
+0:04:18,163 gw4 T0000: DEBUG ip link set dev veth_6_0_0 master eth6-br
+0:04:18,163 gw4 T0000: DEBUG
+0:04:18,163 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ip addr add 20.20.20.2/24 dev veth1
+0:04:18,163 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ip route add default via 20.20.20.1
+0:04:18,163 gw4 T0000: DEBUG sleep 2
+0:04:18,163 gw4 T0000: DEBUG
+0:04:18,163 gw4 T0000: DEBUG ip netns exec ns_6_0_0 arping -w 7 -c 1 -I veth1 20.20.20.1
+0:04:18,164 gw4 T0000: DEBUG
+0:04:18,164 gw4 T0000: DEBUG
+0:04:18,164 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ip neigh show
+0:04:18,164 gw4 T0000: DEBUG
+0:04:18,164 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ifconfig veth1
+0:04:18,164 gw4 T0000: DEBUG ip netns exec ns_6_0_0 ip addr ls veth1
+0:04:18,164 gw4 T0000: DEBUG
+0:04:21,576 gw4 T0000: DEBUG + ip netns del ns_6_0_0
+0:04:21,576 gw4 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_6_0_0": No such file or directory
+0:04:21,576 gw4 T0000: DEBUG + ip link del veth_6_0_0
+0:04:21,576 gw4 T0000: DEBUG Cannot find device "veth_6_0_0"
+0:04:21,576 gw4 T0000: DEBUG + ip netns add ns_6_0_0
+0:04:21,577 gw4 T0000: DEBUG + ip netns list
+0:04:21,577 gw4 T0000: DEBUG ns_6_0_0
+0:04:21,577 gw4 T0000: DEBUG ns_5_0_0 (id: 31)
+0:04:21,577 gw4 T0000: DEBUG ns_14_0_0 (id: 30)
+0:04:21,577 gw4 T0000: DEBUG ns_10_0_0 (id: 29)
+0:04:21,577 gw4 T0000: DEBUG ns_2_0_9 (id: 28)
+0:04:21,577 gw4 T0000: DEBUG ns_2_0_8 (id: 27)
+0:04:21,577 gw4 T0000: DEBUG ns_2_0_7 (id: 26)
+0:04:21,577 gw4 T0000: DEBUG ns_2_0_6 (id: 25)
+0:04:21,578 gw4 T0000: DEBUG ns_2_0_5 (id: 24)
+0:04:21,578 gw4 T0000: DEBUG ns_2_0_4 (id: 23)
+0:04:21,578 gw4 T0000: DEBUG ns_2_0_3 (id: 22)
+0:04:21,578 gw4 T0000: DEBUG ns_2_0_2 (id: 21)
+0:04:21,578 gw4 T0000: DEBUG ns_2_0_1 (id: 20)
+0:04:21,578 gw4 T0000: DEBUG ns_2_0_0 (id: 19)
+0:04:21,578 gw4 T0000: DEBUG ns_1_0_9 (id: 18)
+0:04:21,578 gw4 T0000: DEBUG ns_1_0_8 (id: 17)
+0:04:21,578 gw4 T0000: DEBUG ns_1_0_7 (id: 16)
+0:04:21,578 gw4 T0000: DEBUG ns_1_0_6 (id: 15)
+0:04:21,579 gw4 T0000: DEBUG ns_1_0_5 (id: 14)
+0:04:21,579 gw4 T0000: DEBUG ns_1_0_4 (id: 13)
+0:04:21,579 gw4 T0000: DEBUG ns_1_0_3 (id: 12)
+0:04:21,579 gw4 T0000: DEBUG ns_1_0_2 (id: 11)
+0:04:21,579 gw4 T0000: DEBUG ns_1_0_1 (id: 10)
+0:04:21,579 gw4 T0000: DEBUG ns_1_0_0 (id: 9)
+0:04:21,579 gw4 T0000: DEBUG ns_13_0_0 (id: 8)
+0:04:21,579 gw4 T0000: DEBUG ns_9_0_0 (id: 6)
+0:04:21,579 gw4 T0000: DEBUG V4 (id: 3)
+0:04:21,580 gw4 T0000: DEBUG V3 (id: 2)
+0:04:21,580 gw4 T0000: DEBUG V2 (id: 1)
+0:04:21,580 gw4 T0000: DEBUG scapy
+0:04:21,580 gw4 T0000: DEBUG V1 (id: 0)
+0:04:21,580 gw4 T0000: DEBUG + ip link add veth_6_0_0 type veth peer name veth1
+0:04:21,580 gw4 T0000: DEBUG + ip link set veth1 netns ns_6_0_0
+0:04:21,580 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ethtool --offload veth1 rx off tx off
+0:04:21,580 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ip link set dev veth1 up
+0:04:21,580 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ethtool --offload veth1 rx off tx off
+0:04:21,580 gw4 T0000: DEBUG + ip link set dev veth_6_0_0 up
+0:04:21,581 gw4 T0000: DEBUG + ip link add name eth6-br type bridge
+0:04:21,581 gw4 T0000: DEBUG + ip link set dev veth_6_0_0 master eth6-br
+0:04:21,581 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ip addr add 20.20.20.2/24 dev veth1
+0:04:21,581 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ip route add default via 20.20.20.1
+0:04:21,581 gw4 T0000: DEBUG + sleep 2
+0:04:21,581 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 arping -w 7 -c 1 -I veth1 20.20.20.1
+0:04:21,581 gw4 T0000: DEBUG ARPING 20.20.20.1
+0:04:21,581 gw4 T0000: DEBUG Timeout
+0:04:21,581 gw4 T0000: DEBUG
+0:04:21,582 gw4 T0000: DEBUG --- 20.20.20.1 statistics ---
+0:04:21,582 gw4 T0000: DEBUG 1 packets transmitted, 0 packets received, 100% unanswered (0 extra)
+0:04:21,582 gw4 T0000: DEBUG
+0:04:21,582 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ip neigh show
+0:04:21,582 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ifconfig veth1
+0:04:21,582 gw4 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:04:21,582 gw4 T0000: DEBUG         inet 20.20.20.2  netmask 255.255.255.0  broadcast 0.0.0.0
+0:04:21,582 gw4 T0000: DEBUG         inet6 fe80::ecd9:25ff:fe61:4ccc  prefixlen 64  scopeid 0x20<link>
+0:04:21,582 gw4 T0000: DEBUG         ether ee:d9:25:61:4c:cc  txqueuelen 1000  (Ethernet)
+0:04:21,582 gw4 T0000: DEBUG         RX packets 6  bytes 516 (516.0 B)
+0:04:21,583 gw4 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:04:21,583 gw4 T0000: DEBUG         TX packets 7  bytes 574 (574.0 B)
+0:04:21,583 gw4 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:04:21,583 gw4 T0000: DEBUG
+0:04:21,583 gw4 T0000: DEBUG + ip netns exec ns_6_0_0 ip addr ls veth1
+0:04:21,583 gw4 T0000: DEBUG 185: veth1@if186: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:04:21,583 gw4 T0000: DEBUG     link/ether ee:d9:25:61:4c:cc brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:04:21,583 gw4 T0000: DEBUG     inet 20.20.20.2/24 scope global veth1
+0:04:21,583 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:04:21,584 gw4 T0000: DEBUG     inet6 fe80::ecd9:25ff:fe61:4ccc/64 scope link
+0:04:21,584 gw4 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:04:21,584 gw4 T0000: DEBUG
+0:04:21,584 gw4 T0000: INFO  read the mac addresses of created interfaces
+0:04:21,584 gw4 T0000: DEBUG cmdexec: ip netns exec ns_6_0_0 ip addr show dev veth1
+0:04:21,613 gw4 T0000: INFO  ip addr show dev veth1 {'inet': '20.20.20.2/24', 'inet6': 'fe80::ecd9:25ff:fe61:4ccc/64', 'state': 'UP', 'link/ether': 'ee:d9:25:61:4c:cc'}
+0:04:21,613 gw4 T0000: DEBUG New interface iface-6-0...
+0:04:23,616 gw4 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-6-0"}
+0:04:23,632 gw4 T0000: DEBUG gw4 ('gw4',) {'handle': 'iface-5-0', 'mode': 'enable', 'active_connect_enable': '1', 'local_as': '200', 'remote_as': '100', 'remote_ip_addr': '10.10.10.1'}
+0:04:23,633 gw4 T0000: DEBUG gw4 exposed_tg_emulation_bgp_config () {'handle': 'iface-5-0', 'mode': 'enable', 'active_connect_enable': '1', 'local_as': '200', 'remote_as': '100', 'remote_ip_addr': '10.10.10.1'}
+0:04:25,635 gw4 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-5-0"}
+0:04:25,647 gw4 T0000: DEBUG gw4 ('gw4',) {'handle': 'iface-5-0', 'mode': 'add', 'num_routes': '16000', 'prefix': '121.1.1.0', 'as_path': 'as_seq:1'}
+0:04:25,647 gw4 T0000: DEBUG gw4 exposed_tg_emulation_bgp_route_config () {'handle': 'iface-5-0', 'mode': 'add', 'num_routes': '16000', 'prefix': '121.1.1.0', 'as_path': 'as_seq:1'}
+0:04:25,648 gw4 T0000: INFO  ======= CAT /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log LINES -1 =====
+0:04:25,648 gw4 T0000: INFO  ===================================
+0:04:25,649 gw4 T0000: INFO  =========== BGP ROUTE ==================
+SpyTestDict([('index', 0), ('kws', {'handle': 'iface-5-0', 'num_routes': '16000', 'prefix': '121.1.1.0', 'as_path': 'as_seq:1'}), ('enable', True), ('intf', <port.ScapyInterface object at 0x7f7bc433abe0>), ('route_handle', 'bgp-route-5-0-0'), ('handle', 'bgp-route-5-0-0')])
+=============================
+0:04:25,694 gw4 T0000: DEBUG cmdexec: ip netns exec ns_5_0_0 bash /data/work/scapy-tgen/tmp/qk9vjf9h
+0:04:45,872 gw4 T0000: INFO
+0:04:45,872 gw4 T0000: INFO  ####################### [exabgp.api]
+0:04:45,873 gw4 T0000: INFO  pipename = '5_0_0'
+0:04:45,873 gw4 T0000: INFO  cli = false
+0:04:45,873 gw4 T0000: INFO
+0:04:45,873 gw4 T0000: INFO  [exabgp.daemon]
+0:04:45,873 gw4 T0000: INFO  pid = '/data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.pid'
+0:04:45,873 gw4 T0000: INFO  daemonize = true
+0:04:45,873 gw4 T0000: INFO  drop = false
+0:04:45,873 gw4 T0000: INFO  user = root
+0:04:45,873 gw4 T0000: INFO
+0:04:45,874 gw4 T0000: INFO  [exabgp.log]
+0:04:45,874 gw4 T0000: INFO  all = true
+0:04:45,874 gw4 T0000: INFO  message = true
+0:04:45,874 gw4 T0000: INFO  network = true
+0:04:45,874 gw4 T0000: INFO  packets = true
+0:04:45,874 gw4 T0000: INFO  parser = true
+0:04:45,874 gw4 T0000: INFO  rib = true
+0:04:45,874 gw4 T0000: INFO  routes = true
+0:04:45,874 gw4 T0000: INFO  timers = true
+0:04:45,875 gw4 T0000: INFO  level = DEBUG
+0:04:45,875 gw4 T0000: INFO  destination = '/data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log'
+0:04:45,875 gw4 T0000: INFO  #######################
+0:04:45,875 gw4 T0000: INFO
+0:04:45,875 gw4 T0000: INFO
+0:04:45,875 gw4 T0000: INFO  ####################### process announce-routes {
+0:04:45,875 gw4 T0000: INFO      run /usr/bin/python /repo/spytest/tgen/scapy/exabgp_routes.py /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.cmd;
+0:04:45,875 gw4 T0000: INFO      encoder json;
+0:04:45,876 gw4 T0000: INFO  }
+0:04:45,876 gw4 T0000: INFO  neighbor 10.10.10.1 {
+0:04:45,876 gw4 T0000: INFO      router-id 5.0.0.0;
+0:04:45,876 gw4 T0000: INFO      local-address 10.10.10.2;
+0:04:45,876 gw4 T0000: INFO      peer-as 100;
+0:04:45,876 gw4 T0000: INFO      local-as 200;
+0:04:45,876 gw4 T0000: INFO      auto-flush false;
+0:04:45,876 gw4 T0000: INFO      group-updates true;
+0:04:45,876 gw4 T0000: INFO      family {
+0:04:45,877 gw4 T0000: INFO          ipv4 unicast;
+0:04:45,877 gw4 T0000: INFO      }
+0:04:45,877 gw4 T0000: INFO      api {
+0:04:45,877 gw4 T0000: INFO          processes [ announce-routes ];
+0:04:45,877 gw4 T0000: INFO      }
+0:04:45,877 gw4 T0000: INFO  }
+0:04:45,877 gw4 T0000: INFO  #######################
+0:04:45,877 gw4 T0000: INFO
+0:04:45,879 gw4 T0000: INFO  ======= HEAD /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.cmd LINES 16000 =====
+0:04:45,880 gw4 T0000: INFO  announce route 121.1.1.0/24 next-hop self
+0:04:45,880 gw4 T0000: INFO  announce route 121.1.2.0/24 next-hop self
+0:04:45,880 gw4 T0000: INFO  announce route 121.1.3.0/24 next-hop self
+0:04:45,880 gw4 T0000: INFO  announce route 121.1.4.0/24 next-hop self
+0:04:45,880 gw4 T0000: INFO  announce route 121.1.5.0/24 next-hop self
+0:04:45,880 gw4 T0000: INFO  announce route 121.1.6.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.7.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.8.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.9.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.10.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.11.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.12.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.13.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.14.0/24 next-hop self
+0:04:45,881 gw4 T0000: INFO  announce route 121.1.15.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.16.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.17.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.18.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.19.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.20.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.21.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.22.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.23.0/24 next-hop self
+0:04:45,882 gw4 T0000: INFO  announce route 121.1.24.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.25.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.26.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.27.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.28.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.29.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.30.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.31.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.32.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.33.0/24 next-hop self
+0:04:45,883 gw4 T0000: INFO  announce route 121.1.34.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.35.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.36.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.37.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.38.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.39.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.40.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.41.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.42.0/24 next-hop self
+0:04:45,884 gw4 T0000: INFO  announce route 121.1.43.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  announce route 121.1.44.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  announce route 121.1.45.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  announce route 121.1.46.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  announce route 121.1.47.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  announce route 121.1.48.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  announce route 121.1.49.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  announce route 121.1.50.0/24 next-hop self
+0:04:45,885 gw4 T0000: INFO  ===================================
+0:04:45,885 gw4 T0000: INFO  ======= TAIL /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.cmd LINES 16000 =====
+0:04:45,890 gw4 T0000: INFO  announce route 121.63.79.0/24 next-hop self
+0:04:45,890 gw4 T0000: INFO  announce route 121.63.80.0/24 next-hop self
+0:04:45,890 gw4 T0000: INFO  announce route 121.63.81.0/24 next-hop self
+0:04:45,890 gw4 T0000: INFO  announce route 121.63.82.0/24 next-hop self
+0:04:45,890 gw4 T0000: INFO  announce route 121.63.83.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.84.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.85.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.86.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.87.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.88.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.89.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.90.0/24 next-hop self
+0:04:45,891 gw4 T0000: INFO  announce route 121.63.91.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.92.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.93.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.94.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.95.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.96.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.97.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.98.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.99.0/24 next-hop self
+0:04:45,892 gw4 T0000: INFO  announce route 121.63.100.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.101.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.102.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.103.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.104.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.105.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.106.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.107.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.108.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.109.0/24 next-hop self
+0:04:45,893 gw4 T0000: INFO  announce route 121.63.110.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.111.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.112.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.113.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.114.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.115.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.116.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.117.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.118.0/24 next-hop self
+0:04:45,894 gw4 T0000: INFO  announce route 121.63.119.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.120.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.121.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.122.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.123.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.124.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.125.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.126.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.127.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  announce route 121.63.128.0/24 next-hop self
+0:04:45,895 gw4 T0000: INFO  ===================================
+0:04:50,901 gw4 T0000: INFO
+0:04:50,901 gw4 T0000: INFO  ####################### 422709
+0:04:50,901 gw4 T0000: INFO  #######################
+0:04:50,902 gw4 T0000: INFO
+0:04:50,902 gw4 T0000: INFO  ======= HEAD /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log LINES 1458 =====
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:14 422371 daemon        Created PIDfile /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.pid with value 422709
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:14 422371 reactor       initialising connection to peer-1
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:14 422371 outgoing-1    attempting connection to 10.10.10.1:179
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 process       command from process announce-routes : announce route 121.1.1.0/24 next-hop self
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 reactor       async | announce-routes | announce route 121.1.1.0/24 next-hop self
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 configuration . route            | '121.1.1.0/24' 'next-hop' 'self'
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.1.0/24 next-hop self
+0:04:50,903 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 process       responding to announce-routes : done
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.2.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.2.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.3.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.3.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.4.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.4.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.5.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.5.0/24 next-hop self
+0:04:50,904 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.6.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.6.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.7.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.7.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.8.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.8.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.9.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.9.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.10.0/24 next-hop self
+0:04:50,905 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.10.0/24 next-hop self
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.11.0/24 next-hop self
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.11.0/24 next-hop self
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.2.0/24' 'next-hop' 'self'
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.2.0/24 next-hop self
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.3.0/24' 'next-hop' 'self'
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.3.0/24 next-hop self
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:50,906 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.4.0/24' 'next-hop' 'self'
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.4.0/24 next-hop self
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.5.0/24' 'next-hop' 'self'
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.5.0/24 next-hop self
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.6.0/24' 'next-hop' 'self'
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.6.0/24 next-hop self
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.7.0/24' 'next-hop' 'self'
+0:04:50,907 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.7.0/24 next-hop self
+0:04:50,908 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:50,908 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.8.0/24' 'next-hop' 'self'
+0:04:50,908 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.8.0/24 next-hop self
+0:04:50,908 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:50,908 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.9.0/24' 'next-hop' 'self'
+0:04:50,908 gw4 T0000: INFO  ===================================
+0:04:50,908 gw4 T0000: INFO  ======= TAIL /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log LINES 1458 =====
+0:04:50,909 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.26.0/24 next-hop self
+0:04:50,909 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.26.0/24 next-hop self
+0:04:50,909 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.27.0/24 next-hop self
+0:04:50,909 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.27.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.28.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.28.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.29.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.29.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.30.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.30.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.31.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.31.0/24 next-hop self
+0:04:50,910 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.32.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.32.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.33.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.33.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.34.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.34.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       command from process announce-routes : announce route 121.2.35.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 reactor       async | announce-routes | announce route 121.2.35.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.26.0/24' 'next-hop' 'self'
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.26.0/24 next-hop self
+0:04:50,911 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.27.0/24' 'next-hop' 'self'
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.27.0/24 next-hop self
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.28.0/24' 'next-hop' 'self'
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.28.0/24 next-hop self
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.29.0/24' 'next-hop' 'self'
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.29.0/24 next-hop self
+0:04:50,912 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.30.0/24' 'next-hop' 'self'
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.30.0/24 next-hop self
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.31.0/24' 'next-hop' 'self'
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.31.0/24 next-hop self
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.32.0/24' 'next-hop' 'self'
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.32.0/24 next-hop self
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.33.0/24' 'next-hop' 'self'
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.33.0/24 next-hop self
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.34.0/24' 'next-hop' 'self'
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.34.0/24 next-hop self
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 configuration . route            | '121.2.35.0/24' 'next-hop' 'self'
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.35.0/24 next-hop self
+0:04:50,913 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:19 422371 process       responding to announce-routes : done
+0:04:50,913 gw4 T0000: INFO  ===================================
+0:04:52,916 gw4 T0000: DEBUG RESULT: {"status": "1", "handle": "bgp-route-5-0-0"}
+0:04:52,925 gw4 T0000: DEBUG gw4 ('gw4',) {'handle': 'iface-5-0', 'mode': 'start'}
+0:04:52,925 gw4 T0000: DEBUG gw4 exposed_tg_emulation_bgp_control () {'handle': 'iface-5-0', 'mode': 'start'}
+0:04:52,925 gw4 T0000: INFO  ======= HEAD /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log LINES 2458 =====
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:14 422371 daemon        Created PIDfile /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.pid with value 422709
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:14 422371 reactor       initialising connection to peer-1
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:14 422371 outgoing-1    attempting connection to 10.10.10.1:179
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 process       command from process announce-routes : announce route 121.1.1.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 reactor       async | announce-routes | announce route 121.1.1.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 configuration . route            | '121.1.1.0/24' 'next-hop' 'self'
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.1.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:16 422371 process       responding to announce-routes : done
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.2.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.2.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.3.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.3.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.4.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.4.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.5.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.5.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.6.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.6.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.7.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.7.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.8.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.8.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.9.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.9.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.10.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.10.0/24 next-hop self
+0:04:52,926 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       command from process announce-routes : announce route 121.1.11.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 reactor       async | announce-routes | announce route 121.1.11.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.2.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.2.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.3.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.3.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.4.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.4.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.5.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.5.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.6.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.6.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.7.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.7.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.8.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.8.0/24 next-hop self
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 process       responding to announce-routes : done
+0:04:52,927 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:17 422371 configuration . route            | '121.1.9.0/24' 'next-hop' 'self'
+0:04:52,927 gw4 T0000: INFO  ===================================
+0:04:52,927 gw4 T0000: INFO  ======= TAIL /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log LINES 2458 =====
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.226.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.227.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.227.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.228.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.228.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.229.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.229.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.230.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.230.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.231.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.231.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.232.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.232.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.233.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.233.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.234.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.234.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.235.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 reactor       async | announce-routes | announce route 121.2.235.0/24 next-hop self
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.226.0/24' 'next-hop' 'self'
+0:04:52,928 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.226.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.227.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.227.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.228.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.228.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.229.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.229.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.230.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.230.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.231.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.231.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.232.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.232.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.233.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.233.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.234.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.234.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 configuration . route            | '121.2.235.0/24' 'next-hop' 'self'
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.235.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       responding to announce-routes : done
+0:04:52,929 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:21 422371 process       command from process announce-routes : announce route 121.2.236.0/24 next-hop self
+0:04:52,929 gw4 T0000: INFO  ===================================
+0:04:52,930 gw4 T0000: INFO
+0:04:52,930 gw4 T0000: INFO  ####################### 422709
+0:04:52,930 gw4 T0000: INFO  #######################
+0:04:52,930 gw4 T0000: INFO
+0:04:52,930 gw4 T0000: INFO
+0:04:52,930 gw4 T0000: INFO  ####################### 422709
+0:04:52,930 gw4 T0000: INFO  #######################
+0:04:52,930 gw4 T0000: INFO
+0:04:52,930 gw4 T0000: DEBUG cmdexec: ip netns exec ns_5_0_0 pkill -F /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.pid
+0:04:52,957 gw4 T0000: INFO  EXEC: rm -f /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.pid
+0:04:52,966 gw4 T0000: INFO  =========== BGP ROUTE ==================
+SpyTestDict([('index', 0), ('kws', {'handle': 'iface-5-0', 'num_routes': '16000', 'prefix': '121.1.1.0', 'as_path': 'as_seq:1'}), ('enable', True), ('intf', <port.ScapyInterface object at 0x7f7bc433abe0>), ('route_handle', 'bgp-route-5-0-0'), ('handle', 'bgp-route-5-0-0')])
+=============================
+0:04:53,008 gw4 T0000: DEBUG cmdexec: ip netns exec ns_5_0_0 bash /data/work/scapy-tgen/tmp/6p_ici9c
+0:05:13,173 gw4 T0000: INFO
+0:05:13,173 gw4 T0000: INFO  ####################### [exabgp.api]
+0:05:13,173 gw4 T0000: INFO  pipename = '5_0_0'
+0:05:13,173 gw4 T0000: INFO  cli = false
+0:05:13,173 gw4 T0000: INFO
+0:05:13,173 gw4 T0000: INFO  [exabgp.daemon]
+0:05:13,173 gw4 T0000: INFO  pid = '/data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.pid'
+0:05:13,174 gw4 T0000: INFO  daemonize = true
+0:05:13,174 gw4 T0000: INFO  drop = false
+0:05:13,174 gw4 T0000: INFO  user = root
+0:05:13,174 gw4 T0000: INFO
+0:05:13,174 gw4 T0000: INFO  [exabgp.log]
+0:05:13,174 gw4 T0000: INFO  all = true
+0:05:13,174 gw4 T0000: INFO  message = true
+0:05:13,174 gw4 T0000: INFO  network = true
+0:05:13,174 gw4 T0000: INFO  packets = true
+0:05:13,174 gw4 T0000: INFO  parser = true
+0:05:13,175 gw4 T0000: INFO  rib = true
+0:05:13,175 gw4 T0000: INFO  routes = true
+0:05:13,175 gw4 T0000: INFO  timers = true
+0:05:13,175 gw4 T0000: INFO  level = DEBUG
+0:05:13,175 gw4 T0000: INFO  destination = '/data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log'
+0:05:13,175 gw4 T0000: INFO  #######################
+0:05:13,175 gw4 T0000: INFO
+0:05:13,176 gw4 T0000: INFO
+0:05:13,176 gw4 T0000: INFO  ####################### process announce-routes {
+0:05:13,176 gw4 T0000: INFO      run /usr/bin/python /repo/spytest/tgen/scapy/exabgp_routes.py /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.cmd;
+0:05:13,176 gw4 T0000: INFO      encoder json;
+0:05:13,176 gw4 T0000: INFO  }
+0:05:13,176 gw4 T0000: INFO  neighbor 10.10.10.1 {
+0:05:13,176 gw4 T0000: INFO      router-id 5.0.0.0;
+0:05:13,176 gw4 T0000: INFO      local-address 10.10.10.2;
+0:05:13,176 gw4 T0000: INFO      peer-as 100;
+0:05:13,177 gw4 T0000: INFO      local-as 200;
+0:05:13,177 gw4 T0000: INFO      auto-flush false;
+0:05:13,177 gw4 T0000: INFO      group-updates true;
+0:05:13,177 gw4 T0000: INFO      family {
+0:05:13,177 gw4 T0000: INFO          ipv4 unicast;
+0:05:13,177 gw4 T0000: INFO      }
+0:05:13,177 gw4 T0000: INFO      api {
+0:05:13,177 gw4 T0000: INFO          processes [ announce-routes ];
+0:05:13,177 gw4 T0000: INFO      }
+0:05:13,177 gw4 T0000: INFO  }
+0:05:13,178 gw4 T0000: INFO  #######################
+0:05:13,178 gw4 T0000: INFO
+0:05:13,182 gw4 T0000: INFO  ======= HEAD /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.cmd LINES 16000 =====
+0:05:13,182 gw4 T0000: INFO  announce route 121.1.1.0/24 next-hop self
+0:05:13,182 gw4 T0000: INFO  announce route 121.1.2.0/24 next-hop self
+0:05:13,182 gw4 T0000: INFO  announce route 121.1.3.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.4.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.5.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.6.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.7.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.8.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.9.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.10.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.11.0/24 next-hop self
+0:05:13,183 gw4 T0000: INFO  announce route 121.1.12.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.13.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.14.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.15.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.16.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.17.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.18.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.19.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.20.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.21.0/24 next-hop self
+0:05:13,184 gw4 T0000: INFO  announce route 121.1.22.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.23.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.24.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.25.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.26.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.27.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.28.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.29.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.30.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.31.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.32.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.33.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.34.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.35.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.36.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.37.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.38.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.39.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.40.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.41.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.42.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.43.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.44.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.45.0/24 next-hop self
+0:05:13,185 gw4 T0000: INFO  announce route 121.1.46.0/24 next-hop self
+0:05:13,186 gw4 T0000: INFO  announce route 121.1.47.0/24 next-hop self
+0:05:13,186 gw4 T0000: INFO  announce route 121.1.48.0/24 next-hop self
+0:05:13,186 gw4 T0000: INFO  announce route 121.1.49.0/24 next-hop self
+0:05:13,186 gw4 T0000: INFO  announce route 121.1.50.0/24 next-hop self
+0:05:13,186 gw4 T0000: INFO  ===================================
+0:05:13,186 gw4 T0000: INFO  ======= TAIL /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.cmd LINES 16000 =====
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.79.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.80.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.81.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.82.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.83.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.84.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.85.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.86.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.87.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.88.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.89.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.90.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.91.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.92.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.93.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.94.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.95.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.96.0/24 next-hop self
+0:05:13,187 gw4 T0000: INFO  announce route 121.63.97.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.98.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.99.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.100.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.101.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.102.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.103.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.104.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.105.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.106.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.107.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.108.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.109.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.110.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.111.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.112.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.113.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.114.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.115.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.116.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.117.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.118.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.119.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.120.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.121.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.122.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.123.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.124.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.125.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.126.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.127.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  announce route 121.63.128.0/24 next-hop self
+0:05:13,188 gw4 T0000: INFO  ===================================
+0:05:18,193 gw4 T0000: INFO
+0:05:18,193 gw4 T0000: INFO  ####################### 423668
+0:05:18,193 gw4 T0000: INFO  #######################
+0:05:18,193 gw4 T0000: INFO
+0:05:18,194 gw4 T0000: INFO  ======= HEAD /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log LINES 1458 =====
+0:05:18,194 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:42 423111 daemon        Created PIDfile /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.pid with value 423668
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:42 423111 reactor       initialising connection to peer-1
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:42 423111 outgoing-1    attempting connection to 10.10.10.1:179
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.1.0/24 next-hop self
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.1.0/24 next-hop self
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.1.0/24' 'next-hop' 'self'
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.1.0/24 next-hop self
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.2.0/24 next-hop self
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.2.0/24 next-hop self
+0:05:18,195 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.3.0/24 next-hop self
+0:05:18,196 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.3.0/24 next-hop self
+0:05:18,196 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.4.0/24 next-hop self
+0:05:18,196 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.4.0/24 next-hop self
+0:05:18,196 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.5.0/24 next-hop self
+0:05:18,196 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.5.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.6.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.6.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.7.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.7.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.8.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.8.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.9.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.9.0/24 next-hop self
+0:05:18,197 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.10.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.10.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       command from process announce-routes : announce route 121.1.11.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 reactor       async | announce-routes | announce route 121.1.11.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.2.0/24' 'next-hop' 'self'
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.2.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.3.0/24' 'next-hop' 'self'
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.3.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.4.0/24' 'next-hop' 'self'
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.4.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.5.0/24' 'next-hop' 'self'
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.5.0/24 next-hop self
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.6.0/24' 'next-hop' 'self'
+0:05:18,198 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.6.0/24 next-hop self
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.7.0/24' 'next-hop' 'self'
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.7.0/24 next-hop self
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.8.0/24' 'next-hop' 'self'
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.1.8.0/24 next-hop self
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 process       responding to announce-routes : done
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:44 423111 configuration . route            | '121.1.9.0/24' 'next-hop' 'self'
+0:05:18,199 gw4 T0000: INFO  ===================================
+0:05:18,199 gw4 T0000: INFO  ======= TAIL /data/work/scapy-tgen/logs/current/inst-2024_01_04_02_01_29_034234/gw4/exabgpd_5_0_0.log LINES 1458 =====
+0:05:18,199 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.26.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.26.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.27.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.27.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.28.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.28.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.29.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.29.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.30.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.30.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.31.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.31.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.32.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.32.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.33.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.33.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.34.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.34.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       command from process announce-routes : announce route 121.2.35.0/24 next-hop self
+0:05:18,200 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 reactor       async | announce-routes | announce route 121.2.35.0/24 next-hop self
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.26.0/24' 'next-hop' 'self'
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.26.0/24 next-hop self
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.27.0/24' 'next-hop' 'self'
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.27.0/24 next-hop self
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.28.0/24' 'next-hop' 'self'
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.28.0/24 next-hop self
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.29.0/24' 'next-hop' 'self'
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.29.0/24 next-hop self
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.30.0/24' 'next-hop' 'self'
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.30.0/24 next-hop self
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.31.0/24' 'next-hop' 'self'
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.31.0/24 next-hop self
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.32.0/24' 'next-hop' 'self'
+0:05:18,201 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.32.0/24 next-hop self
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.33.0/24' 'next-hop' 'self'
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.33.0/24 next-hop self
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.34.0/24' 'next-hop' 'self'
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.34.0/24 next-hop self
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 configuration . route            | '121.2.35.0/24' 'next-hop' 'self'
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 api           route added to neighbor 10.10.10.1 local-ip 10.10.10.2 local-as 200 peer-as 100 router-id 5.0.0.0 family-allowed in-open : 121.2.35.0/24 next-hop self
+0:05:18,202 gw4 T0000: INFO  Thu, 04 Jan 2024 02:06:47 423111 process       responding to announce-routes : done
+0:05:18,202 gw4 T0000: INFO  ===================================
+0:05:20,204 gw4 T0000: DEBUG RESULT: {"status": "1"}
+0:07:22,633 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-finish test_ft_l3_performance_enhancements_v4_route_intstall_withdraw gw4') {}
+0:07:22,634 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-finish test_ft_l3_performance_enhancements_v4_route_intstall_withdraw gw4 () {}
+0:07:22,634 gw4 T0000: INFO  ################################################################################
+0:07:22,634 gw4 T0000: INFO  gw4 gw4 add-log test-finish test_ft_l3_performance_enhancements_v4_route_intstall_withdraw gw4
+0:07:22,634 gw4 T0000: INFO  ################################################################################
+0:07:22,635 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:07:22,635 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:07:28,214 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-start test_cli_validation_ip_address gw4') {}
+0:07:28,214 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-start test_cli_validation_ip_address gw4 () {}
+0:07:28,214 gw4 T0000: INFO  ################################################################################
+0:07:28,214 gw4 T0000: INFO  gw4 gw4 add-log test-start test_cli_validation_ip_address gw4
+0:07:28,214 gw4 T0000: INFO  ################################################################################
+0:07:28,215 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:07:28,216 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:08:34,554 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-finish test_cli_validation_ip_address gw4') {}
+0:08:34,554 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-finish test_cli_validation_ip_address gw4 () {}
+0:08:34,554 gw4 T0000: INFO  ################################################################################
+0:08:34,554 gw4 T0000: INFO  gw4 gw4 add-log test-finish test_cli_validation_ip_address gw4
+0:08:34,554 gw4 T0000: INFO  ################################################################################
+0:08:34,555 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:08:34,555 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:08:39,726 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-start test_cli_validation_bgp_router_config gw4') {}
+0:08:39,726 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-start test_cli_validation_bgp_router_config gw4 () {}
+0:08:39,727 gw4 T0000: INFO  ################################################################################
+0:08:39,727 gw4 T0000: INFO  gw4 gw4 add-log test-start test_cli_validation_bgp_router_config gw4
+0:08:39,727 gw4 T0000: INFO  ################################################################################
+0:08:39,728 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:08:39,728 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:08:57,036 gw4 T0000: DEBUG gw4 ('gw4', 'add-log', 'test-finish test_cli_validation_bgp_router_config gw4') {}
+0:08:57,036 gw4 T0000: DEBUG gw4 exposed_server_control add-log test-finish test_cli_validation_bgp_router_config gw4 () {}
+0:08:57,036 gw4 T0000: INFO  ################################################################################
+0:08:57,036 gw4 T0000: INFO  gw4 gw4 add-log test-finish test_cli_validation_bgp_router_config gw4
+0:08:57,036 gw4 T0000: INFO  ################################################################################
+0:08:57,037 gw4 T0000: DEBUG gw4 ('gw4', 'get-alerts', '') {}
+0:08:57,037 gw4 T0000: DEBUG gw4 exposed_server_control get-alerts  () {}
+0:09:18,738 gw4 T0000: DEBUG gw4 ('gw4', 'read-log', 'results_mlog_routing_test_l3_performance.tgen') {}
+0:09:18,739 gw4 T0000: DEBUG gw4 exposed_server_control read-log results_mlog_routing_test_l3_performance.tgen () {}

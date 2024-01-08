@@ -1,0 +1,75 @@
+Building configuration...
+
+Current configuration:
+!
+frr version 8.5.1
+frr defaults traditional
+hostname sonic
+log syslog informational
+log facility local4
+no zebra nexthop kernel enable
+fpm address 127.0.0.1
+no fpm use-next-hop-groups
+no service integrated-vtysh-config
+!
+password zebra
+enable password zebra
+!
+ipv6 access-list LOOPBACK seq 5 permit 67fe:1::/64
+!
+route-map ALLOW_LIST_DEPLOYMENT_ID_0_V4 permit 65535
+exit
+!
+route-map ALLOW_LIST_DEPLOYMENT_ID_0_V6 permit 65535
+exit
+!
+route-map FROM_BGP_PEER_V4 permit 10
+ call ALLOW_LIST_DEPLOYMENT_ID_0_V4
+ on-match next
+exit
+!
+route-map FROM_BGP_PEER_V4 permit 11
+exit
+!
+route-map FROM_BGP_PEER_V4 permit 100
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 1
+ on-match next
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 10
+ call ALLOW_LIST_DEPLOYMENT_ID_0_V6
+ on-match next
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 11
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 100
+exit
+!
+route-map TO_BGP_PEER_V4 permit 100
+exit
+!
+route-map TO_BGP_PEER_V6 permit 100
+exit
+!
+route-map RM_SET_SRC permit 10
+ set src 10.1.0.1
+exit
+!
+route-map SET_COMMUNITY_1 permit 10
+ set metric 50
+exit
+!
+route-map SET_COMMUNITY permit 10
+exit
+!
+ip nht resolve-via-default
+!
+ipv6 nht resolve-via-default
+!
+ip protocol bgp route-map RM_SET_SRC
+!
+end

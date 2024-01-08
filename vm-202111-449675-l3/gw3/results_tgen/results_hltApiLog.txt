@@ -1,0 +1,20 @@
+REQ: tg_connect(port_list=['1/9', '1/10', '1/11', '1/12', '1/13', '1/14', '1/15', '1/16'])
+RESP: tg_connect {"port_handle": {"1/9": "port-9", "1/10": "port-10", "1/11": "port-11", "1/12": "port-12", "1/13": "port-13", "1/14": "port-14", "1/15": "port-15", "1/16": "port-16"}, "status": 1}
+REQ: tg_interface_config(port_handle='port-9',mode='config',intf_ip_addr='6.0.0.2',gateway='6.0.0.1',netmask='255.255.0.0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-9-0"}
+REQ: tg_interface_config(port_handle='port-13',mode='config',intf_ip_addr='7.0.0.2',gateway='7.0.0.1',netmask='255.255.0.0',arp_send_req='1')
+RESP: tg_interface_config {"status": "1", "handle": "iface-13-0"}
+REQ: tg_traffic_config(port_handle='port-9',mode='create',duration='5',transmit_mode='continuous',length_mode='fixed',port_handle2='port-13',rate_pps=100,mac_src='00.00.00.11.12.53',mac_dst='52:54:00:12:34:56',ip_src_addr='6.0.0.3',ip_dst_addr='7.0.0.3',l3_protocol='ipv4',ip_src_mode='increment',ip_src_count=1000,ip_src_step='0.0.0.1')
+RESP: tg_traffic_config {"stream_id": "stream-9-0"}
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-9')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle='port-13')
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='run',stream_handle=dict_values(['stream-9-0'])[<class 'dict_values'>],duration=5)
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='stop',stream_handle=dict_values(['stream-9-0'])[<class 'dict_values'>])
+RESP: tg_traffic_control True
+REQ: tg_traffic_stats(port_handle='port-9',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-9": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 484, "pkt_byte_count": 30976, "total_pkts": 484, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 207, "pkt_byte_count": 8915, "total_pkts": 207, "oversize_count": 0, "name": "port-9"}}, "name": "eth9"}}
+REQ: tg_traffic_stats(port_handle='port-13',mode='aggregate')
+RESP: tg_traffic_stats {"status": "1", "waiting_for_stats": "0", "port-13": {"aggregate": {"tx": {"total_pkt_rate": 1, "raw_pkt_count": 0, "pkt_byte_count": 0, "total_pkts": 0, "name": ""}, "rx": {"total_pkt_rate": 1, "raw_pkt_rate": 1, "raw_pkt_count": 1, "pkt_byte_count": 263, "total_pkts": 1, "oversize_count": 0, "name": "port-13"}}, "name": "eth13"}}

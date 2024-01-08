@@ -1,0 +1,26 @@
+REQ: tg_connect(port_list=['1/13', '1/14', '1/15', '1/16'])
+RESP: tg_connect {"port_handle": {"1/13": "port-13", "1/14": "port-14", "1/15": "port-15", "1/16": "port-16"}, "status": 1}
+REQ: tg_traffic_control(action='reset',port_handle=['port-13', 'port-14', 'port-15', 'port-16'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-13', 'port-14', 'port-15', 'port-16'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_config(port_handle='port-13',mode='create',rate_percent=100,transmit_mode='continuous',mac_src='00:00:00:00:00:01',mac_dst='00:00:00:00:00:05',vlan_id='1009',high_speed_result_analysis=1,l2_encap='ethernet_ii_vlan')
+RESP: tg_traffic_config {"stream_id": "stream-13-0"}
+REQ: tg_traffic_config(port_handle='port-14',mode='create',rate_percent=100,transmit_mode='continuous',mac_src='00:00:00:00:00:02',mac_dst='00:00:00:00:00:05',vlan_id='1009',high_speed_result_analysis=1,l2_encap='ethernet_ii_vlan')
+RESP: tg_traffic_config {"stream_id": "stream-14-0"}
+REQ: tg_traffic_config(port_handle='port-15',mode='create',rate_percent=100,transmit_mode='continuous',mac_src='00:00:00:00:00:03',mac_dst='00:00:00:00:00:05',vlan_id='1009',high_speed_result_analysis=1,l2_encap='ethernet_ii_vlan')
+RESP: tg_traffic_config {"stream_id": "stream-15-0"}
+REQ: tg_traffic_config(port_handle='port-16',mode='create',rate_percent=100,transmit_mode='continuous',mac_src='00:00:00:00:00:05',mac_dst='00:00:00:00:00:01',vlan_id='1009',high_speed_result_analysis=1,l2_encap='ethernet_ii_vlan')
+RESP: tg_traffic_config {"stream_id": "stream-16-0"}
+REQ: tg_traffic_control(action='reset',port_handle=['port-13', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_control(action='clear_stats',port_handle=['port-13', 'port-14'])
+RESP: tg_traffic_control True
+REQ: tg_traffic_config(port_handle='port-13',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=100,frame_size=72,l2_encap='ethernet_ii_vlan',vlan_id='1777',mac_src='00:0a:01:00:00:01',mac_src_step='00:00:00:00:00:01',mac_src_mode='increment',mac_src_count=10,mac_dst='00:0a:12:00:00:01',vlan='enable')
+RESP: tg_traffic_config {"stream_id": "stream-13-0"}
+REQ: tg_traffic_config(port_handle='port-14',mode='create',transmit_mode='continuous',length_mode='fixed',rate_pps=10,l2_encap='ethernet_ii_vlan',vlan_id='1777',mac_src='00:0a:12:00:00:01',mac_dst='00:0a:01:00:00:01',vlan='enable')
+RESP: tg_traffic_config {"stream_id": "stream-14-0"}
+REQ: tg_traffic_control(action='run',stream_handle=['stream-13-0', 'stream-14-0'])
+RESP: tg_traffic_control True
+REQ: tg_disconnect()
+RESP: tg_disconnect {"status": 1}

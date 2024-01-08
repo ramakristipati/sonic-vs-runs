@@ -1,0 +1,130 @@
+Building configuration...
+
+Current configuration:
+!
+frr version 8.5.1
+frr defaults traditional
+hostname sonic
+log syslog
+log facility local4
+no zebra nexthop kernel enable
+fpm address 127.0.0.1
+no fpm use-next-hop-groups
+no service integrated-vtysh-config
+!
+debug bgp keepalives
+debug bgp neighbor-events
+!
+password zebra
+enable password zebra
+!
+router bgp 101 vrf Vrf-101
+ bgp router-id 22.22.22.22
+ no bgp ebgp-requires-policy
+ neighbor 3.0.101.1 remote-as 101
+ neighbor 3101::1 remote-as 101
+ !
+ address-family ipv4 unicast
+  neighbor 3.0.101.1 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor 3101::1 activate
+  neighbor 3101::1 next-hop-self
+  neighbor 3101::1 route-map UseGlobal in
+ exit-address-family
+exit
+!
+router bgp 102 vrf Vrf-102
+ bgp router-id 22.22.22.22
+ no bgp ebgp-requires-policy
+ neighbor 3.0.101.1 remote-as 102
+ neighbor 3101::1 remote-as 102
+ !
+ address-family ipv4 unicast
+  neighbor 3.0.101.1 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor 3101::1 activate
+  neighbor 3101::1 next-hop-self
+  neighbor 3101::1 route-map UseGlobal in
+ exit-address-family
+exit
+!
+router bgp 103 vrf Vrf-103
+ bgp router-id 22.22.22.22
+ no bgp ebgp-requires-policy
+ neighbor 3.0.101.1 remote-as 103
+ neighbor 3101::1 remote-as 103
+ !
+ address-family ipv4 unicast
+  neighbor 3.0.101.1 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor 3101::1 activate
+  neighbor 3101::1 next-hop-self
+  neighbor 3101::1 route-map UseGlobal in
+ exit-address-family
+exit
+!
+route-map ALLOW_LIST_DEPLOYMENT_ID_0_V4 permit 65535
+exit
+!
+route-map ALLOW_LIST_DEPLOYMENT_ID_0_V6 permit 65535
+exit
+!
+route-map FROM_BGP_PEER_V4 permit 10
+ call ALLOW_LIST_DEPLOYMENT_ID_0_V4
+ on-match next
+exit
+!
+route-map FROM_BGP_PEER_V4 permit 11
+exit
+!
+route-map FROM_BGP_PEER_V4 permit 100
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 1
+ on-match next
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 10
+ call ALLOW_LIST_DEPLOYMENT_ID_0_V6
+ on-match next
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 11
+exit
+!
+route-map FROM_BGP_PEER_V6 permit 100
+exit
+!
+route-map TO_BGP_PEER_V4 permit 100
+exit
+!
+route-map TO_BGP_PEER_V6 permit 100
+exit
+!
+route-map RM_SET_SRC permit 10
+ set src 1.2.3.4
+exit
+!
+route-map RM_SET_SRC6 permit 10
+ set src 6001::1
+exit
+!
+route-map UseGlobal permit 10
+ set ipv6 next-hop prefer-global
+exit
+!
+ip nht resolve-via-default
+!
+ipv6 nht resolve-via-default
+!
+ip protocol bgp route-map RM_SET_SRC
+!
+ipv6 protocol bgp route-map RM_SET_SRC6
+!
+end

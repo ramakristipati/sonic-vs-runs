@@ -1,0 +1,274 @@
+0:05:29,875 gw2 T0000: INFO  ################################################################################
+0:05:29,875 gw2 T0000: INFO  Python: 3.8.10
+0:05:29,875 gw2 T0000: INFO  ################################################################################
+0:05:29,876 gw2 T0000: INFO  ################################################################################
+0:05:29,876 gw2 T0000: INFO  Open file /data/work/scapy-tgen/logs/current/inst-2023_12_27_00_50_15_386578/gw2/results_mlog_switching_test_portchannel.tgen
+0:05:29,876 gw2 T0000: INFO  ################################################################################
+0:05:29,876 gw2 T0000: INFO  ################################################################################
+0:05:29,876 gw2 T0000: INFO  gw2 gw2 init-log results_mlog_switching_test_portchannel.tgen
+0:05:29,876 gw2 T0000: INFO  ################################################################################
+0:05:29,876 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+0:05:29,877 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+0:05:30,615 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'reset', 'port_handle': ['port-1', 'port-5']}
+0:05:30,615 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'reset', 'port_handle': ['port-1', 'port-5']}
+0:05:34,619 gw2 T0000: DEBUG RESULT: true
+0:05:34,628 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'clear_stats', 'port_handle': ['port-1', 'port-5']}
+0:05:34,629 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'clear_stats', 'port_handle': ['port-1', 'port-5']}
+0:05:38,633 gw2 T0000: DEBUG RESULT: true
+0:05:38,643 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-1', 'mode': 'config', 'intf_ip_addr': '10.1.1.1', 'gateway': '10.1.1.2', 'arp_send_req': '1'}
+0:05:38,643 gw2 T0000: DEBUG gw2 exposed_tg_interface_config () {'port_handle': 'port-1', 'mode': 'config', 'intf_ip_addr': '10.1.1.1', 'gateway': '10.1.1.2', 'arp_send_req': '1'}
+0:05:38,645 gw2 T0000: DEBUG shexec:
+0:05:38,645 gw2 T0000: DEBUG ip netns del ns_1_0_0
+0:05:38,645 gw2 T0000: DEBUG ip link del veth_1_0_0
+0:05:38,646 gw2 T0000: DEBUG
+0:05:38,646 gw2 T0000: DEBUG ip netns add ns_1_0_0
+0:05:38,646 gw2 T0000: DEBUG ip netns list
+0:05:38,646 gw2 T0000: DEBUG ip link add veth_1_0_0 type veth peer name veth1
+0:05:38,646 gw2 T0000: DEBUG ip link set veth1 netns ns_1_0_0
+0:05:38,646 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:38,646 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ip link set dev veth1 up
+0:05:38,646 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ethtool --offload veth1 rx off tx off
+0:05:38,646 gw2 T0000: DEBUG ip link set dev veth_1_0_0 up
+0:05:38,647 gw2 T0000: DEBUG ip link add name eth1-br type bridge
+0:05:38,647 gw2 T0000: DEBUG ip link set dev veth_1_0_0 master eth1-br
+0:05:38,647 gw2 T0000: DEBUG
+0:05:38,647 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ip addr add 10.1.1.1/24 dev veth1
+0:05:38,647 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ip route add default via 10.1.1.2
+0:05:38,647 gw2 T0000: DEBUG sleep 2
+0:05:38,647 gw2 T0000: DEBUG
+0:05:38,647 gw2 T0000: DEBUG ip netns exec ns_1_0_0 arping -w 7 -c 1 -I veth1 10.1.1.2
+0:05:38,647 gw2 T0000: DEBUG
+0:05:38,648 gw2 T0000: DEBUG
+0:05:38,648 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ip neigh show
+0:05:38,648 gw2 T0000: DEBUG
+0:05:38,648 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ifconfig veth1
+0:05:38,648 gw2 T0000: DEBUG ip netns exec ns_1_0_0 ip addr ls veth1
+0:05:38,648 gw2 T0000: DEBUG
+0:05:39,431 gw2 T0022: DEBUG readp:eth5 len:134 count:1
+0:05:39,446 gw2 T0006: DEBUG readp:eth1 len:134 count:1
+0:05:39,493 gw2 T0006: DEBUG readp:eth1 len:134 count:2
+0:05:39,814 gw2 T0022: DEBUG readp:eth5 len:134 count:2
+0:05:40,173 gw2 T0006: DEBUG readp:eth1 len:134 count:3
+0:05:40,197 gw2 T0022: DEBUG readp:eth5 len:134 count:3
+0:05:40,427 gw2 T0022: DEBUG readp:eth5 len:280 count:4
+0:05:40,437 gw2 T0006: DEBUG readp:eth1 len:280 count:4
+0:05:41,667 gw2 T0006: DEBUG readp:eth1 len:280 count:5
+0:05:41,781 gw2 T0022: DEBUG readp:eth5 len:280 count:5
+0:05:42,097 gw2 T0000: DEBUG + ip netns del ns_1_0_0
+0:05:42,098 gw2 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_1_0_0": No such file or directory
+0:05:42,098 gw2 T0000: DEBUG + ip link del veth_1_0_0
+0:05:42,098 gw2 T0000: DEBUG Cannot find device "veth_1_0_0"
+0:05:42,098 gw2 T0000: DEBUG + ip netns add ns_1_0_0
+0:05:42,098 gw2 T0000: DEBUG + ip netns list
+0:05:42,098 gw2 T0000: DEBUG ns_1_0_0
+0:05:42,098 gw2 T0000: DEBUG scapy
+0:05:42,098 gw2 T0000: DEBUG + ip link add veth_1_0_0 type veth peer name veth1
+0:05:42,099 gw2 T0000: DEBUG + ip link set veth1 netns ns_1_0_0
+0:05:42,099 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ethtool --offload veth1 rx off tx off
+0:05:42,099 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ip link set dev veth1 up
+0:05:42,099 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ethtool --offload veth1 rx off tx off
+0:05:42,099 gw2 T0000: DEBUG + ip link set dev veth_1_0_0 up
+0:05:42,099 gw2 T0000: DEBUG + ip link add name eth1-br type bridge
+0:05:42,099 gw2 T0000: DEBUG RTNETLINK answers: File exists
+0:05:42,099 gw2 T0000: DEBUG + ip link set dev veth_1_0_0 master eth1-br
+0:05:42,099 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ip addr add 10.1.1.1/24 dev veth1
+0:05:42,099 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ip route add default via 10.1.1.2
+0:05:42,100 gw2 T0000: DEBUG + sleep 2
+0:05:42,100 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 arping -w 7 -c 1 -I veth1 10.1.1.2
+0:05:42,100 gw2 T0000: DEBUG ARPING 10.1.1.2
+0:05:42,100 gw2 T0000: DEBUG Timeout
+0:05:42,100 gw2 T0000: DEBUG
+0:05:42,100 gw2 T0000: DEBUG --- 10.1.1.2 statistics ---
+0:05:42,100 gw2 T0000: DEBUG 1 packets transmitted, 0 packets received, 100% unanswered (0 extra)
+0:05:42,100 gw2 T0000: DEBUG
+0:05:42,100 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ip neigh show
+0:05:42,101 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ifconfig veth1
+0:05:42,101 gw2 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:42,101 gw2 T0000: DEBUG         inet 10.1.1.1  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:42,101 gw2 T0000: DEBUG         inet6 fe80::bc22:4fff:fee1:8764  prefixlen 64  scopeid 0x20<link>
+0:05:42,101 gw2 T0000: DEBUG         ether be:22:4f:e1:87:64  txqueuelen 1000  (Ethernet)
+0:05:42,101 gw2 T0000: DEBUG         RX packets 9  bytes 906 (906.0 B)
+0:05:42,101 gw2 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:42,101 gw2 T0000: DEBUG         TX packets 7  bytes 574 (574.0 B)
+0:05:42,101 gw2 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:42,101 gw2 T0000: DEBUG
+0:05:42,102 gw2 T0000: DEBUG + ip netns exec ns_1_0_0 ip addr ls veth1
+0:05:42,102 gw2 T0000: DEBUG 34: veth1@if35: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:42,102 gw2 T0000: DEBUG     link/ether be:22:4f:e1:87:64 brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:42,102 gw2 T0000: DEBUG     inet 10.1.1.1/24 scope global veth1
+0:05:42,102 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:42,102 gw2 T0000: DEBUG     inet6 fe80::bc22:4fff:fee1:8764/64 scope link
+0:05:42,102 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:42,102 gw2 T0000: DEBUG
+0:05:42,103 gw2 T0000: INFO  read the mac addresses of created interfaces
+0:05:42,103 gw2 T0000: DEBUG cmdexec: ip netns exec ns_1_0_0 ip addr show dev veth1
+0:05:42,130 gw2 T0000: INFO  ip addr show dev veth1 {'inet': '10.1.1.1/24', 'inet6': 'fe80::bc22:4fff:fee1:8764/64', 'state': 'UP', 'link/ether': 'be:22:4f:e1:87:64'}
+0:05:42,130 gw2 T0000: DEBUG New interface iface-1-0...
+0:05:44,133 gw2 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-1-0"}
+0:05:44,143 gw2 T0000: DEBUG gw2 ('gw2',) {'port_handle': 'port-5', 'mode': 'config', 'intf_ip_addr': '30.1.1.1', 'gateway': '30.1.1.3', 'arp_send_req': '1'}
+0:05:44,144 gw2 T0000: DEBUG gw2 exposed_tg_interface_config () {'port_handle': 'port-5', 'mode': 'config', 'intf_ip_addr': '30.1.1.1', 'gateway': '30.1.1.3', 'arp_send_req': '1'}
+0:05:44,145 gw2 T0000: DEBUG shexec:
+0:05:44,145 gw2 T0000: DEBUG ip netns del ns_5_0_0
+0:05:44,146 gw2 T0000: DEBUG ip link del veth_5_0_0
+0:05:44,146 gw2 T0000: DEBUG
+0:05:44,146 gw2 T0000: DEBUG ip netns add ns_5_0_0
+0:05:44,146 gw2 T0000: DEBUG ip netns list
+0:05:44,146 gw2 T0000: DEBUG ip link add veth_5_0_0 type veth peer name veth1
+0:05:44,146 gw2 T0000: DEBUG ip link set veth1 netns ns_5_0_0
+0:05:44,146 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ethtool --offload veth1 rx off  tx off > /dev/null 2>&1
+0:05:44,146 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ip link set dev veth1 up
+0:05:44,146 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:05:44,147 gw2 T0000: DEBUG ip link set dev veth_5_0_0 up
+0:05:44,147 gw2 T0000: DEBUG ip link add name eth5-br type bridge
+0:05:44,147 gw2 T0000: DEBUG ip link set dev veth_5_0_0 master eth5-br
+0:05:44,147 gw2 T0000: DEBUG
+0:05:44,147 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ip addr add 30.1.1.1/24 dev veth1
+0:05:44,147 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ip route add default via 30.1.1.3
+0:05:44,147 gw2 T0000: DEBUG sleep 2
+0:05:44,147 gw2 T0000: DEBUG
+0:05:44,147 gw2 T0000: DEBUG ip netns exec ns_5_0_0 arping -w 7 -c 1 -I veth1 30.1.1.3
+0:05:44,147 gw2 T0000: DEBUG
+0:05:44,148 gw2 T0000: DEBUG
+0:05:44,148 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ip neigh show
+0:05:44,148 gw2 T0000: DEBUG
+0:05:44,148 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ifconfig veth1
+0:05:44,148 gw2 T0000: DEBUG ip netns exec ns_5_0_0 ip addr ls veth1
+0:05:44,148 gw2 T0000: DEBUG
+0:05:47,641 gw2 T0000: DEBUG + ip netns del ns_5_0_0
+0:05:47,641 gw2 T0000: DEBUG Cannot remove namespace file "/run/netns/ns_5_0_0": No such file or directory
+0:05:47,641 gw2 T0000: DEBUG + ip link del veth_5_0_0
+0:05:47,641 gw2 T0000: DEBUG Cannot find device "veth_5_0_0"
+0:05:47,642 gw2 T0000: DEBUG + ip netns add ns_5_0_0
+0:05:47,642 gw2 T0000: DEBUG + ip netns list
+0:05:47,642 gw2 T0000: DEBUG ns_5_0_0
+0:05:47,642 gw2 T0000: DEBUG ns_1_0_0 (id: 1)
+0:05:47,642 gw2 T0000: DEBUG scapy
+0:05:47,642 gw2 T0000: DEBUG + ip link add veth_5_0_0 type veth peer name veth1
+0:05:47,643 gw2 T0000: DEBUG + ip link set veth1 netns ns_5_0_0
+0:05:47,643 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:05:47,643 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ip link set dev veth1 up
+0:05:47,643 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ethtool --offload veth1 rx off tx off
+0:05:47,643 gw2 T0000: DEBUG + ip link set dev veth_5_0_0 up
+0:05:47,643 gw2 T0000: DEBUG + ip link add name eth5-br type bridge
+0:05:47,643 gw2 T0000: DEBUG RTNETLINK answers: File exists
+0:05:47,644 gw2 T0000: DEBUG + ip link set dev veth_5_0_0 master eth5-br
+0:05:47,644 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ip addr add 30.1.1.1/24 dev veth1
+0:05:47,644 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ip route add default via 30.1.1.3
+0:05:47,644 gw2 T0000: DEBUG + sleep 2
+0:05:47,644 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 arping -w 7 -c 1 -I veth1 30.1.1.3
+0:05:47,644 gw2 T0000: DEBUG ARPING 30.1.1.3
+0:05:47,645 gw2 T0000: DEBUG Timeout
+0:05:47,645 gw2 T0000: DEBUG
+0:05:47,645 gw2 T0000: DEBUG --- 30.1.1.3 statistics ---
+0:05:47,645 gw2 T0000: DEBUG 1 packets transmitted, 0 packets received, 100% unanswered (0 extra)
+0:05:47,645 gw2 T0000: DEBUG
+0:05:47,645 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ip neigh show
+0:05:47,645 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ifconfig veth1
+0:05:47,645 gw2 T0000: DEBUG veth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+0:05:47,645 gw2 T0000: DEBUG         inet 30.1.1.1  netmask 255.255.255.0  broadcast 0.0.0.0
+0:05:47,645 gw2 T0000: DEBUG         inet6 fe80::382c:abff:fe07:7d4a  prefixlen 64  scopeid 0x20<link>
+0:05:47,646 gw2 T0000: DEBUG         ether 3a:2c:ab:07:7d:4a  txqueuelen 1000  (Ethernet)
+0:05:47,646 gw2 T0000: DEBUG         RX packets 6  bytes 516 (516.0 B)
+0:05:47,646 gw2 T0000: DEBUG         RX errors 0  dropped 0  overruns 0  frame 0
+0:05:47,646 gw2 T0000: DEBUG         TX packets 7  bytes 574 (574.0 B)
+0:05:47,646 gw2 T0000: DEBUG         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+0:05:47,646 gw2 T0000: DEBUG
+0:05:47,646 gw2 T0000: DEBUG + ip netns exec ns_5_0_0 ip addr ls veth1
+0:05:47,646 gw2 T0000: DEBUG 36: veth1@if37: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+0:05:47,646 gw2 T0000: DEBUG     link/ether 3a:2c:ab:07:7d:4a brd ff:ff:ff:ff:ff:ff link-netns scapy
+0:05:47,646 gw2 T0000: DEBUG     inet 30.1.1.1/24 scope global veth1
+0:05:47,646 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:47,647 gw2 T0000: DEBUG     inet6 fe80::382c:abff:fe07:7d4a/64 scope link
+0:05:47,647 gw2 T0000: DEBUG        valid_lft forever preferred_lft forever
+0:05:47,647 gw2 T0000: DEBUG
+0:05:47,647 gw2 T0000: INFO  read the mac addresses of created interfaces
+0:05:47,647 gw2 T0000: DEBUG cmdexec: ip netns exec ns_5_0_0 ip addr show dev veth1
+0:05:47,681 gw2 T0000: INFO  ip addr show dev veth1 {'inet': '30.1.1.1/24', 'inet6': 'fe80::382c:abff:fe07:7d4a/64', 'state': 'UP', 'link/ether': '3a:2c:ab:07:7d:4a'}
+0:05:47,682 gw2 T0000: DEBUG New interface iface-5-0...
+0:05:49,684 gw2 T0000: DEBUG RESULT: {"status": "1", "handle": "iface-5-0"}
+0:05:50,200 gw2 T0030: DEBUG readp:eth7 len:263 count:83
+0:05:50,248 gw2 T0034: DEBUG readp:eth8 len:265 count:94
+0:05:50,305 gw2 T0026: DEBUG readp:eth6 len:263 count:89
+0:05:52,956 gw2 T0018: DEBUG readp:eth4 len:265 count:93
+0:05:53,021 gw2 T0010: DEBUG readp:eth2 len:263 count:86
+0:05:53,093 gw2 T0014: DEBUG readp:eth3 len:263 count:81
+0:05:55,469 gw2 T0022: DEBUG readp:eth5 len:280 count:6
+0:05:55,511 gw2 T0006: DEBUG readp:eth1 len:280 count:6
+0:05:56,794 gw2 T0006: DEBUG readp:eth1 len:280 count:7
+0:05:57,009 gw2 T0022: DEBUG readp:eth5 len:280 count:7
+0:06:20,203 gw2 T0030: DEBUG readp:eth7 len:263 count:84
+0:06:20,251 gw2 T0034: DEBUG readp:eth8 len:265 count:95
+0:06:20,304 gw2 T0026: DEBUG readp:eth6 len:263 count:90
+0:06:22,956 gw2 T0018: DEBUG readp:eth4 len:265 count:94
+0:06:23,021 gw2 T0010: DEBUG readp:eth2 len:263 count:87
+0:06:23,093 gw2 T0014: DEBUG readp:eth3 len:263 count:82
+0:06:23,541 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-start test_ft_portchannel_with_vlan_variations gw2') {}
+0:06:23,541 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-start test_ft_portchannel_with_vlan_variations gw2 () {}
+0:06:23,542 gw2 T0000: INFO  ################################################################################
+0:06:23,542 gw2 T0000: INFO  gw2 gw2 add-log test-start test_ft_portchannel_with_vlan_variations gw2
+0:06:23,542 gw2 T0000: INFO  ################################################################################
+0:06:23,542 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+0:06:23,542 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+0:06:23,548 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'reset', 'port_handle': 'port-1'}
+0:06:23,548 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'reset', 'port_handle': 'port-1'}
+0:06:25,549 gw2 T0000: DEBUG RESULT: true
+0:06:26,750 gw2 T0006: DEBUG readp:eth1 len:280 count:8
+0:06:26,752 gw2 T0022: DEBUG readp:eth5 len:280 count:8
+0:06:41,568 gw2 T0006: DEBUG readp:eth1 len:280 count:9
+0:06:44,313 gw2 T0022: DEBUG readp:eth5 len:280 count:9
+0:06:50,200 gw2 T0030: DEBUG readp:eth7 len:263 count:85
+0:06:50,249 gw2 T0034: DEBUG readp:eth8 len:265 count:96
+0:06:50,305 gw2 T0026: DEBUG readp:eth6 len:263 count:91
+0:06:52,956 gw2 T0018: DEBUG readp:eth4 len:265 count:95
+0:06:53,021 gw2 T0010: DEBUG readp:eth2 len:263 count:88
+0:06:53,093 gw2 T0014: DEBUG readp:eth3 len:263 count:83
+0:07:02,198 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-finish test_ft_portchannel_with_vlan_variations gw2') {}
+0:07:02,199 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-finish test_ft_portchannel_with_vlan_variations gw2 () {}
+0:07:02,199 gw2 T0000: INFO  ################################################################################
+0:07:02,199 gw2 T0000: INFO  gw2 gw2 add-log test-finish test_ft_portchannel_with_vlan_variations gw2
+0:07:02,199 gw2 T0000: INFO  ################################################################################
+0:07:02,200 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+0:07:02,200 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+0:07:07,635 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-start test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007 gw2') {}
+0:07:07,635 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-start test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007 gw2 () {}
+0:07:07,636 gw2 T0000: INFO  ################################################################################
+0:07:07,636 gw2 T0000: INFO  gw2 gw2 add-log test-start test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007 gw2
+0:07:07,636 gw2 T0000: INFO  ################################################################################
+0:07:07,636 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+0:07:07,636 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+0:07:07,640 gw2 T0000: DEBUG gw2 ('gw2',) {'action': 'reset', 'port_handle': 'port-1'}
+0:07:07,640 gw2 T0000: DEBUG gw2 exposed_tg_traffic_control () {'action': 'reset', 'port_handle': 'port-1'}
+0:07:09,641 gw2 T0000: DEBUG RESULT: true
+0:07:11,572 gw2 T0006: DEBUG readp:eth1 len:280 count:10
+0:07:14,321 gw2 T0022: DEBUG readp:eth5 len:280 count:10
+0:07:20,203 gw2 T0030: DEBUG readp:eth7 len:263 count:86
+0:07:20,248 gw2 T0034: DEBUG readp:eth8 len:265 count:97
+0:07:20,305 gw2 T0026: DEBUG readp:eth6 len:263 count:92
+0:07:22,958 gw2 T0018: DEBUG readp:eth4 len:265 count:96
+0:07:23,021 gw2 T0010: DEBUG readp:eth2 len:263 count:89
+0:07:23,095 gw2 T0014: DEBUG readp:eth3 len:263 count:84
+0:07:26,937 gw2 T0000: DEBUG gw2 ('gw2', 'add-log', 'test-finish test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007 gw2') {}
+0:07:26,938 gw2 T0000: DEBUG gw2 exposed_server_control add-log test-finish test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007 gw2 () {}
+0:07:26,938 gw2 T0000: INFO  ################################################################################
+0:07:26,938 gw2 T0000: INFO  gw2 gw2 add-log test-finish test_ft_verify_min_links_functionality_by_flapping_all_member_ports_007 gw2
+0:07:26,938 gw2 T0000: INFO  ################################################################################
+0:07:26,938 gw2 T0000: DEBUG gw2 ('gw2', 'get-alerts', '') {}
+0:07:26,938 gw2 T0000: DEBUG gw2 exposed_server_control get-alerts  () {}
+0:07:41,571 gw2 T0006: DEBUG readp:eth1 len:280 count:11
+0:07:44,328 gw2 T0022: DEBUG readp:eth5 len:280 count:11
+0:07:50,201 gw2 T0030: DEBUG readp:eth7 len:263 count:87
+0:07:50,249 gw2 T0034: DEBUG readp:eth8 len:265 count:98
+0:07:50,306 gw2 T0026: DEBUG readp:eth6 len:263 count:93
+0:07:52,959 gw2 T0018: DEBUG readp:eth4 len:265 count:97
+0:07:53,024 gw2 T0010: DEBUG readp:eth2 len:263 count:90
+0:07:53,096 gw2 T0014: DEBUG readp:eth3 len:263 count:85
+0:07:56,008 gw2 T0006: DEBUG readp:eth1 len:280 count:12
+0:07:56,017 gw2 T0022: DEBUG readp:eth5 len:280 count:12
+0:08:20,201 gw2 T0030: DEBUG readp:eth7 len:263 count:88
+0:08:20,250 gw2 T0034: DEBUG readp:eth8 len:265 count:99
+0:08:20,306 gw2 T0026: DEBUG readp:eth6 len:263 count:94
+0:08:22,956 gw2 T0018: DEBUG readp:eth4 len:265 count:98
+0:08:23,021 gw2 T0010: DEBUG readp:eth2 len:263 count:91
+0:08:23,097 gw2 T0014: DEBUG readp:eth3 len:263 count:86
+0:08:25,461 gw2 T0000: DEBUG gw2 ('gw2', 'read-log', 'results_mlog_switching_test_portchannel.tgen') {}
+0:08:25,461 gw2 T0000: DEBUG gw2 exposed_server_control read-log results_mlog_switching_test_portchannel.tgen () {}

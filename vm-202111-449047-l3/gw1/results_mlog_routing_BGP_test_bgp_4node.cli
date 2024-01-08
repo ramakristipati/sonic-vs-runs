@@ -1,0 +1,519 @@
+framework,,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,,,D2,normal-user,sudo show interfaces status
+framework,,,D2,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D2,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s config interface ip add Ethernet16 11.1.0.2/24
+module-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s config interface ip add Ethernet16 67fe:1::2/64
+module-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s config interface ip add Ethernet40 11.2.0.1/24
+module-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s config interface ip add Ethernet40 67fe:2::1/64
+module-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s ping -4 11.2.0.2 -c 3
+module-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s ping -6 67fe:2::2 -c 3
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,bgp confederation peers 24\nbgp confederation identifier 100\nneighbor 11.2.0.2 remote-as 35
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,neighbor 11.1.0.1 remote-as 24
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,neighbor 11.1.0.1 timers 60 180
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,address-family ipv4 unicast
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,neighbor 11.1.0.1 activate
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,bgp confederation peers 24\nbgp confederation identifier 100\nneighbor 67fe:2::2 remote-as 35\naddress-family ipv6 unicast\nneighbor 67fe:2::2 activate
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,neighbor 67fe:1::1 remote-as 24
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,neighbor 67fe:1::1 timers 60 180
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-config,address-family ipv6 unicast
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,neighbor 67fe:1::1 activate
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,do show bgp ipv4 summary
+class-prolog,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s config save /tmp/config-db-V2-post-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,normal-user,configure terminal
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-router-config,no bgp network import-check\naddress-family ipv4 unicast\nnetwork 131.6.6.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-router-config,no bgp network import-check\naddress-family ipv6 unicast\nnetwork 3000:1::0/64
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-router-config,address-family ipv4 unicast\nno network 131.6.6.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D2,vtysh-router-config,address-family ipv6 unicast\nno network 3000:1::0/64
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D2,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D2,vtysh-user,show bgp ipv4 134.5.8.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D2,vtysh-user,show ip route
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D2,vtysh-user,show ip route
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D2,vtysh-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D2,vtysh-config,no router bgp
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-config,neighbor 11.1.0.1 remote-as 65001\naddress-family ipv4 unicast\nneighbor 11.1.0.1 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-config,neighbor 11.2.0.2 remote-as 65001\naddress-family ipv4 unicast\nneighbor 11.2.0.2 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.2.0.2 route-reflector-client
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.1.0.1 route-reflector-client
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-af-config,do show bgp ipv4
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D2,vtysh-router-af-config,no router bgp
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D2,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-config,router bgp 65002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-config,neighbor 67fe:2::2 remote-as 65003\naddress-family ipv6 unicast\nneighbor 67fe:2::2 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-af-config,router bgp 65002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-config,neighbor 11.2.0.2 remote-as 65003\naddress-family ipv4 unicast\nneighbor 11.2.0.2 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-af-config,ipv6 access-list LOOPBACK permit 67fe:1::/64
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-config,route-map SET_COMMUNITY_1 permit 10\nset metric 50\nset community 64984:0 local-as\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-config,router bgp 65002\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:2::2 route-map SET_COMMUNITY_1 out\nexit\naddress-family ipv6 unicast\nredistribute connected\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-config,do show bgp ipv6 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-router-config,route-map SET_COMMUNITY permit 10\nset community 64984:0 local-as\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-config,no router bgp
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s config save /tmp/config-db-V2-pre-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-pre-module-epilog-routing-BGP-test_bgp_4node.py.json
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s config interface ip remove Ethernet16 11.1.0.2/24
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s config interface ip remove Ethernet16 67fe:1::2/64
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s config interface ip remove Ethernet40 11.2.0.1/24
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s config interface ip remove Ethernet40 67fe:2::1/64
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s config save /tmp/config-db-V2-post-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s chmod 777 /tmp/config-db-V2-post-module-epilog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V2-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V2-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D2,normal-user,/sbin/ip route list dev eth0
+framework,,,D4,normal-user,sudo show interfaces status Ethernet124
+framework,,,D4,normal-user,sudo show interfaces status
+framework,,,D4,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,,,D4,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,,,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D4,normal-user,/sbin/ip route list dev eth0
+framework,,,D4,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D4,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D4,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo -s config interface ip add Ethernet48 11.3.0.2/24
+module-prolog,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo -s config interface ip add Ethernet48 67fe:3::2/64
+class-prolog,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp_4node.py,,D4,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp_4node.py,,D4,vtysh-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D4,vtysh-router-config,bgp confederation peers 24\nbgp confederation identifier 100\nneighbor 11.3.0.1 remote-as 35
+class-prolog,routing/BGP/test_bgp_4node.py,,D4,vtysh-router-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D4,vtysh-router-config,bgp confederation peers 24\nbgp confederation identifier 100\nneighbor 67fe:3::1 remote-as 35\naddress-family ipv6 unicast\nneighbor 67fe:3::1 activate
+framework,routing/BGP/test_bgp_4node.py,,D4,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D4,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D4,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D4,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo -s config save /tmp/config-db-V4-post-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D4,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D4,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D4,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D4,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D4,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp_4node.py,,D4,vtysh-user,exit
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status Ethernet124
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D4,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D4,normal-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D4,vtysh-config,no router bgp
+framework,routing/BGP/test_bgp_4node.py,,D4,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D4,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D4,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,vtysh-config,router bgp 65004\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,vtysh-router-config,neighbor 11.3.0.1 remote-as 65003\naddress-family ipv4 unicast\nneighbor 11.3.0.1 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,vtysh-router-af-config,no router bgp
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s config save /tmp/config-db-V4-pre-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s chmod 777 /tmp/config-db-V4-pre-module-epilog-routing-BGP-test_bgp_4node.py.json
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s config interface ip remove Ethernet48 11.3.0.2/24
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s config interface ip remove Ethernet48 67fe:3::2/64
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s config save /tmp/config-db-V4-post-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s chmod 777 /tmp/config-db-V4-post-module-epilog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V4-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V4-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D4,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D1,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s config interface ip add Ethernet16 11.1.0.1/24
+module-prolog,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s config interface ip add Ethernet16 67fe:1::1/64
+module-prolog,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s ping -4 11.1.0.2 -c 3
+module-prolog,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s ping -6 67fe:1::2 -c 3
+class-prolog,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp_4node.py,,D1,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp_4node.py,,D1,vtysh-config,router bgp 24\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-config,bgp confederation peers 35\nbgp confederation identifier 100\nneighbor 11.1.0.2 remote-as 35
+class-prolog,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-config,router bgp 24\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-config,bgp confederation peers 35\nbgp confederation identifier 100\nneighbor 67fe:1::2 remote-as 35\naddress-family ipv6 unicast\nneighbor 67fe:1::2 activate
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-router-config,no bgp network import-check\naddress-family ipv4 unicast\nnetwork 131.5.6.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-router-af-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-router-config,no bgp network import-check\naddress-family ipv6 unicast\nnetwork 2000:1::0/64
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-router-af-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-router-config,address-family ipv4 unicast\nno network 131.5.6.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-router-af-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D1,vtysh-router-config,address-family ipv6 unicast\nno network 2000:1::0/64
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,normal-user,configure terminal
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,access-list test-access-list1 permit 134.5.8.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,route-map test-rmap permit 10
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-route-map-config,match ip address test-access-list1\nexit
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,route-map test-rmap permit 10
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-route-map-config,set as-path prepend 200\nexit
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,access-list test-access-list2 deny 134.5.6.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,route-map test-rmap deny 20
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-route-map-config,match ip address test-access-list2\nexit
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,access-list test-access-list3 permit 134.5.7.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,route-map test-rmap permit 30
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-route-map-config,match ip address test-access-list3\nexit
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,network 134.5.6.0/24 route-map test-rmap
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,network 134.5.7.0/24 route-map test-rmap
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,network 134.5.8.0/24 route-map test-rmap
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,no route-map test-rmap permit 10
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,no access-list test-access-list3 permit 134.5.7.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,no access-list test-access-list2 deny 134.5.6.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,no access-list test-access-list1 permit 134.5.8.0/24
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,no network 134.5.6.0/24 route-map test-rmap
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,no network 134.5.7.0/24 route-map test-rmap
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,router bgp 24\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,no network 134.5.8.0/24 route-map test-rmap
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D1,vtysh-router-config,no router bgp
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,normal-user,sudo -s config interface ip add Ethernet40 11.4.0.1/24
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-config,neighbor 11.1.0.2 remote-as 65001\naddress-family ipv4 unicast\nneighbor 11.1.0.2 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-config,neighbor 11.4.0.2 remote-as 65001\naddress-family ipv4 unicast\nneighbor 11.4.0.2 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.1.0.2 route-reflector-client
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.4.0.2 route-reflector-client
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-af-config,do show bgp ipv4
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-router-af-config,no router bgp
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D1,normal-user,sudo -s config interface ip remove Ethernet40 11.4.0.1/24
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s config interface ip add Ethernet40 11.4.0.1/24
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-router-config,neighbor 11.4.0.2 remote-as 65003\naddress-family ipv4 unicast\nneighbor 11.4.0.2 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-router-config,network 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-router-config,access-list LOOPBACK permit 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,route-map SET_COMMUNITY permit 10
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-route-map-config,match ip address LOOPBACK\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,route-map SET_COMMUNITY permit 10\nset metric 50\nset community 64984:0\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.4.0.2 route-map SET_COMMUNITY out\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-router-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-router-config,route-map SET_COMMUNITY permit 10\nset community 64984:0 local-as\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,route-map SET_COMMUNITY permit 10\nno set community local-as\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,route-map SET_COMMUNITY permit 10\nset community none\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,route-map SET_COMMUNITY permit 10\nset community 64984:0 local-as\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,no router bgp
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s config interface ip remove Ethernet40 11.4.0.1/24
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,no route-map SET_COMMUNITY
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,no access-list LOOPBACK
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s config save /tmp/config-db-V1-pre-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-pre-module-epilog-routing-BGP-test_bgp_4node.py.json
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s config interface ip remove Ethernet16 11.1.0.1/24
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s config interface ip remove Ethernet16 67fe:1::1/64
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s config save /tmp/config-db-V1-post-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V1-post-module-epilog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V1-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V1-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D1,normal-user,/sbin/ip route list dev eth0
+framework,,,D3,normal-user,sudo show interfaces status Ethernet124
+framework,,,D3,normal-user,sudo show interfaces status
+framework,,,D3,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,,,D3,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,,,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D3,normal-user,/sbin/ip route list dev eth0
+framework,,,D3,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D3,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,,,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,,,D3,normal-user,/sbin/ip route list dev eth0
+module-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s config interface ip add Ethernet32 11.2.0.2/24
+module-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s config interface ip add Ethernet32 67fe:2::2/64
+module-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s config interface ip add Ethernet48 11.3.0.1/24
+module-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s config interface ip add Ethernet48 67fe:3::1/64
+module-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s ping -4 11.3.0.2 -c 3
+module-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s ping -6 67fe:3::2 -c 3
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo vtysh
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,normal-user,configure terminal
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,bgp confederation peers 24\nbgp confederation identifier 100\nneighbor 11.3.0.2 remote-as 35
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,neighbor 11.2.0.1 remote-as 35
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,neighbor 11.2.0.1 timers 60 180
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,address-family ipv4 unicast
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,neighbor 11.2.0.1 activate
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,bgp confederation peers 24\nbgp confederation identifier 100\nneighbor 67fe:3::2 remote-as 35\naddress-family ipv6 unicast\nneighbor 67fe:3::2 activate
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,neighbor 67fe:2::1 remote-as 35
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,neighbor 67fe:2::1 timers 60 180
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-config,address-family ipv6 unicast
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,neighbor 67fe:2::1 activate
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,do show bgp ipv4 summary
+class-prolog,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,do show bgp ipv6 summary
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s config save /tmp/config-db-V3-post-module-prolog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-prolog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-prolog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D3,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D3,vtysh-user,show bgp ipv4
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_route_distribution,D3,vtysh-user,show bgp ipv6
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-user,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status Ethernet124
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,normal-user,sudo vtysh
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,normal-user,configure terminal
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.3.0.2 route-reflector-client
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:3::2 route-reflector-client
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-router-config,address-family ipv4 unicast\nno neighbor 11.3.0.2 route-reflector-client
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-router-af-config,router bgp 35\nno bgp ebgp-requires-policy
+framework,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_ipv6_confed_with_rr,D3,vtysh-router-config,address-family ipv6 unicast\nno neighbor 67fe:3::2 route-reflector-client
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-router-af-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status Ethernet124
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D3,normal-user,sudo vtysh
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D3,normal-user,configure terminal
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,TestBGPConfed::test_confed_route_distribution_with_rmap,D3,vtysh-config,no router bgp
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,vtysh-config,exit
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,normal-user,sudo -s config interface ip add Ethernet16 11.4.0.2/24
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-config,neighbor 11.2.0.1 remote-as 65001\naddress-family ipv4 unicast\nneighbor 11.2.0.1 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-config,neighbor 11.4.0.1 remote-as 65001\naddress-family ipv4 unicast\nneighbor 11.4.0.1 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.4.0.1 route-reflector-client
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.2.0.1 route-reflector-client
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,router bgp 65001\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-config,no bgp network import-check\naddress-family ipv4 unicast\nnetwork 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,do show bgp ipv4
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-router-af-config,no router bgp
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ibgp_RR_Loop,D3,normal-user,sudo -s config interface ip remove Ethernet16 11.4.0.2/24
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status
+framework,routing/BGP/test_bgp_4node.py,,D3,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config interface ip add Ethernet16 11.4.0.2/24
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,router bgp 65003\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,neighbor 67fe:2::1 remote-as 65002\naddress-family ipv6 unicast\nneighbor 67fe:2::1 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-af-config,router bgp 65003\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,neighbor 11.4.0.1 remote-as 65001\naddress-family ipv4 unicast\nneighbor 11.4.0.1 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-af-config,router bgp 65003\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,neighbor 11.2.0.1 remote-as 65002\naddress-family ipv4 unicast\nneighbor 11.2.0.1 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-af-config,router bgp 65003\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,neighbor 11.3.0.2 remote-as 65004\naddress-family ipv4 unicast\nneighbor 11.3.0.2 activate
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-af-config,do show bgp ipv4 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-af-config,bgp community-list standard comm_test permit 64984:0
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,do show bgp ipv4 unicast 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,do show bgp ipv4 unicast 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,do show bgp ipv4 unicast 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,route-map SET_COMMUNITY permit 10\nset community none\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,router bgp 65003\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,address-family ipv4 unicast\nneighbor 11.4.0.1 route-map SET_COMMUNITY in\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,do show bgp ipv4 unicast 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,route-map SET_COMMUNITY_1 permit 10\nset metric 50\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,route-map SET_COMMUNITY_1 permit 10
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-route-map-config,match ipv6 address None\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,do show bgp ipv6 summary
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,do show bgp ipv6 unicast 67fe:1::/64
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,route-map SET_COMMUNITY_1 permit 10\nset community none\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,do show bgp ipv6 unicast 67fe:1::/64
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,route-map SET_COMMUNITY permit 10\nset community none\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,router bgp 65003\nno bgp ebgp-requires-policy
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,address-family ipv6 unicast\nneighbor 67fe:2::1 route-map SET_COMMUNITY in\nexit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,do show bgp ipv4 unicast 172.16.2.2/32
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-router-config,no router bgp
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,exit
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config interface ip remove Ethernet16 11.4.0.2/24
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo vtysh
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,configure terminal
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,no bgp community-list standard comm_test permit 64984:0
+function-or-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,no route-map SET_COMMUNITY_1 permit 10
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,vtysh-config,exit
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-epilog-routing-BGP-test_bgp_4node.py.json
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-BGP-test_bgp_4node.py.txt
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,/sbin/ip route list dev eth0
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config interface ip remove Ethernet32 11.2.0.2/24
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config interface ip remove Ethernet32 67fe:2::2/64
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config interface ip remove Ethernet48 11.3.0.1/24
+module-or-class-epilog,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config interface ip remove Ethernet48 67fe:3::1/64
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s config save /tmp/config-db-V3-post-module-epilog-routing-BGP-test_bgp_4node.py.json -y
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-epilog-routing-BGP-test_bgp_4node.py.json
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,/sbin/ip route list dev eth0
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-epilog-routing-BGP-test_bgp_4node.py.txt
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,sudo -s /sbin/ip link set dev eth0 up
+framework,routing/BGP/test_bgp_4node.py,test_ft_bgp_ebgp_community_map,D3,normal-user,/sbin/ip route list dev eth0

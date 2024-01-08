@@ -1,0 +1,140 @@
+framework,,,D1,normal-user,sudo show interfaces status Ethernet124
+framework,,,D1,normal-user,sudo show interfaces status
+framework,,,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-prolog-routing-test_l3_performance.py.json -y
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-prolog-routing-test_l3_performance.py.json
+framework,,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-test_l3_performance.py.txt
+framework,,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-prolog-routing-test_l3_performance.py.txt
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,show platform summary
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo -s sysctl -w net.ipv6.conf.all.disable_ipv6=0
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo -s sysctl -w net.ipv6.conf.default.disable_ipv6=0
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo -s sysctl -w net.ipv6.conf.lo.disable_ipv6=0
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 10.10.10.1/24
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo -s config interface ip add Ethernet0 2000::1/64
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 20.20.20.1/24
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo -s config interface ip add Ethernet4 3000::1/64
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,sudo vtysh
+module-prolog,routing/test_l3_performance.py,,D1,normal-user,configure terminal
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-config,router bgp 100\nno bgp ebgp-requires-policy
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,timers bgp 60 180
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,router bgp 100\nno bgp ebgp-requires-policy
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,neighbor 10.10.10.2 remote-as 200
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,neighbor 10.10.10.2 timers 60 180
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,address-family ipv4 unicast
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-af-config,neighbor 10.10.10.2 activate
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-af-config,router bgp 100\nno bgp ebgp-requires-policy
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,neighbor 2000::2 remote-as 200
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,neighbor 2000::2 timers 60 180
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-config,address-family ipv6 unicast
+module-prolog,routing/test_l3_performance.py,,D1,vtysh-router-af-config,neighbor 2000::2 activate
+framework,routing/test_l3_performance.py,,D1,vtysh-router-af-config,exit
+framework,routing/test_l3_performance.py,,D1,vtysh-router-af-config,exit
+framework,routing/test_l3_performance.py,,D1,vtysh-router-af-config,exit
+framework,routing/test_l3_performance.py,,D1,vtysh-router-af-config,exit
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-prolog-routing-test_l3_performance.py.json -y
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-prolog-routing-test_l3_performance.py.json
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-prolog-routing-test_l3_performance.py.txt
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-prolog-routing-test_l3_performance.py.txt
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-prolog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,normal-user,sudo vtysh
+function-prolog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,vtysh-user,show bgp ipv4 summary
+function-or-epilog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,vtysh-user,exit
+function-or-epilog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,normal-user,show ip route
+function-or-epilog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,normal-user,sudo vtysh
+function-or-epilog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,vtysh-user,show ip route
+function-or-epilog,routing/test_l3_performance.py,test_ft_l3_performance_enhancements_v4_route_intstall_withdraw,D1,vtysh-user,show bgp ipv4 summary
+framework,routing/test_l3_performance.py,,D1,vtysh-user,exit
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,printf '#!/bin/bash\n\nsudo -s config vlan add 101\nsudo -s config vlan add 102\nsudo -s config vlan add 103\nsudo -s config vlan add 104\nsudo -s config vlan add 105\nsudo -s config vlan add 106\nsudo -s config vlan add 107\nsudo -s config vlan add 108\nsudo -s config vlan add 109\nsudo -s config vlan add 110\nsudo -s config vlan add 111\nsudo -s config vlan add 112\nsudo -s config vlan add 113\nsudo -s config vlan add 114\nsudo -s config vlan add 115\nsudo -s config vlan add 116\nsudo -s config vlan add 117\nsudo -s config vlan add 118\nsudo -s config vlan add 119\nsudo -s config vlan add 120\nsudo -s config vlan add 121\n' > /tmp/config.sh\n
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan101 192.168.101.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan102 192.168.102.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan103 192.168.103.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan104 192.168.104.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan105 192.168.105.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan106 192.168.106.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan107 192.168.107.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan108 192.168.108.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan109 192.168.109.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan110 192.168.110.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan111 192.168.111.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan112 192.168.112.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan113 192.168.113.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan114 192.168.114.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan115 192.168.115.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan116 192.168.116.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan117 192.168.117.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan118 192.168.118.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan119 192.168.119.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip add Vlan120 192.168.120.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan101 192.168.101.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan102 192.168.102.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan103 192.168.103.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan104 192.168.104.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan105 192.168.105.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan106 192.168.106.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan107 192.168.107.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan108 192.168.108.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan109 192.168.109.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan110 192.168.110.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan111 192.168.111.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan112 192.168.112.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan113 192.168.113.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan114 192.168.114.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan115 192.168.115.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan116 192.168.116.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan117 192.168.117.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan118 192.168.118.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan119 192.168.119.1/31
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_ip_address,D1,normal-user,sudo -s config interface ip remove Vlan120 192.168.120.1/31
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo show interfaces status
+framework,routing/test_l3_performance.py,,D1,normal-user,sudo show interfaces status Ethernet124
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo vtysh
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,configure terminal
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-config,router bgp 100
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.101.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.102.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.103.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.104.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.105.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.106.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.107.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.108.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.109.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.110.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.111.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.112.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.113.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.114.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.115.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.116.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.117.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.118.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.119.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,neighbor 192.168.120.2 remote-as 300
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,exit
+function-or-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-config,no router bgp
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-config,exit
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-config,exit
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s config save /tmp/config-db-V3-pre-module-epilog-routing-test_l3_performance.py.json -y
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-pre-module-epilog-routing-test_l3_performance.py.json
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-test_l3_performance.py.txt
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-pre-module-epilog-routing-test_l3_performance.py.txt
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s config interface ip remove Ethernet0 10.10.10.1/24
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s config interface ip remove Ethernet0 2000::1/64
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s config interface ip remove Ethernet4 20.20.20.1/24
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s config interface ip remove Ethernet4 3000::1/64
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo vtysh
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,configure terminal
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-config,router bgp 100\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,no neighbor 10.10.10.2 remote-as 200
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,router bgp 100\nno bgp ebgp-requires-policy
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,no neighbor 2000::2 remote-as 200
+module-or-class-epilog,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-router-config,no router bgp
+framework,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-config,exit
+framework,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,vtysh-config,exit
+framework,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s config save /tmp/config-db-V3-post-module-epilog-routing-test_l3_performance.py.json -y
+framework,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s chmod 777 /tmp/config-db-V3-post-module-epilog-routing-test_l3_performance.py.json
+framework,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo vtysh -c 'show running-config' > /tmp/vtysh-runcfg-V3-post-module-epilog-routing-test_l3_performance.py.txt
+framework,routing/test_l3_performance.py,test_cli_validation_bgp_router_config,D1,normal-user,sudo -s chmod 777 /tmp/vtysh-runcfg-V3-post-module-epilog-routing-test_l3_performance.py.txt
